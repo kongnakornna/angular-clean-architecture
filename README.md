@@ -1,5 +1,7 @@
 # Angular Clean Architecture with Serverless Functions
 
+![alt text](CleanArchitecture.jpg)
+
 Note: I am using this project to experiment with different architectural concepts. This is my attempt at implementing Robert C. Martin (Uncle Bob) Clean Architecture guidelines in an Angular project that uses serverless functions to communicate with a MongoDB cluster.
 
 ## Why?
