@@ -44,15 +44,15 @@ export class ToastComponent implements OnInit {
     public color(toastType: ToastType): string {
         switch (toastType) {
             case ToastType.info:
-                return `bg-blue-500`;
+                return `bg-primary text-white`;
             case ToastType.warning:
-                return `bg-yellow-500`;
+                return `bg-warning text-white`;
             case ToastType.success:
-                return `bg-green-500`;
+                return `bg-success text-white`;
             case ToastType.error:
-                return `bg-red-500`;
+                return `bg-danger text-white`;
             default:
-                return `bg-green-500`;
+                return `bg-success text-white`;
         }
     }
 

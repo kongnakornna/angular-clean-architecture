@@ -2,12 +2,10 @@
   <div class="row align-items-center">
     <div class="col">
       <h2 class="page-title">รายการงาน</h2>
-      <div class="text-muted mt-1">จัดการงานทั้งหมดในระบบ</div>
+      <div class="text-secondary mt-1">จัดการงานทั้งหมดในระบบ</div>
     </div>
     <div class="col-auto ms-auto d-print-none">
-      <a routerLink="/jobs/create" class="btn btn-primary">
-        + สร้างงานใหม่
-      </a>
+      <a routerLink="/jobs/create" class="btn btn-primary">+ สร้างงานใหม่</a>
     </div>
   </div>
 </div>
@@ -86,14 +84,14 @@
           </td>
         </tr>
         <tr *ngIf="(jobs$ | async)?.length === 0">
-          <td colspan="8" class="text-center text-muted py-4">ไม่พบข้อมูลงาน</td>
+          <td colspan="8" class="text-center text-secondary py-4">ไม่พบข้อมูลงาน</td>
         </tr>
       </tbody>
     </table>
   </div>
 
   <div class="card-footer d-flex align-items-center">
-    <p class="m-0 text-muted">แสดงทั้งหมด {{ total$ | async }} รายการ</p>
+    <p class="m-0 text-secondary">แสดงทั้งหมด {{ total$ | async }} รายการ</p>
     <ul class="pagination m-0 ms-auto">
       <li class="page-item" [class.disabled]="currentPage === 1">
         <a class="page-link" (click)="prevPage()">‹</a>

@@ -1,36 +1,35 @@
-<nav class="navbar navbar-vertical navbar-expand-lg navbar-dark">
+<nav class="navbar navbar-vertical navbar-expand-lg navbar-dark navbar-vertical-left">
   <div class="container-fluid">
-    <div class="navbar-brand-wrapper">
-      <a class="navbar-brand" routerLink="/">
-        <i-tabler name="layout-dashboard" class="navbar-brand-icon"></i-tabler>
-        <span class="navbar-brand-text">iCmon</span>
-      </a>
-    </div>
-    <div class="collapse navbar-collapse" id="sidebar-menu">
-      <ul class="navbar-nav pt-lg-3">
-        <li *ngFor="let item of menuItems" class="nav-item" [class.has-submenu]="item.children?.length">
-          <ng-container *ngIf="!item.children; else hasChildren">
-            <a class="nav-link" [routerLink]="item.route" routerLinkActive="active">
-              <i-tabler [name]="item.icon" class="nav-link-icon"></i-tabler>
-              <span class="nav-link-text">{{ item.label }}</span>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#sidebar-menu">
+      <i-tabler name="menu-2"></i-tabler>
+    </button>
+    <h1 class="navbar-brand navbar-brand-autodark">
+      <i-tabler name="layout-dashboard" class="navbar-brand-image"></i-tabler>
+      iCmon
+    </h1>
+  </div>
+  <div class="collapse navbar-collapse" id="sidebar-menu">
+    <ul class="navbar-nav pt-lg-3">
+      <li *ngFor="let item of menuItems" class="nav-item" [class.dropdown]="item.children?.length">
+        <ng-container *ngIf="!item.children; else hasChildren">
+          <a class="nav-link" [routerLink]="item.route" routerLinkActive="active">
+            <i-tabler [name]="item.icon" class="nav-link-icon"></i-tabler>
+            <span class="nav-link-title">{{ item.label }}</span>
+          </a>
+        </ng-container>
+        <ng-template #hasChildren>
+          <a class="nav-link dropdown-toggle" (click)="toggleSubmenu(item.label)" [class.active]="isExpanded(item.label)">
+            <i-tabler [name]="item.icon" class="nav-link-icon"></i-tabler>
+            <span class="nav-link-title">{{ item.label }}</span>
+          </a>
+          <div class="dropdown-menu" [class.show]="isExpanded(item.label)">
+            <a *ngFor="let child of item.children" class="dropdown-item" [routerLink]="child.route" routerLinkActive="active">
+              <i-tabler [name]="child.icon" class="nav-link-icon"></i-tabler>
+              {{ child.label }}
             </a>
-          </ng-container>
-          <ng-template #hasChildren>
-            <a class="nav-link dropdown-toggle" (click)="toggleSubmenu(item.label)" [class.active]="isExpanded(item.label)">
-              <i-tabler [name]="item.icon" class="nav-link-icon"></i-tabler>
-              <span class="nav-link-text">{{ item.label }}</span>
-            </a>
-            <ul class="nav nav-sm flex-column submenu" *ngIf="isExpanded(item.label)">
-              <li *ngFor="let child of item.children" class="nav-item">
-                <a class="nav-link" [routerLink]="child.route" routerLinkActive="active">
-                  <i-tabler [name]="child.icon" class="nav-link-icon"></i-tabler>
-                  <span class="nav-link-text">{{ child.label }}</span>
-                </a>
-              </li>
-            </ul>
-          </ng-template>
-        </li>
-      </ul>
-    </div>
+          </div>
+        </ng-template>
+      </li>
+    </ul>
   </div>
 </nav>

@@ -2,7 +2,7 @@
   <div class="row align-items-center">
     <div class="col">
       <h2 class="page-title">แดชบอร์ด</h2>
-      <div class="text-muted mt-1">ภาพรวมระบบบริหารจัดการธุรกิจ</div>
+      <div class="text-secondary mt-1">ภาพรวมระบบบริหารจัดการธุรกิจ</div>
     </div>
   </div>
 </div>
@@ -18,44 +18,42 @@
     <div class="col-sm-6 col-lg-3">
       <div class="card">
         <div class="card-body">
-          <div class="d-flex align-items-center">
-            <div class="subheader">งานทั้งหมด</div>
-          </div>
+          <div class="subheader">งานทั้งหมด</div>
           <div class="h1 mb-3">{{ s.totalJobs }}</div>
-          <div class="text-muted"><span class="text-green">+12%</span> จากเดือนที่แล้ว</div>
+          <div class="text-secondary">
+            <span class="text-green">+12%</span> จากเดือนที่แล้ว
+          </div>
         </div>
       </div>
     </div>
     <div class="col-sm-6 col-lg-3">
       <div class="card">
         <div class="card-body">
-          <div class="d-flex align-items-center">
-            <div class="subheader">งานที่กำลังดำเนินการ</div>
-          </div>
+          <div class="subheader">งานที่กำลังดำเนินการ</div>
           <div class="h1 mb-3">{{ s.activeJobs }}</div>
-          <div class="text-muted"><span class="text-yellow">●</span> กำลังดำเนินการ</div>
+          <div class="text-secondary">กำลังดำเนินการ</div>
         </div>
       </div>
     </div>
     <div class="col-sm-6 col-lg-3">
       <div class="card">
         <div class="card-body">
-          <div class="d-flex align-items-center">
-            <div class="subheader">ลูกค้าทั้งหมด</div>
-          </div>
+          <div class="subheader">ลูกค้าทั้งหมด</div>
           <div class="h1 mb-3">{{ s.totalCustomers }}</div>
-          <div class="text-muted"><span class="text-green">+8%</span> จากเดือนที่แล้ว</div>
+          <div class="text-secondary">
+            <span class="text-green">+8%</span> จากเดือนที่แล้ว
+          </div>
         </div>
       </div>
     </div>
     <div class="col-sm-6 col-lg-3">
       <div class="card">
         <div class="card-body">
-          <div class="d-flex align-items-center">
-            <div class="subheader">รายได้</div>
-          </div>
+          <div class="subheader">รายได้</div>
           <div class="h1 mb-3">฿{{ s.revenue }}</div>
-          <div class="text-muted"><span class="text-green">+5.2%</span> จากเดือนที่แล้ว</div>
+          <div class="text-secondary">
+            <span class="text-green">+5.2%</span> จากเดือนที่แล้ว
+          </div>
         </div>
       </div>
     </div>
@@ -66,10 +64,10 @@
       <div class="card">
         <div class="card-header"><h3 class="card-title">รายได้รายเดือน</h3></div>
         <div class="card-body">
-          <div class="d-flex align-items-end h-100" style="height: 250px; gap: 8px;">
+          <div class="d-flex align-items-end" style="height: 250px; gap: 8px;">
             <div *ngFor="let v of chartData.values; let i = index" class="flex-fill text-center">
-              <div class="bg-primary" [style.height.px]="v * 2" style="border-radius: 4px; min-height: 10px;"></div>
-              <small class="text-muted">{{ chartData.labels[i] }}</small>
+              <div class="bg-primary" [style.height.px]="v * 2" style="min-height: 10px;"></div>
+              <small class="text-secondary mt-1 d-block">{{ chartData.labels[i] }}</small>
             </div>
           </div>
         </div>
@@ -85,10 +83,12 @@
                 <span class="avatar avatar-sm">{{ a.user.charAt(0) }}</span>
               </div>
               <div class="col text-truncate">
-                <strong>{{ a.user }}</strong> <span class="text-muted">{{ a.action }}</span>
-                <div class="text-muted text-small">{{ a.time }}</div>
+                <strong>{{ a.user }}</strong> {{ a.action }}
+                <div class="text-secondary">{{ a.time }}</div>
               </div>
-              <div class="col-auto"><span class="badge bg-primary">{{ a.target }}</span></div>
+              <div class="col-auto">
+                <span class="badge bg-primary">{{ a.target }}</span>
+              </div>
             </div>
           </div>
         </div>

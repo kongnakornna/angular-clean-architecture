@@ -2,13 +2,14 @@
   <div class="row align-items-center">
     <div class="col">
       <h2 class="page-title">รายการลูกค้า</h2>
-      <div class="text-muted mt-1">จัดการข้อมูลลูกค้าทั้งหมด</div>
+      <div class="text-secondary mt-1">จัดการข้อมูลลูกค้าทั้งหมด</div>
     </div>
     <div class="col-auto ms-auto d-print-none">
       <a routerLink="/customers/create" class="btn btn-primary">+ เพิ่มลูกค้า</a>
     </div>
   </div>
 </div>
+
 <div class="card mb-3">
   <div class="card-body">
     <div class="row g-3">
@@ -22,6 +23,7 @@
     </div>
   </div>
 </div>
+
 <div class="card">
   <div *ngIf="loading$ | async" class="text-center py-5"><div class="spinner-border text-primary"></div></div>
   <div *ngIf="!(loading$ | async)" class="table-responsive">
@@ -38,7 +40,7 @@
           <td>{{ c.province }}</td>
           <td><a [routerLink]="['/customers', c.id]" class="btn btn-sm btn-primary">ดู</a></td>
         </tr>
-        <tr *ngIf="(customers$ | async)?.length === 0"><td colspan="6" class="text-center text-muted py-4">ไม่พบข้อมูลลูกค้า</td></tr>
+        <tr *ngIf="(customers$ | async)?.length === 0"><td colspan="6" class="text-center text-secondary py-4">ไม่พบข้อมูลลูกค้า</td></tr>
       </tbody>
     </table>
   </div>

@@ -3,14 +3,14 @@
     <button class="navbar-toggler" type="button" (click)="onToggle()">
       <i-tabler name="menu-2"></i-tabler>
     </button>
-    <h1 class="navbar-brand navbar-brand-autodark d-none d-md-block">
-      <span class="navbar-brand-text">iCmon</span>
+    <h1 class="navbar-brand navbar-brand-autodark d-none d-md-flex align-items-center">
+      iCmon
     </h1>
     <div class="navbar-nav flex-row ms-auto">
       <div class="nav-item dropdown">
-        <a class="nav-link" data-bs-toggle="dropdown">
+        <a class="nav-link" data-bs-toggle="dropdown" href="javascript:void(0)">
           <i-tabler name="bell"></i-tabler>
-          <span *ngIf="unreadCount > 0" class="badge bg-red">{{ unreadCount }}</span>
+          <span *ngIf="unreadCount > 0" class="badge bg-red ms-1">{{ unreadCount }}</span>
         </a>
         <div class="dropdown-menu dropdown-menu-end dropdown-menu-card">
           <div class="card">
@@ -21,7 +21,7 @@
                   <div class="col-auto"><span class="status-dot status-dot-animated bg-red"></span></div>
                   <div class="col text-truncate">
                     <strong>{{ n.title }}</strong>
-                    <div class="text-muted text-small">{{ n.time }}</div>
+                    <div class="text-secondary">{{ n.time }}</div>
                   </div>
                 </div>
               </a>
@@ -30,9 +30,9 @@
         </div>
       </div>
       <div class="nav-item dropdown">
-        <a class="nav-link" data-bs-toggle="dropdown">
-          <span class="avatar avatar-sm rounded-circle bg-primary text-white">A</span>
-          <span class="d-none d-md-inline ms-2">Admin</span>
+        <a class="nav-link d-flex align-items-center" data-bs-toggle="dropdown" href="javascript:void(0)">
+          <span class="avatar avatar-sm">A</span>
+          <span class="ms-2 d-none d-md-inline">ผู้ดูแล</span>
         </a>
         <div class="dropdown-menu dropdown-menu-end">
           <a *ngFor="let item of profileMenu" class="dropdown-item" [routerLink]="item.route" (click)="item.action === 'logout' && logout()">
