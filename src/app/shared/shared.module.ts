@@ -7,6 +7,7 @@ import { TranslatePipe } from './pipes/translate.pipe';
 import { StatusLabelPipe } from './pipes/status-label.pipe';
 import { FileSizePipe } from './pipes/file-size.pipe';
 import { ClickOutsideDirective } from './directives/click-outside.directive';
+import { ToastComponent } from './components/toast/toast.component';
 
 @NgModule({
   imports: [CommonModule, RouterModule],
@@ -17,6 +18,7 @@ import { ClickOutsideDirective } from './directives/click-outside.directive';
     StatusLabelPipe,
     FileSizePipe,
     ClickOutsideDirective,
+    ToastComponent,
   ],
   exports: [
     PrimaryButtonComponent,
@@ -25,6 +27,7 @@ import { ClickOutsideDirective } from './directives/click-outside.directive';
     StatusLabelPipe,
     FileSizePipe,
     ClickOutsideDirective,
+    ToastComponent,
   ],
 })
 export class SharedModule {}

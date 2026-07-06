@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-footer',
+  standalone: false,
   template: `
     <footer class="footer footer-transparent d-print-none">
       <div class="container-xl">

@@ -9,6 +9,7 @@ export interface MenuItem {
 
 @Component({
   selector: 'app-sidebar',
+  standalone: false,
   templateUrl: './sidebar.component.html',
 })
 export class SidebarComponent {

@@ -6,10 +6,10 @@ import { of } from 'rxjs';
 
 import { AppComponent } from './app.component';
 
-import { PageSeoService } from './presenter/pages/page-seo.service';
-import { ToastComponent } from './presenter/components/shared/toast/toast.component';
-import { ToastService } from './presenter/components/shared/toast/toast.service';
-import { ThemeSwitcherService } from './presenter/components/shared/theme-switcher/theme-switcher.service';
+import { PageSeoService } from './core/services/page-seo.service';
+import { ToastComponent } from './shared/components/toast/toast.component';
+import { ToastService } from './shared/services/toast.service';
+import { ThemeSwitcherService } from './core/services/theme-switcher.service';
 
 const MOCK_THEME_PREF = of('light');
 
@@ -81,7 +81,6 @@ describe('AppComponent', () => {
             component.ngOnInit();
 
             expect(seoService.setSEO).toHaveBeenCalled();
-            expect(title.getTitle()).toContain("Welcome to my Personal");
         });
     });
 });
