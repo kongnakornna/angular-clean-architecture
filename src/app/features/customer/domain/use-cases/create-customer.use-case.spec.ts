@@ -1,4 +1,3 @@
-import { TestBed } from '@angular/core/testing';
 import { of } from 'rxjs';
 import { CreateCustomerUseCase } from './create-customer.use-case';
 import { ICustomerRepository } from '../repositories/customer.repository';
@@ -9,14 +8,7 @@ describe('CreateCustomerUseCase', () => {
 
   beforeEach(() => {
     mockRepo = jasmine.createSpyObj('ICustomerRepository', ['create']);
-    TestBed.configureTestingModule({
-      providers: [
-        CreateCustomerUseCase,
-        { provide: 'ICustomerRepository', useValue: mockRepo },
-      ],
-    });
-    useCase = TestBed.inject(CreateCustomerUseCase);
-    (useCase as any).repo = mockRepo;
+    useCase = new CreateCustomerUseCase(mockRepo);
   });
 
   it('should create a customer', () => {

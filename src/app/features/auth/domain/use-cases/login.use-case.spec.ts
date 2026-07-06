@@ -1,4 +1,3 @@
-import { TestBed } from '@angular/core/testing';
 import { of } from 'rxjs';
 import { LoginUseCase } from './login.use-case';
 import { IAuthRepository } from '../repositories/auth.repository';
@@ -10,14 +9,7 @@ describe('LoginUseCase', () => {
 
   beforeEach(() => {
     mockRepo = jasmine.createSpyObj('IAuthRepository', ['login']);
-    TestBed.configureTestingModule({
-      providers: [
-        LoginUseCase,
-        { provide: 'IAuthRepository', useValue: mockRepo },
-      ],
-    });
-    useCase = TestBed.inject(LoginUseCase);
-    (useCase as any).authRepo = mockRepo;
+    useCase = new LoginUseCase(mockRepo);
   });
 
   it('should call authRepo.login and return auth response', () => {

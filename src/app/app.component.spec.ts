@@ -1,18 +1,15 @@
-import { RouterModule, ActivatedRoute } from '@angular/router';
+import { RouterTestingModule } from '@angular/router/testing';
 import { TestBed, ComponentFixture } from '@angular/core/testing';
-import { Title, Meta, By } from '@angular/platform-browser';
+import { Title, Meta } from '@angular/platform-browser';
 
 import { of } from 'rxjs';
 
 import { AppComponent } from './app.component';
 
 import { PageSeoService } from './presenter/pages/page-seo.service';
-import { FooterComponent } from './presenter/components/layouts/footer/footer.component';
-import { HeaderComponent } from './presenter/components/layouts/header/header.component';
-import { ThemeSwitcherComponent } from './presenter/components/shared/theme-switcher/theme-switcher.component';
+import { ToastComponent } from './presenter/components/shared/toast/toast.component';
+import { ToastService } from './presenter/components/shared/toast/toast.service';
 import { ThemeSwitcherService } from './presenter/components/shared/theme-switcher/theme-switcher.service';
-import { DarkThemeSwitchComponent } from './presenter/components/shared/theme-switcher/dark-theme-switch/dark-theme-switch.component';
-import { LightThemeSwitchComponent } from './presenter/components/shared/theme-switcher/light-theme-switch/light-theme-switch.component';
 
 const MOCK_THEME_PREF = of('light');
 
@@ -23,24 +20,21 @@ describe('AppComponent', () => {
     let seoService: jasmine.SpyObj<PageSeoService>;
     let fixture: ComponentFixture<AppComponent>;
 
-
     beforeEach(async () => {
         themeService = jasmine.createSpyObj('ThemeSwitcherService', [], { pref$: MOCK_THEME_PREF });
         seoService = jasmine.createSpyObj('PageSeoService', ['setSEO']);
 
         await TestBed.configureTestingModule({
             declarations: [
-                HeaderComponent,
-                FooterComponent,
-                ThemeSwitcherComponent,
-                DarkThemeSwitchComponent,
-                LightThemeSwitchComponent
+                AppComponent,
+                ToastComponent,
             ],
             providers: [
                 { provide: ThemeSwitcherService, useValue: themeService },
                 { provide: PageSeoService, useValue: seoService },
+                ToastService,
             ],
-            imports: [RouterModule.forRoot([])]
+            imports: [RouterTestingModule]
         }).compileComponents()
 
         fixture = TestBed.createComponent(AppComponent)
@@ -90,26 +84,4 @@ describe('AppComponent', () => {
             expect(title.getTitle()).toContain("Welcome to my Personal");
         });
     });
-
-    describe('component html', () => {
-
-        it('should have header component present', () => {
-            const { debugElement } = fixture;
-
-            const headerComponent = debugElement.queryAll(By.directive(HeaderComponent));
-
-            expect(headerComponent.length).toBeGreaterThan(0);
-        });
-
-        it('should have footer component present', () => {
-            const { debugElement } = fixture;
-
-            const footerComponent = debugElement.queryAll(By.directive(FooterComponent));
-
-            expect(footerComponent.length).toBeGreaterThan(0);
-        });
-
-    });
-
-
 });

@@ -14,7 +14,6 @@ import { Helpers } from '../../../../../core/utils/helpers';
   templateUrl: './job-list.component.html',
 })
 export class JobListComponent implements OnInit {
-  private listJobsUseCase: ListJobsUseCase;
 
   private jobsSubject = new BehaviorSubject<JobCard[]>([]);
   jobs$ = this.jobsSubject.asObservable();
@@ -35,9 +34,7 @@ export class JobListComponent implements OnInit {
   getStatusLabel = (s: string) => Helpers.getStatusLabel(s);
   getPriorityLabel = (s: string) => Helpers.getPriorityLabel(s);
 
-  constructor() {
-    this.listJobsUseCase = new ListJobsUseCase({} as any);
-  }
+  constructor(private listJobsUseCase: ListJobsUseCase) {}
 
   ngOnInit(): void {
     this.loadJobs();

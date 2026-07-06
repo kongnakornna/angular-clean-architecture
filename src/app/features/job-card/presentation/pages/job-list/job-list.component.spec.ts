@@ -1,4 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { RouterTestingModule } from '@angular/router/testing';
 import { of } from 'rxjs';
 import { JobListComponent } from './job-list.component';
 import { ListJobsUseCase } from '../../../domain/use-cases/list-jobs.use-case';
@@ -9,7 +10,7 @@ describe('JobListComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [JobListComponent],
+      imports: [JobListComponent, RouterTestingModule],
       providers: [
         { provide: ListJobsUseCase, useValue: { execute: () => of({ data: [], total: 0 }) } },
       ],

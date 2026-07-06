@@ -1,4 +1,3 @@
-import { TestBed } from '@angular/core/testing';
 import { of } from 'rxjs';
 import { CreateJobUseCase } from './create-job.use-case';
 import { IJobCardRepository } from '../repositories/job-card.repository';
@@ -9,14 +8,7 @@ describe('CreateJobUseCase', () => {
 
   beforeEach(() => {
     mockRepo = jasmine.createSpyObj('IJobCardRepository', ['create']);
-    TestBed.configureTestingModule({
-      providers: [
-        CreateJobUseCase,
-        { provide: 'IJobCardRepository', useValue: mockRepo },
-      ],
-    });
-    useCase = TestBed.inject(CreateJobUseCase);
-    (useCase as any).repo = mockRepo;
+    useCase = new CreateJobUseCase(mockRepo);
   });
 
   it('should create a job card', () => {

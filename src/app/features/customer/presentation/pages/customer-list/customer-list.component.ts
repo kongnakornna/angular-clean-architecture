@@ -59,7 +59,6 @@ import { Customer } from '../../../domain/entities/customer.entity';
   `,
 })
 export class CustomerListComponent implements OnInit {
-  private listCustomersUseCase: ListCustomersUseCase;
 
   private customersSubject = new BehaviorSubject<Customer[]>([]);
   customers$ = this.customersSubject.asObservable();
@@ -69,9 +68,7 @@ export class CustomerListComponent implements OnInit {
 
   searchTerm = '';
 
-  constructor() {
-    this.listCustomersUseCase = new ListCustomersUseCase({} as any);
-  }
+  constructor(private listCustomersUseCase: ListCustomersUseCase) {}
 
   ngOnInit(): void { this.loadCustomers(); }
 
