@@ -3,6 +3,8 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { of } from 'rxjs';
 import { LoginComponent } from './login.component';
 import { LoginUseCase } from '../../../domain/use-cases/login.use-case';
+import { provideTablerIcons } from 'angular-tabler-icons';
+import { IconEye, IconEyeOff, IconBrandGithub, IconBrandX } from 'angular-tabler-icons/icons';
 
 describe('LoginComponent', () => {
   let component: LoginComponent;
@@ -13,6 +15,7 @@ describe('LoginComponent', () => {
       imports: [LoginComponent, RouterTestingModule],
       providers: [
         { provide: LoginUseCase, useValue: { execute: () => of({}) } },
+        provideTablerIcons({ IconEye, IconEyeOff, IconBrandGithub, IconBrandX }),
       ],
     }).compileComponents();
 

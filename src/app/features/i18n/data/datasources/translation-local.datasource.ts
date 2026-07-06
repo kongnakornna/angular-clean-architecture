@@ -6,7 +6,7 @@ import { Translation, SupportedLanguage } from '../../domain/entities/translatio
 export class TranslationLocalDataSource {
   private translations: Record<string, Record<string, string>> = {
     th: {
-      'app.name': 'BizAdmin',
+      'app.name': 'iCmon',
       'nav.dashboard': 'แดชบอร์ด',
       'nav.jobs': 'การจัดการงาน',
       'nav.customers': 'ลูกค้า',
@@ -42,7 +42,7 @@ export class TranslationLocalDataSource {
       'dashboard.revenue': 'รายได้',
     },
     en: {
-      'app.name': 'BizAdmin',
+      'app.name': 'iCmon',
       'nav.dashboard': 'Dashboard',
       'nav.jobs': 'Job Management',
       'nav.customers': 'Customers',

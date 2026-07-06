@@ -8,7 +8,7 @@ describe('AppConfig', () => {
 
   it('should export DEFAULT_APP_CONFIG with expected values', () => {
     expect(DEFAULT_APP_CONFIG).toEqual({
-      appName: 'BizAdmin',
+      appName: 'iCmon',
       version: '1.0.0',
       apiBaseUrl: '/api',
       production: false,

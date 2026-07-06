@@ -109,7 +109,7 @@ export class TranslatePipe implements PipeTransform {
 
 | Category | ภาษาไทย | English |
 |---|---|---|
-| app.name | BizAdmin | BizAdmin |
+| app.name | iCmon | iCmon |
 | nav.* | เมนูนำทางภาษาไทย | Navigation in English |
 | common.* | บันทึก, ยกเลิก, ลบ, ฯลฯ | Save, Cancel, Delete, etc. |
 | login.* | เข้าสู่ระบบ, อีเมล, ฯลฯ | Login, Email, etc. |

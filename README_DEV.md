@@ -1571,7 +1571,7 @@ export class SidebarComponent {
     <div class="navbar-brand-wrapper">
       <a class="navbar-brand" routerLink="/">
         <i-tabler name="layout-dashboard" class="navbar-brand-icon"></i-tabler>
-        <span class="navbar-brand-text">BizAdmin</span>
+        <span class="navbar-brand-text">iCmon</span>
       </a>
       <button class="navbar-toggler" (click)="toggleSidebar()">
         <i-tabler name="menu-2"></i-tabler>
@@ -1818,7 +1818,7 @@ import { Component } from '@angular/core';
           <div class="col-12 col-lg-auto mt-3 mt-lg-0">
             <ul class="list-inline list-inline-dots mb-0">
               <li class="list-inline-item">
-                Copyright &copy; {{ year() }} BizAdmin System
+                Copyright &copy; {{ year() }} iCmon System
               </li>
               <li class="list-inline-item">เวอร์ชัน 1.0.0</li>
             </ul>

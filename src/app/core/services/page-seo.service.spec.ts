@@ -26,10 +26,10 @@ describe('PageSeoService', () => {
 
   it('should set default SEO data when no data provided', () => {
     service.setSEO();
-    expect(title.setTitle).toHaveBeenCalledWith('BizAdmin | BizAdmin System');
-    expect(meta.updateTag).toHaveBeenCalledWith({ name: 'author', content: 'BizAdmin' });
-    expect(meta.updateTag).toHaveBeenCalledWith({ name: 'description', content: 'BizAdmin Management System' });
-    expect(meta.updateTag).toHaveBeenCalledWith({ name: 'keywords', content: 'bizadmin, management, erp' });
+    expect(title.setTitle).toHaveBeenCalledWith('iCmon | iCmon System');
+    expect(meta.updateTag).toHaveBeenCalledWith({ name: 'author', content: 'iCmon' });
+    expect(meta.updateTag).toHaveBeenCalledWith({ name: 'description', content: 'iCmon Management System' });
+    expect(meta.updateTag).toHaveBeenCalledWith({ name: 'keywords', content: 'iCmon, management, erp' });
   });
 
   it('should set custom SEO data when provided', () => {

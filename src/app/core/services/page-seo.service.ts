@@ -22,11 +22,11 @@ export class PageSeoService {
 
     public setSEO(data?: SeoData): void {
         const defaultImage = `${window.location.origin}/assets/img/blog-thumbnail.jpg`;
-        const author = `${data?.author ?? 'BizAdmin'}`;
+        const author = `${data?.author ?? 'iCmon'}`;
         const imagePath = `${data?.pageImageUrl ?? defaultImage}`;
-        const pageTitle = `${data?.pageTitle ?? 'BizAdmin System'}`;
-        const description = `${data?.pageDescription ?? 'BizAdmin Management System'}`;
-        const keywords = `${data?.pageKeywords ?? 'bizadmin, management, erp'}`;
+        const pageTitle = `${data?.pageTitle ?? 'iCmon System'}`;
+        const description = `${data?.pageDescription ?? 'iCmon Management System'}`;
+        const keywords = `${data?.pageKeywords ?? 'iCmon, management, erp'}`;
         const pageUrl = `${data?.pageUrl ?? window.location.origin}`;
 
         this.title.setTitle(`${author} | ${pageTitle}`);

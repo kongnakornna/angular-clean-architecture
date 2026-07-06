@@ -30,7 +30,6 @@
         "ng2-charts": "^10.0.0",
         "prismjs": "^1.29.0",
         "rxjs": "~7.8.0",
-        "tabler-ui": "^0.0.34",
         "tslib": "^2.3.0"
     },
     "devDependencies": {

@@ -3,11 +3,12 @@ import { NgIf } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
 import { LoginUseCase } from '../../../domain/use-cases/login.use-case';
+import { TablerIconComponent } from 'angular-tabler-icons';
 
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [NgIf, FormsModule, RouterLink],
+  imports: [NgIf, FormsModule, RouterLink, TablerIconComponent],
   templateUrl: './login.component.html',
 })
 export class LoginComponent {
@@ -18,6 +19,12 @@ export class LoginComponent {
   password = '';
   loading = false;
   error = '';
+  passwordVisible = false;
+  rememberMe = false;
+
+  togglePassword(): void {
+    this.passwordVisible = !this.passwordVisible;
+  }
 
   onSubmit(): void {
     this.loading = true;
