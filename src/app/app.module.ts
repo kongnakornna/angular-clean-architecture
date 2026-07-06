@@ -14,6 +14,7 @@ import { HeaderComponent } from './layouts/header/header.component';
 import { SidebarComponent } from './layouts/sidebar/sidebar.component';
 import { FooterComponent } from './layouts/footer/footer.component';
 import { AppLayoutComponent } from './layouts/app-layout/app-layout.component';
+import { TablerIconsModule } from 'angular-tabler-icons';
 
 @NgModule({
   declarations: [
@@ -33,6 +34,7 @@ import { AppLayoutComponent } from './layouts/app-layout/app-layout.component';
     AppRoutingModule,
     CoreModule,
     SharedModule,
+    TablerIconsModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

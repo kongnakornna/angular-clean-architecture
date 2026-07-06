@@ -2631,4 +2631,5 @@ ng serve
 
 ---
 
- 
+- npm install --legacy-peer-deps
+- npm install angular-tabler-icons --legacy-peer-deps

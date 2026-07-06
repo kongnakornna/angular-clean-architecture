@@ -69,12 +69,15 @@
                 },
                 "serve": {
                     "builder": "@angular-devkit/build-angular:dev-server",
+                    "options": {
+                        "buildTarget": "angular-clean-architecture-serverless:build:development"
+                    },
                     "configurations": {
                         "production": {
-                            "browserTarget": "angular-clean-architecture-serverless:build:production"
+                            "buildTarget": "angular-clean-architecture-serverless:build:production"
                         },
                         "development": {
-                            "browserTarget": "angular-clean-architecture-serverless:build:development"
+                            "buildTarget": "angular-clean-architecture-serverless:build:development"
                         }
                     },
                     "defaultConfiguration": "development"

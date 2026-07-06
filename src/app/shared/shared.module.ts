@@ -8,9 +8,10 @@ import { StatusLabelPipe } from './pipes/status-label.pipe';
 import { FileSizePipe } from './pipes/file-size.pipe';
 import { ClickOutsideDirective } from './directives/click-outside.directive';
 import { ToastComponent } from './components/toast/toast.component';
+import { TablerIconsModule } from 'angular-tabler-icons';
 
 @NgModule({
-  imports: [CommonModule, RouterModule],
+  imports: [CommonModule, RouterModule, TablerIconsModule],
   declarations: [
     PrimaryButtonComponent,
     ConfirmModalComponent,
