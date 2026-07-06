@@ -1,0 +1,46 @@
+<header class="navbar navbar-expand-md navbar-light d-print-none">
+  <div class="container-fluid">
+    <button class="navbar-toggler" type="button" (click)="onToggle()">
+      <i-tabler name="menu-2"></i-tabler>
+    </button>
+    <h1 class="navbar-brand navbar-brand-autodark d-none d-md-block">
+      <span class="navbar-brand-text">BizAdmin</span>
+    </h1>
+    <div class="navbar-nav flex-row ms-auto">
+      <div class="nav-item dropdown">
+        <a class="nav-link" data-bs-toggle="dropdown">
+          <i-tabler name="bell"></i-tabler>
+          <span *ngIf="unreadCount > 0" class="badge bg-red">{{ unreadCount }}</span>
+        </a>
+        <div class="dropdown-menu dropdown-menu-end dropdown-menu-card">
+          <div class="card">
+            <div class="card-header"><h3 class="card-title">การแจ้งเตือน</h3></div>
+            <div class="list-group list-group-flush">
+              <a *ngFor="let n of notifications" class="list-group-item" [class.bg-light]="!n.read">
+                <div class="row align-items-center">
+                  <div class="col-auto"><span class="status-dot status-dot-animated bg-red"></span></div>
+                  <div class="col text-truncate">
+                    <strong>{{ n.title }}</strong>
+                    <div class="text-muted text-small">{{ n.time }}</div>
+                  </div>
+                </div>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="nav-item dropdown">
+        <a class="nav-link" data-bs-toggle="dropdown">
+          <span class="avatar avatar-sm rounded-circle bg-primary text-white">A</span>
+          <span class="d-none d-md-inline ms-2">Admin</span>
+        </a>
+        <div class="dropdown-menu dropdown-menu-end">
+          <a *ngFor="let item of profileMenu" class="dropdown-item" [routerLink]="item.route" (click)="item.action === 'logout' && logout()">
+            <i-tabler [name]="item.icon" class="dropdown-icon"></i-tabler>
+            {{ item.label }}
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>

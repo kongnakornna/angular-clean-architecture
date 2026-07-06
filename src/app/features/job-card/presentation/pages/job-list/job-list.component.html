@@ -1,0 +1,109 @@
+<div class="page-header d-print-none">
+  <div class="row align-items-center">
+    <div class="col">
+      <h2 class="page-title">รายการงาน</h2>
+      <div class="text-muted mt-1">จัดการงานทั้งหมดในระบบ</div>
+    </div>
+    <div class="col-auto ms-auto d-print-none">
+      <a routerLink="/jobs/create" class="btn btn-primary">
+        + สร้างงานใหม่
+      </a>
+    </div>
+  </div>
+</div>
+
+<div class="card mb-3">
+  <div class="card-body">
+    <div class="row g-3">
+      <div class="col-md-3">
+        <label class="form-label">ค้นหา</label>
+        <input type="text" class="form-control" [(ngModel)]="searchTerm" placeholder="เลขงาน, ลูกค้า...">
+      </div>
+      <div class="col-md-2">
+        <label class="form-label">สถานะ</label>
+        <select class="form-select" [(ngModel)]="statusFilter">
+          <option value="">ทั้งหมด</option>
+          <option value="pending">รอดำเนินการ</option>
+          <option value="assigned">มอบหมายแล้ว</option>
+          <option value="in_progress">กำลังดำเนินการ</option>
+          <option value="completed">เสร็จสิ้น</option>
+          <option value="closed">ปิดงาน</option>
+        </select>
+      </div>
+      <div class="col-md-2">
+        <label class="form-label">ความสำคัญ</label>
+        <select class="form-select" [(ngModel)]="priorityFilter">
+          <option value="">ทั้งหมด</option>
+          <option value="low">ต่ำ</option>
+          <option value="medium">ปานกลาง</option>
+          <option value="high">สูง</option>
+          <option value="urgent">เร่งด่วน</option>
+        </select>
+      </div>
+      <div class="col-md-3 d-flex align-items-end">
+        <button class="btn btn-primary me-2" (click)="search()">ค้นหา</button>
+        <button class="btn btn-outline-secondary" (click)="resetFilters()">รีเซ็ต</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="card">
+  <div *ngIf="loading$ | async" class="text-center py-5">
+    <div class="spinner-border text-primary" role="status">
+      <span class="visually-hidden">กำลังโหลด...</span>
+    </div>
+  </div>
+
+  <div *ngIf="!(loading$ | async)" class="table-responsive">
+    <table class="table table-vcenter card-table">
+      <thead>
+        <tr>
+          <th>เลขงาน</th>
+          <th>ลูกค้า</th>
+          <th>อุปกรณ์</th>
+          <th>สถานะ</th>
+          <th>ความสำคัญ</th>
+          <th>ผู้รับผิดชอบ</th>
+          <th>วันที่สร้าง</th>
+          <th class="w-1"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let job of (jobs$ | async)">
+          <td><a [routerLink]="['/jobs', job.id]" class="text-reset">{{ job.jobNumber }}</a></td>
+          <td>{{ job.customerName }}</td>
+          <td>{{ job.deviceType }}</td>
+          <td><span class="badge {{ getStatusColor(job.status) }}">{{ getStatusLabel(job.status) }}</span></td>
+          <td><span class="badge {{ getStatusColor(job.priority) }}">{{ getPriorityLabel(job.priority) }}</span></td>
+          <td>{{ job.assignedTo || '-' }}</td>
+          <td>{{ job.createdAt | date:'dd/MM/yyyy' }}</td>
+          <td>
+            <div class="btn-list flex-nowrap">
+              <a [routerLink]="['/jobs', job.id]" class="btn btn-sm btn-primary">ดู</a>
+              <a [routerLink]="['/jobs/edit', job.id]" class="btn btn-sm btn-outline-primary">แก้ไข</a>
+            </div>
+          </td>
+        </tr>
+        <tr *ngIf="(jobs$ | async)?.length === 0">
+          <td colspan="8" class="text-center text-muted py-4">ไม่พบข้อมูลงาน</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="card-footer d-flex align-items-center">
+    <p class="m-0 text-muted">แสดงทั้งหมด {{ total$ | async }} รายการ</p>
+    <ul class="pagination m-0 ms-auto">
+      <li class="page-item" [class.disabled]="currentPage === 1">
+        <a class="page-link" (click)="prevPage()">‹</a>
+      </li>
+      <li class="page-item" *ngFor="let p of [].constructor(totalPages()); let i = index" [class.active]="currentPage === i + 1">
+        <a class="page-link" (click)="goToPage(i + 1)">{{ i + 1 }}</a>
+      </li>
+      <li class="page-item" [class.disabled]="currentPage === totalPages()">
+        <a class="page-link" (click)="nextPage()">›</a>
+      </li>
+    </ul>
+  </div>
+</div>

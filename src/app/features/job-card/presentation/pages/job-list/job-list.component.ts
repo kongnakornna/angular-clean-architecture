@@ -1,0 +1,87 @@
+import { Component, OnInit } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { RouterLink } from '@angular/router';
+import { FormsModule } from '@angular/forms';
+import { BehaviorSubject } from 'rxjs';
+import { ListJobsUseCase } from '../../../domain/use-cases/list-jobs.use-case';
+import { JobCard } from '../../../domain/entities/job-card.entity';
+import { Helpers } from '../../../../../core/utils/helpers';
+
+@Component({
+  selector: 'app-job-list',
+  standalone: true,
+  imports: [CommonModule, RouterLink, FormsModule],
+  templateUrl: './job-list.component.html',
+})
+export class JobListComponent implements OnInit {
+  private listJobsUseCase: ListJobsUseCase;
+
+  private jobsSubject = new BehaviorSubject<JobCard[]>([]);
+  jobs$ = this.jobsSubject.asObservable();
+
+  private totalSubject = new BehaviorSubject<number>(0);
+  total$ = this.totalSubject.asObservable();
+
+  private loadingSubject = new BehaviorSubject<boolean>(true);
+  loading$ = this.loadingSubject.asObservable();
+
+  currentPage = 1;
+  pageSize = 10;
+  searchTerm = '';
+  statusFilter = '';
+  priorityFilter = '';
+
+  getStatusColor = (s: string) => Helpers.getStatusColor(s);
+  getStatusLabel = (s: string) => Helpers.getStatusLabel(s);
+  getPriorityLabel = (s: string) => Helpers.getPriorityLabel(s);
+
+  constructor() {
+    this.listJobsUseCase = new ListJobsUseCase({} as any);
+  }
+
+  ngOnInit(): void {
+    this.loadJobs();
+  }
+
+  loadJobs(): void {
+    this.loadingSubject.next(true);
+    const params: any = { page: this.currentPage, pageSize: this.pageSize };
+    if (this.searchTerm) params.search = this.searchTerm;
+    if (this.statusFilter) params.status = this.statusFilter;
+    if (this.priorityFilter) params.priority = this.priorityFilter;
+    this.listJobsUseCase.execute(params).subscribe({
+      next: (res) => { this.jobsSubject.next(res.data); this.totalSubject.next(res.total); this.loadingSubject.next(false); },
+      error: () => this.loadingSubject.next(false),
+    });
+  }
+
+  search(): void {
+    this.currentPage = 1;
+    this.loadJobs();
+  }
+
+  resetFilters(): void {
+    this.searchTerm = '';
+    this.statusFilter = '';
+    this.priorityFilter = '';
+    this.currentPage = 1;
+    this.loadJobs();
+  }
+
+  prevPage(): void {
+    if (this.currentPage > 1) { this.currentPage--; this.loadJobs(); }
+  }
+
+  nextPage(): void {
+    if (this.currentPage < this.totalPages()) { this.currentPage++; this.loadJobs(); }
+  }
+
+  goToPage(page: number): void {
+    this.currentPage = page;
+    this.loadJobs();
+  }
+
+  totalPages(): number {
+    return Math.ceil(this.totalSubject.getValue() / this.pageSize) || 1;
+  }
+}
