@@ -1,0 +1,17 @@
+<div class="w-60 h-max">
+    <div class="pt-4 pb-2 px-0">
+        <a routerLink="/editor" routerLinkActive="text-pink-600 dark:text-pink-600"
+            [routerLinkActiveOptions]="{exact: true}">
+            <div class="flex ">
+                <div class="grow ml-0">
+                    <p class="text-sm font-semibold text-black dark:text-white">Editor Panel</p>
+                </div>
+            </div>
+        </a>
+    </div>
+    <ul class="relative px-0s flex flex-row">
+        <app-link [props]="{link: '/editor/posts', title: 'Posts'}"></app-link>
+        <app-link [props]="{link: '/editor/projects', title: 'Projects'}"></app-link>
+        <app-link [props]="{link: '/editor/bookmarks', title: 'Bookmarks'}"></app-link>
+    </ul>
+</div>
