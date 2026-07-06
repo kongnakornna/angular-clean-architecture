@@ -1,4 +1,5 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, EventEmitter, Output, inject } from '@angular/core';
+import { ThemeSwitcherService } from '../../core/services/theme-switcher.service';
 
 @Component({
   selector: 'app-header',
@@ -7,6 +8,8 @@ import { Component, EventEmitter, Output } from '@angular/core';
 })
 export class HeaderComponent {
   @Output() toggleSidebar = new EventEmitter<void>();
+
+  private themeSwitcher = inject(ThemeSwitcherService);
 
   unreadCount = 3;
 
@@ -22,8 +25,16 @@ export class HeaderComponent {
     { label: 'ออกจากระบบ', icon: 'logout', action: 'logout' },
   ];
 
+  get isDarkMode(): boolean {
+    return this.themeSwitcher.isDarkMode;
+  }
+
   onToggle(): void {
     this.toggleSidebar.emit();
+  }
+
+  toggleTheme(): void {
+    this.themeSwitcher.toggleTheme();
   }
 
   logout(): void {

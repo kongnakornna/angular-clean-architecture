@@ -1,0 +1,46 @@
+<div class="page page-center">
+  <div class="container container-tight py-4">
+    <form class="card card-md" (ngSubmit)="onSubmit()" autocomplete="off" novalidate>
+      <div class="card-body">
+        <h2 class="card-title card-title-lg text-center mb-4">ยืนยันบัญชี</h2>
+        <p class="my-4 text-center">กรุณายืนยันบัญชีโดยกรอกรหัสยืนยันที่ส่งไปยัง <strong>+1 856-672-8552</strong></p>
+        <div class="my-5">
+          <div class="row g-4">
+            <div class="col">
+              <div class="row g-2">
+                <div class="col" *ngFor="let _ of [].constructor(3); let i = index">
+                  <input #codeInput type="text" class="form-control form-control-lg text-center px-3 py-3" maxlength="1" inputmode="numeric" pattern="[0-9]*" [(ngModel)]="codes[i]" name="code{{i}}">
+                </div>
+              </div>
+            </div>
+            <div class="col">
+              <div class="row g-2">
+                <div class="col" *ngFor="let _ of [].constructor(3); let i = index">
+                  <input #codeInput type="text" class="form-control form-control-lg text-center px-3 py-3" maxlength="1" inputmode="numeric" pattern="[0-9]*" [(ngModel)]="codes[i + 3]" name="code{{i + 3}}">
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="my-4">
+          <label class="form-check">
+            <input type="checkbox" class="form-check-input" [(ngModel)]="dontAskAgain" name="dontAskAgain">
+            ไม่ต้องถามรหัสอีกครั้งบนอุปกรณ์นี้
+          </label>
+        </div>
+        <div class="form-footer">
+          <div class="btn-list flex-nowrap">
+            <a routerLink="/two-step-verification" class="btn w-100">ยกเลิก</a>
+            <button type="submit" class="btn btn-primary w-100" [disabled]="loading">
+              <span *ngIf="loading" class="spinner-border spinner-border-sm me-2"></span>
+              ยืนยัน
+            </button>
+          </div>
+        </div>
+      </div>
+    </form>
+    <div class="text-center text-secondary mt-3">
+      อาจใช้เวลาสักครู่ในการรับรหัส ยังไม่ได้รับ? <a routerLink="/two-step-code">ส่งรหัสอีกครั้ง</a>
+    </div>
+  </div>
+</div>

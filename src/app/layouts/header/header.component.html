@@ -1,24 +1,35 @@
-<header class="navbar navbar-expand-md navbar-light d-print-none">
+<header class="navbar navbar-expand-md d-print-none">
   <div class="container-fluid">
     <button class="navbar-toggler" type="button" (click)="onToggle()">
-      <i-tabler name="menu-2"></i-tabler>
+      <span class="navbar-toggler-icon"></span>
     </button>
-    <h1 class="navbar-brand navbar-brand-autodark d-none d-md-flex align-items-center">
-      iCmon
-    </h1>
     <div class="navbar-nav flex-row ms-auto">
+      <div class="nav-item">
+        <a class="nav-link px-2" href="javascript:void(0)" (click)="toggleTheme()" title="เปลี่ยนธีม">
+          <i-tabler [name]="isDarkMode ? 'sun' : 'moon'"></i-tabler>
+        </a>
+      </div>
+      <div class="nav-item">
+        <a class="nav-link px-2" href="javascript:void(0)" data-bs-toggle="offcanvas" data-bs-target="#layoutSettingsPanel" title="ตั้งค่าเค้าโครง">
+          <i-tabler name="layout"></i-tabler>
+        </a>
+      </div>
       <div class="nav-item dropdown">
-        <a class="nav-link" data-bs-toggle="dropdown" href="javascript:void(0)">
+        <a class="nav-link px-2" data-bs-toggle="dropdown" href="javascript:void(0)">
           <i-tabler name="bell"></i-tabler>
           <span *ngIf="unreadCount > 0" class="badge bg-red ms-1">{{ unreadCount }}</span>
         </a>
         <div class="dropdown-menu dropdown-menu-end dropdown-menu-card">
           <div class="card">
-            <div class="card-header"><h3 class="card-title">การแจ้งเตือน</h3></div>
+            <div class="card-header">
+              <h3 class="card-title">การแจ้งเตือน</h3>
+            </div>
             <div class="list-group list-group-flush">
               <a *ngFor="let n of notifications" class="list-group-item" [class.bg-light]="!n.read">
                 <div class="row align-items-center">
-                  <div class="col-auto"><span class="status-dot status-dot-animated bg-red"></span></div>
+                  <div class="col-auto">
+                    <span class="status-dot" [class.status-dot-animated]="!n.read" [class.bg-red]="!n.read"></span>
+                  </div>
                   <div class="col text-truncate">
                     <strong>{{ n.title }}</strong>
                     <div class="text-secondary">{{ n.time }}</div>
@@ -30,7 +41,7 @@
         </div>
       </div>
       <div class="nav-item dropdown">
-        <a class="nav-link d-flex align-items-center" data-bs-toggle="dropdown" href="javascript:void(0)">
+        <a class="nav-link d-flex align-items-center px-2" data-bs-toggle="dropdown" href="javascript:void(0)">
           <span class="avatar avatar-sm">A</span>
           <span class="ms-2 d-none d-md-inline">ผู้ดูแล</span>
         </a>

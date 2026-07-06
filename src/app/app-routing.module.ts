@@ -19,6 +19,65 @@ export const routes: Routes = [
         (m) => m.ForgotPasswordComponent
       ),
   },
+  {
+    path: 'sign-up',
+    loadComponent: () =>
+      import('./features/auth/presentation/pages/sign-up/sign-up.component').then(
+        (m) => m.SignUpComponent
+      ),
+  },
+  {
+    path: 'lock-screen',
+    loadComponent: () =>
+      import('./features/auth/presentation/pages/lock-screen/lock-screen.component').then(
+        (m) => m.LockScreenComponent
+      ),
+  },
+  {
+    path: 'two-step-verification',
+    loadComponent: () =>
+      import(
+        './features/auth/presentation/pages/two-step-verification/two-step-verification.component'
+      ).then((m) => m.TwoStepVerificationComponent),
+  },
+  {
+    path: 'two-step-code',
+    loadComponent: () =>
+      import('./features/auth/presentation/pages/two-step-code/two-step-code.component').then(
+        (m) => m.TwoStepCodeComponent
+      ),
+  },
+  {
+    path: 'reset-password',
+    loadComponent: () =>
+      import('./features/auth/presentation/pages/reset-password/reset-password.component').then(
+        (m) => m.ResetPasswordComponent
+      ),
+  },
+  {
+    path: 'users',
+    loadComponent: () =>
+      import('./features/auth/presentation/pages/user-list/user-list.component').then(
+        (m) => m.UserListComponent
+      ),
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'users/create',
+    loadComponent: () =>
+      import('./features/auth/presentation/pages/user-create/user-create.component').then(
+        (m) => m.UserCreateComponent
+      ),
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'roles',
+    loadComponent: () =>
+      import('./features/auth/presentation/pages/role-list/role-list.component').then(
+        (m) => m.RoleListComponent
+      ),
+    canActivate: [AuthGuard],
+  },
 
   {
     path: '',
@@ -107,6 +166,55 @@ export const routes: Routes = [
         loadComponent: () =>
           import('./features/wos/presentation/pages/order-list/order-list.component').then(
             (m) => m.OrderListComponent
+          ),
+      },
+      {
+        path: 'reports',
+        loadComponent: () =>
+          import('./features/dashboard/presentation/pages/reports/reports.component').then(
+            (m) => m.ReportsComponent
+          ),
+      },
+      {
+        path: 'analytics',
+        loadComponent: () =>
+          import('./features/dashboard/presentation/pages/analytics/analytics.component').then(
+            (m) => m.AnalyticsComponent
+          ),
+      },
+      {
+        path: 'email/compose',
+        loadComponent: () =>
+          import('./features/email/presentation/pages/email-compose/email-compose.component').then(
+            (m) => m.EmailComposeComponent
+          ),
+      },
+      {
+        path: 'email/logs',
+        loadComponent: () =>
+          import('./features/email/presentation/pages/email-logs/email-logs.component').then(
+            (m) => m.EmailLogsComponent
+          ),
+      },
+      {
+        path: 'i18n/languages',
+        loadComponent: () =>
+          import('./features/i18n/presentation/pages/language-selector/language-selector.component').then(
+            (m) => m.LanguageSelectorComponent
+          ),
+      },
+      {
+        path: 'invoices',
+        loadComponent: () =>
+          import('./features/payment/presentation/pages/invoice-view/invoice-view.component').then(
+            (m) => m.InvoiceViewComponent
+          ),
+      },
+      {
+        path: 'settings/language',
+        loadComponent: () =>
+          import('./features/i18n/presentation/pages/language-selector/language-selector.component').then(
+            (m) => m.LanguageSelectorComponent
           ),
       },
     ],

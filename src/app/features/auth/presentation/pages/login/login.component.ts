@@ -36,7 +36,7 @@ export class LoginComponent {
       },
       error: (err) => {
         this.loading = false;
-        this.error = err.message || 'เข้าสู่ระบบไม่สำเร็จ';
+        this.error = err.message || 'ชื่อผู้ใช้หรือรหัสผ่านไม่ถูกต้อง';
       },
     });
   }

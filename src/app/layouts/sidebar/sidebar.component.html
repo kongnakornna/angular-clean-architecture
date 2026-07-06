@@ -1,7 +1,7 @@
-<nav class="navbar navbar-vertical navbar-expand-lg navbar-dark navbar-vertical-left">
+<nav class="navbar navbar-vertical navbar-expand-lg" [class.navbar-collapsed]="isCollapsed" [class.navbar-end]="navbarPosition === 'right'" [class.navbar-dark]="navbarDark">
   <div class="container-fluid">
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#sidebar-menu">
-      <i-tabler name="menu-2"></i-tabler>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#sidebar-menu" aria-label="Toggle sidebar">
+      <span class="navbar-toggler-icon"></span>
     </button>
     <h1 class="navbar-brand navbar-brand-autodark">
       <i-tabler name="layout-dashboard" class="navbar-brand-image"></i-tabler>
@@ -10,20 +10,20 @@
   </div>
   <div class="collapse navbar-collapse" id="sidebar-menu">
     <ul class="navbar-nav pt-lg-3">
-      <li *ngFor="let item of menuItems" class="nav-item" [class.dropdown]="item.children?.length">
+      <li *ngFor="let item of menuItems" class="nav-item" [class.dropdown]="!!item.children" [class.active]="item.children && isExpanded(item.label)">
         <ng-container *ngIf="!item.children; else hasChildren">
-          <a class="nav-link" [routerLink]="item.route" routerLinkActive="active">
+          <a class="nav-link" [routerLink]="item.route" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
             <i-tabler [name]="item.icon" class="nav-link-icon"></i-tabler>
             <span class="nav-link-title">{{ item.label }}</span>
           </a>
         </ng-container>
         <ng-template #hasChildren>
-          <a class="nav-link dropdown-toggle" (click)="toggleSubmenu(item.label)" [class.active]="isExpanded(item.label)">
+          <a class="nav-link dropdown-toggle" href="javascript:void(0)" (click)="toggleSubmenu(item.label)" [class.active]="isExpanded(item.label)">
             <i-tabler [name]="item.icon" class="nav-link-icon"></i-tabler>
             <span class="nav-link-title">{{ item.label }}</span>
           </a>
           <div class="dropdown-menu" [class.show]="isExpanded(item.label)">
-            <a *ngFor="let child of item.children" class="dropdown-item" [routerLink]="child.route" routerLinkActive="active">
+            <a *ngFor="let child of item.children" class="dropdown-item" [routerLink]="child.route" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
               <i-tabler [name]="child.icon" class="nav-link-icon"></i-tabler>
               {{ child.label }}
             </a>

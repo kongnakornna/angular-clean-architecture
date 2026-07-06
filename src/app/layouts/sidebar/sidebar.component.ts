@@ -1,10 +1,13 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, inject } from '@angular/core';
+import { LayoutService } from '../../core/services/layout.service';
 
 export interface MenuItem {
   label: string;
   icon: string;
   route?: string;
   children?: MenuItem[];
+  badge?: string;
+  badgeColor?: string;
 }
 
 @Component({
@@ -14,6 +17,11 @@ export interface MenuItem {
 })
 export class SidebarComponent {
   @Input() isCollapsed = false;
+
+  private layout = inject(LayoutService);
+
+  get navbarPosition() { return this.layout.snapshot.navbarPosition; }
+  get navbarDark() { return this.layout.snapshot.navbarDark; }
 
   menuItems: MenuItem[] = [
     { label: 'แดชบอร์ด', icon: 'layout-dashboard', route: '/dashboard' },
@@ -36,14 +44,26 @@ export class SidebarComponent {
     { label: 'ใบสั่งซื้อ', icon: 'shopping-cart', route: '/purchase-orders' },
     { label: 'สินค้าคงคลัง', icon: 'package', route: '/products' },
     { label: 'การชำระเงิน', icon: 'credit-card', route: '/payments' },
+    { label: 'ใบแจ้งหนี้', icon: 'report', route: '/invoices' },
     { label: 'เอกสาร', icon: 'folder', route: '/documents' },
+    {
+      label: 'อีเมล', icon: 'mail', route: '/email/templates',
+      children: [
+        { label: 'เทมเพลต', icon: 'file-text', route: '/email/templates' },
+        { label: 'ส่งอีเมล', icon: 'send', route: '/email/compose' },
+        { label: 'บันทึกการส่ง', icon: 'list-check', route: '/email/logs' },
+      ],
+    },
+    { label: 'งานแบตช์', icon: 'clock', route: '/batch/jobs' },
     { label: 'อุปกรณ์ IoT', icon: 'device-desktop', route: '/iot/devices' },
     { label: 'คำสั่งซื้อออนไลน์', icon: 'shopping-bag', route: '/wos/orders' },
+    { label: 'รายงาน', icon: 'chart-bar', route: '/reports' },
     {
-      label: 'ระบบ', icon: 'settings', route: '/settings',
+      label: 'ระบบ', icon: 'settings', route: '/users',
       children: [
         { label: 'ผู้ใช้งาน', icon: 'user-circle', route: '/users' },
         { label: 'บทบาท', icon: 'shield', route: '/roles' },
+        { label: 'ภาษา', icon: 'language', route: '/settings/language' },
       ],
     },
   ];
