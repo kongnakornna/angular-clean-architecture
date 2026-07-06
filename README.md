@@ -93,7 +93,7 @@ This project is licensed with the MIT license
 | **Manager** | สิทธิ์ระดับบริหาร | Job Card, Quotation, Purchase Order, Dashboard, Reports |
 | **Staff** | สิทธิ์ปฏิบัติการ | Job Card, Customer Management, Inventory (ดู/แก้ไขบางส่วน) |
 | **Technician** | สิทธิ์หน้างาน | Job Card (อัปเดตสถานะ), GPS Tracking, IoT |
-| **Customer** | สิทธิ์จำกัด | Web Order System (WOS), ดูสถานะ订单 |
+| **Customer** | สิทธิ์จำกัด | Web Order System (WOS), ดูสถานะ |
 
 ## 1.3 เทคโนโลยีหลัก
 | องค์ประกอบ | เทคโนโลยี |
