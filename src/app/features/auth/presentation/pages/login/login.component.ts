@@ -1,4 +1,5 @@
 import { Component, inject } from '@angular/core';
+import { NgIf } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
 import { LoginUseCase } from '../../../domain/use-cases/login.use-case';
@@ -6,7 +7,7 @@ import { LoginUseCase } from '../../../domain/use-cases/login.use-case';
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [FormsModule, RouterLink],
+  imports: [NgIf, FormsModule, RouterLink],
   template: `
     <div class="page page-center">
       <div class="container-tight py-4">

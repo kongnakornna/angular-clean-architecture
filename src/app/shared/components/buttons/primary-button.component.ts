@@ -2,6 +2,7 @@ import { Component, Input, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-primary-button',
+  standalone: false,
   template: `
     <button
       class="btn btn-primary"

@@ -1,6 +1,6 @@
 import { Pipe, PipeTransform } from '@angular/core';
 
-@Pipe({ name: 'translate' })
+@Pipe({ name: 'translate', standalone: false })
 export class TranslatePipe implements PipeTransform {
   transform(value: string): string {
     // TODO: integrate with i18n module

@@ -5,6 +5,7 @@ import { Toast, ToastService, ToastType } from '../../services/toast.service';
 
 @Component({
     selector: 'app-toast',
+    standalone: false,
     templateUrl: './toast.component.html',
     animations: [
         trigger(

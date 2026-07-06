@@ -1,7 +1,7 @@
 import { Pipe, PipeTransform } from '@angular/core';
 import { Helpers } from '../../core/utils/helpers';
 
-@Pipe({ name: 'statusLabel' })
+@Pipe({ name: 'statusLabel', standalone: false })
 export class StatusLabelPipe implements PipeTransform {
   transform(value: string): string {
     return Helpers.getStatusLabel(value);

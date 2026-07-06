@@ -2,6 +2,7 @@ import { Component, Input, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-confirm-modal',
+  standalone: false,
   template: `
     <div class="modal" [class.show]="visible" [style.display]="visible ? 'block' : 'none'">
       <div class="modal-dialog modal-sm modal-dialog-centered">
