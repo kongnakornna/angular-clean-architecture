@@ -16,6 +16,11 @@ import { FooterComponent } from './layouts/footer/footer.component';
 import { AppLayoutComponent } from './layouts/app-layout/app-layout.component';
 import { TablerIconsModule } from 'angular-tabler-icons';
 
+import { REPOSITORY_PROVIDERS } from './core/di/providers';
+import { AUTH_REPOSITORY } from './core/di/tokens';
+import { DemoAuthRepositoryImpl } from './features/auth/data/repositories/auth.repository.demo';
+import { environment } from '../environments/environment';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -36,7 +41,10 @@ import { TablerIconsModule } from 'angular-tabler-icons';
     SharedModule,
     TablerIconsModule,
   ],
-  providers: [],
+  providers: [
+    ...REPOSITORY_PROVIDERS,
+    ...(environment.demo ? [{ provide: AUTH_REPOSITORY, useClass: DemoAuthRepositoryImpl }] : []),
+  ],
   bootstrap: [AppComponent],
   exports: [],
 })

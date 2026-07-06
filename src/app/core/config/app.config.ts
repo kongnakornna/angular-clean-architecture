@@ -12,7 +12,7 @@ export interface AppConfig {
 export const APP_CONFIG = new InjectionToken<AppConfig>('app.config');
 
 export const DEFAULT_APP_CONFIG: AppConfig = {
-  appName: 'BizAdmin',
+  appName: 'iCmon',
   version: '1.0.0',
   apiBaseUrl: '/api',
   production: false,

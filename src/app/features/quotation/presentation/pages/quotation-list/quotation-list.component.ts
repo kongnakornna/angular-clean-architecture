@@ -6,23 +6,6 @@ import { RouterLink } from '@angular/router';
   selector: 'app-quotation-list',
   standalone: true,
   imports: [CommonModule, RouterLink],
-  template: `
-    <div class="page-header d-print-none">
-      <div class="row align-items-center">
-        <div class="col">
-          <h2 class="page-title">ใบเสนอราคา</h2>
-          <div class="text-muted mt-1">จัดการเอกสารเสนอราคาทั้งหมด</div>
-        </div>
-        <div class="col-auto ms-auto">
-          <a routerLink="/quotations/create" class="btn btn-primary">+ สร้างใบเสนอราคา</a>
-        </div>
-      </div>
-    </div>
-    <div class="card">
-      <div class="card-body text-center text-muted py-5">
-        <p>กำลังพัฒนาระบบ...</p>
-      </div>
-    </div>
-  `,
+  templateUrl: './quotation-list.component.html',
 })
 export class QuotationListComponent {}

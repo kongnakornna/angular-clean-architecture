@@ -6,23 +6,6 @@ import { RouterLink } from '@angular/router';
   selector: 'app-device-list',
   standalone: true,
   imports: [CommonModule, RouterLink],
-  template: `
-    <div class="page-header">
-      <div class="row align-items-center">
-        <div class="col">
-          <h2 class="page-title">อุปกรณ์ IoT</h2>
-          <div class="text-muted mt-1">จัดการอุปกรณ์ IoT และติดตามตำแหน่ง</div>
-        </div>
-        <div class="col-auto ms-auto">
-          <a routerLink="/iot/devices/register" class="btn btn-primary">+ ลงทะเบียนอุปกรณ์</a>
-        </div>
-      </div>
-    </div>
-    <div class="card">
-      <div class="card-body text-center text-muted py-5">
-        <p>กำลังพัฒนาระบบ...</p>
-      </div>
-    </div>
-  `,
+  templateUrl: './device-list.component.html',
 })
 export class DeviceListComponent {}
