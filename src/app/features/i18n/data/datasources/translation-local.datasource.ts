@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
-import { Translation, SupportedLanguage } from '../../domain/entities/translation.entity';
+import { Translation, SupportedLanguage, LanguageOption } from '../../domain/entities/translation.entity';
 
 @Injectable({ providedIn: 'root' })
 export class TranslationLocalDataSource {
@@ -79,8 +79,17 @@ export class TranslationLocalDataSource {
     },
   };
 
+  private languageOptions: LanguageOption[] = [
+    { code: 'th', name: 'ไทย', flag: '🇹🇭' },
+    { code: 'en', name: 'English', flag: '🇬🇧' },
+  ];
+
   getTranslations(lang: SupportedLanguage): Observable<Translation[]> {
     const trans = this.translations[lang] || {};
     return of(Object.entries(trans).map(([key, value]) => ({ key, value, language: lang })));
+  }
+
+  getLanguageOptions(): Observable<LanguageOption[]> {
+    return of(this.languageOptions);
   }
 }

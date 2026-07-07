@@ -5,3 +5,9 @@ export interface Translation {
 }
 
 export type SupportedLanguage = 'th' | 'en';
+
+export interface LanguageOption {
+  code: SupportedLanguage;
+  name: string;
+  flag: string;
+}

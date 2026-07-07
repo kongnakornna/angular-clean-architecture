@@ -2633,3 +2633,4 @@ ng serve
 
 - npm install --legacy-peer-deps
 - npm install angular-tabler-icons --legacy-peer-deps
+- npm install ngx-tabler-icons @ngx-translate/core @ngx-translate/http-loader --save --legacy-peer-deps

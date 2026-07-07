@@ -1,0 +1,46 @@
+{
+  "app": {
+    "name": "iCmon"
+  },
+  "nav": {
+    "dashboard": "แดชบอร์ด",
+    "jobs": "การจัดการงาน",
+    "customers": "ลูกค้า",
+    "quotations": "ใบเสนอราคา",
+    "purchaseOrders": "ใบสั่งซื้อ",
+    "products": "สินค้าคงคลัง",
+    "payments": "การชำระเงิน",
+    "documents": "เอกสาร",
+    "iot": "อุปกรณ์ IoT",
+    "wos": "คำสั่งซื้อออนไลน์",
+    "settings": "ตั้งค่า",
+    "users": "ผู้ใช้งาน",
+    "roles": "บทบาท"
+  },
+  "common": {
+    "save": "บันทึก",
+    "cancel": "ยกเลิก",
+    "delete": "ลบ",
+    "edit": "แก้ไข",
+    "create": "สร้าง",
+    "search": "ค้นหา",
+    "reset": "รีเซ็ต",
+    "confirm": "ยืนยัน",
+    "loading": "กำลังโหลด...",
+    "noData": "ไม่พบข้อมูล"
+  },
+  "login": {
+    "title": "เข้าสู่ระบบ",
+    "email": "อีเมล",
+    "password": "รหัสผ่าน",
+    "submit": "เข้าสู่ระบบ",
+    "forgotPassword": "ลืมรหัสผ่าน?"
+  },
+  "dashboard": {
+    "title": "แดชบอร์ด",
+    "totalJobs": "งานทั้งหมด",
+    "activeJobs": "งานที่กำลังดำเนินการ",
+    "totalCustomers": "ลูกค้าทั้งหมด",
+    "revenue": "รายได้"
+  }
+}

@@ -1,9 +1,11 @@
-import { Pipe, PipeTransform } from '@angular/core';
+import { Pipe, PipeTransform, inject } from '@angular/core';
+import { TranslateService } from '@ngx-translate/core';
 
 @Pipe({ name: 'translate', standalone: false })
 export class TranslatePipe implements PipeTransform {
+  private translate = inject(TranslateService);
+
   transform(value: string): string {
-    // TODO: integrate with i18n module
-    return value;
+    return value ? this.translate.instant(value) : value;
   }
 }

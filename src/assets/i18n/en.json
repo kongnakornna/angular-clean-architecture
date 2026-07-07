@@ -1,0 +1,46 @@
+{
+  "app": {
+    "name": "iCmon"
+  },
+  "nav": {
+    "dashboard": "Dashboard",
+    "jobs": "Job Management",
+    "customers": "Customers",
+    "quotations": "Quotations",
+    "purchaseOrders": "Purchase Orders",
+    "products": "Inventory",
+    "payments": "Payments",
+    "documents": "Documents",
+    "iot": "IoT Devices",
+    "wos": "Web Orders",
+    "settings": "Settings",
+    "users": "Users",
+    "roles": "Roles"
+  },
+  "common": {
+    "save": "Save",
+    "cancel": "Cancel",
+    "delete": "Delete",
+    "edit": "Edit",
+    "create": "Create",
+    "search": "Search",
+    "reset": "Reset",
+    "confirm": "Confirm",
+    "loading": "Loading...",
+    "noData": "No data found"
+  },
+  "login": {
+    "title": "Login",
+    "email": "Email",
+    "password": "Password",
+    "submit": "Sign In",
+    "forgotPassword": "Forgot password?"
+  },
+  "dashboard": {
+    "title": "Dashboard",
+    "totalJobs": "Total Jobs",
+    "activeJobs": "Active Jobs",
+    "totalCustomers": "Total Customers",
+    "revenue": "Revenue"
+  }
+}
