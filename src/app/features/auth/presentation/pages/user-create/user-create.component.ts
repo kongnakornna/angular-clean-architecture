@@ -2,18 +2,19 @@ import { Component, inject } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
 import { TablerIconComponent } from 'angular-tabler-icons';
+import { TranslatePipe } from '../../../../../shared/pipes/translate.pipe';
 
 @Component({
   selector: 'app-user-create',
   standalone: true,
-  imports: [FormsModule, RouterLink],
+  imports: [FormsModule, RouterLink, TranslatePipe],
   template: `
 <div class="page-header d-print-none">
   <div class="container-xl">
     <div class="row g-2 align-items-center">
       <div class="col">
-        <div class="page-pretitle">จัดการผู้ใช้</div>
-        <h2 class="page-title">เพิ่มผู้ใช้ใหม่</h2>
+        <div class="page-pretitle">{{ 'user.title' | translate }}</div>
+        <h2 class="page-title">{{ 'user.createTitle' | translate }}</h2>
       </div>
     </div>
   </div>
@@ -24,17 +25,17 @@ import { TablerIconComponent } from 'angular-tabler-icons';
       <div class="card-body">
         <form (ngSubmit)="onSubmit()" #userForm="ngForm" autocomplete="off" novalidate>
           <div class="mb-3">
-            <label class="form-label required">ชื่อผู้ใช้</label>
-            <input type="text" class="form-control" [(ngModel)]="model.name" name="name" placeholder="ชื่อผู้ใช้" required>
+            <label class="form-label required">{{ 'user.username' | translate }}</label>
+            <input type="text" class="form-control" [(ngModel)]="model.name" name="name" placeholder="{{ 'user.usernamePlaceholder' | translate }}" required>
           </div>
           <div class="mb-3">
-            <label class="form-label required">อีเมล</label>
-            <input type="email" class="form-control" [(ngModel)]="model.email" name="email" placeholder="อีเมล" required email>
+            <label class="form-label required">{{ 'user.email' | translate }}</label>
+            <input type="email" class="form-control" [(ngModel)]="model.email" name="email" placeholder="{{ 'user.emailPlaceholder' | translate }}" required email>
           </div>
           <div class="mb-3">
-            <label class="form-label required">บทบาท</label>
+            <label class="form-label required">{{ 'user.role' | translate }}</label>
             <select class="form-select" [(ngModel)]="model.role" name="role" required>
-              <option value="">เลือกบทบาท</option>
+              <option value="">{{ 'user.selectRole' | translate }}</option>
               <option value="admin">Admin</option>
               <option value="manager">Manager</option>
               <option value="staff">Staff</option>
@@ -43,16 +44,16 @@ import { TablerIconComponent } from 'angular-tabler-icons';
             </select>
           </div>
           <div class="mb-3">
-            <label class="form-label required">รหัสผ่าน</label>
-            <input type="password" class="form-control" [(ngModel)]="model.password" name="password" placeholder="รหัสผ่าน" required>
+            <label class="form-label required">{{ 'user.password' | translate }}</label>
+            <input type="password" class="form-control" [(ngModel)]="model.password" name="password" placeholder="{{ 'user.password' | translate }}" required>
           </div>
           <div class="mb-3">
-            <label class="form-label required">ยืนยันรหัสผ่าน</label>
-            <input type="password" class="form-control" [(ngModel)]="model.confirmPassword" name="confirmPassword" placeholder="ยืนยันรหัสผ่าน" required>
+            <label class="form-label required">{{ 'user.confirmPassword' | translate }}</label>
+            <input type="password" class="form-control" [(ngModel)]="model.confirmPassword" name="confirmPassword" placeholder="{{ 'user.confirmPassword' | translate }}" required>
           </div>
           <div class="form-footer">
-            <a routerLink="/users" class="btn btn-ghost me-2">ยกเลิก</a>
-            <button type="submit" class="btn btn-primary" [disabled]="userForm.invalid">บันทึก</button>
+            <a routerLink="/users" class="btn btn-ghost me-2">{{ 'user.cancel' | translate }}</a>
+            <button type="submit" class="btn btn-primary" [disabled]="userForm.invalid">{{ 'user.save' | translate }}</button>
           </div>
         </form>
       </div>

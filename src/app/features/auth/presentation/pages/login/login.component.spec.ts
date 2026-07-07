@@ -5,6 +5,7 @@ import { LoginComponent } from './login.component';
 import { LoginUseCase } from '../../../domain/use-cases/login.use-case';
 import { provideTablerIcons } from 'angular-tabler-icons';
 import { IconEye, IconEyeOff, IconBrandGithub, IconBrandX } from 'angular-tabler-icons/icons';
+import { TranslateService } from '@ngx-translate/core';
 
 describe('LoginComponent', () => {
   let component: LoginComponent;
@@ -15,6 +16,7 @@ describe('LoginComponent', () => {
       imports: [LoginComponent, RouterTestingModule],
       providers: [
         { provide: LoginUseCase, useValue: { execute: () => of({}) } },
+        { provide: TranslateService, useValue: { currentLang: 'en', instant: (k: string) => k, use: () => of({}), onLangChange: of({}) } },
         provideTablerIcons({ IconEye, IconEyeOff, IconBrandGithub, IconBrandX }),
       ],
     }).compileComponents();

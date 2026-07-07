@@ -2,20 +2,21 @@ import { Component } from '@angular/core';
 import { NgIf, NgFor } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { RouterLink } from '@angular/router';
+import { TranslatePipe } from '../../../../../shared/pipes/translate.pipe';
 
 @Component({
   selector: 'app-order-create',
   standalone: true,
-  imports: [NgIf, NgFor, FormsModule, RouterLink],
+  imports: [NgIf, NgFor, FormsModule, RouterLink, TranslatePipe],
   template: `
 <div class="page-header d-print-none">
   <div class="row align-items-center">
     <div class="col">
-      <h2 class="page-title">สร้างคำสั่งซื้อออนไลน์</h2>
-      <div class="text-secondary mt-1">บันทึกคำสั่งซื้อจากช่องทางออนไลน์</div>
+      <h2 class="page-title">{{ 'wos.createTitle' | translate }}</h2>
+      <div class="text-secondary mt-1">{{ 'wos.createSubtitle' | translate }}</div>
     </div>
     <div class="col-auto ms-auto d-print-none">
-      <a routerLink="/wos/orders" class="btn btn-outline-secondary">กลับ</a>
+      <a routerLink="/wos/orders" class="btn btn-outline-secondary">{{ 'wos.back' | translate }}</a>
     </div>
   </div>
 </div>
@@ -24,16 +25,16 @@ import { RouterLink } from '@angular/router';
     <form>
       <div class="row g-3 mb-3">
         <div class="col-md-6">
-          <label class="form-label">ชื่อลูกค้า</label>
-          <input type="text" class="form-control" name="customerName" [(ngModel)]="customerName" placeholder="ชื่อ-นามสกุล">
+          <label class="form-label">{{ 'wos.customerName' | translate }}</label>
+          <input type="text" class="form-control" name="customerName" [(ngModel)]="customerName" placeholder="{{ 'wos.customerName' | translate }}">
         </div>
         <div class="col-md-6">
-          <label class="form-label">เบอร์โทร</label>
-          <input type="tel" class="form-control" name="customerPhone" [(ngModel)]="customerPhone" placeholder="เบอร์โทร">
+          <label class="form-label">{{ 'wos.phone' | translate }}</label>
+          <input type="tel" class="form-control" name="customerPhone" [(ngModel)]="customerPhone" placeholder="{{ 'wos.phone' | translate }}">
         </div>
       </div>
       <div class="mb-3">
-        <label class="form-label">ช่องทาง</label>
+        <label class="form-label">{{ 'wos.channel' | translate }}</label>
         <select class="form-select" name="channel" [(ngModel)]="channel">
           <option value="facebook">Facebook</option>
           <option value="line">LINE</option>
@@ -42,29 +43,29 @@ import { RouterLink } from '@angular/router';
           <option value="website">เว็บไซต์</option>
         </select>
       </div>
-      <h4 class="card-title mb-3">รายการสินค้า</h4>
+      <h4 class="card-title mb-3">{{ 'wos.items' | translate }}</h4>
       <div class="table-responsive">
         <table class="table table-vcenter">
           <thead>
-            <tr><th>สินค้า</th><th class="text-end">จำนวน</th><th class="text-end">ราคา</th><th></th></tr>
+            <tr><th>{{ 'wos.product' | translate }}</th><th class="text-end">{{ 'wos.quantity' | translate }}</th><th class="text-end">{{ 'wos.price' | translate }}</th><th></th></tr>
           </thead>
           <tbody>
             <tr *ngFor="let item of items; let i = index">
-              <td><input type="text" class="form-control" [(ngModel)]="item.name" [name]="'itemName' + i" placeholder="ชื่อสินค้า"></td>
+              <td><input type="text" class="form-control" [(ngModel)]="item.name" [name]="'itemName' + i" placeholder="{{ 'wos.product' | translate }}"></td>
               <td class="text-end"><input type="number" class="form-control text-end" [(ngModel)]="item.quantity" [name]="'itemQty' + i" style="width:80px"></td>
               <td class="text-end"><input type="number" class="form-control text-end" [(ngModel)]="item.price" [name]="'itemPrice' + i" style="width:120px"></td>
-              <td><button type="button" class="btn btn-sm btn-ghost-danger" (click)="removeItem(i)">ลบ</button></td>
+              <td><button type="button" class="btn btn-sm btn-ghost-danger" (click)="removeItem(i)">{{ 'wos.remove' | translate }}</button></td>
             </tr>
           </tbody>
         </table>
       </div>
-      <button type="button" class="btn btn-outline-secondary mb-3" (click)="addItem()">+ เพิ่มรายการ</button>
+      <button type="button" class="btn btn-outline-secondary mb-3" (click)="addItem()">{{ 'wos.addItem' | translate }}</button>
       <div class="mb-3">
-        <label class="form-label">ที่อยู่จัดส่ง</label>
-        <textarea class="form-control" name="shippingAddress" [(ngModel)]="shippingAddress" rows="3" placeholder="ที่อยู่จัดส่ง"></textarea>
+        <label class="form-label">{{ 'wos.deliveryAddress' | translate }}</label>
+        <textarea class="form-control" name="shippingAddress" [(ngModel)]="shippingAddress" rows="3" placeholder="{{ 'wos.deliveryAddress' | translate }}"></textarea>
       </div>
       <div class="form-footer">
-        <button type="submit" class="btn btn-primary">สร้างคำสั่งซื้อ</button>
+        <button type="submit" class="btn btn-primary">{{ 'wos.save' | translate }}</button>
       </div>
     </form>
   </div>

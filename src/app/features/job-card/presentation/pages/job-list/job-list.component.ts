@@ -6,11 +6,12 @@ import { BehaviorSubject } from 'rxjs';
 import { ListJobsUseCase } from '../../../domain/use-cases/list-jobs.use-case';
 import { JobCard } from '../../../domain/entities/job-card.entity';
 import { Helpers } from '../../../../../core/utils/helpers';
+import { TranslatePipe } from '../../../../../shared/pipes/translate.pipe';
 
 @Component({
   selector: 'app-job-list',
   standalone: true,
-  imports: [CommonModule, RouterLink, FormsModule],
+  imports: [CommonModule, RouterLink, FormsModule, TranslatePipe],
   templateUrl: './job-list.component.html',
 })
 export class JobListComponent implements OnInit {

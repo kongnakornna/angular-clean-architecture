@@ -5,11 +5,12 @@ import { FormsModule } from '@angular/forms';
 import { BehaviorSubject } from 'rxjs';
 import { ListCustomersUseCase } from '../../../domain/use-cases/list-customers.use-case';
 import { Customer } from '../../../domain/entities/customer.entity';
+import { TranslatePipe } from '../../../../../shared/pipes/translate.pipe';
 
 @Component({
   selector: 'app-customer-list',
   standalone: true,
-  imports: [CommonModule, RouterLink, FormsModule],
+  imports: [CommonModule, RouterLink, FormsModule, TranslatePipe],
   templateUrl: './customer-list.component.html',
 })
 export class CustomerListComponent implements OnInit {

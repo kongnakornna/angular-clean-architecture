@@ -23,7 +23,7 @@
         <div class="dropdown-menu dropdown-menu-end dropdown-menu-card">
           <div class="card">
             <div class="card-header">
-              <h3 class="card-title">การแจ้งเตือน</h3>
+              <h3 class="card-title">{{ 'layout.header.notifications' | translate }}</h3>
             </div>
             <div class="list-group list-group-flush">
               <a *ngFor="let n of notifications" class="list-group-item" [class.bg-light]="!n.read">
@@ -44,7 +44,7 @@
       <div class="nav-item dropdown">
         <a class="nav-link d-flex align-items-center px-2" data-bs-toggle="dropdown" href="javascript:void(0)">
           <span class="avatar avatar-sm">A</span>
-          <span class="ms-2 d-none d-md-inline">ผู้ดูแล</span>
+          <span class="ms-2 d-none d-md-inline">{{ 'auth.lockScreen.title' | translate }}</span>
         </a>
         <div class="dropdown-menu dropdown-menu-end">
           <a *ngFor="let item of profileMenu" class="dropdown-item" [routerLink]="item.route" (click)="item.action === 'logout' && logout()">

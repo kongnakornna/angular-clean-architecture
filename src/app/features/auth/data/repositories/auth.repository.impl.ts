@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable, map } from 'rxjs';
-import { IAuthRepository } from '../../domain/repositories/auth.repository';
+import { IAuthRepository, RegisterCredentials } from '../../domain/repositories/auth.repository';
 import { User, LoginCredentials, AuthResponse } from '../../domain/entities/user.entity';
 import { AuthApiDataSource } from '../datasources/auth.api.datasource';
 import { LoginResponseDto } from '../dtos/login-response.dto';
@@ -33,6 +33,10 @@ export class AuthRepositoryImpl implements IAuthRepository {
 
   getCurrentUser(): Observable<User> {
     return this.dataSource.getCurrentUser().pipe(map((dto) => this.mapToUser(dto)));
+  }
+
+  register(credentials: RegisterCredentials): Observable<void> {
+    return this.dataSource.register(credentials);
   }
 
   hasPermission(permission: string): Observable<boolean> {

@@ -5,6 +5,7 @@ import { environment } from '../../../../../environments/environment';
 import { API_ENDPOINTS } from '../../../../core/config/api.config';
 import { LoginRequestDto } from '../dtos/login-request.dto';
 import { LoginResponseDto } from '../dtos/login-response.dto';
+import { RegisterRequestDto } from '../dtos/register-request.dto';
 
 @Injectable({ providedIn: 'root' })
 export class AuthApiDataSource {
@@ -33,6 +34,10 @@ export class AuthApiDataSource {
 
   getCurrentUser(): Observable<LoginResponseDto['user']> {
     return this.http.get<LoginResponseDto['user']>(`${this.baseUrl}${API_ENDPOINTS.auth.me}`);
+  }
+
+  register(data: RegisterRequestDto): Observable<void> {
+    return this.http.post<void>(`${this.baseUrl}${API_ENDPOINTS.auth.register}`, data);
   }
 
   getPermissions(): Observable<string[]> {

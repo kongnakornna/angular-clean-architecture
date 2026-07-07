@@ -18,6 +18,7 @@ import { SidebarComponent } from './layouts/sidebar/sidebar.component';
 import { FooterComponent } from './layouts/footer/footer.component';
 import { AppLayoutComponent } from './layouts/app-layout/app-layout.component';
 import { LayoutSettingsComponent } from './layouts/layout-settings/layout-settings.component';
+import { TranslatePipe } from './shared/pipes/translate.pipe';
 import { LanguageSelectorComponent } from './shared/i18n/presentation/pages/language-selector/language-selector.component';
 import { TablerIconsModule, provideTablerIcons } from 'angular-tabler-icons';
 import {
@@ -58,6 +59,7 @@ import { environment } from '../environments/environment';
     SharedModule,
     TablerIconsModule,
     LanguageSelectorComponent,
+    TranslatePipe,
   ],
   providers: [
     ...REPOSITORY_PROVIDERS,
@@ -73,8 +75,8 @@ import { environment } from '../environments/environment';
       IconApps, IconUserPlus, IconFileCheck, IconAlertTriangle, IconClipboardCheck,
       IconSend, IconMessageCircle, IconCheck, IconCircleCheck, IconClock, IconLayout,
     }),
-    provideTranslateService({ fallbackLang: 'th', lang: 'th' }),
-    provideTranslateHttpLoader({ prefix: './assets/i18n/', suffix: '.json' }),
+    provideTranslateService({ fallbackLang: 'en', lang: 'en' }),
+    provideTranslateHttpLoader({ prefix: 'assets/i18n/', suffix: '.json' }),
   ],
   bootstrap: [AppComponent],
   exports: [],

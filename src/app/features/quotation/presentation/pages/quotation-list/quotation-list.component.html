@@ -1,16 +1,16 @@
 <div class="page-header d-print-none">
   <div class="row align-items-center">
     <div class="col">
-      <h2 class="page-title">ใบเสนอราคา</h2>
-      <div class="text-secondary mt-1">จัดการใบเสนอราคาทั้งหมด</div>
+      <h2 class="page-title">{{ 'quotation.title' | translate }}</h2>
+      <div class="text-secondary mt-1">{{ 'quotation.subtitle' | translate }}</div>
     </div>
     <div class="col-auto ms-auto d-print-none">
-      <a routerLink="/quotations/create" class="btn btn-primary">+ สร้างใบเสนอราคา</a>
+      <a routerLink="/quotations/create" class="btn btn-primary">{{ 'quotation.create' | translate }}</a>
     </div>
   </div>
 </div>
 <div class="card">
   <div class="card-body text-center py-5">
-    <div class="text-secondary">กำลังพัฒนา...</div>
+    <div class="text-secondary">{{ 'common.underDevelopment' | translate }}</div>
   </div>
 </div>

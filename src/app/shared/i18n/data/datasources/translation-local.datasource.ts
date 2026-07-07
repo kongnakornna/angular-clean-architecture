@@ -35,6 +35,11 @@ export class TranslationLocalDataSource {
       'login.password': 'รหัสผ่าน',
       'login.submit': 'เข้าสู่ระบบ',
       'login.forgotPassword': 'ลืมรหัสผ่าน?',
+      'login.rememberMe': 'จดจำฉันไว้ในระบบ',
+      'login.or': 'หรือ',
+      'login.noAccount': 'ยังไม่มีบัญชี?',
+      'login.contactAdmin': 'ติดต่อผู้ดูแลระบบ',
+      'login.testCredentials': 'ใช้ admin / P@ssw0rd เพื่อทดสอบระบบ',
       'dashboard.title': 'แดชบอร์ด',
       'dashboard.totalJobs': 'งานทั้งหมด',
       'dashboard.activeJobs': 'งานที่กำลังดำเนินการ',
@@ -71,6 +76,11 @@ export class TranslationLocalDataSource {
       'login.password': 'Password',
       'login.submit': 'Sign In',
       'login.forgotPassword': 'Forgot password?',
+      'login.rememberMe': 'Remember me',
+      'login.or': 'or',
+      'login.noAccount': "Don't have an account?",
+      'login.contactAdmin': 'Contact administrator',
+      'login.testCredentials': 'Use admin / P@ssw0rd to test the system',
       'dashboard.title': 'Dashboard',
       'dashboard.totalJobs': 'Total Jobs',
       'dashboard.activeJobs': 'Active Jobs',
@@ -80,8 +90,8 @@ export class TranslationLocalDataSource {
   };
 
   private languageOptions: LanguageOption[] = [
-    { code: 'th', name: 'ไทย', flag: '🇹🇭' },
-    { code: 'en', name: 'English', flag: '🇬🇧' },
+    { code: 'th', name: 'ไทย', flag: 'assets/img/flags/th.svg' },
+    { code: 'en', name: 'English', flag: 'assets/img/flags/gb.svg' },
   ];
 
   getTranslations(lang: SupportedLanguage): Observable<Translation[]> {

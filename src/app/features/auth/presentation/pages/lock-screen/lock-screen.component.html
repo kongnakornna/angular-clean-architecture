@@ -4,15 +4,15 @@
       <div class="card-body">
         <div class="text-center mb-4">
           <span class="avatar avatar-xl mb-3">A</span>
-          <h2 class="card-title">ผู้ดูแลระบบ</h2>
-          <p class="text-secondary">กรุณากรอกรหัสผ่านเพื่อปลดล็อค</p>
+          <h2 class="card-title">{{ 'auth.lockScreen.title' | translate }}</h2>
+          <p class="text-secondary">{{ 'auth.lockScreen.description' | translate }}</p>
         </div>
         <div *ngIf="error" class="alert alert-danger mb-3">{{ error }}</div>
         <div class="mb-3">
           <div class="input-group input-group-flat">
-            <input [type]="passwordVisible ? 'text' : 'password'" class="form-control" [(ngModel)]="password" name="password" placeholder="รหัสผ่าน" required autocomplete="current-password">
+            <input [type]="passwordVisible ? 'text' : 'password'" class="form-control" [(ngModel)]="password" name="password" placeholder="{{ 'auth.lockScreen.passwordPlaceholder' | translate }}" required autocomplete="current-password">
             <span class="input-group-text">
-              <a href="javascript:void(0)" class="link-secondary" title="แสดงรหัสผ่าน" (click)="togglePassword()">
+              <a href="javascript:void(0)" class="link-secondary" [title]="'common.password' | translate" (click)="togglePassword()">
                 <i-tabler [name]="passwordVisible ? 'eye-off' : 'eye'" class="icon"></i-tabler>
               </a>
             </span>
@@ -21,13 +21,13 @@
         <div class="form-footer">
           <button type="submit" class="btn btn-primary w-100" [disabled]="loading">
             <span *ngIf="loading" class="spinner-border spinner-border-sm me-2"></span>
-            ปลดล็อค
+            {{ 'auth.lockScreen.submit' | translate }}
           </button>
         </div>
       </div>
     </form>
     <div class="text-center text-secondary mt-3">
-      <a routerLink="/login">เข้าสู่ระบบด้วยบัญชีอื่น</a>
+      <a routerLink="/login">{{ 'auth.lockScreen.loginAsOther' | translate }}</a>
     </div>
   </div>
 </div>

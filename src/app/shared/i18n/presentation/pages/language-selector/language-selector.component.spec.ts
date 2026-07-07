@@ -1,5 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { LanguageSelectorComponent } from './language-selector.component';
+import { TranslateService } from '@ngx-translate/core';
+import { of } from 'rxjs';
 
 describe('LanguageSelectorComponent', () => {
   let component: LanguageSelectorComponent;
@@ -8,6 +10,9 @@ describe('LanguageSelectorComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [LanguageSelectorComponent],
+      providers: [
+        { provide: TranslateService, useValue: { currentLang: 'en', instant: (k: string) => k, use: () => of({}), onLangChange: of({}) } },
+      ],
     }).compileComponents();
 
     fixture = TestBed.createComponent(LanguageSelectorComponent);

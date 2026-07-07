@@ -7,6 +7,7 @@ export const API_ENDPOINTS = {
     resetPassword: '/api/v1/auth/reset-password',
     me: '/api/v1/auth/me',
     permissions: '/api/v1/auth/permissions',
+    register: '/api/v1/auth/register',
   },
   users: {
     list: '/api/users',

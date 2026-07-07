@@ -23,13 +23,13 @@ export class TranslationRepositoryImpl implements ITranslationRepository {
 
   setLanguage(lang: SupportedLanguage): void {
     localStorage.setItem(APP_CONSTANTS.LANGUAGE_KEY, lang);
-    this.translate.use(lang);
+    this.translate.use(lang).subscribe();
   }
 
   getCurrentLanguage(): SupportedLanguage {
     return (localStorage.getItem(APP_CONSTANTS.LANGUAGE_KEY) as SupportedLanguage)
       || this.translate.getCurrentLang() as SupportedLanguage
-      || 'th';
+      || 'en';
   }
 
   instant(key: string): string {

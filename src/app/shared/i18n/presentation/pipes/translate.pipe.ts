@@ -1,36 +1,15 @@
-import { Pipe, PipeTransform, inject, OnDestroy } from '@angular/core';
-import { TranslateService } from '@ngx-translate/core';
-import { Subscription } from 'rxjs';
+import { Pipe, PipeTransform, inject } from '@angular/core';
+import { I18nService } from '../../data/i18n.service';
 
 @Pipe({
   name: 'appTranslate',
-  standalone: false,
+  standalone: true,
   pure: false,
 })
-export class AppTranslatePipe implements PipeTransform, OnDestroy {
-  private translate = inject(TranslateService);
-  private langChangeSubscription: Subscription;
-
-  private value = '';
-  private lastKey = '';
-
-  constructor() {
-    this.langChangeSubscription = this.translate.onLangChange.subscribe(() => {
-      if (this.lastKey) {
-        this.value = this.translate.instant(this.lastKey);
-      }
-    });
-  }
+export class AppTranslatePipe implements PipeTransform {
+  private i18n = inject(I18nService);
 
   transform(key: string): string {
-    if (key !== this.lastKey) {
-      this.lastKey = key;
-      this.value = this.translate.instant(key);
-    }
-    return this.value;
-  }
-
-  ngOnDestroy(): void {
-    this.langChangeSubscription?.unsubscribe();
+    return this.i18n.translate(key);
   }
 }

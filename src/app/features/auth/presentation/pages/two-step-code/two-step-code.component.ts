@@ -2,11 +2,12 @@ import { Component, AfterViewInit, ElementRef, QueryList, ViewChildren } from '@
 import { NgIf, NgFor } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { RouterLink } from '@angular/router';
+import { TranslatePipe } from '../../../../../shared/pipes/translate.pipe';
 
 @Component({
   selector: 'app-two-step-code',
   standalone: true,
-  imports: [NgIf, NgFor, FormsModule, RouterLink],
+  imports: [NgIf, NgFor, FormsModule, RouterLink, TranslatePipe],
   templateUrl: './two-step-code.component.html',
 })
 export class TwoStepCodeComponent implements AfterViewInit {

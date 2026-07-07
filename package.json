@@ -24,6 +24,7 @@
         "@ngx-translate/core": "^18.0.0",
         "@ngx-translate/http-loader": "^18.0.0",
         "angular-tabler-icons": "^3.26.0",
+        "bootstrap": "^5.3.8",
         "chart.js": "^4.5.1",
         "date-fns": "^4.4.0",
         "emoji-toolkit": "^6.6.0",

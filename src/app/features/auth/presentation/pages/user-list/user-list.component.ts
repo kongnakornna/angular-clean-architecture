@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { NgFor, NgIf } from '@angular/common';
 import { RouterLink } from '@angular/router';
 import { TablerIconComponent } from 'angular-tabler-icons';
+import { TranslatePipe } from '../../../../../shared/pipes/translate.pipe';
 
 interface UserListItem {
   id: string;
@@ -15,18 +16,18 @@ interface UserListItem {
 @Component({
   selector: 'app-user-list',
   standalone: true,
-  imports: [NgFor, NgIf, RouterLink, TablerIconComponent],
+  imports: [NgFor, NgIf, RouterLink, TablerIconComponent, TranslatePipe],
   template: `
 <div class="page-header d-print-none">
   <div class="container-xl">
     <div class="row g-2 align-items-center">
       <div class="col">
-        <h2 class="page-title">จัดการผู้ใช้</h2>
+        <h2 class="page-title">{{ 'user.title' | translate }}</h2>
       </div>
       <div class="col-auto ms-auto d-print-none">
         <a routerLink="/users/create" class="btn btn-primary">
-          <i-tabler name="plus" class="icon"></i-tabler>
-          เพิ่มผู้ใช้
+            <i-tabler name="plus" class="icon"></i-tabler>
+          {{ 'user.create' | translate }}
         </a>
       </div>
     </div>
@@ -40,11 +41,11 @@ interface UserListItem {
           <table class="table table-vcenter card-table">
             <thead>
               <tr>
-                <th>ชื่อผู้ใช้</th>
-                <th>อีเมล</th>
-                <th>บทบาท</th>
-                <th>สถานะ</th>
-                <th>เข้าใช้ล่าสุด</th>
+                <th>{{ 'user.username' | translate }}</th>
+                <th>{{ 'user.email' | translate }}</th>
+                <th>{{ 'user.role' | translate }}</th>
+                <th>{{ 'user.status' | translate }}</th>
+                <th>{{ 'user.lastLogin' | translate }}</th>
                 <th class="w-1"></th>
               </tr>
             </thead>
@@ -56,16 +57,16 @@ interface UserListItem {
                 <td><span [innerHTML]="getStatusBadge(user.status)"></span></td>
                 <td class="text-secondary">{{ user.lastLogin }}</td>
                 <td>
-                  <a routerLink="/users/{{user.id}}/edit" class="btn btn-ghost-secondary btn-icon" title="แก้ไข">
+                    <a routerLink="/users/{{user.id}}/edit" class="btn btn-ghost-secondary btn-icon" [title]="'user.edit' | translate">
                     <i-tabler name="pencil" class="icon"></i-tabler>
                   </a>
-                  <a href="javascript:void(0)" class="btn btn-ghost-danger btn-icon" title="ลบ" (click)="deleteUser(user.id)">
+                    <a href="javascript:void(0)" class="btn btn-ghost-danger btn-icon" [title]="'user.delete' | translate" (click)="deleteUser(user.id)">
                     <i-tabler name="trash" class="icon"></i-tabler>
                   </a>
                 </td>
               </tr>
               <tr *ngIf="users.length === 0">
-                <td colspan="6" class="text-center text-secondary py-4">ไม่มีข้อมูลผู้ใช้</td>
+                <td colspan="6" class="text-center text-secondary py-4">{{ 'user.noData' | translate }}</td>
               </tr>
             </tbody>
           </table>

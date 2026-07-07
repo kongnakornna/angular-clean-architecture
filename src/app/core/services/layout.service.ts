@@ -1,100 +1,67 @@
-import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable } from 'rxjs';
-
-export interface LayoutSettings {
-  layoutMode: 'vertical' | 'fluid' | 'boxed' | 'condensed';
-  navbarPosition: 'left' | 'right';
-  navbarDark: boolean;
-  navbarOverlap: boolean;
-  navbarSticky: boolean;
-  rtlMode: boolean;
-  colorScheme: string;
-  fontFamily: string;
-  themeBase: string;
-  borderRadius: number;
-}
+import { Injectable, computed, signal } from '@angular/core';
 
 @Injectable({ providedIn: 'root' })
 export class LayoutService {
-  private readonly STORAGE_KEY = 'LAYOUT_SETTINGS';
-  private settings: BehaviorSubject<LayoutSettings>;
-  public settings$: Observable<LayoutSettings>;
+  private _state = signal<Record<string, string>>({});
 
-  private defaults: LayoutSettings = {
-    layoutMode: 'vertical',
-    navbarPosition: 'left',
-    navbarDark: false,
-    navbarOverlap: false,
-    navbarSticky: false,
-    rtlMode: false,
-    colorScheme: 'blue',
-    fontFamily: 'sans-serif',
-    themeBase: 'slate',
-    borderRadius: 1,
-  };
+  readonly theme = computed(() => this._state()['theme'] || 'light');
+  readonly themeBase = computed(() => this._state()['theme-base'] || 'gray');
+  readonly themeFont = computed(() => this._state()['theme-font'] || 'sans-serif');
+  readonly themePrimary = computed(() => this._state()['theme-primary'] || 'blue');
+  readonly themeRadius = computed(() => this._state()['theme-radius'] || '1');
 
   constructor() {
-    const saved = this.loadSettings();
-    this.settings = new BehaviorSubject<LayoutSettings>(saved);
-    this.settings$ = this.settings.asObservable();
-    this.applySettings(saved);
+    this.loadSettings();
+    this.applySettings();
   }
 
-  get snapshot(): LayoutSettings {
-    return this.settings.getValue();
-  }
-
-  get layoutClasses(): string[] {
-    const s = this.snapshot;
-    const classes: string[] = [];
-    if (s.layoutMode === 'fluid') classes.push('layout-fluid');
-    if (s.layoutMode === 'boxed') classes.push('layout-boxed');
-    if (s.navbarDark) classes.push('navbar-dark');
-    if (s.navbarOverlap) classes.push('navbar-overlap');
-    if (s.navbarSticky) classes.push('navbar-sticky');
-    if (s.rtlMode) classes.push('layout-rtl');
-    if (s.navbarPosition === 'right') classes.push('navbar-vertical-right');
-    return classes;
-  }
-
-  update(partial: Partial<LayoutSettings>): void {
-    const next = { ...this.snapshot, ...partial };
-    this.settings.next(next);
-    this.saveSettings(next);
-    this.applySettings(next);
+  update(property: string, value: string): void {
+    this._state.update(state => ({ ...state, [property]: value }));
+    this.saveSettings();
+    this.applySettings();
   }
 
   reset(): void {
-    this.settings.next({ ...this.defaults });
-    this.saveSettings(this.defaults);
-    this.applySettings(this.defaults);
+    this._state.set({});
+    this.saveSettings();
+    this.applySettings();
   }
 
-  private applySettings(s: LayoutSettings): void {
+  private applySettings(): void {
+    const s = this._state();
     const el = document.documentElement;
+    if (s['theme']) el.setAttribute('data-bs-theme', s['theme']);
+    else el.removeAttribute('data-bs-theme');
+    if (s['theme-base']) el.setAttribute('data-bs-theme-base', s['theme-base']);
+    else el.removeAttribute('data-bs-theme-base');
+    if (s['theme-font']) el.setAttribute('data-bs-theme-font', s['theme-font']);
+    else el.removeAttribute('data-bs-theme-font');
+    if (s['theme-primary']) el.setAttribute('data-bs-theme-primary', s['theme-primary']);
+    else el.removeAttribute('data-bs-theme-primary');
+    if (s['theme-radius']) el.setAttribute('data-bs-theme-radius', s['theme-radius']);
+    else el.removeAttribute('data-bs-theme-radius');
+  }
 
-    el.setAttribute('data-bs-theme', s.layoutMode === 'boxed' ? 'dark' : 'light');
-
-    if (s.rtlMode) {
-      el.setAttribute('dir', 'rtl');
-    } else {
-      el.setAttribute('dir', 'ltr');
+  private loadSettings(): void {
+    const keys = ['theme', 'theme-base', 'theme-font', 'theme-primary', 'theme-radius'];
+    const defaults: Record<string, string> = {
+      theme: 'light',
+      'theme-base': 'gray',
+      'theme-font': 'sans-serif',
+      'theme-primary': 'blue',
+      'theme-radius': '1',
+    };
+    const state: Record<string, string> = {};
+    for (const key of keys) {
+      state[key] = localStorage.getItem('tabler-' + key) || defaults[key];
     }
-
-    const keys = ['layout-fluid', 'layout-boxed', 'layout-rtl', 'navbar-overlap', 'navbar-sticky', 'navbar-dark', 'navbar-vertical-right'];
-    keys.forEach(k => document.body.classList.toggle(k, false));
-    this.layoutClasses.forEach(c => document.body.classList.add(c));
+    this._state.set(state);
   }
 
-  private loadSettings(): LayoutSettings {
-    try {
-      const raw = localStorage.getItem(this.STORAGE_KEY);
-      if (raw) return { ...this.defaults, ...JSON.parse(raw) };
-    } catch { }
-    return { ...this.defaults };
-  }
-
-  private saveSettings(s: LayoutSettings): void {
-    localStorage.setItem(this.STORAGE_KEY, JSON.stringify(s));
+  private saveSettings(): void {
+    const s = this._state();
+    for (const key of Object.keys(s)) {
+      localStorage.setItem('tabler-' + key, s[key]);
+    }
   }
 }

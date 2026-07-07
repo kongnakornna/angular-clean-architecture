@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Output, inject } from '@angular/core';
-import { ThemeSwitcherService } from '../../core/services/theme-switcher.service';
+import { LayoutService } from '../../core/services/layout.service';
 
 @Component({
   selector: 'app-header',
@@ -9,7 +9,7 @@ import { ThemeSwitcherService } from '../../core/services/theme-switcher.service
 export class HeaderComponent {
   @Output() toggleSidebar = new EventEmitter<void>();
 
-  private themeSwitcher = inject(ThemeSwitcherService);
+  private layout = inject(LayoutService);
 
   unreadCount = 3;
 
@@ -20,13 +20,13 @@ export class HeaderComponent {
   ];
 
   profileMenu = [
-    { label: 'โปรไฟล์', icon: 'user', route: '/profile' },
-    { label: 'ตั้งค่า', icon: 'settings', route: '/settings' },
-    { label: 'ออกจากระบบ', icon: 'logout', action: 'logout' },
+    { label: 'Profile', icon: 'user', route: '/profile' },
+    { label: 'Settings', icon: 'settings', route: '/settings' },
+    { label: 'Logout', icon: 'logout', action: 'logout' },
   ];
 
   get isDarkMode(): boolean {
-    return this.themeSwitcher.isDarkMode;
+    return this.layout.theme() === 'dark';
   }
 
   onToggle(): void {
@@ -34,7 +34,7 @@ export class HeaderComponent {
   }
 
   toggleTheme(): void {
-    this.themeSwitcher.toggleTheme();
+    this.layout.update('theme', this.isDarkMode ? 'light' : 'dark');
   }
 
   logout(): void {

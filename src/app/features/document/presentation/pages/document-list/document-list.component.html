@@ -1,16 +1,16 @@
 <div class="page-header d-print-none">
   <div class="row align-items-center">
     <div class="col">
-      <h2 class="page-title">เอกสาร</h2>
-      <div class="text-secondary mt-1">จัดการเอกสารทั้งหมด</div>
+      <h2 class="page-title">{{ 'document.title' | translate }}</h2>
+      <div class="text-secondary mt-1">{{ 'document.subtitle' | translate }}</div>
     </div>
     <div class="col-auto ms-auto d-print-none">
-      <a routerLink="/documents/create" class="btn btn-primary">+ อัปโหลดเอกสาร</a>
+      <a routerLink="/documents/create" class="btn btn-primary">{{ 'document.upload' | translate }}</a>
     </div>
   </div>
 </div>
 <div class="card">
   <div class="card-body text-center py-5">
-    <div class="text-secondary">กำลังพัฒนา...</div>
+    <div class="text-secondary">{{ 'common.underDevelopment' | translate }}</div>
   </div>
 </div>

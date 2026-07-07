@@ -1,11 +1,11 @@
 <div class="page-header d-print-none">
   <div class="row align-items-center">
     <div class="col">
-      <h2 class="page-title">รายการลูกค้า</h2>
-      <div class="text-secondary mt-1">จัดการข้อมูลลูกค้าทั้งหมด</div>
+      <h2 class="page-title">{{ 'customer.title' | translate }}</h2>
+      <div class="text-secondary mt-1">{{ 'customer.subtitle' | translate }}</div>
     </div>
     <div class="col-auto ms-auto d-print-none">
-      <a routerLink="/customers/create" class="btn btn-primary">+ เพิ่มลูกค้า</a>
+      <a routerLink="/customers/create" class="btn btn-primary">{{ 'customer.create' | translate }}</a>
     </div>
   </div>
 </div>
@@ -14,11 +14,11 @@
   <div class="card-body">
     <div class="row g-3">
       <div class="col-md-4">
-        <input type="text" class="form-control" [(ngModel)]="searchTerm" placeholder="ค้นหาชื่อ, เบอร์โทร, อีเมล...">
+        <input type="text" class="form-control" [(ngModel)]="searchTerm" [placeholder]="'customer.searchPlaceholder' | translate">
       </div>
       <div class="col-md-2">
-        <button class="btn btn-primary me-2" (click)="search()">ค้นหา</button>
-        <button class="btn btn-outline-secondary" (click)="searchTerm = ''; search()">รีเซ็ต</button>
+        <button class="btn btn-primary me-2" (click)="search()">{{ 'customer.search' | translate }}</button>
+        <button class="btn btn-outline-secondary" (click)="searchTerm = ''; search()">{{ 'customer.reset' | translate }}</button>
       </div>
     </div>
   </div>
@@ -29,7 +29,7 @@
   <div *ngIf="!(loading$ | async)" class="table-responsive">
     <table class="table table-vcenter card-table">
       <thead>
-        <tr><th>รหัส</th><th>ชื่อบริษัท</th><th>เบอร์โทร</th><th>อีเมล</th><th>จังหวัด</th><th class="w-1"></th></tr>
+        <tr><th>{{ 'customer.code' | translate }}</th><th>{{ 'customer.companyName' | translate }}</th><th>{{ 'customer.phone' | translate }}</th><th>{{ 'customer.email' | translate }}</th><th>{{ 'customer.province' | translate }}</th><th class="w-1"></th></tr>
       </thead>
       <tbody>
         <tr *ngFor="let c of (customers$ | async)">
@@ -38,9 +38,9 @@
           <td>{{ c.phone }}</td>
           <td>{{ c.email }}</td>
           <td>{{ c.province }}</td>
-          <td><a [routerLink]="['/customers', c.id]" class="btn btn-sm btn-primary">ดู</a></td>
+          <td><a [routerLink]="['/customers', c.id]" class="btn btn-sm btn-primary">{{ 'customer.view' | translate }}</a></td>
         </tr>
-        <tr *ngIf="(customers$ | async)?.length === 0"><td colspan="6" class="text-center text-secondary py-4">ไม่พบข้อมูลลูกค้า</td></tr>
+        <tr *ngIf="(customers$ | async)?.length === 0"><td colspan="6" class="text-center text-secondary py-4">{{ 'customer.noData' | translate }}</td></tr>
       </tbody>
     </table>
   </div>

@@ -1,21 +1,22 @@
 import { Component } from '@angular/core';
 import { NgIf, NgFor } from '@angular/common';
 import { RouterLink } from '@angular/router';
+import { TranslatePipe } from '../../../../../shared/pipes/translate.pipe';
 
 @Component({
   selector: 'app-customer-detail',
   standalone: true,
-  imports: [NgIf, NgFor, RouterLink],
+  imports: [NgIf, NgFor, RouterLink, TranslatePipe],
   template: `
 <div class="page-header d-print-none">
   <div class="row align-items-center">
     <div class="col">
-      <h2 class="page-title">รายละเอียดลูกค้า</h2>
+      <h2 class="page-title">{{ 'customer.detail' | translate }}</h2>
       <div class="text-secondary mt-1">JC-2026-001</div>
     </div>
     <div class="col-auto ms-auto d-print-none">
-      <a routerLink="/customers" class="btn btn-outline-secondary me-2">กลับ</a>
-      <a routerLink="/customers/1/edit" class="btn btn-primary">แก้ไข</a>
+      <a routerLink="/customers" class="btn btn-outline-secondary me-2">{{ 'customer.back' | translate }}</a>
+      <a routerLink="/customers/1/edit" class="btn btn-primary">{{ 'customer.edit' | translate }}</a>
     </div>
   </div>
 </div>
@@ -35,24 +36,24 @@ import { RouterLink } from '@angular/router';
   <div class="col-md-8">
     <div class="card">
       <div class="card-header">
-        <h3 class="card-title">ข้อมูลติดต่อ</h3>
+        <h3 class="card-title">{{ 'customer.contactInfo' | translate }}</h3>
       </div>
       <div class="card-body">
         <div class="datagrid">
           <div class="datagrid-item">
-            <div class="datagrid-title">ชื่อ-นามสกุล</div>
+            <div class="datagrid-title">{{ 'customer.fullName' | translate }}</div>
             <div class="datagrid-content">{{ customer.name }}</div>
           </div>
           <div class="datagrid-item">
-            <div class="datagrid-title">อีเมล</div>
+            <div class="datagrid-title">{{ 'customer.email' | translate }}</div>
             <div class="datagrid-content">{{ customer.email }}</div>
           </div>
           <div class="datagrid-item">
-            <div class="datagrid-title">เบอร์โทร</div>
+            <div class="datagrid-title">{{ 'customer.phone' | translate }}</div>
             <div class="datagrid-content">{{ customer.phone }}</div>
           </div>
           <div class="datagrid-item">
-            <div class="datagrid-title">ที่อยู่</div>
+            <div class="datagrid-title">{{ 'customer.address' | translate }}</div>
             <div class="datagrid-content">{{ customer.address }}</div>
           </div>
         </div>
@@ -60,22 +61,22 @@ import { RouterLink } from '@angular/router';
     </div>
     <div class="card mt-3">
       <div class="card-header">
-        <h3 class="card-title">ประวัติงาน</h3>
+        <h3 class="card-title">{{ 'customer.jobHistory' | translate }}</h3>
       </div>
       <div class="table-responsive">
         <table class="table table-vcenter card-table">
           <thead>
-            <tr><th>เลขงาน</th><th>วันที่</th><th>สถานะ</th><th></th></tr>
+            <tr><th>{{ 'customer.jobNumber' | translate }}</th><th>{{ 'customer.date' | translate }}</th><th>{{ 'customer.status' | translate }}</th><th></th></tr>
           </thead>
           <tbody>
             <tr *ngFor="let job of jobHistory">
               <td><a [routerLink]="['/jobs', job.id]" class="text-reset">{{ job.jobNumber }}</a></td>
               <td>{{ job.date }}</td>
               <td><span class="badge bg-green">{{ job.status }}</span></td>
-              <td><a [routerLink]="['/jobs', job.id]" class="btn btn-sm btn-primary">ดู</a></td>
+              <td><a [routerLink]="['/jobs', job.id]" class="btn btn-sm btn-primary">{{ 'customer.view' | translate }}</a></td>
             </tr>
             <tr *ngIf="jobHistory.length === 0">
-              <td colspan="4" class="text-center text-secondary py-4">ไม่มีประวัติงาน</td>
+              <td colspan="4" class="text-center text-secondary py-4">{{ 'customer.noHistory' | translate }}</td>
             </tr>
           </tbody>
         </table>

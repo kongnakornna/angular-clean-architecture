@@ -1,20 +1,21 @@
 import { Component } from '@angular/core';
 import { NgIf, NgFor } from '@angular/common';
 import { RouterLink } from '@angular/router';
+import { TranslatePipe } from '../../../../../shared/pipes/translate.pipe';
 
 @Component({
   selector: 'app-job-board',
   standalone: true,
-  imports: [NgIf, NgFor, RouterLink],
+  imports: [NgIf, NgFor, RouterLink, TranslatePipe],
   template: `
 <div class="page-header d-print-none">
   <div class="row align-items-center">
     <div class="col">
-      <h2 class="page-title">บอร์ดงาน</h2>
-      <div class="text-secondary mt-1">จัดการงานแบบ Kanban</div>
+      <h2 class="page-title">{{ 'jobCard.boardTitle' | translate }}</h2>
+      <div class="text-secondary mt-1">{{ 'jobCard.boardSubtitle' | translate }}</div>
     </div>
     <div class="col-auto ms-auto d-print-none">
-      <a routerLink="/jobs/create" class="btn btn-primary">+ สร้างงานใหม่</a>
+      <a routerLink="/jobs/create" class="btn btn-primary">{{ 'jobCard.create' | translate }}</a>
     </div>
   </div>
 </div>
@@ -44,7 +45,7 @@ import { RouterLink } from '@angular/router';
         </div>
         <div *ngIf="col.jobs.length === 0" class="text-center text-secondary py-4">
           <div class="mb-2"><i-tabler name="inbox" class="icon"></i-tabler></div>
-          ไม่มีงานในคอลัมน์นี้
+          {{ 'jobCard.noJobsInColumn' | translate }}
         </div>
       </div>
     </div>

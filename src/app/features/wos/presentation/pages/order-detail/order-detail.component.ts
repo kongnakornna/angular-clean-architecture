@@ -1,20 +1,21 @@
 import { Component } from '@angular/core';
 import { NgIf, NgFor } from '@angular/common';
 import { RouterLink } from '@angular/router';
+import { TranslatePipe } from '../../../../../shared/pipes/translate.pipe';
 
 @Component({
   selector: 'app-order-detail',
   standalone: true,
-  imports: [NgIf, NgFor, RouterLink],
+  imports: [NgIf, NgFor, RouterLink, TranslatePipe],
   template: `
 <div class="page-header d-print-none">
   <div class="row align-items-center">
     <div class="col">
-      <h2 class="page-title">รายละเอียดคำสั่งซื้อ</h2>
+      <h2 class="page-title">{{ 'wos.detail' | translate }}</h2>
       <div class="text-secondary mt-1">{{ order.number }}</div>
     </div>
     <div class="col-auto ms-auto d-print-none">
-      <a routerLink="/wos/orders" class="btn btn-outline-secondary me-2">กลับ</a>
+      <a routerLink="/wos/orders" class="btn btn-outline-secondary me-2">{{ 'wos.back' | translate }}</a>
       <span class="badge bg-blue ms-2">{{ order.status }}</span>
     </div>
   </div>
@@ -23,40 +24,40 @@ import { RouterLink } from '@angular/router';
   <div class="card-body">
     <div class="datagrid">
       <div class="datagrid-item">
-        <div class="datagrid-title">เลขที่คำสั่งซื้อ</div>
+        <div class="datagrid-title">{{ 'wos.orderNumber' | translate }}</div>
         <div class="datagrid-content">{{ order.number }}</div>
       </div>
       <div class="datagrid-item">
-        <div class="datagrid-title">ลูกค้า</div>
+        <div class="datagrid-title">{{ 'wos.customer' | translate }}</div>
         <div class="datagrid-content">{{ order.customerName }}</div>
       </div>
       <div class="datagrid-item">
-        <div class="datagrid-title">เบอร์โทร</div>
+        <div class="datagrid-title">{{ 'wos.phone' | translate }}</div>
         <div class="datagrid-content">{{ order.customerPhone }}</div>
       </div>
       <div class="datagrid-item">
-        <div class="datagrid-title">ช่องทาง</div>
+        <div class="datagrid-title">{{ 'wos.channel' | translate }}</div>
         <div class="datagrid-content">{{ order.channel }}</div>
       </div>
       <div class="datagrid-item">
-        <div class="datagrid-title">วันที่สั่งซื้อ</div>
+        <div class="datagrid-title">{{ 'wos.orderDate' | translate }}</div>
         <div class="datagrid-content">{{ order.orderDate }}</div>
       </div>
       <div class="datagrid-item">
-        <div class="datagrid-title">สถานะ</div>
+        <div class="datagrid-title">{{ 'wos.status' | translate }}</div>
         <div class="datagrid-content">
-          <span class="badge" [class.bg-yellow]="order.status === 'รอดำเนินการ'" [class.bg-blue]="order.status === 'กำลังจัดส่ง'" [class.bg-green]="order.status === 'จัดส่งแล้ว'" [class.bg-red]="order.status === 'ยกเลิก'">{{ order.status }}</span>
+          <span class="badge" [class.bg-yellow]="order.status === '{{ 'wos.statusPending' | translate }}'" [class.bg-blue]="order.status === '{{ 'wos.statusShipping' | translate }}'" [class.bg-green]="order.status === '{{ 'wos.statusDelivered' | translate }}'" [class.bg-red]="order.status === '{{ 'wos.statusCancelled' | translate }}'">{{ order.status }}</span>
         </div>
       </div>
     </div>
   </div>
 </div>
 <div class="card mt-3">
-  <div class="card-header"><h3 class="card-title">รายการสินค้า</h3></div>
+  <div class="card-header"><h3 class="card-title">{{ 'wos.items' | translate }}</h3></div>
   <div class="table-responsive">
     <table class="table table-vcenter card-table">
       <thead>
-        <tr><th>สินค้า</th><th class="text-end">จำนวน</th><th class="text-end">ราคา</th><th class="text-end">รวม</th></tr>
+        <tr><th>{{ 'wos.product' | translate }}</th><th class="text-end">{{ 'wos.quantity' | translate }}</th><th class="text-end">{{ 'wos.price' | translate }}</th><th class="text-end">{{ 'wos.total' | translate }}</th></tr>
       </thead>
       <tbody>
         <tr *ngFor="let item of order.items">
@@ -67,13 +68,13 @@ import { RouterLink } from '@angular/router';
         </tr>
       </tbody>
       <tfoot>
-        <tr><td colspan="3" class="text-end fw-bold">รวมทั้งสิ้น</td><td class="text-end fw-bold">{{ order.grandTotal }}</td></tr>
+        <tr><td colspan="3" class="text-end fw-bold">{{ 'wos.grandTotal' | translate }}</td><td class="text-end fw-bold">{{ order.grandTotal }}</td></tr>
       </tfoot>
     </table>
   </div>
 </div>
 <div class="card mt-3">
-  <div class="card-header"><h3 class="card-title">ที่อยู่จัดส่ง</h3></div>
+  <div class="card-header"><h3 class="card-title">{{ 'wos.deliveryAddress' | translate }}</h3></div>
   <div class="card-body">
     <p>{{ order.shippingAddress }}</p>
   </div>

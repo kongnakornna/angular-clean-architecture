@@ -2,33 +2,33 @@
   <div class="container container-tight py-4">
     <form class="card card-md" (ngSubmit)="onSubmit()" autocomplete="off" novalidate>
       <div class="card-body">
-        <h2 class="card-title text-center mb-4">2-Step Verification</h2>
+        <h2 class="card-title text-center mb-4">{{ 'auth.twoStepVerification.title' | translate }}</h2>
         <div class="mb-3">
-          <label class="form-label">ประเทศ</label>
+          <label class="form-label">{{ 'auth.twoStepVerification.countryLabel' | translate }}</label>
           <select class="form-select" [(ngModel)]="countryCode" name="countryCode">
             <option *ngFor="let c of countries" [value]="c.dial">{{ c.name }}</option>
           </select>
         </div>
         <div class="mb-4">
-          <label class="form-label">เบอร์โทรศัพท์</label>
+          <label class="form-label">{{ 'auth.twoStepVerification.phoneLabel' | translate }}</label>
           <div class="input-group">
             <span class="input-group-text">{{ countryCode }}</span>
-            <input type="text" class="form-control" [(ngModel)]="phoneNumber" name="phoneNumber" placeholder="กรอกเบอร์โทรศัพท์">
+            <input type="text" class="form-control" [(ngModel)]="phoneNumber" name="phoneNumber" placeholder="{{ 'auth.twoStepVerification.phonePlaceholder' | translate }}">
           </div>
         </div>
         <div class="text-secondary mb-3">
-          เพื่อความปลอดภัยของบัญชีของคุณ เราจะส่งรหัสยืนยันทาง SMS เมื่อคุณเข้าสู่ระบบจากอุปกรณ์ใหม่
+          {{ 'auth.twoStepVerification.description' | translate }}
         </div>
         <div class="form-footer">
           <button type="submit" class="btn btn-primary w-100" [disabled]="loading">
             <span *ngIf="loading" class="spinner-border spinner-border-sm me-2"></span>
-            ส่งรหัส
+            {{ 'auth.twoStepVerification.submit' | translate }}
           </button>
         </div>
       </div>
     </form>
     <div class="text-center text-secondary mt-3">
-      <a routerLink="/login">กลับไปหน้าเข้าสู่ระบบ</a>
+      <a routerLink="/login">{{ 'auth.twoStepVerification.backToLogin' | translate }}</a>
     </div>
   </div>
 </div>

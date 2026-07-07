@@ -32,7 +32,7 @@
                         "styles": [
                             "src/styles.scss"
                         ],
-                        "scripts": [],
+                        "scripts": ["node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"],
                         "stylePreprocessorOptions": {
                             "includePaths": ["src"]
                         }
@@ -63,7 +63,7 @@
                             "buildOptimizer": false,
                             "optimization": false,
                             "vendorChunk": true,
-                            "extractLicenses": false,
+                            "extractLicenses": true,
                             "sourceMap": true,
                             "namedChunks": true
                         }
@@ -106,7 +106,7 @@
                         "styles": [
                             "src/styles.scss"
                         ],
-                        "scripts": []
+                        "scripts": ["node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"]
                     }
                 }
             }

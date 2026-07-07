@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { BehaviorSubject } from 'rxjs';
+import { TranslatePipe } from '../../../../../shared/pipes/translate.pipe';
 
 interface DashboardStats {
   totalJobs: number;
@@ -13,7 +14,7 @@ interface DashboardStats {
 @Component({
   selector: 'app-main-dashboard',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, TranslatePipe],
   templateUrl: './main-dashboard.component.html',
 })
 export class MainDashboardComponent implements OnInit {

@@ -1,0 +1,22 @@
+<div class="page page-center">
+  <div class="container container-tight py-4">
+    <div class="text-center mb-4 navbar-brand-autodark d-none-navbar-horizontal pe-0 pe-md-3">
+      <a href="/">
+        <img src="assets/img/logo/logo-dark.png" width="80" height="15" class="navbar-brand-image">
+      </a>
+    </div>
+    <app-language-selector></app-language-selector>
+    <router-outlet></router-outlet>
+  </div>
+</div>
+
+<a href="javascript:void(0)" class="btn btn-floating btn-icon btn-primary" data-bs-toggle="offcanvas" data-bs-target="#themeBuilder">
+  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-1">
+    <path d="M3 21v-4a4 4 0 1 1 4 4h-4" />
+    <path d="M21 3a16 16 0 0 0 -12.8 10.2" />
+    <path d="M21 3a16 16 0 0 1 -10.2 12.8" />
+    <path d="M10.6 9a9 9 0 0 1 4.4 4.4" />
+  </svg>
+</a>
+
+<app-theme-builder></app-theme-builder>
