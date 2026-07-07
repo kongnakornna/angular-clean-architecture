@@ -2,24 +2,24 @@
   <div class="container container-tight py-4">
     <div class="card card-md">
       <div class="card-body">
-        <h2 class="h2 text-center mb-4">เข้าสู่ระบบ</h2>
+        <h2 class="h2 text-center mb-4">{{ 'login.title' | appTranslate }}</h2>
         <div *ngIf="error" class="alert alert-danger mb-3">{{ error }}</div>
         <form (ngSubmit)="onSubmit()" #loginForm="ngForm" autocomplete="off" novalidate>
           <div class="mb-3">
-            <label class="form-label">ชื่อผู้ใช้</label>
+            <label class="form-label">{{ 'login.email' | appTranslate }}</label>
             <input type="text" class="form-control" [(ngModel)]="username" name="username" placeholder="admin" autocomplete="username">
           </div>
           <div class="mb-2">
             <label class="form-label">
-              รหัสผ่าน
+              {{ 'login.password' | appTranslate }}
               <span class="form-label-description">
-                <a routerLink="/forgot-password">ลืมรหัสผ่าน</a>
+                <a routerLink="/forgot-password">{{ 'login.forgotPassword' | appTranslate }}</a>
               </span>
             </label>
             <div class="input-group input-group-flat">
-              <input [type]="passwordVisible ? 'text' : 'password'" class="form-control" [(ngModel)]="password" name="password" placeholder="รหัสผ่าน" autocomplete="current-password">
+              <input [type]="passwordVisible ? 'text' : 'password'" class="form-control" [(ngModel)]="password" name="password" placeholder="Password" autocomplete="current-password">
               <span class="input-group-text">
-                <a href="javascript:void(0)" class="link-secondary" title="แสดงรหัสผ่าน" (click)="togglePassword()">
+                <a href="javascript:void(0)" class="link-secondary" title="Show password" (click)="togglePassword()">
                   <i-tabler [name]="passwordVisible ? 'eye-off' : 'eye'" class="icon"></i-tabler>
                 </a>
               </span>
@@ -28,18 +28,18 @@
           <div class="mb-2">
             <label class="form-check">
               <input type="checkbox" class="form-check-input" [(ngModel)]="rememberMe" name="rememberMe">
-              <span class="form-check-label">จดจำฉันไว้ในระบบ</span>
+              <span class="form-check-label">{{ 'login.rememberMe' | appTranslate }}</span>
             </label>
           </div>
           <div class="form-footer">
             <button type="submit" class="btn btn-primary w-100" [disabled]="loginForm.invalid || loading">
               <span *ngIf="loading" class="spinner-border spinner-border-sm me-2"></span>
-              เข้าสู่ระบบ
+              {{ 'login.submit' | appTranslate }}
             </button>
           </div>
         </form>
       </div>
-      <div class="hr-text">หรือ</div>
+      <div class="hr-text">{{ 'login.or' | appTranslate }}</div>
       <div class="card-body">
         <div class="row">
           <div class="col">
@@ -58,11 +58,11 @@
       </div>
     </div>
     <div class="text-center text-secondary mt-3">
-      ยังไม่มีบัญชี? <a routerLink="/sign-up">ติดต่อผู้ดูแลระบบ</a>
+      {{ 'login.noAccount' | appTranslate }} <a routerLink="/sign-up">{{ 'login.contactAdmin' | appTranslate }}</a>
     </div>
     <div class="text-center mt-3 p-2 bg-light rounded border">
       <small class="text-secondary">
-        <strong>API:</strong> ใช้ <code>admin</code> / <code>P@ssw0rd</code> เพื่อทดสอบระบบ
+        <strong>API:</strong> {{ 'login.testCredentials' | appTranslate }}
       </small>
     </div>
   </div>

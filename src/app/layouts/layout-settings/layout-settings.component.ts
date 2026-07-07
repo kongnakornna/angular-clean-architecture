@@ -13,10 +13,10 @@ export class LayoutSettingsComponent {
   get s(): LayoutSettings { return this.layout.snapshot; }
 
   layoutModes = [
-    { value: 'vertical', label: 'แนวตั้ง' },
-    { value: 'fluid', label: 'เต็มจอ' },
-    { value: 'boxed', label: 'Boxed' },
-    { value: 'condensed', label: 'Condensed' },
+    { value: 'vertical', label: 'layout.settings.layoutVertical' },
+    { value: 'fluid', label: 'layout.settings.layoutFluid' },
+    { value: 'boxed', label: 'layout.settings.layoutBoxed' },
+    { value: 'condensed', label: 'layout.settings.layoutCondensed' },
   ];
   colorSchemes = [
     { value: 'blue', label: 'น้ำเงิน' },

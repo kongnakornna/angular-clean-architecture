@@ -4,11 +4,12 @@ import { FormsModule } from '@angular/forms';
 import { Router, RouterLink, ActivatedRoute } from '@angular/router';
 import { ResetPasswordUseCase } from '../../../domain/use-cases/reset-password.use-case';
 import { TablerIconComponent } from 'angular-tabler-icons';
+import { TranslatePipe } from '../../../../../shared/pipes/translate.pipe';
 
 @Component({
   selector: 'app-reset-password',
   standalone: true,
-  imports: [NgIf, FormsModule, RouterLink, TablerIconComponent],
+  imports: [NgIf, FormsModule, RouterLink, TablerIconComponent, TranslatePipe],
   template: `
 <div class="page page-center">
   <div class="container container-tight py-4">
@@ -20,27 +21,27 @@ import { TablerIconComponent } from 'angular-tabler-icons';
     </div>
     <div class="card card-md">
       <div class="card-body">
-        <h2 class="h2 text-center mb-4">ตั้งค่ารหัสผ่านใหม่</h2>
+        <h2 class="h2 text-center mb-4">{{ 'auth.resetPassword.title' | translate }}</h2>
         <div *ngIf="error" class="alert alert-danger mb-3">{{ error }}</div>
-        <div *ngIf="success" class="alert alert-success mb-3">ตั้งค่ารหัสผ่านสำเร็จแล้ว <a routerLink="/login">เข้าสู่ระบบ</a></div>
+        <div *ngIf="success" class="alert alert-success mb-3">{{ 'auth.resetPassword.successMessage' | translate }} <a routerLink="/login">{{ 'auth.signUp.loginLink' | translate }}</a></div>
         <form (ngSubmit)="onSubmit()" #resetForm="ngForm" autocomplete="off" novalidate>
           <div class="mb-3">
-            <label class="form-label">รหัสผ่านใหม่</label>
+            <label class="form-label">{{ 'auth.resetPassword.newPassword' | translate }}</label>
             <div class="input-group input-group-flat">
-              <input [type]="passwordVisible ? 'text' : 'password'" class="form-control" [(ngModel)]="password" name="password" placeholder="รหัสผ่านใหม่" required autocomplete="new-password">
+              <input [type]="passwordVisible ? 'text' : 'password'" class="form-control" [(ngModel)]="password" name="password" placeholder="{{ 'auth.resetPassword.newPasswordPlaceholder' | translate }}" required autocomplete="new-password">
               <span class="input-group-text">
-                <a href="javascript:void(0)" class="link-secondary" title="แสดงรหัสผ่าน" (click)="togglePassword()">
+                <a href="javascript:void(0)" class="link-secondary" [title]="'common.password' | translate" (click)="togglePassword()">
                   <i-tabler [name]="passwordVisible ? 'eye-off' : 'eye'" class="icon"></i-tabler>
                 </a>
               </span>
             </div>
           </div>
           <div class="mb-3">
-            <label class="form-label">ยืนยันรหัสผ่านใหม่</label>
+            <label class="form-label">{{ 'auth.resetPassword.confirmPassword' | translate }}</label>
             <div class="input-group input-group-flat">
-              <input [type]="confirmVisible ? 'text' : 'password'" class="form-control" [(ngModel)]="confirmPassword" name="confirmPassword" placeholder="ยืนยันรหัสผ่านใหม่" required autocomplete="new-password">
+              <input [type]="confirmVisible ? 'text' : 'password'" class="form-control" [(ngModel)]="confirmPassword" name="confirmPassword" placeholder="{{ 'auth.resetPassword.confirmPasswordPlaceholder' | translate }}" required autocomplete="new-password">
               <span class="input-group-text">
-                <a href="javascript:void(0)" class="link-secondary" title="แสดงรหัสผ่าน" (click)="confirmVisible = !confirmVisible">
+                <a href="javascript:void(0)" class="link-secondary" [title]="'common.password' | translate" (click)="confirmVisible = !confirmVisible">
                   <i-tabler [name]="confirmVisible ? 'eye-off' : 'eye'" class="icon"></i-tabler>
                 </a>
               </span>
@@ -49,14 +50,14 @@ import { TablerIconComponent } from 'angular-tabler-icons';
           <div class="form-footer">
             <button type="submit" class="btn btn-primary w-100" [disabled]="resetForm.invalid || loading || password !== confirmPassword">
               <span *ngIf="loading" class="spinner-border spinner-border-sm me-2"></span>
-              ตั้งค่ารหัสผ่าน
+              {{ 'auth.resetPassword.submit' | translate }}
             </button>
           </div>
         </form>
       </div>
     </div>
     <div class="text-center text-secondary mt-3">
-      <a routerLink="/login">กลับไปหน้าเข้าสู่ระบบ</a>
+      <a routerLink="/login">{{ 'auth.resetPassword.backToLogin' | translate }}</a>
     </div>
   </div>
 </div>

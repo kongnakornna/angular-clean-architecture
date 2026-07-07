@@ -2,11 +2,12 @@ import { Component } from '@angular/core';
 import { NgIf, NgFor } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { RouterLink } from '@angular/router';
+import { TranslatePipe } from '../../../../../shared/pipes/translate.pipe';
 
 @Component({
   selector: 'app-two-step-verification',
   standalone: true,
-  imports: [NgIf, NgFor, FormsModule, RouterLink],
+  imports: [NgIf, NgFor, FormsModule, RouterLink, TranslatePipe],
   templateUrl: './two-step-verification.component.html',
 })
 export class TwoStepVerificationComponent {

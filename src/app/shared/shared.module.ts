@@ -11,11 +11,10 @@ import { ToastComponent } from './components/toast/toast.component';
 import { TablerIconsModule } from 'angular-tabler-icons';
 
 @NgModule({
-  imports: [CommonModule, RouterModule, TablerIconsModule],
+  imports: [CommonModule, RouterModule, TablerIconsModule, TranslatePipe],
   declarations: [
     PrimaryButtonComponent,
     ConfirmModalComponent,
-    TranslatePipe,
     StatusLabelPipe,
     FileSizePipe,
     ClickOutsideDirective,

@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { NgFor } from '@angular/common';
 import { TablerIconComponent } from 'angular-tabler-icons';
+import { TranslatePipe } from '../../../../../shared/pipes/translate.pipe';
 
 interface Role {
   id: string;
@@ -13,18 +14,18 @@ interface Role {
 @Component({
   selector: 'app-role-list',
   standalone: true,
-  imports: [NgFor, TablerIconComponent],
+  imports: [NgFor, TablerIconComponent, TranslatePipe],
   template: `
 <div class="page-header d-print-none">
   <div class="container-xl">
     <div class="row g-2 align-items-center">
       <div class="col">
-        <h2 class="page-title">จัดการบทบาท</h2>
+        <h2 class="page-title">{{ 'user.roleTitle' | translate }}</h2>
       </div>
       <div class="col-auto ms-auto d-print-none">
         <a href="javascript:void(0)" class="btn btn-primary">
-          <i-tabler name="plus" class="icon"></i-tabler>
-          เพิ่มบทบาท
+            <i-tabler name="plus" class="icon"></i-tabler>
+          {{ 'user.addRole' | translate }}
         </a>
       </div>
     </div>
@@ -38,10 +39,10 @@ interface Role {
           <table class="table table-vcenter card-table">
             <thead>
               <tr>
-                <th>ชื่อบทบาท</th>
-                <th>รายละเอียด</th>
-                <th>สิทธิ์การเข้าถึง</th>
-                <th>จำนวนผู้ใช้</th>
+                <th>{{ 'user.roleName' | translate }}</th>
+                <th>{{ 'user.description' | translate }}</th>
+                <th>{{ 'user.permissions' | translate }}</th>
+                <th>{{ 'user.userCount' | translate }}</th>
                 <th class="w-1"></th>
               </tr>
             </thead>
@@ -54,7 +55,7 @@ interface Role {
                 </td>
                 <td>{{ role.userCount }}</td>
                 <td>
-                  <a href="javascript:void(0)" class="btn btn-ghost-secondary btn-icon" title="แก้ไข">
+                  <a href="javascript:void(0)" class="btn btn-ghost-secondary btn-icon" [title]="'user.edit' | translate">
                     <i-tabler name="pencil" class="icon"></i-tabler>
                   </a>
                 </td>

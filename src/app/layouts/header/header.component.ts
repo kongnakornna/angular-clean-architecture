@@ -20,9 +20,9 @@ export class HeaderComponent {
   ];
 
   profileMenu = [
-    { label: 'โปรไฟล์', icon: 'user', route: '/profile' },
-    { label: 'ตั้งค่า', icon: 'settings', route: '/settings' },
-    { label: 'ออกจากระบบ', icon: 'logout', action: 'logout' },
+    { label: 'Profile', icon: 'user', route: '/profile' },
+    { label: 'Settings', icon: 'settings', route: '/settings' },
+    { label: 'Logout', icon: 'logout', action: 'logout' },
   ];
 
   get isDarkMode(): boolean {

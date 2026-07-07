@@ -4,11 +4,12 @@ import { FormsModule } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
 import { LoginUseCase } from '../../../domain/use-cases/login.use-case';
 import { TablerIconComponent } from 'angular-tabler-icons';
+import { AppTranslatePipe } from '../../../../../shared/i18n/presentation/pipes/translate.pipe';
 
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [NgIf, FormsModule, RouterLink, TablerIconComponent],
+  imports: [NgIf, FormsModule, RouterLink, TablerIconComponent, AppTranslatePipe],
   templateUrl: './login.component.html',
 })
 export class LoginComponent {
@@ -36,7 +37,7 @@ export class LoginComponent {
       },
       error: (err) => {
         this.loading = false;
-        this.error = err.message || 'ชื่อผู้ใช้หรือรหัสผ่านไม่ถูกต้อง';
+        this.error = err.message || 'Invalid username or password';
       },
     });
   }

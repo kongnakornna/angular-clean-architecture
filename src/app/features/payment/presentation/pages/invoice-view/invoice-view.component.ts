@@ -1,21 +1,22 @@
 import { Component } from '@angular/core';
 import { NgIf, NgFor } from '@angular/common';
 import { RouterLink } from '@angular/router';
+import { TranslatePipe } from '../../../../../shared/pipes/translate.pipe';
 
 @Component({
   selector: 'app-invoice-view',
   standalone: true,
-  imports: [NgIf, NgFor, RouterLink],
+  imports: [NgIf, NgFor, RouterLink, TranslatePipe],
   template: `
 <div class="page-header d-print-none">
   <div class="row align-items-center">
     <div class="col">
-      <h2 class="page-title">ใบแจ้งหนี้</h2>
+      <h2 class="page-title">{{ 'invoice.title' | translate }}</h2>
       <div class="text-secondary mt-1">{{ invoice.number }}</div>
     </div>
     <div class="col-auto ms-auto d-print-none">
-      <a routerLink="/payments" class="btn btn-outline-secondary me-2">กลับ</a>
-      <button class="btn btn-primary">พิมพ์</button>
+      <a routerLink="/payments" class="btn btn-outline-secondary me-2">{{ 'invoice.back' | translate }}</a>
+      <button class="btn btn-primary">{{ 'invoice.print' | translate }}</button>
     </div>
   </div>
 </div>
@@ -35,12 +36,12 @@ import { RouterLink } from '@angular/router';
       </div>
     </div>
     <div class="mb-3">
-      <strong>ลูกค้า:</strong>
+      <strong>{{ 'invoice.customer' | translate }}:</strong>
       <div>{{ invoice.customer }}</div>
     </div>
     <table class="table table-vcenter">
       <thead>
-        <tr><th>รายการ</th><th class="text-end">จำนวน</th><th class="text-end">ราคา</th><th class="text-end">รวม</th></tr>
+        <tr><th>{{ 'invoice.item' | translate }}</th><th class="text-end">{{ 'invoice.quantity' | translate }}</th><th class="text-end">{{ 'invoice.price' | translate }}</th><th class="text-end">{{ 'invoice.total' | translate }}</th></tr>
       </thead>
       <tbody>
         <tr *ngFor="let item of invoice.items">
@@ -51,14 +52,14 @@ import { RouterLink } from '@angular/router';
         </tr>
       </tbody>
       <tfoot>
-        <tr><td colspan="3" class="text-end fw-bold">รวมทั้งสิ้น</td><td class="text-end fw-bold">{{ invoice.grandTotal }}</td></tr>
+        <tr><td colspan="3" class="text-end fw-bold">{{ 'invoice.grandTotal' | translate }}</td><td class="text-end fw-bold">{{ invoice.grandTotal }}</td></tr>
       </tfoot>
     </table>
     <div *ngIf="invoice.status === 'pending'" class="mt-3">
-      <span class="badge bg-yellow">รอชำระเงิน</span>
+      <span class="badge bg-yellow">{{ 'invoice.statusPending' | translate }}</span>
     </div>
     <div *ngIf="invoice.status === 'paid'" class="mt-3">
-      <span class="badge bg-green">ชำระแล้ว</span>
+      <span class="badge bg-green">{{ 'invoice.statusPaid' | translate }}</span>
     </div>
   </div>
 </div>

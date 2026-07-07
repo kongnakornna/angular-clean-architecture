@@ -1,17 +1,18 @@
 import { Component } from '@angular/core';
 import { NgIf, NgFor } from '@angular/common';
 import { RouterLink } from '@angular/router';
+import { TranslatePipe } from '../../../../../shared/pipes/translate.pipe';
 
 @Component({
   selector: 'app-device-map',
   standalone: true,
-  imports: [NgIf, NgFor, RouterLink],
+  imports: [NgIf, NgFor, RouterLink, TranslatePipe],
   template: `
 <div class="page-header d-print-none">
   <div class="row align-items-center">
     <div class="col">
-      <h2 class="page-title">แผนที่อุปกรณ์</h2>
-      <div class="text-secondary mt-1">แสดงตำแหน่งอุปกรณ์ IoT ทั้งหมด</div>
+      <h2 class="page-title">{{ 'iot.mapTitle' | translate }}</h2>
+      <div class="text-secondary mt-1">{{ 'iot.mapSubtitle' | translate }}</div>
     </div>
   </div>
 </div>
@@ -20,7 +21,7 @@ import { RouterLink } from '@angular/router';
     <div class="card">
       <div class="card-body p-0">
         <div style="height:450px;background:var(--tblr-bg-surface-secondary);display:flex;align-items:center;justify-content:center;flex-direction:column">
-          <span class="text-secondary mb-2">แผนที่แสดงตำแหน่งอุปกรณ์</span>
+          <span class="text-secondary mb-2">{{ 'iot.mapPlaceholder' | translate }}</span>
           <span class="text-secondary">(ใช้ Google Maps หรือ OpenStreetMap API)</span>
         </div>
       </div>
@@ -28,7 +29,7 @@ import { RouterLink } from '@angular/router';
   </div>
   <div class="col-md-4">
     <div class="card">
-      <div class="card-header"><h3 class="card-title">รายการอุปกรณ์ ({{ devices.length }})</h3></div>
+      <div class="card-header"><h3 class="card-title">{{ 'iot.deviceList' | translate }} ({{ devices.length }})</h3></div>
       <div class="list-group list-group-flush">
         <div class="list-group-item d-flex align-items-center" *ngFor="let d of devices">
           <div class="me-3">

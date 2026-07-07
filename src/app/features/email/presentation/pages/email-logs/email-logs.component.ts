@@ -2,21 +2,22 @@ import { Component } from '@angular/core';
 import { NgIf, NgFor } from '@angular/common';
 import { RouterLink } from '@angular/router';
 import { TablerIconComponent } from 'angular-tabler-icons';
+import { TranslatePipe } from '../../../../../shared/pipes/translate.pipe';
 
 @Component({
   selector: 'app-email-logs',
   standalone: true,
-  imports: [NgIf, NgFor, RouterLink, TablerIconComponent],
+  imports: [NgIf, NgFor, RouterLink, TablerIconComponent, TranslatePipe],
   template: `
 <div class="page-header d-print-none">
   <div class="row align-items-center">
     <div class="col">
-      <h2 class="page-title">ประวัติการส่งอีเมล</h2>
-      <div class="text-secondary mt-1">ตรวจสอบสถานะการส่งอีเมลทั้งหมด</div>
+      <h2 class="page-title">{{ 'email.logsTitle' | translate }}</h2>
+      <div class="text-secondary mt-1">{{ 'email.logsSubtitle' | translate }}</div>
     </div>
     <div class="col-auto ms-auto d-print-none">
       <a routerLink="/email/compose" class="btn btn-primary">
-        <i-tabler name="plus" class="icon"></i-tabler> เขียนอีเมล
+        <i-tabler name="plus" class="icon"></i-tabler> {{ 'email.compose' | translate }}
       </a>
     </div>
   </div>
@@ -25,7 +26,7 @@ import { TablerIconComponent } from 'angular-tabler-icons';
   <div class="table-responsive">
     <table class="table table-vcenter card-table">
       <thead>
-        <tr><th>ถึง</th><th>หัวข้อ</th><th>วันที่</th><th>สถานะ</th><th class="w-1"></th></tr>
+        <tr><th>{{ 'email.to' | translate }}</th><th>{{ 'email.subject' | translate }}</th><th>{{ 'email.date' | translate }}</th><th>{{ 'email.status' | translate }}</th><th class="w-1"></th></tr>
       </thead>
       <tbody>
         <tr *ngFor="let log of logs">
@@ -37,10 +38,10 @@ import { TablerIconComponent } from 'angular-tabler-icons';
               {{ log.status }}
             </span>
           </td>
-          <td><button class="btn btn-sm btn-outline-secondary">ดู</button></td>
+          <td><button class="btn btn-sm btn-outline-secondary">{{ 'email.view' | translate }}</button></td>
         </tr>
         <tr *ngIf="logs.length === 0">
-          <td colspan="5" class="text-center text-secondary py-4">ไม่มีประวัติการส่งอีเมล</td>
+          <td colspan="5" class="text-center text-secondary py-4">{{ 'email.noData' | translate }}</td>
         </tr>
       </tbody>
     </table>

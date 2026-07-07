@@ -5,7 +5,7 @@
     </button>
     <h1 class="navbar-brand navbar-brand-autodark">
       <i-tabler name="layout-dashboard" class="navbar-brand-image"></i-tabler>
-      iCmon
+      {{ 'app.name' | translate }}
     </h1>
   </div>
   <div class="collapse navbar-collapse" id="sidebar-menu">
@@ -14,18 +14,18 @@
         <ng-container *ngIf="!item.children; else hasChildren">
           <a class="nav-link" [routerLink]="item.route" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
             <i-tabler [name]="item.icon" class="nav-link-icon"></i-tabler>
-            <span class="nav-link-title">{{ item.label }}</span>
+            <span class="nav-link-title">{{ item.label | translate }}</span>
           </a>
         </ng-container>
         <ng-template #hasChildren>
           <a class="nav-link dropdown-toggle" href="javascript:void(0)" (click)="toggleSubmenu(item.label)" [class.active]="isExpanded(item.label)">
             <i-tabler [name]="item.icon" class="nav-link-icon"></i-tabler>
-            <span class="nav-link-title">{{ item.label }}</span>
+            <span class="nav-link-title">{{ item.label | translate }}</span>
           </a>
           <div class="dropdown-menu" [class.show]="isExpanded(item.label)">
             <a *ngFor="let child of item.children" class="dropdown-item" [routerLink]="child.route" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
               <i-tabler [name]="child.icon" class="nav-link-icon"></i-tabler>
-              {{ child.label }}
+              {{ child.label | translate }}
             </a>
           </div>
         </ng-template>

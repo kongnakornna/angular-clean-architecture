@@ -15,7 +15,8 @@ import { LanguageOption } from '../../../domain/entities/translation.entity';
       <a class="nav-link px-2 dropdown-toggle" data-bs-toggle="dropdown" href="javascript:void(0)" title="เปลี่ยนภาษา">
         <i-tabler name="language"></i-tabler>
         <span class="d-none d-md-inline ms-1">
-          {{ currentLanguage?.flag }} {{ currentLanguage?.name }}
+          <img *ngIf="currentLanguage?.flag" [src]="currentLanguage?.flag" class="flag-icon me-1" alt="">
+          {{ currentLanguage?.name }}
         </span>
       </a>
       <div class="dropdown-menu dropdown-menu-end">
@@ -25,11 +26,15 @@ import { LanguageOption } from '../../../domain/entities/translation.entity';
            (click)="setLanguage(lang.code)"
            href="javascript:void(0)">
           <i-tabler *ngIf="currentLanguage?.code === lang.code" name="check" class="dropdown-icon"></i-tabler>
-          {{ lang.flag }} {{ lang.name }}
+          <img [src]="lang.flag" class="flag-icon me-1" alt="">
+          {{ lang.name }}
         </a>
       </div>
     </div>
   `,
+  styles: [`
+    .flag-icon { width: 20px; height: 14px; vertical-align: middle; }
+  `]
 })
 export class LanguageSelectorComponent implements OnInit {
   private setLangUseCase = inject(SetLanguageUseCase);

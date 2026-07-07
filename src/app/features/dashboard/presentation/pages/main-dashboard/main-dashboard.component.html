@@ -1,15 +1,15 @@
 <div class="page-header d-print-none">
   <div class="row align-items-center">
     <div class="col">
-      <h2 class="page-title">แดชบอร์ด</h2>
-      <div class="text-secondary mt-1">ภาพรวมระบบบริหารจัดการธุรกิจ</div>
+      <h2 class="page-title">{{ 'dashboard.title' | translate }}</h2>
+      <div class="text-secondary mt-1">{{ 'dashboard.subtitle' | translate }}</div>
     </div>
   </div>
 </div>
 
 <div *ngIf="loading$ | async" class="text-center py-5">
   <div class="spinner-border text-primary" role="status">
-    <span class="visually-hidden">กำลังโหลด...</span>
+    <span class="visually-hidden">{{ 'dashboard.loading' | translate }}</span>
   </div>
 </div>
 
@@ -18,10 +18,10 @@
     <div class="col-sm-6 col-lg-3">
       <div class="card">
         <div class="card-body">
-          <div class="subheader">งานทั้งหมด</div>
+          <div class="subheader">{{ 'dashboard.totalJobs' | translate }}</div>
           <div class="h1 mb-3">{{ s.totalJobs }}</div>
           <div class="text-secondary">
-            <span class="text-green">+12%</span> จากเดือนที่แล้ว
+            <span class="text-green">+12%</span> {{ 'dashboard.fromLastMonth' | translate }}
           </div>
         </div>
       </div>
@@ -29,19 +29,19 @@
     <div class="col-sm-6 col-lg-3">
       <div class="card">
         <div class="card-body">
-          <div class="subheader">งานที่กำลังดำเนินการ</div>
+          <div class="subheader">{{ 'dashboard.activeJobs' | translate }}</div>
           <div class="h1 mb-3">{{ s.activeJobs }}</div>
-          <div class="text-secondary">กำลังดำเนินการ</div>
+          <div class="text-secondary">{{ 'dashboard.inProgress' | translate }}</div>
         </div>
       </div>
     </div>
     <div class="col-sm-6 col-lg-3">
       <div class="card">
         <div class="card-body">
-          <div class="subheader">ลูกค้าทั้งหมด</div>
+          <div class="subheader">{{ 'dashboard.totalCustomers' | translate }}</div>
           <div class="h1 mb-3">{{ s.totalCustomers }}</div>
           <div class="text-secondary">
-            <span class="text-green">+8%</span> จากเดือนที่แล้ว
+            <span class="text-green">+8%</span> {{ 'dashboard.fromLastMonth' | translate }}
           </div>
         </div>
       </div>
@@ -49,10 +49,10 @@
     <div class="col-sm-6 col-lg-3">
       <div class="card">
         <div class="card-body">
-          <div class="subheader">รายได้</div>
+          <div class="subheader">{{ 'dashboard.revenue' | translate }}</div>
           <div class="h1 mb-3">฿{{ s.revenue }}</div>
           <div class="text-secondary">
-            <span class="text-green">+5.2%</span> จากเดือนที่แล้ว
+            <span class="text-green">+5.2%</span> {{ 'dashboard.fromLastMonth' | translate }}
           </div>
         </div>
       </div>
@@ -62,7 +62,7 @@
   <div class="row mt-4">
     <div class="col-lg-8">
       <div class="card">
-        <div class="card-header"><h3 class="card-title">รายได้รายเดือน</h3></div>
+        <div class="card-header"><h3 class="card-title">{{ 'dashboard.revenueMonthly' | translate }}</h3></div>
         <div class="card-body">
           <div class="d-flex align-items-end" style="height: 250px; gap: 8px;">
             <div *ngFor="let v of chartData.values; let i = index" class="flex-fill text-center">
@@ -75,7 +75,7 @@
     </div>
     <div class="col-lg-4">
       <div class="card">
-        <div class="card-header"><h3 class="card-title">กิจกรรมล่าสุด</h3></div>
+        <div class="card-header"><h3 class="card-title">{{ 'dashboard.recentActivity' | translate }}</h3></div>
         <div class="list-group list-group-flush">
           <div *ngFor="let a of recentActivities" class="list-group-item">
             <div class="row align-items-center">

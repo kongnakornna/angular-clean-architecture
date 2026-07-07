@@ -3,11 +3,12 @@ import { NgIf } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { RouterLink } from '@angular/router';
 import { TablerIconComponent } from 'angular-tabler-icons';
+import { TranslatePipe } from '../../../../../shared/pipes/translate.pipe';
 
 @Component({
   selector: 'app-sign-up',
   standalone: true,
-  imports: [NgIf, FormsModule, RouterLink, TablerIconComponent],
+  imports: [NgIf, FormsModule, RouterLink, TablerIconComponent, TranslatePipe],
   templateUrl: './sign-up.component.html',
 })
 export class SignUpComponent {

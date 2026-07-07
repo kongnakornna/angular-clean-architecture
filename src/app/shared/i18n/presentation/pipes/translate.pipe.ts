@@ -4,7 +4,7 @@ import { Subscription } from 'rxjs';
 
 @Pipe({
   name: 'appTranslate',
-  standalone: false,
+  standalone: true,
   pure: false,
 })
 export class AppTranslatePipe implements PipeTransform, OnDestroy {

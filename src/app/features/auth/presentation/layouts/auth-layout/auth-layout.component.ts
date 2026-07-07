@@ -1,11 +1,12 @@
 import { Component, HostBinding } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { TablerIconComponent } from 'angular-tabler-icons';
+import { LanguageSelectorComponent } from '../../../../../shared/i18n/presentation/pages/language-selector/language-selector.component';
 
 @Component({
   selector: 'app-auth-layout',
   standalone: true,
-  imports: [RouterOutlet, TablerIconComponent],
+  imports: [RouterOutlet, TablerIconComponent, LanguageSelectorComponent],
   template: `
 <div class="page page-center">
   <div class="container container-tight py-4">
@@ -14,6 +15,9 @@ import { TablerIconComponent } from 'angular-tabler-icons';
         <i-tabler name="layout-dashboard" class="navbar-brand-image"></i-tabler>
         iCmon
       </a>
+    </div>
+    <div class="text-end mb-2">
+      <app-language-selector></app-language-selector>
     </div>
     <router-outlet></router-outlet>
   </div>
