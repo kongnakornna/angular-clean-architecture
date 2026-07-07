@@ -941,3 +941,356 @@ export const appConfig: ApplicationConfig = {
 5. **UX**: มีการแสดงสถานะโหลด ข้อผิดพลาด และการนำทางที่ชัดเจน
 
 โครงสร้างนี้แยกส่วน Authentication ออกจากระบบหลักอย่างสมบูรณ์ พร้อมสำหรับการขยายเพิ่มเติมและสอดคล้องกับต้นฉบับ Tabler Admin Template
+ขออภัยครับที่ตอบไม่ตรงกับเทคโนโลยีที่คุณต้องการ ผมจะปรับโครงสร้างทั้งหมดให้เป็น **AngularJS (เวอร์ชัน 1.x)** โดยระบบ Authentication จะถูกจัดระเบียบตามหลักการของ AngularJS อย่างครบถ้วน
+
+---
+
+### 📁 โครงสร้างโฟลเดอร์ระบบ Authentication สำหรับ AngularJS
+
+```
+src/
+└── 📁 app/
+    └── 📁 modules/
+        └── 📁 auth/                          (โฟลเดอร์หลัก Authentication Module)
+            │
+            ├── 📁 pages/                     (หน้าต่างๆ)
+            │   ├── 📄 login.page.html       # หน้าเข้าสู่ระบบ (Template)
+            │   ├── 📄 login.page.js         # Controller สำหรับ login
+            │   ├── 📄 register.page.html    # หน้าสมัครสมาชิก
+            │   ├── 📄 register.page.js      # Controller สำหรับ register
+            │   ├── 📄 forgot-password.page.html # หน้าลืมรหัสผ่าน
+            │   ├── 📄 forgot-password.page.js   # Controller สำหรับ forgot password
+            │   ├── 📄 reset-password.page.html  # หน้ารีเซ็ตรหัสผ่าน
+            │   ├── 📄 reset-password.page.js    # Controller สำหรับ reset password
+            │   ├── 📄 verify-email.page.html    # หน้ายืนยันอีเมล
+            │   └── 📄 verify-email.page.js      # Controller สำหรับ verify email
+            │
+            ├── 📁 components/                (Directives - ส่วนประกอบย่อย)
+            │   ├── 📄 auth-layout.directive.js      # Layout พิเศษสำหรับหน้า Auth (ไม่มี sidebar)
+            │   ├── 📄 auth-layout.directive.html    # Template ของ auth-layout
+            │   ├── 📄 login-form.directive.js       # Directive ฟอร์ม login (แยก logic)
+            │   ├── 📄 login-form.directive.html     # Template ของ login-form
+            │   ├── 📄 register-form.directive.js    # Directive ฟอร์ม register
+            │   ├── 📄 register-form.directive.html  # Template ของ register-form
+            │   ├── 📄 social-login.directive.js     # ปุ่มเข้าสู่ระบบด้วย Social
+            │   ├── 📄 social-login.directive.html   # Template social-login
+            │   └── 📄 protected-route.directive.js  # Directive ปกป้องเส้นทาง (ต้อง login)
+            │
+            ├── 📁 services/                   (Factories / Services)
+            │   ├── 📄 auth.service.js         # Service หลัก จัดการทุกอย่างเกี่ยวกับ Auth
+            │   ├── 📄 token.service.js        # จัดการ Token (เก็บ/อ่าน/ลบ ใน localStorage)
+            │   ├── 📄 user.service.js         # ดึงข้อมูลโปรไฟล์ผู้ใช้
+            │   └── 📄 auth-interceptor.service.js # Interceptor สำหรับแนบ Token ไปทุก Request
+            │
+            ├── 📁 resolvers/                  (Route Resolvers - โหลดข้อมูลก่อนเข้า page)
+            │   ├── 📄 auth.resolver.js        # ตรวจสอบสถานะ Auth ก่อนเปลี่ยนเส้นทาง
+            │   └── 📄 user-profile.resolver.js # โหลดข้อมูลผู้ใช้ก่อนเข้า Dashboard
+            │
+            ├── 📁 guards/                     (Route Guards - ใช้ป้องกันเส้นทาง)
+            │   ├── 📄 auth.guard.js           # กันไม่ให้เข้าได้ ถ้ายังไม่ Login
+            │   └── 📄 guest.guard.js          # กันไม่ให้เข้าได้ ถ้า Login แล้ว (เช่น กันไม่ให้ไปหน้า Login ซ้ำ)
+            │
+            ├── 📁 validators/                 (Custom Validators สำหรับฟอร์ม)
+            │   ├── 📄 password-match.validator.js  # ตรวจสอบว่ารหัสผ่านตรงกัน (Register)
+            │   └── 📄 strong-password.validator.js # ตรวจสอบความแข็งแรงของรหัสผ่าน
+            │
+            ├── 📁 constants/                  (ค่าคงที่)
+            │   └── 📄 auth.constants.js       # เก็บค่าคงที่ เช่น KEY_TOKEN, ROLE_ADMIN, API_ENDPOINTS
+            │
+            ├── 📁 models/                     (Models สำหรับจัดการข้อมูล)
+            │   └── 📄 user.model.js           # กำหนดโครงสร้างข้อมูลผู้ใช้
+            │
+            ├── 📄 auth.module.js              # ประกาศ Module ของระบบ Auth
+            ├── 📄 auth.routes.js              # กำหนดเส้นทาง (Routing) ของระบบ Auth
+            └── 📄 auth.config.js              # ตั้งค่าเพิ่มเติม (เช่น interceptor, state config)
+```
+
+---
+
+### 📄 ตัวอย่างโค้ดในไฟล์สำคัญ
+
+#### 1. `auth.module.js` - ประกาศ Module
+```javascript
+angular.module('app.auth', [
+  'ui.router',        // ใช้ ui-router สำหรับ routing
+  'ngStorage',        // ใช้จัดการ localStorage
+  'app.auth.services',
+  'app.auth.components',
+  'app.auth.pages',
+  'app.auth.guards',
+  'app.auth.resolvers'
+]);
+```
+
+#### 2. `auth.routes.js` - กำหนดเส้นทาง
+```javascript
+angular.module('app.auth').config(function($stateProvider) {
+  $stateProvider
+    .state('auth', {
+      abstract: true,
+      templateUrl: 'modules/auth/components/auth-layout.directive.html'
+    })
+    .state('auth.login', {
+      url: '/login',
+      templateUrl: 'modules/auth/pages/login.page.html',
+      controller: 'LoginController',
+      controllerAs: 'vm',
+      data: { requiresGuest: true }  // เฉพาะผู้ที่ยังไม่ Login เท่านั้น
+    })
+    .state('auth.register', {
+      url: '/register',
+      templateUrl: 'modules/auth/pages/register.page.html',
+      controller: 'RegisterController',
+      controllerAs: 'vm',
+      data: { requiresGuest: true }
+    })
+    .state('auth.forgot-password', {
+      url: '/forgot-password',
+      templateUrl: 'modules/auth/pages/forgot-password.page.html',
+      controller: 'ForgotPasswordController',
+      controllerAs: 'vm',
+      data: { requiresGuest: true }
+    })
+    .state('auth.reset-password', {
+      url: '/reset-password/:token',
+      templateUrl: 'modules/auth/pages/reset-password.page.html',
+      controller: 'ResetPasswordController',
+      controllerAs: 'vm',
+      data: { requiresGuest: true }
+    })
+    .state('auth.verify-email', {
+      url: '/verify-email/:token',
+      templateUrl: 'modules/auth/pages/verify-email.page.html',
+      controller: 'VerifyEmailController',
+      controllerAs: 'vm',
+      data: { requiresGuest: true }
+    })
+    .state('auth.logout', {
+      url: '/logout',
+      controller: function(AuthService, $state) {
+        AuthService.logout();
+        $state.go('auth.login');
+      }
+    });
+});
+```
+
+#### 3. `auth.service.js` - Service หลัก
+```javascript
+angular.module('app.auth.services', [])
+  .service('AuthService', function($http, $q, TokenService, $state) {
+    var self = this;
+    self.currentUser = null;
+    
+    // ฟังก์ชัน Login
+    self.login = function(credentials) {
+      return $http.post('/api/auth/login', credentials)
+        .then(function(response) {
+          var token = response.data.token;
+          TokenService.setToken(token);
+          self.loadCurrentUser();
+          return response.data;
+        });
+    };
+    
+    // ฟังก์ชัน Register
+    self.register = function(userData) {
+      return $http.post('/api/auth/register', userData)
+        .then(function(response) {
+          return response.data;
+        });
+    };
+    
+    // โหลดข้อมูลผู้ใช้ปัจจุบัน
+    self.loadCurrentUser = function() {
+      var token = TokenService.getToken();
+      if (token) {
+        return $http.get('/api/auth/me')
+          .then(function(response) {
+            self.currentUser = response.data;
+            return self.currentUser;
+          })
+          .catch(function() {
+            self.logout();
+            return $q.reject();
+          });
+      }
+      return $q.resolve(null);
+    };
+    
+    // Logout
+    self.logout = function() {
+      TokenService.removeToken();
+      self.currentUser = null;
+      $state.go('auth.login');
+    };
+    
+    // ตรวจสอบว่า Login หรือยัง
+    self.isAuthenticated = function() {
+      return !!TokenService.getToken();
+    };
+    
+    return self;
+  });
+```
+
+#### 4. `auth.guard.js` - Route Guard
+```javascript
+angular.module('app.auth.guards', [])
+  .run(function($rootScope, $state, AuthService) {
+    $rootScope.$on('$stateChangeStart', function(event, toState, toParams) {
+      // ตรวจสอบว่าเส้นทางต้องการให้ Login หรือไม่
+      if (toState.data && toState.data.requiresAuth) {
+        if (!AuthService.isAuthenticated()) {
+          event.preventDefault();
+          $state.go('auth.login');
+        }
+      }
+      
+      // ตรวจสอบว่าเส้นทางต้องการให้เป็น Guest (ยังไม่ Login) หรือไม่
+      if (toState.data && toState.data.requiresGuest) {
+        if (AuthService.isAuthenticated()) {
+          event.preventDefault();
+          $state.go('dashboard.home');
+        }
+      }
+    });
+  });
+```
+
+#### 5. `auth-interceptor.service.js` - Interceptor
+```javascript
+angular.module('app.auth.services')
+  .factory('AuthInterceptor', function($q, $injector) {
+    return {
+      request: function(config) {
+        var TokenService = $injector.get('TokenService');
+        var token = TokenService.getToken();
+        if (token) {
+          config.headers.Authorization = 'Bearer ' + token;
+        }
+        return config;
+      },
+      responseError: function(rejection) {
+        if (rejection.status === 401) {
+          var AuthService = $injector.get('AuthService');
+          AuthService.logout();
+        }
+        return $q.reject(rejection);
+      }
+    };
+  })
+  .config(function($httpProvider) {
+    $httpProvider.interceptors.push('AuthInterceptor');
+  });
+```
+
+#### 6. `login.page.js` - Controller สำหรับหน้า Login
+```javascript
+angular.module('app.auth.pages', [])
+  .controller('LoginController', function(AuthService, $state) {
+    var vm = this;
+    vm.credentials = { email: '', password: '' };
+    vm.isLoading = false;
+    vm.error = null;
+    
+    vm.submit = function() {
+      vm.isLoading = true;
+      vm.error = null;
+      
+      AuthService.login(vm.credentials)
+        .then(function() {
+          $state.go('dashboard.home');
+        })
+        .catch(function(error) {
+          vm.error = error.data.message || 'Login failed';
+        })
+        .finally(function() {
+          vm.isLoading = false;
+        });
+    };
+  });
+```
+
+#### 7. `login.page.html` - Template หน้า Login
+```html
+<div class="auth-container">
+  <div class="auth-card">
+    <h2>Login</h2>
+    
+    <form name="loginForm" ng-submit="vm.submit()" novalidate>
+      <div class="form-group">
+        <label>Email</label>
+        <input type="email" class="form-control" ng-model="vm.credentials.email" required>
+      </div>
+      
+      <div class="form-group">
+        <label>Password</label>
+        <input type="password" class="form-control" ng-model="vm.credentials.password" required>
+      </div>
+      
+      <div ng-if="vm.error" class="alert alert-danger">
+        {{ vm.error }}
+      </div>
+      
+      <button type="submit" class="btn btn-primary" ng-disabled="vm.isLoading">
+        {{ vm.isLoading ? 'Loading...' : 'Login' }}
+      </button>
+      
+      <div class="auth-links">
+        <a ui-sref="auth.forgot-password">Forgot Password?</a>
+        <a ui-sref="auth.register">Create Account</a>
+      </div>
+    </form>
+  </div>
+</div>
+```
+
+---
+
+### 📊 สรุปการทำงานของแต่ละส่วน
+
+| ส่วนประกอบ | หน้าที่หลัก |
+|------------|------------|
+| **pages/** | หน้าเพจ + Controller จัดการ UI และ logic เฉพาะหน้า |
+| **components/** | Directives ที่นำกลับมาใช้ซ้ำ (ฟอร์ม, layout, social login) |
+| **services/** | จัดการทุกอย่างเกี่ยวกับ API, Token, Interceptor |
+| **resolvers/** | โหลดข้อมูลก่อนเข้า page (เช่น โหลดโปรไฟล์ user) |
+| **guards/** | ป้องกันเส้นทาง (ต้อง login หรือต้องเป็น guest) |
+| **validators/** | ตรวจสอบฟอร์มด้านหน้า (ตรงกัน, ความแข็งแรง) |
+| **constants/** | ค่าคงที่ (endpoint, key name) |
+| **models/** | กำหนดโครงสร้างข้อมูล (ใช้ใน JS) |
+| **auth.module.js** | ประกาศ module และ dependency |
+| **auth.routes.js** | กำหนด URL และ state |
+| **auth.config.js** | ตั้งค่าเพิ่มเติม (interceptor) |
+
+---
+
+### 🔧 การนำไปใช้งาน
+
+1. **Inject Module** ใน `app.module.js`:
+```javascript
+angular.module('app', [
+  'app.auth'
+]);
+```
+
+2. **ใช้ Directive** ใน HTML:
+```html
+<!-- ใช้ protected-route เพื่อป้องกันหน้า -->
+<protected-route>
+  <div ui-view></div>
+</protected-route>
+```
+
+3. **ใช้งาน Service** ใน Controller:
+```javascript
+function DashboardController(AuthService) {
+  var vm = this;
+  vm.user = AuthService.currentUser;
+}
+```
+
+---
+
+โครงสร้างนี้ครอบคลุมทุกหน้าฟังก์ชัน Authentication ของ AngularJS อย่างครบถ้วน แยกส่วนงานชัดเจน และปฏิบัติตามแนวทางของ AngularJS 1.x อย่างดี หากต้องการให้ลงลึกในส่วนใดเพิ่มเติม บอกได้เลยครับ

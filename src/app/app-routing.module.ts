@@ -3,80 +3,63 @@ import { RouterModule, Routes } from '@angular/router';
 import { AppLayoutComponent } from './layouts/app-layout/app-layout.component';
 import { AuthGuard } from './shared/guards/auth.guard';
 import { PermissionGuard } from './shared/guards/permission.guard';
+import { AuthLayoutComponent } from './features/auth/presentation/layouts/auth-layout/auth-layout.component';
 
 export const routes: Routes = [
   { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
 
   {
-    path: 'login',
-    loadComponent: () =>
-      import('./features/auth/presentation/pages/login/login.component').then((m) => m.LoginComponent),
-  },
-  {
-    path: 'forgot-password',
-    loadComponent: () =>
-      import('./features/auth/presentation/pages/forgot-password/forgot-password.component').then(
-        (m) => m.ForgotPasswordComponent
-      ),
-  },
-  {
-    path: 'sign-up',
-    loadComponent: () =>
-      import('./features/auth/presentation/pages/sign-up/sign-up.component').then(
-        (m) => m.SignUpComponent
-      ),
-  },
-  {
-    path: 'lock-screen',
-    loadComponent: () =>
-      import('./features/auth/presentation/pages/lock-screen/lock-screen.component').then(
-        (m) => m.LockScreenComponent
-      ),
-  },
-  {
-    path: 'two-step-verification',
-    loadComponent: () =>
-      import(
-        './features/auth/presentation/pages/two-step-verification/two-step-verification.component'
-      ).then((m) => m.TwoStepVerificationComponent),
-  },
-  {
-    path: 'two-step-code',
-    loadComponent: () =>
-      import('./features/auth/presentation/pages/two-step-code/two-step-code.component').then(
-        (m) => m.TwoStepCodeComponent
-      ),
-  },
-  {
-    path: 'reset-password',
-    loadComponent: () =>
-      import('./features/auth/presentation/pages/reset-password/reset-password.component').then(
-        (m) => m.ResetPasswordComponent
-      ),
-  },
-  {
-    path: 'users',
-    loadComponent: () =>
-      import('./features/auth/presentation/pages/user-list/user-list.component').then(
-        (m) => m.UserListComponent
-      ),
-    canActivate: [AuthGuard],
-  },
-  {
-    path: 'users/create',
-    loadComponent: () =>
-      import('./features/auth/presentation/pages/user-create/user-create.component').then(
-        (m) => m.UserCreateComponent
-      ),
-    canActivate: [AuthGuard],
-  },
-  {
-    path: 'roles',
-    loadComponent: () =>
-      import('./features/auth/presentation/pages/role-list/role-list.component').then(
-        (m) => m.RoleListComponent
-      ),
-    canActivate: [AuthGuard],
+    path: '',
+    component: AuthLayoutComponent,
+    children: [
+      {
+        path: 'login',
+        loadComponent: () =>
+          import('./features/auth/presentation/pages/login/login.component').then((m) => m.LoginComponent),
+      },
+      {
+        path: 'forgot-password',
+        loadComponent: () =>
+          import('./features/auth/presentation/pages/forgot-password/forgot-password.component').then(
+            (m) => m.ForgotPasswordComponent
+          ),
+      },
+      {
+        path: 'sign-up',
+        loadComponent: () =>
+          import('./features/auth/presentation/pages/sign-up/sign-up.component').then(
+            (m) => m.SignUpComponent
+          ),
+      },
+      {
+        path: 'lock-screen',
+        loadComponent: () =>
+          import('./features/auth/presentation/pages/lock-screen/lock-screen.component').then(
+            (m) => m.LockScreenComponent
+          ),
+      },
+      {
+        path: 'two-step-verification',
+        loadComponent: () =>
+          import(
+            './features/auth/presentation/pages/two-step-verification/two-step-verification.component'
+          ).then((m) => m.TwoStepVerificationComponent),
+      },
+      {
+        path: 'two-step-code',
+        loadComponent: () =>
+          import('./features/auth/presentation/pages/two-step-code/two-step-code.component').then(
+            (m) => m.TwoStepCodeComponent
+          ),
+      },
+      {
+        path: 'reset-password',
+        loadComponent: () =>
+          import('./features/auth/presentation/pages/reset-password/reset-password.component').then(
+            (m) => m.ResetPasswordComponent
+          ),
+      },
+    ],
   },
 
   {
@@ -215,6 +198,27 @@ export const routes: Routes = [
         loadComponent: () =>
           import('./features/i18n/presentation/pages/language-selector/language-selector.component').then(
             (m) => m.LanguageSelectorComponent
+          ),
+      },
+      {
+        path: 'users',
+        loadComponent: () =>
+          import('./features/auth/presentation/pages/user-list/user-list.component').then(
+            (m) => m.UserListComponent
+          ),
+      },
+      {
+        path: 'users/create',
+        loadComponent: () =>
+          import('./features/auth/presentation/pages/user-create/user-create.component').then(
+            (m) => m.UserCreateComponent
+          ),
+      },
+      {
+        path: 'roles',
+        loadComponent: () =>
+          import('./features/auth/presentation/pages/role-list/role-list.component').then(
+            (m) => m.RoleListComponent
           ),
       },
     ],
