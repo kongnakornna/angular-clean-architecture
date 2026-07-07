@@ -4,8 +4,8 @@
     <div *ngIf="error" class="alert alert-danger mb-3">{{ error }}</div>
     <form (ngSubmit)="onSubmit()" #loginForm="ngForm" autocomplete="off" novalidate>
       <div class="mb-3">
-        <label class="form-label">{{ 'login.email' | appTranslate }}</label>
-        <input type="text" class="form-control" [(ngModel)]="username" name="username" placeholder="{{ 'login.email' | appTranslate }}" autocomplete="username" required>
+        <label class="form-label">{{ 'login.username' | appTranslate }}</label>
+        <input type="text" class="form-control" [(ngModel)]="username" name="username" placeholder="{{ 'login.username' | appTranslate }}" autocomplete="username" required>
       </div>
       <div class="mb-2">
         <label class="form-label">
