@@ -10,7 +10,7 @@ import { IDashboardRepository } from '../../features/dashboard/domain/repositori
 import { IDocumentRepository } from '../../features/document/domain/repositories/document.repository';
 import { IEmailRepository } from '../../features/email/domain/repositories/email.repository';
 import { IBatchJobRepository } from '../../features/batch/domain/repositories/batch-job.repository';
-import { ITranslationRepository } from '../../features/i18n/domain/repositories/translation.repository';
+import { ITranslationRepository } from '../../shared/i18n/domain/repositories/translation.repository';
 import { IIoTRepository } from '../../features/iot/domain/repositories/iot.repository';
 import { IWebOrderRepository } from '../../features/wos/domain/repositories/web-order.repository';
 

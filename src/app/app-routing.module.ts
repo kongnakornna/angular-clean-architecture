@@ -182,7 +182,7 @@ export const routes: Routes = [
       {
         path: 'i18n/languages',
         loadComponent: () =>
-          import('./features/i18n/presentation/pages/language-selector/language-selector.component').then(
+          import('./shared/i18n/presentation/pages/language-selector/language-selector.component').then(
             (m) => m.LanguageSelectorComponent
           ),
       },
@@ -203,7 +203,7 @@ export const routes: Routes = [
       {
         path: 'settings/language',
         loadComponent: () =>
-          import('./features/i18n/presentation/pages/language-selector/language-selector.component').then(
+          import('./shared/i18n/presentation/pages/language-selector/language-selector.component').then(
             (m) => m.LanguageSelectorComponent
           ),
       },

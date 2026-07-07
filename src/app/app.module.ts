@@ -18,7 +18,7 @@ import { SidebarComponent } from './layouts/sidebar/sidebar.component';
 import { FooterComponent } from './layouts/footer/footer.component';
 import { AppLayoutComponent } from './layouts/app-layout/app-layout.component';
 import { LayoutSettingsComponent } from './layouts/layout-settings/layout-settings.component';
-import { LanguageSelectorComponent } from './features/i18n/presentation/pages/language-selector/language-selector.component';
+import { LanguageSelectorComponent } from './shared/i18n/presentation/pages/language-selector/language-selector.component';
 import { TablerIconsModule, provideTablerIcons } from 'angular-tabler-icons';
 import {
   IconLayoutDashboard, IconClipboard, IconList, IconLayoutKanban, IconPlus,

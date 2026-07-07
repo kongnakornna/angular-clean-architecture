@@ -17,7 +17,7 @@ import { DashboardRepositoryImpl } from '../../features/dashboard/data/repositor
 import { DocumentRepositoryImpl } from '../../features/document/data/repositories/document.repository.impl';
 import { EmailRepositoryImpl } from '../../features/email/data/repositories/email.repository.impl';
 import { BatchJobRepositoryImpl } from '../../features/batch/data/repositories/batch-job.repository.impl';
-import { TranslationRepositoryImpl } from '../../features/i18n/data/repositories/translation.repository.impl';
+import { TranslationRepositoryImpl } from '../../shared/i18n/data/repositories/translation.repository.impl';
 import { IoTRepositoryImpl } from '../../features/iot/data/repositories/iot.repository.impl';
 import { WebOrderRepositoryImpl } from '../../features/wos/data/repositories/web-order.repository.impl';
 
