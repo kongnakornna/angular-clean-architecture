@@ -1,5 +1,4 @@
-import { Component, HostBinding, inject } from '@angular/core';
-import { ThemeSwitcherService } from '../../core/services/theme-switcher.service';
+import { Component, HostBinding } from '@angular/core';
 
 @Component({
   selector: 'app-layout',
@@ -9,13 +8,7 @@ import { ThemeSwitcherService } from '../../core/services/theme-switcher.service
 export class AppLayoutComponent {
   @HostBinding('class.page') pageClass = true;
 
-  private themeSwitcher = inject(ThemeSwitcherService);
-
   isSidebarCollapsed = false;
-
-  get isDarkMode(): boolean {
-    return this.themeSwitcher.isDarkMode;
-  }
 
   toggleSidebar(): void {
     this.isSidebarCollapsed = !this.isSidebarCollapsed;
