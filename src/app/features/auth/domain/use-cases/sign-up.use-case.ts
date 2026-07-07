@@ -1,12 +1,14 @@
 import { Inject, Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { IAuthRepository } from '../repositories/auth.repository';
+import { IAuthRepository, RegisterCredentials } from '../repositories/auth.repository';
 import { AUTH_REPOSITORY } from '../../../../core/di/tokens';
 
 export interface SignUpCredentials {
-  name: string;
+  username: string;
   email: string;
   password: string;
+  fullName: string;
+  phoneNumber: string;
 }
 
 @Injectable({ providedIn: 'root' })

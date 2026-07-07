@@ -5,10 +5,14 @@ import { I18nService } from '../../../data/i18n.service';
   selector: 'app-language-selector',
   standalone: true,
   template: `
-    <select class="form-select form-select-sm w-auto" [value]="i18n.lang()" (change)="i18n.loadLanguage($any($event).target.value)">
-      <option value="en">English</option>
-      <option value="th">ไทย</option>
-    </select>
+    <div class="text-center mb-2">
+      <a href="javascript:void(0)" (click)="i18n.loadLanguage('en')">
+        <img src="assets/lang/en.svg" height="25" title="English">
+      </a>
+      <a href="javascript:void(0)" (click)="i18n.loadLanguage('th')">
+        <img src="assets/lang/th.svg" height="25" title="ไทย">
+      </a>
+    </div>
   `,
 })
 export class LanguageSelectorComponent {

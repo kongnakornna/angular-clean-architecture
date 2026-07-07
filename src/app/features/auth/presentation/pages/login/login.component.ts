@@ -4,13 +4,11 @@ import { FormsModule } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { LoginUseCase } from '../../../domain/use-cases/login.use-case';
-import { TablerIconComponent } from 'angular-tabler-icons';
-import { AppTranslatePipe } from '../../../../../shared/i18n/presentation/pipes/translate.pipe';
 
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [NgIf, FormsModule, RouterLink, TablerIconComponent, AppTranslatePipe],
+  imports: [NgIf, FormsModule, RouterLink],
   templateUrl: './login.component.html',
 })
 export class LoginComponent {

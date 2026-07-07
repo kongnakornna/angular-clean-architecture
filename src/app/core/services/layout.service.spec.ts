@@ -5,6 +5,8 @@ describe('LayoutService', () => {
   let service: LayoutService;
 
   beforeEach(() => {
+    localStorage.clear();
+    TestBed.resetTestingModule();
     TestBed.configureTestingModule({});
     service = TestBed.inject(LayoutService);
   });
@@ -14,21 +16,21 @@ describe('LayoutService', () => {
   });
 
   it('should have default values', () => {
-    expect(service.theme()).toBe('blue');
-    expect(service.fontFamily()).toBe('sans-serif');
-    expect(service.themeBase()).toBe('slate');
-    expect(service.borderRadius()).toBe('1');
-    expect(service.rtlMode()).toBe('false');
+    expect(service.theme()).toBe('light');
+    expect(service.themeFont()).toBe('sans-serif');
+    expect(service.themeBase()).toBe('gray');
+    expect(service.themeRadius()).toBe('1');
+    expect(service.themePrimary()).toBe('blue');
   });
 
   it('should update property', () => {
-    service.update('theme', 'green');
-    expect(service.theme()).toBe('green');
+    service.update('theme', 'dark');
+    expect(service.theme()).toBe('dark');
   });
 
   it('should reset to defaults', () => {
-    service.update('theme', 'green');
+    service.update('theme', 'dark');
     service.reset();
-    expect(service.theme()).toBe('blue');
+    expect(service.theme()).toBe('light');
   });
 });

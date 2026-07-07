@@ -1,5 +1,4 @@
-import { Component, Input, inject } from '@angular/core';
-import { LayoutService } from '../../core/services/layout.service';
+import { Component, Input } from '@angular/core';
 
 export interface MenuItem {
   label: string;
@@ -17,11 +16,6 @@ export interface MenuItem {
 })
 export class SidebarComponent {
   @Input() isCollapsed = false;
-
-  private layout = inject(LayoutService);
-
-  get navbarPosition() { return this.layout.snapshot.navbarPosition; }
-  get navbarDark() { return this.layout.snapshot.navbarDark; }
 
   menuItems: MenuItem[] = [
     { label: 'nav.dashboard', icon: 'layout-dashboard', route: '/dashboard' },

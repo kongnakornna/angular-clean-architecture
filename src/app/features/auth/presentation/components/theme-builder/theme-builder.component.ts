@@ -1,73 +1,46 @@
 import { Component, inject } from '@angular/core';
-import { NgFor, NgIf } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import { NgFor } from '@angular/common';
 import { LayoutService } from '../../../../../core/services/layout.service';
-import { AppTranslatePipe } from '../../../../../shared/i18n/presentation/pipes/translate.pipe';
 
 @Component({
   selector: 'app-theme-builder',
   standalone: true,
-  imports: [NgFor, NgIf, FormsModule, AppTranslatePipe],
+  imports: [NgFor],
   templateUrl: './theme-builder.component.html',
 })
 export class ThemeBuilderComponent {
   private layoutService = inject(LayoutService);
 
   theme = this.layoutService.theme;
-  fontFamily = this.layoutService.fontFamily;
+  themePrimary = this.layoutService.themePrimary;
+  themeFont = this.layoutService.themeFont;
   themeBase = this.layoutService.themeBase;
-  borderRadius = this.layoutService.borderRadius;
-  rtlMode = this.layoutService.rtlMode;
+  themeRadius = this.layoutService.themeRadius;
 
   themes = [
-    { key: 'blue', label: 'layout.settings.colorBlue' },
-    { key: 'azure', label: 'layout.settings.colorAzure' },
-    { key: 'indigo', label: 'layout.settings.colorIndigo' },
-    { key: 'purple', label: 'layout.settings.colorPurple' },
-    { key: 'pink', label: 'layout.settings.colorPink' },
-    { key: 'red', label: 'layout.settings.colorRed' },
-    { key: 'orange', label: 'layout.settings.colorOrange' },
-    { key: 'yellow', label: 'layout.settings.colorYellow' },
-    { key: 'lime', label: 'layout.settings.colorLime' },
-    { key: 'green', label: 'layout.settings.colorGreen' },
-    { key: 'teal', label: 'layout.settings.colorTeal' },
-    { key: 'cyan', label: 'layout.settings.colorCyan' },
+    { key: 'blue', class: 'bg-blue' },
+    { key: 'azure', class: 'bg-azure' },
+    { key: 'indigo', class: 'bg-indigo' },
+    { key: 'purple', class: 'bg-purple' },
+    { key: 'pink', class: 'bg-pink' },
+    { key: 'red', class: 'bg-red' },
+    { key: 'orange', class: 'bg-orange' },
+    { key: 'yellow', class: 'bg-yellow' },
+    { key: 'lime', class: 'bg-lime' },
+    { key: 'green', class: 'bg-green' },
+    { key: 'teal', class: 'bg-teal' },
+    { key: 'cyan', class: 'bg-cyan' },
   ];
 
-  fonts = [
-    { key: 'sans-serif', label: 'layout.settings.fontSansSerif' },
-    { key: 'serif', label: 'layout.settings.fontSerif' },
-    { key: 'monospace', label: 'layout.settings.fontMonospace' },
-    { key: 'comic', label: 'layout.settings.fontComic' },
-  ];
+  fonts = ['sans-serif', 'serif', 'monospace', 'comic'];
+  bases = ['slate', 'gray', 'zinc', 'neutral', 'stone'];
+  radii = ['0', '0.5', '1', '1.5', '2'];
 
-  bases = [
-    { key: 'slate', label: 'Slate' },
-    { key: 'dark', label: 'Dark' },
-  ];
-
-  updateTheme(key: string): void {
-    this.layoutService.update('theme', key);
+  update(key: string, value: string): void {
+    this.layoutService.update(key, value);
   }
 
-  updateFont(key: string): void {
-    this.layoutService.update('theme-font', key);
-  }
-
-  updateBase(key: string): void {
-    this.layoutService.update('theme-base', key);
-  }
-
-  updateRadius(event: Event): void {
-    const value = (event.target as HTMLInputElement).value;
-    this.layoutService.update('theme-radius', value);
-  }
-
-  toggleRtl(): void {
-    this.layoutService.update('rtl-mode', this.rtlMode() === 'true' ? 'false' : 'true');
-  }
-
-  resetSettings(): void {
+  reset(): void {
     this.layoutService.reset();
   }
 }

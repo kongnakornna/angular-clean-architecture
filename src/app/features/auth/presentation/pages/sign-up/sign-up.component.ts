@@ -17,10 +17,12 @@ export class SignUpComponent {
   private signUpUseCase = inject(SignUpUseCase);
   private destroyRef = inject(DestroyRef);
 
-  name = '';
+  username = '';
+  fullName = '';
   email = '';
   password = '';
   confirmPassword = '';
+  phoneNumber = '';
   agreeTerms = false;
   loading = false;
   error = '';
@@ -33,7 +35,13 @@ export class SignUpComponent {
   onSubmit(): void {
     this.loading = true;
     this.error = '';
-    this.signUpUseCase.execute({ name: this.name, email: this.email, password: this.password })
+    this.signUpUseCase.execute({
+      username: this.username,
+      fullName: this.fullName,
+      email: this.email,
+      password: this.password,
+      phoneNumber: this.phoneNumber,
+    })
       .pipe(takeUntilDestroyed(this.destroyRef))
       .subscribe({
         next: () => {

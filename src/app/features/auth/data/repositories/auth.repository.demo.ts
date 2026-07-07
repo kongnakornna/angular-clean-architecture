@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable, of, throwError } from 'rxjs';
-import { IAuthRepository } from '../../domain/repositories/auth.repository';
+import { IAuthRepository, RegisterCredentials } from '../../domain/repositories/auth.repository';
 import { User, LoginCredentials, AuthResponse } from '../../domain/entities/user.entity';
 import { Permission } from '../../domain/entities/permission.entity';
 
@@ -52,6 +52,10 @@ export class DemoAuthRepositoryImpl implements IAuthRepository {
       expiresIn: 3600,
       tokenType: 'Bearer',
     });
+  }
+
+  register(credentials: RegisterCredentials): Observable<void> {
+    return of(void 0);
   }
 
   forgotPassword(email: string): Observable<void> {
