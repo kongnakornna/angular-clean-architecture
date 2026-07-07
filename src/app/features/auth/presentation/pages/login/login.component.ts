@@ -15,7 +15,7 @@ export class LoginComponent {
   private loginUseCase = inject(LoginUseCase);
   private router = inject(Router);
 
-  email = '';
+  username = '';
   password = '';
   loading = false;
   error = '';
@@ -29,7 +29,7 @@ export class LoginComponent {
   onSubmit(): void {
     this.loading = true;
     this.error = '';
-    this.loginUseCase.execute({ email: this.email, password: this.password }).subscribe({
+    this.loginUseCase.execute({ username: this.username, password: this.password }).subscribe({
       next: () => {
         this.loading = false;
         this.router.navigate(['/dashboard']);

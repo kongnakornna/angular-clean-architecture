@@ -3,29 +3,29 @@ import { Observable, of, throwError } from 'rxjs';
 import { IAuthRepository } from '../../domain/repositories/auth.repository';
 import { User, LoginCredentials, AuthResponse } from '../../domain/entities/user.entity';
 import { Permission } from '../../domain/entities/permission.entity';
-import { UserRole } from '../../../../core/constants/enums';
 
 @Injectable()
 export class DemoAuthRepositoryImpl implements IAuthRepository {
-  private readonly DEMO_EMAIL = 'demo';
-  private readonly DEMO_PASSWORD = 'demo';
+  private readonly DEMO_USERNAME = 'admin';
+  private readonly DEMO_PASSWORD = 'P@ssw0rd';
 
   private readonly DEMO_USER: User = {
-    id: 'demo-001',
-    email: 'demo@demo.com',
-    firstName: 'เดโม่',
-    lastName: 'ยูสเซอร์',
-    role: UserRole.ADMIN,
+    id: 'cea342be-db34-448c-bcef-eb60e7797e73',
+    username: 'admin',
+    email: 'admin@gmail.com',
+    fullName: 'admin dev',
+    status: 'ACTIVE',
+    phoneNumber: '0955088091',
+    profileImageUrl: null,
+    role: 'USER',
     permissions: this.getAllPermissions(),
-    isActive: true,
-    lastLogin: new Date(),
     createdAt: new Date('2026-01-01'),
     updatedAt: new Date(),
   };
 
   login(credentials: LoginCredentials): Observable<AuthResponse> {
     const isValid =
-      credentials.email === this.DEMO_EMAIL && credentials.password === this.DEMO_PASSWORD;
+      credentials.username === this.DEMO_USERNAME && credentials.password === this.DEMO_PASSWORD;
 
     if (!isValid) {
       return throwError(() => new Error('ชื่อผู้ใช้หรือรหัสผ่านไม่ถูกต้อง'));
@@ -33,9 +33,10 @@ export class DemoAuthRepositoryImpl implements IAuthRepository {
 
     return of({
       user: { ...this.DEMO_USER },
-      accessToken: 'demo-access-token-abc123',
-      refreshToken: 'demo-refresh-token-xyz789',
-      expiresIn: 86400,
+      accessToken: 'eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJjZWEzNDJiZS1kYjM0LTQ0OGMtYmNlZi1lYjYwZTc3OTdlNzMiLCJ1c2VybmFtZSI6ImFkbWluIiwidHlwZSI6IkFDQ0VTUyIsImlhdCI6MTc4MzM4MTUzNiwiZXhwIjoxNzgzMzg1MTM2fQ',
+      refreshToken: 'eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJjZWEzNDJiZS1kYjM0LTQ0OGMtYmNlZi1lYjYwZTc3OTdlNzMiLCJ0eXBlIjoiUkVGUkVTSCIsImlhdCI6MTc4MzM4MTUzNiwiZXhwIjoxNzgzNDY3OTM2fQ',
+      expiresIn: 3600,
+      tokenType: 'Bearer',
     });
   }
 
@@ -46,9 +47,10 @@ export class DemoAuthRepositoryImpl implements IAuthRepository {
   refreshToken(): Observable<AuthResponse> {
     return of({
       user: { ...this.DEMO_USER },
-      accessToken: 'demo-access-token-abc123',
-      refreshToken: 'demo-refresh-token-xyz789',
-      expiresIn: 86400,
+      accessToken: 'eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJjZWEzNDJiZS1kYjM0LTQ0OGMtYmNlZi1lYjYwZTc3OTdlNzMiLCJ0eXBlIjoiUkVGUkVTSCIsImlhdCI6MTc4MzM4MTUzNiwiZXhwIjoxNzgzNDY3OTM2fQ',
+      refreshToken: 'eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJjZWEzNDJiZS1kYjM0LTQ0OGMtYmNlZi1lYjYwZTc3OTdlNzMiLCJ0eXBlIjoiUkVGUkVTSCIsImlhdCI6MTc4MzM4MTUzNiwiZXhwIjoxNzgzNDY3OTM2fQ',
+      expiresIn: 3600,
+      tokenType: 'Bearer',
     });
   }
 

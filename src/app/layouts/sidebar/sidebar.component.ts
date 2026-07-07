@@ -64,6 +64,7 @@ export class SidebarComponent {
         { label: 'ผู้ใช้งาน', icon: 'user-circle', route: '/users' },
         { label: 'บทบาท', icon: 'shield', route: '/roles' },
         { label: 'ภาษา', icon: 'language', route: '/settings/language' },
+        { label: 'ตั้งค่าธีม', icon: 'palette', route: '/settings/theme' },
       ],
     },
   ];

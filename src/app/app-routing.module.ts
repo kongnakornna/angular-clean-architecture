@@ -194,6 +194,13 @@ export const routes: Routes = [
           ),
       },
       {
+        path: 'settings/theme',
+        loadComponent: () =>
+          import('./features/auth/presentation/pages/theme-settings/theme-settings.component').then(
+            (m) => m.ThemeSettingsComponent
+          ),
+      },
+      {
         path: 'settings/language',
         loadComponent: () =>
           import('./features/i18n/presentation/pages/language-selector/language-selector.component').then(

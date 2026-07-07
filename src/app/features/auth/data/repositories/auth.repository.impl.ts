@@ -3,6 +3,7 @@ import { Observable, map } from 'rxjs';
 import { IAuthRepository } from '../../domain/repositories/auth.repository';
 import { User, LoginCredentials, AuthResponse } from '../../domain/entities/user.entity';
 import { AuthApiDataSource } from '../datasources/auth.api.datasource';
+import { LoginResponseDto } from '../dtos/login-response.dto';
 
 @Injectable({ providedIn: 'root' })
 export class AuthRepositoryImpl implements IAuthRepository {
@@ -10,7 +11,7 @@ export class AuthRepositoryImpl implements IAuthRepository {
 
   login(credentials: LoginCredentials): Observable<AuthResponse> {
     return this.dataSource
-      .login({ email: credentials.email, password: credentials.password })
+      .login({ username: credentials.username, password: credentials.password })
       .pipe(map((dto) => this.mapToAuthResponse(dto)));
   }
 
@@ -38,27 +39,29 @@ export class AuthRepositoryImpl implements IAuthRepository {
     return this.dataSource.getPermissions().pipe(map((perms) => perms.includes(permission)));
   }
 
-  private mapToAuthResponse(dto: any): AuthResponse {
+  private mapToAuthResponse(dto: LoginResponseDto): AuthResponse {
     return {
       user: this.mapToUser(dto.user),
       accessToken: dto.accessToken,
       refreshToken: dto.refreshToken,
       expiresIn: dto.expiresIn,
+      tokenType: dto.tokenType,
     };
   }
 
-  private mapToUser(dto: any): User {
+  private mapToUser(dto: LoginResponseDto['user']): User {
     return {
       id: dto.id,
+      username: dto.username,
       email: dto.email,
-      firstName: dto.firstName,
-      lastName: dto.lastName,
+      fullName: dto.fullName,
+      status: dto.status,
+      phoneNumber: dto.phoneNumber,
+      profileImageUrl: dto.profileImageUrl,
       role: dto.role,
-      permissions: dto.permissions || [],
-      isActive: dto.isActive,
-      lastLogin: dto.lastLogin ? new Date(dto.lastLogin) : undefined,
-      createdAt: new Date(dto.createdAt),
-      updatedAt: new Date(dto.updatedAt),
+      permissions: [],
+      createdAt: new Date(),
+      updatedAt: new Date(),
     };
   }
 }

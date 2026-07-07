@@ -1,21 +1,22 @@
-import { UserRole } from '../../../../core/constants/enums';
 import { Permission } from './permission.entity';
 
 export interface User {
   id: string;
+  username: string;
   email: string;
-  firstName: string;
-  lastName: string;
-  role: UserRole;
-  permissions: Permission[];
-  isActive: boolean;
+  fullName: string;
+  status: string;
+  phoneNumber: string;
+  profileImageUrl: string | null;
+  role: string;
+  permissions?: Permission[];
   lastLogin?: Date;
   createdAt: Date;
   updatedAt: Date;
 }
 
 export interface LoginCredentials {
-  email: string;
+  username: string;
   password: string;
 }
 
@@ -24,4 +25,5 @@ export interface AuthResponse {
   accessToken: string;
   refreshToken: string;
   expiresIn: number;
+  tokenType: string;
 }

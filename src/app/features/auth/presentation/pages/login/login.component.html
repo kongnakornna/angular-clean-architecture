@@ -1,11 +1,5 @@
 <div class="page page-center">
   <div class="container container-tight py-4">
-    <div class="text-center mb-4">
-      <a href="." class="navbar-brand navbar-brand-autodark">
-        <i-tabler name="layout-dashboard" class="navbar-brand-image"></i-tabler>
-        iCmon
-      </a>
-    </div>
     <div class="card card-md">
       <div class="card-body">
         <h2 class="h2 text-center mb-4">เข้าสู่ระบบ</h2>
@@ -13,7 +7,7 @@
         <form (ngSubmit)="onSubmit()" #loginForm="ngForm" autocomplete="off" novalidate>
           <div class="mb-3">
             <label class="form-label">ชื่อผู้ใช้</label>
-            <input type="text" class="form-control" [(ngModel)]="email" name="email" placeholder="demo" autocomplete="username">
+            <input type="text" class="form-control" [(ngModel)]="username" name="username" placeholder="admin" autocomplete="username">
           </div>
           <div class="mb-2">
             <label class="form-label">
@@ -68,7 +62,7 @@
     </div>
     <div class="text-center mt-3 p-2 bg-light rounded border">
       <small class="text-secondary">
-        <strong>Demo:</strong> ใช้ <code>demo</code> / <code>demo</code> เพื่อทดสอบระบบ
+        <strong>API:</strong> ใช้ <code>admin</code> / <code>P@ssw0rd</code> เพื่อทดสอบระบบ
       </small>
     </div>
   </div>
