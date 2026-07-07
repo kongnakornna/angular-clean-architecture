@@ -4,11 +4,12 @@ import { FormsModule } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { LoginUseCase } from '../../../domain/use-cases/login.use-case';
+import { AppTranslatePipe } from '../../../../../shared/i18n/presentation/pipes/translate.pipe';
 
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [NgIf, FormsModule, RouterLink],
+  imports: [NgIf, FormsModule, RouterLink, AppTranslatePipe],
   templateUrl: './login.component.html',
 })
 export class LoginComponent {

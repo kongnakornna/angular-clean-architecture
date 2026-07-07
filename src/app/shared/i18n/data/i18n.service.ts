@@ -1,5 +1,6 @@
 import { Injectable, inject, signal } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
+import { APP_CONSTANTS } from '../../../core/constants/app.constants';
 
 @Injectable({ providedIn: 'root' })
 export class I18nService {
@@ -8,10 +9,13 @@ export class I18nService {
   readonly lang = signal<string>('en');
 
   constructor() {
-    try {
-      const current = (this.translateService as any).getCurrentLang?.() || 'en';
-      this.lang.set(current);
-    } catch {
+    const saved = localStorage.getItem(APP_CONSTANTS.LANGUAGE_KEY);
+    if (saved && saved !== 'en') {
+      this.translateService.use(saved).subscribe({
+        next: () => this.lang.set(saved),
+        error: () => this.lang.set('en'),
+      });
+    } else {
       this.lang.set('en');
     }
   }
@@ -21,7 +25,10 @@ export class I18nService {
   }
 
   loadLanguage(lang: string): void {
-    this.translateService.use(lang);
-    this.lang.set(lang);
+    localStorage.setItem(APP_CONSTANTS.LANGUAGE_KEY, lang);
+    this.translateService.use(lang).subscribe({
+      next: () => this.lang.set(lang),
+      error: () => this.lang.set(lang),
+    });
   }
 }
