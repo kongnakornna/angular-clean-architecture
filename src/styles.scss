@@ -27,3 +27,12 @@ body.dark li>strong {
     color: white;
     font-weight: bold;
 }
+
+.language-switcher {
+  display: flex;
+  justify-content: center; /* Centers horizontally */
+  align-items: center;     /* Centers vertically (if parent has height) */
+  gap: 8px;               /* Adds space between the two flags */
+  height: 100%;            /* Optional: adjust to fit your layout */
+  text-align: center;
+}
