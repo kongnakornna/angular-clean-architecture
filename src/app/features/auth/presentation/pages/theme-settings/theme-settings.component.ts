@@ -1,5 +1,5 @@
 import { Component, inject } from '@angular/core';
-import { NgFor, NgIf } from '@angular/common';
+import { NgFor } from '@angular/common';
 import { LayoutService, LayoutSettings } from '../../../../../core/services/layout.service';
 import { TablerIconComponent } from 'angular-tabler-icons';
 import { TranslatePipe } from '../../../../../shared/pipes/translate.pipe';
@@ -157,7 +157,7 @@ export class ThemeSettingsComponent {
   radiusOptions = [0, 0.5, 1, 1.5, 2];
 
   update(key: keyof LayoutSettings, value: any): void {
-    this.layout.update({ [key]: value });
+    this.layout.updateSettings({ [key]: value } as any);
   }
 
   reset(): void {
@@ -165,6 +165,6 @@ export class ThemeSettingsComponent {
   }
 
   toggle(key: keyof LayoutSettings): void {
-    this.layout.update({ [key]: !this.s[key] });
+    this.layout.updateSettings({ [key]: !this.s[key] } as any);
   }
 }

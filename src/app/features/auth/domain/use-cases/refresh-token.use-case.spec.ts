@@ -16,13 +16,14 @@ describe('RefreshTokenUseCase', () => {
   it('should call authRepo.refreshToken and update localStorage', () => {
     const response: AuthResponse = {
       user: {
-        id: '1', email: 'test@test.com', firstName: 'Test', lastName: 'User',
-        role: 'admin' as any, permissions: [], isActive: true,
-        createdAt: new Date(), updatedAt: new Date(),
+        id: '1', username: 'admin', email: 'admin@test.com', fullName: 'Admin User',
+        status: 'ACTIVE', phoneNumber: '0000000000', profileImageUrl: null,
+        role: 'admin', permissions: [], createdAt: new Date(), updatedAt: new Date(),
       },
       accessToken: 'new-access-token',
       refreshToken: 'new-refresh-token',
       expiresIn: 3600,
+      tokenType: 'Bearer',
     };
     mockRepo.refreshToken.and.returnValue(of(response));
 

@@ -25,12 +25,6 @@
               </span>
             </div>
           </div>
-          <div class="mb-2">
-            <label class="form-check">
-              <input type="checkbox" class="form-check-input" [(ngModel)]="rememberMe" name="rememberMe">
-              <span class="form-check-label">{{ 'login.rememberMe' | appTranslate }}</span>
-            </label>
-          </div>
           <div class="form-footer">
             <button type="submit" class="btn btn-primary w-100" [disabled]="loginForm.invalid || loading">
               <span *ngIf="loading" class="spinner-border spinner-border-sm me-2"></span>
@@ -58,7 +52,7 @@
       </div>
     </div>
     <div class="text-center text-secondary mt-3">
-      {{ 'login.noAccount' | appTranslate }} <a routerLink="/sign-up">{{ 'login.contactAdmin' | appTranslate }}</a>
+      {{ 'login.noAccount' | appTranslate }} <a routerLink="/sign-up">{{ 'login.signUp' | appTranslate }}</a>
     </div>
     <div class="text-center mt-3 p-2 bg-light rounded border">
       <small class="text-secondary">

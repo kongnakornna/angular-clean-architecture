@@ -1,17 +1,22 @@
-import { Component } from '@angular/core';
+import { Component, DestroyRef, inject } from '@angular/core';
 import { NgIf } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { RouterLink } from '@angular/router';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { TablerIconComponent } from 'angular-tabler-icons';
-import { TranslatePipe } from '../../../../../shared/pipes/translate.pipe';
+import { AppTranslatePipe } from '../../../../../shared/i18n/presentation/pipes/translate.pipe';
+import { SignUpUseCase } from '../../../domain/use-cases/sign-up.use-case';
 
 @Component({
   selector: 'app-sign-up',
   standalone: true,
-  imports: [NgIf, FormsModule, RouterLink, TablerIconComponent, TranslatePipe],
+  imports: [NgIf, FormsModule, RouterLink, TablerIconComponent, AppTranslatePipe],
   templateUrl: './sign-up.component.html',
 })
 export class SignUpComponent {
+  private signUpUseCase = inject(SignUpUseCase);
+  private destroyRef = inject(DestroyRef);
+
   name = '';
   email = '';
   password = '';
@@ -28,8 +33,16 @@ export class SignUpComponent {
   onSubmit(): void {
     this.loading = true;
     this.error = '';
-    setTimeout(() => {
-      this.loading = false;
-    }, 1000);
+    this.signUpUseCase.execute({ name: this.name, email: this.email, password: this.password })
+      .pipe(takeUntilDestroyed(this.destroyRef))
+      .subscribe({
+        next: () => {
+          this.loading = false;
+        },
+        error: (err) => {
+          this.loading = false;
+          this.error = err.message || 'เกิดข้อผิดพลาด กรุณาลองอีกครั้ง';
+        },
+      });
   }
 }

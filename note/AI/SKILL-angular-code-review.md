@@ -3,9 +3,9 @@ name: "Angular Code Review"
 description: "ตรวจสอบ Angular code ตาม 8 หัวข้อหลัก ได้แก่ OnDestroy/Unsubscribe, Change Detection, Template Security, Dependency Injection, RxJS Handling, Async Pipe Usage, Debug Code Cleanup และ Unit Test Presence — ใช้กับไฟล์ที่เปิดอยู่ หรือ staged changes จาก Git"
 agent: "agent"
 tools: ["readFile", "runInTerminal", "search", "findFiles", "semantic_search"]
-argument-hint: "<file path> หรือ <file path>::<component name> เช่น src/app/pages/goals/modals/add-goals/add-goals.component.ts หรือ src/app/pages/goals/modals/add-goals/add-goals.component.ts::AddGoalsComponent"
+argument-hint: "<file path> หรือ <file path>::<component name> เช่น /src/app/features/auth/presentation/pages/forgot-password/forgot-password.component.ts หรือ /src/app/features/auth/presentation/pages/forgot-password/forgot-password.component.ts::AddGoalsComponent"
 ---
-
+ 
 คุณคือ Senior Angular Developer และ Code Reviewer ผู้เชี่ยวชาญ หน้าที่ของคุณคือการตรวจโค้ด (Code Review) จาก Pull Request ที่กำลังจะ Merge เข้า `dev` branch
 
 ## ขั้นตอนการรีวิว
@@ -14,8 +14,8 @@ argument-hint: "<file path> หรือ <file path>::<component name> เช่
 
 **รูปแบบ argument ที่รองรับ:**
 
-- `src/app/pages/goals/modals/add-goals/add-goals.component.ts` — รีวิวทั้งไฟล์
-- `src/app/pages/goals/modals/add-goals/add-goals.component.ts::AddGoalsComponent` — รีวิวเฉพาะ component `AddGoalsComponent` ในไฟล์นั้น
+- `/src/app/features/auth/presentation/pages/forgot-password/forgot-password.component.ts` — รีวิวทั้งไฟล์
+- `/src/app/features/auth/presentation/pages/forgot-password/forgot-password.component.ts::AddGoalsComponent` — รีวิวเฉพาะ component `AddGoalsComponent` ในไฟล์นั้น
 
 ดำเนินการดังนี้ตามลำดับ:
 

@@ -1,19 +1,21 @@
-import { Component, inject } from '@angular/core';
+import { Component, DestroyRef, inject } from '@angular/core';
 import { NgIf } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { RouterLink } from '@angular/router';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { TablerIconComponent } from 'angular-tabler-icons';
-import { TranslatePipe } from '../../../../../shared/pipes/translate.pipe';
+import { AppTranslatePipe } from '../../../../../shared/i18n/presentation/pipes/translate.pipe';
 import { ForgotPasswordUseCase } from '../../../domain/use-cases/forgot-password.use-case';
 
 @Component({
   selector: 'app-forgot-password',
   standalone: true,
-  imports: [NgIf, FormsModule, RouterLink, TablerIconComponent, TranslatePipe],
+  imports: [NgIf, FormsModule, RouterLink, TablerIconComponent, AppTranslatePipe],
   templateUrl: './forgot-password.component.html',
 })
 export class ForgotPasswordComponent {
   private forgotPasswordUseCase = inject(ForgotPasswordUseCase);
+  private destroyRef = inject(DestroyRef);
 
   email = '';
   loading = false;
@@ -24,15 +26,17 @@ export class ForgotPasswordComponent {
     this.loading = true;
     this.error = '';
     this.success = false;
-    this.forgotPasswordUseCase.execute(this.email).subscribe({
-      next: () => {
-        this.loading = false;
-        this.success = true;
-      },
-      error: (err) => {
-        this.loading = false;
-        this.error = err.message || 'ไม่สามารถส่งอีเมลได้ กรุณาลองอีกครั้ง';
-      },
-    });
+    this.forgotPasswordUseCase.execute(this.email)
+      .pipe(takeUntilDestroyed(this.destroyRef))
+      .subscribe({
+        next: () => {
+          this.loading = false;
+          this.success = true;
+        },
+        error: (err) => {
+          this.loading = false;
+          this.error = err.message || 'ไม่สามารถส่งอีเมลได้ กรุณาลองอีกครั้ง';
+        },
+      });
   }
 }

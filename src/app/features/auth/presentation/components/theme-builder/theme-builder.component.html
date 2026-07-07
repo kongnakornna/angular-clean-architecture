@@ -1,0 +1,49 @@
+<div class="offcanvas offcanvas-end" tabindex="-1" data-bs-scroll="true">
+  <div class="offcanvas-header">
+    <h2 class="offcanvas-title">{{ 'layout.settings.title' | appTranslate }}</h2>
+    <button type="button" class="btn-close" data-bs-dismiss="offcanvas"></button>
+  </div>
+  <div class="offcanvas-body">
+    <div class="mb-4">
+      <label class="form-label">{{ 'layout.settings.colorScheme' | appTranslate }}</label>
+      <div class="theme-colors d-flex flex-wrap gap-2">
+        <div *ngFor="let t of themes"
+          class="theme-color rounded-circle"
+          [style.background]="'var(--tblr-' + t.key + ')'"
+          [class.active]="theme() === t.key"
+          (click)="updateTheme(t.key)"
+          [title]="t.label | appTranslate">
+        </div>
+      </div>
+    </div>
+    <div class="mb-4">
+      <label class="form-label">{{ 'layout.settings.fontFamily' | appTranslate }}</label>
+      <select class="form-select" [value]="fontFamily()" (change)="updateFont($any($event).target.value)">
+        <option *ngFor="let f of fonts" [value]="f.key">{{ f.label | appTranslate }}</option>
+      </select>
+    </div>
+    <div class="mb-4">
+      <label class="form-label">{{ 'layout.settings.themeBase' | appTranslate }}</label>
+      <div class="d-flex gap-2">
+        <div *ngFor="let b of bases" class="flex-fill">
+          <button class="btn w-100" [class.btn-primary]="themeBase() === b.key" [class.btn-outline-primary]="themeBase() !== b.key" (click)="updateBase(b.key)">
+            {{ b.label }}
+          </button>
+        </div>
+      </div>
+    </div>
+    <div class="mb-4">
+      <label class="form-label">{{ 'layout.settings.borderRadius' | appTranslate }}: {{ borderRadius() }}</label>
+      <input type="range" class="form-range" min="0" max="3" step="1" [value]="borderRadius()" (input)="updateRadius($event)">
+    </div>
+    <div class="mb-4">
+      <label class="form-check form-switch">
+        <input class="form-check-input" type="checkbox" [checked]="rtlMode() === 'true'" (change)="toggleRtl()">
+        <span class="form-check-label">{{ 'layout.settings.rtlMode' | appTranslate }}</span>
+      </label>
+    </div>
+    <button class="btn btn-outline-danger w-100" (click)="resetSettings()">
+      {{ 'layout.settings.reset' | appTranslate }}
+    </button>
+  </div>
+</div>

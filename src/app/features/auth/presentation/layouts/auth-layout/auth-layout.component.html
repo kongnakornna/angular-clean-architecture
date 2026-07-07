@@ -1,0 +1,18 @@
+<div class="page page-center">
+  <div class="container container-tight py-4">
+    <div class="text-center mb-4">
+      <a href="/" class="navbar-brand navbar-brand-autodark">
+        <img src="../assets/images/logo.svg" height="48" alt="">
+        {{ 'app.name' | appTranslate }}
+      </a>
+    </div>
+    <div class="d-flex align-items-center justify-content-between mb-2">
+      <app-language-selector></app-language-selector>
+      <a href="javascript:void(0)" class="btn btn-icon" data-bs-toggle="offcanvas" data-bs-target="#themeBuilder">
+        <i-tabler name="settings" class="icon"></i-tabler>
+      </a>
+    </div>
+    <router-outlet></router-outlet>
+  </div>
+</div>
+<app-theme-builder></app-theme-builder>

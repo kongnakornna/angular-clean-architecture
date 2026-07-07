@@ -1,7 +1,8 @@
-import { Component, inject } from '@angular/core';
+import { Component, DestroyRef, inject } from '@angular/core';
 import { NgIf } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { LoginUseCase } from '../../../domain/use-cases/login.use-case';
 import { TablerIconComponent } from 'angular-tabler-icons';
 import { AppTranslatePipe } from '../../../../../shared/i18n/presentation/pipes/translate.pipe';
@@ -15,13 +16,13 @@ import { AppTranslatePipe } from '../../../../../shared/i18n/presentation/pipes/
 export class LoginComponent {
   private loginUseCase = inject(LoginUseCase);
   private router = inject(Router);
+  private destroyRef = inject(DestroyRef);
 
   username = '';
   password = '';
   loading = false;
   error = '';
   passwordVisible = false;
-  rememberMe = false;
 
   togglePassword(): void {
     this.passwordVisible = !this.passwordVisible;
@@ -30,15 +31,17 @@ export class LoginComponent {
   onSubmit(): void {
     this.loading = true;
     this.error = '';
-    this.loginUseCase.execute({ username: this.username, password: this.password }).subscribe({
-      next: () => {
-        this.loading = false;
-        this.router.navigate(['/dashboard']);
-      },
-      error: (err) => {
-        this.loading = false;
-        this.error = err.message || 'Invalid username or password';
-      },
-    });
+    this.loginUseCase.execute({ username: this.username, password: this.password })
+      .pipe(takeUntilDestroyed(this.destroyRef))
+      .subscribe({
+        next: () => {
+          this.loading = false;
+          this.router.navigate(['/dashboard']);
+        },
+        error: (err) => {
+          this.loading = false;
+          this.error = err.message || 'Invalid username or password';
+        },
+      });
   }
 }

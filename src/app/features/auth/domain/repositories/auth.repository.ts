@@ -7,6 +7,7 @@ export interface IAuthRepository {
   refreshToken(): Observable<AuthResponse>;
   forgotPassword(email: string): Observable<void>;
   resetPassword(token: string, password: string): Observable<void>;
+  register?(credentials: { name: string; email: string; password: string }): Observable<void>;
   getCurrentUser(): Observable<User>;
   hasPermission(permission: string): Observable<boolean>;
 }
