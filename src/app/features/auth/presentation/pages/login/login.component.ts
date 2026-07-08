@@ -39,7 +39,11 @@ export class LoginComponent {
         },
         error: (err) => {
           this.loading = false;
-          this.error = err.message || 'Invalid username or password';
+          if (err.status === 401) {
+            this.error = 'ชื่อผู้ใช้หรือรหัสผ่านไม่ถูกต้อง';
+          } else {
+            this.error = err.message || 'Invalid username or password';
+          }
         },
       });
   }

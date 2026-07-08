@@ -1,7 +1,7 @@
-import { Injectable, inject } from '@angular/core';
+import { Injectable, Inject, inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { environment } from '../../../../../environments/environment';
+import { APP_CONFIG, AppConfig } from '../../../../core/config/app.config';
 import { API_ENDPOINTS } from '../../../../core/config/api.config';
 import { LoginRequestDto } from '../dtos/login-request.dto';
 import { LoginResponseDto } from '../dtos/login-response.dto';
@@ -10,7 +10,11 @@ import { RegisterRequestDto } from '../dtos/register-request.dto';
 @Injectable({ providedIn: 'root' })
 export class AuthApiDataSource {
   private http = inject(HttpClient);
-  private readonly baseUrl = environment.apiUrl;
+  private readonly baseUrl: string;
+
+  constructor(@Inject(APP_CONFIG) config: AppConfig) {
+    this.baseUrl = config.apiBaseUrl;
+  }
 
   login(data: LoginRequestDto): Observable<LoginResponseDto> {
     return this.http.post<LoginResponseDto>(`${this.baseUrl}${API_ENDPOINTS.auth.login}`, data);

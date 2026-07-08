@@ -1,12 +1,13 @@
 import { Component } from '@angular/core';
 import { NgIf, NgFor } from '@angular/common';
 import { RouterLink } from '@angular/router';
+import { TablerIconComponent } from 'angular-tabler-icons';
 import { TranslatePipe } from '../../../../../shared/pipes/translate.pipe';
 
 @Component({
   selector: 'app-job-detail',
   standalone: true,
-  imports: [NgIf, NgFor, RouterLink, TranslatePipe],
+  imports: [NgIf, NgFor, RouterLink, TablerIconComponent, TranslatePipe],
   template: `
 <div class="page-header d-print-none">
   <div class="row align-items-center">

@@ -1,5 +1,5 @@
 import { TestBed } from '@angular/core/testing';
-import { ToastService, ToastType } from './toast.service';
+import { Toast, ToastService, ToastType } from './toast.service';
 
 describe('ToastService', () => {
   let service: ToastService;
@@ -25,12 +25,15 @@ describe('ToastService', () => {
   });
 
   it('should close toast', (done) => {
-    service.show({ title: 'Test' });
-    service.listen$.subscribe((toast) => {
-      if (!toast.isOpen && toast.title === undefined) {
+    const toasts: Toast[] = [];
+    service.listen$.subscribe((t) => {
+      toasts.push(t);
+      if (toasts.length === 3) {
+        expect(toasts[2].isOpen).toBeFalse();
         done();
       }
     });
+    service.show({ title: 'Test' });
     service.close();
   });
 });

@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NgIf, NgFor } from '@angular/common';
+import { NgIf, NgFor, DecimalPipe } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { RouterLink } from '@angular/router';
 import { TranslatePipe } from '../../../../../shared/pipes/translate.pipe';
@@ -7,7 +7,7 @@ import { TranslatePipe } from '../../../../../shared/pipes/translate.pipe';
 @Component({
   selector: 'app-po-create',
   standalone: true,
-  imports: [NgIf, NgFor, FormsModule, RouterLink, TranslatePipe],
+  imports: [NgIf, NgFor, FormsModule, RouterLink, TranslatePipe, DecimalPipe],
   template: `
 <div class="page-header d-print-none">
   <div class="row align-items-center">
