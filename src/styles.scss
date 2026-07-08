@@ -1,7 +1,7 @@
 $assets-base: '/assets';
 
-@import 'assets/tabler/scss';
-@import 'scss/custom/utilities';
+@import 'tabler/scss';
+@import 'tabler/scss/custom/utilities';
 
 @tailwind base;
 @tailwind components;
