@@ -1,12 +1,12 @@
 import { Component } from '@angular/core';
-import { NgIf, NgFor } from '@angular/common';
+import { NgIf, NgFor, DecimalPipe } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-quotation-create',
   standalone: true,
-  imports: [NgIf, NgFor, FormsModule, RouterLink],
+  imports: [NgIf, NgFor, FormsModule, RouterLink, DecimalPipe],
   template: `
 <div class="page-header d-print-none">
   <div class="row align-items-center">

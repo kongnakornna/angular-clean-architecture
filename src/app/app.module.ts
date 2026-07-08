@@ -37,6 +37,7 @@ import { REPOSITORY_PROVIDERS } from './core/di/providers';
 import { AUTH_REPOSITORY } from './core/di/tokens';
 import { DemoAuthRepositoryImpl } from './features/auth/data/repositories/auth.repository.demo';
 import { environment } from '../environments/environment';
+import { APP_CONFIG, DEFAULT_APP_CONFIG } from './core/config/app.config';
 
 @NgModule({
   declarations: [
@@ -64,6 +65,7 @@ import { environment } from '../environments/environment';
   providers: [
     ...REPOSITORY_PROVIDERS,
     ...(environment.demo ? [{ provide: AUTH_REPOSITORY, useClass: DemoAuthRepositoryImpl }] : []),
+    { provide: APP_CONFIG, useValue: { ...DEFAULT_APP_CONFIG, apiBaseUrl: environment.apiUrl, production: environment.production } },
     provideTablerIcons({
       IconLayoutDashboard, IconClipboard, IconList, IconLayoutKanban, IconPlus,
       IconUsers, IconFileText, IconShoppingCart, IconPackage, IconCreditCard,

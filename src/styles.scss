@@ -1,7 +1,6 @@
 $assets-base: '/assets';
 
-@import 'scss/tabler/tabler';
-@import 'scss/custom/utilities';
+@import 'assets/tabler/scss/tabler';
 
 @tailwind base;
 @tailwind components;
@@ -36,7 +35,6 @@ body.dark li>strong {
   height: 100%;            /* Optional: adjust to fit your layout */
   text-align: center;
 }
-
 /*!
  * Tabler v1.2.0 (https://tabler.io)
  * Copyright 2018-2025 The Tabler Authors

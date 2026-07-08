@@ -46,7 +46,7 @@ import { TranslatePipe } from '../../../../../shared/pipes/translate.pipe';
       <div class="datagrid-item">
         <div class="datagrid-title">{{ 'wos.status' | translate }}</div>
         <div class="datagrid-content">
-          <span class="badge" [class.bg-yellow]="order.status === '{{ 'wos.statusPending' | translate }}'" [class.bg-blue]="order.status === '{{ 'wos.statusShipping' | translate }}'" [class.bg-green]="order.status === '{{ 'wos.statusDelivered' | translate }}'" [class.bg-red]="order.status === '{{ 'wos.statusCancelled' | translate }}'">{{ order.status }}</span>
+          <span class="badge" [class.bg-yellow]="order.status === ('wos.statusPending' | translate)" [class.bg-blue]="order.status === ('wos.statusShipping' | translate)" [class.bg-green]="order.status === ('wos.statusDelivered' | translate)" [class.bg-red]="order.status === ('wos.statusCancelled' | translate)">{{ order.status }}</span>
         </div>
       </div>
     </div>
