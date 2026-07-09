@@ -28,6 +28,11 @@ export class SidebarComponent {
     return route ? this.router.isActive(route, { paths: 'exact', queryParams: 'ignored', fragment: 'ignored', matrixParams: 'ignored' }) : false;
   }
 
+  isChildActive(children: MenuItem[] | undefined): boolean {
+    if (!children) {return false;}
+    return children.some(c => this.isActiveRoute(c.route) || this.isChildActive(c.children));
+  }
+
   menuItems: MenuItem[] = [
     { label: 'nav.dashboard', icon: 'layout-dashboard', route: '/dashboard' },
     {
@@ -63,20 +68,7 @@ export class SidebarComponent {
     { label: 'nav.iot', icon: 'device-desktop', route: '/iot/devices' },
     { label: 'nav.wos', icon: 'shopping-bag', route: '/wos/orders' },
     { label: 'nav.reports', icon: 'chart-bar', route: '/reports' },
-    {
-      label: 'Tabler UI', icon: 'layout', route: '/tabler/blank',
-      children: [
-        { label: 'Dashboard', icon: 'layout-dashboard', route: '/tabler/dashboard' },
-        { label: 'Alerts', icon: 'alert-triangle', route: '/tabler/alerts' },
-        { label: 'Buttons', icon: 'smartphone', route: '/tabler/buttons' },
-        { label: 'Cards', icon: 'cards', route: '/tabler/cards' },
-        { label: 'Forms', icon: 'forms', route: '/tabler/form-elements' },
-        { label: 'Tables', icon: 'table', route: '/tabler/tables' },
-        { label: 'Charts', icon: 'chart-bar', route: '/tabler/charts' },
-        { label: 'Icons', icon: 'icons', route: '/tabler/icons' },
-        { label: 'Typography', icon: 'typography', route: '/tabler/typography' },
-      ],
-    },
+    
     {
       label: 'nav.system', icon: 'settings', route: '/users',
       children: [

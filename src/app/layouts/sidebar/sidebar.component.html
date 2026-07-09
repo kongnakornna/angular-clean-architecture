@@ -36,7 +36,8 @@
           </ng-container>
           <ng-template #hasChildren>
             <a class="nav-link dropdown-toggle" href="javascript:void(0)" (click)="toggleSubmenu(item.label)"
-               [class.active]="isExpanded(item.label)" role="button" aria-haspopup="true">
+               [class.active]="isExpanded(item.label)" role="button" aria-haspopup="true"
+               [attr.aria-expanded]="isExpanded(item.label)">
               <span class="nav-link-icon d-md-none d-lg-inline-block">
                 <i-tabler [name]="item.icon"></i-tabler>
               </span>

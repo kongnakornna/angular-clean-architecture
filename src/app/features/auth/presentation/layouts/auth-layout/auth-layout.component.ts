@@ -1,12 +1,12 @@
 import { Component, HostBinding } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { LanguageSelectorComponent } from '../../../../../shared/i18n/presentation/pages/language-selector/language-selector.component';
 import { ThemeBuilderComponent } from '../../components/theme-builder/theme-builder.component';
+import { TablerIconsModule } from 'angular-tabler-icons';
 
 @Component({
   selector: 'app-auth-layout',
   standalone: true,
-  imports: [RouterOutlet, LanguageSelectorComponent, ThemeBuilderComponent],
+  imports: [RouterOutlet, ThemeBuilderComponent, TablerIconsModule],
   templateUrl: './auth-layout.component.html',
 })
 export class AuthLayoutComponent {

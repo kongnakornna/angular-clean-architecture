@@ -1,0 +1,160 @@
+<div class="page-body">
+  <div class="container-xl">
+    <div class="row">
+      <div class="col-lg-6">
+        <div class="card">
+          <div class="card-header">
+            <h3 class="card-title">Input Fields</h3>
+          </div>
+          <div class="card-body">
+            <div class="mb-3">
+              <label class="form-label">Text Input</label>
+              <input type="text" class="form-control" placeholder="Enter text">
+            </div>
+            <div class="mb-3">
+              <label class="form-label">Email Input</label>
+              <input type="email" class="form-control" placeholder="Enter email">
+            </div>
+            <div class="mb-3">
+              <label class="form-label">Password Input</label>
+              <input type="password" class="form-control" placeholder="Enter password">
+            </div>
+            <div class="mb-3">
+              <label class="form-label">Textarea</label>
+              <textarea class="form-control" rows="3" placeholder="Enter a message"></textarea>
+            </div>
+            <div class="mb-3">
+              <label class="form-label">Select</label>
+              <select class="form-select">
+                <option value="">Choose an option</option>
+                <option value="1">Option 1</option>
+                <option value="2">Option 2</option>
+                <option value="3">Option 3</option>
+              </select>
+            </div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-header">
+            <h3 class="card-title">Input with Icon</h3>
+          </div>
+          <div class="card-body">
+            <div class="mb-3">
+              <label class="form-label">Search</label>
+              <div class="input-icon">
+                <i-tabler name="search" class="icon input-icon-addon"></i-tabler>
+                <input type="text" class="form-control" placeholder="Search...">
+              </div>
+            </div>
+            <div class="mb-3">
+              <label class="form-label">Email</label>
+              <div class="input-icon">
+                <i-tabler name="mail" class="icon input-icon-addon"></i-tabler>
+                <input type="email" class="form-control" placeholder="Email address">
+              </div>
+            </div>
+            <div class="mb-3">
+              <label class="form-label">User</label>
+              <div class="input-icon">
+                <i-tabler name="user" class="icon input-icon-addon"></i-tabler>
+                <input type="text" class="form-control" placeholder="Username">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-6">
+        <div class="card">
+          <div class="card-header">
+            <h3 class="card-title">Checkboxes & Radios</h3>
+          </div>
+          <div class="card-body">
+            <div class="mb-3">
+              <label class="form-label">Checkboxes</label>
+              <div class="form-check mb-2">
+                <input type="checkbox" class="form-check-input" id="check1">
+                <label class="form-check-label" for="check1">Option one</label>
+              </div>
+              <div class="form-check mb-2">
+                <input type="checkbox" class="form-check-input" id="check2">
+                <label class="form-check-label" for="check2">Option two</label>
+              </div>
+              <div class="form-check mb-2">
+                <input type="checkbox" class="form-check-input" id="check3" disabled>
+                <label class="form-check-label" for="check3" class="text-muted">Option three (disabled)</label>
+              </div>
+            </div>
+            <div class="mb-3">
+              <label class="form-label">Radio Buttons</label>
+              <div class="form-check mb-2">
+                <input type="radio" class="form-check-input" name="radio" id="radio1" checked>
+                <label class="form-check-label" for="radio1">Radio option one</label>
+              </div>
+              <div class="form-check mb-2">
+                <input type="radio" class="form-check-input" name="radio" id="radio2">
+                <label class="form-check-label" for="radio2">Radio option two</label>
+              </div>
+              <div class="form-check">
+                <input type="radio" class="form-check-input" name="radio" id="radio3" disabled>
+                <label class="form-check-label" for="radio3">Radio option three (disabled)</label>
+              </div>
+            </div>
+            <div class="mb-3">
+              <label class="form-label">Switches</label>
+              <div class="form-check form-switch mb-2">
+                <input type="checkbox" class="form-check-input" id="switch1" checked>
+                <label class="form-check-label" for="switch1">Notifications</label>
+              </div>
+              <div class="form-check form-switch mb-2">
+                <input type="checkbox" class="form-check-input" id="switch2">
+                <label class="form-check-label" for="switch2">Email alerts</label>
+              </div>
+              <div class="form-check form-switch">
+                <input type="checkbox" class="form-check-input" id="switch3" disabled>
+                <label class="form-check-label" for="switch3">Two-factor auth (disabled)</label>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-header">
+            <h3 class="card-title">Validation & Disabled States</h3>
+          </div>
+          <div class="card-body">
+            <div class="mb-3">
+              <label class="form-label">Valid input</label>
+              <input type="text" class="form-control is-valid" placeholder="Valid input" value="John Doe">
+              <div class="valid-feedback">Looks good!</div>
+            </div>
+            <div class="mb-3">
+              <label class="form-label">Invalid input</label>
+              <input type="text" class="form-control is-invalid" placeholder="Invalid input" value="">
+              <div class="invalid-feedback">This field is required.</div>
+            </div>
+            <div class="mb-3">
+              <label class="form-label">Disabled input</label>
+              <input type="text" class="form-control" placeholder="Disabled input" disabled>
+            </div>
+            <div class="mb-3">
+              <label class="form-label">Readonly input</label>
+              <input type="text" class="form-control" value="Read only value" readonly>
+            </div>
+            <div class="mb-3">
+              <label class="form-label">Input Group</label>
+              <div class="input-group">
+                <span class="input-group-text">&#64;</span>
+                <input type="text" class="form-control" placeholder="Username">
+              </div>
+            </div>
+            <div class="mb-3">
+              <div class="input-group">
+                <input type="text" class="form-control" placeholder="Amount">
+                <span class="input-group-text">.00</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

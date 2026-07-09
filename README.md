@@ -167,3 +167,9 @@ ng build --configuration production    # dist/
 ---
 
 *ระบบนี้ใช้ Tabler SCSS ผ่านการ import ใน `src/scss/tabler/` ตรงจาก GitHub dev branch*
+
+
+npm install --legacy-peer-deps
+npm audit fix
+
+C:\github\angular-clean-architecture\src\assets\tabler\includes\layout

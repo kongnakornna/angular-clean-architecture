@@ -8,10 +8,7 @@ import { AuthLayoutComponent } from './features/auth/presentation/layouts/auth-l
 export const routes: Routes = [
   { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
 
-  {
-    path: 'tabler',
-    loadChildren: () => import('./features/tabler/tabler.module').then((m) => m.TablerModule),
-  },
+  
 
   {
     path: '',
@@ -154,13 +151,6 @@ export const routes: Routes = [
         loadComponent: () =>
           import('./features/wos/presentation/pages/order-list/order-list.component').then(
             (m) => m.OrderListComponent
-          ),
-      },
-      {
-        path: 'reports',
-        loadComponent: () =>
-          import('./features/dashboard/presentation/pages/reports/reports.component').then(
-            (m) => m.ReportsComponent
           ),
       },
       {
