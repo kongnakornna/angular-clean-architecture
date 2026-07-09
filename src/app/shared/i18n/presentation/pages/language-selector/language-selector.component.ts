@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, HostListener, ElementRef } from '@angular/core';
 import { NgFor } from '@angular/common';
 import { I18nService } from '../../../data/i18n.service';
 import type { SupportedLanguage } from '../../../domain/entities/translation.entity';
@@ -14,20 +14,20 @@ interface LangEntry {
   standalone: true,
   imports: [NgFor],
   template: `
-    <div class="dropdown">
+    <div class="dropdown" [class.show]="open">
       <button class="btn btn-sm btn-outline-secondary dropdown-toggle d-flex align-items-center gap-2"
-              type="button" data-bs-toggle="dropdown" aria-expanded="false">
+              type="button" (click)="toggle()">
         <img [src]="'assets/flags/' + currentCode + '.svg'" height="18" alt="">
         {{ currentName }}
       </button>
-      <ul class="dropdown-menu dropdown-menu-end">
+      <ul class="dropdown-menu dropdown-menu-end" [class.show]="open">
         <li *ngFor="let lang of languages">
-          <a class="dropdown-item d-flex align-items-center gap-2"
-             (click)="loadLanguage(lang.code)"
-             data-bs-toggle="dropdown">
+          <button class="dropdown-item d-flex align-items-center gap-2"
+                  type="button"
+                  (click)="selectLanguage(lang.code)">
             <img [src]="'assets/flags/' + lang.code + '.svg'" height="18" alt="">
             {{ lang.name }}
-          </a>
+          </button>
         </li>
       </ul>
     </div>
@@ -36,6 +36,15 @@ interface LangEntry {
 })
 export class LanguageSelectorComponent {
   protected i18n = inject(I18nService);
+  private el = inject(ElementRef);
+  open = false;
+
+  @HostListener('document:click', ['$event'])
+  onClickOutside(event: MouseEvent): void {
+    if (this.open && !this.el.nativeElement.contains(event.target)) {
+      this.open = false;
+    }
+  }
 
   languages: LangEntry[] = [
     { code: 'en', name: 'English', flag: 'us' },
@@ -59,7 +68,12 @@ export class LanguageSelectorComponent {
     return found ? found.name : 'English';
   }
 
-  loadLanguage(code: SupportedLanguage): void {
+  toggle(): void {
+    this.open = !this.open;
+  }
+
+  selectLanguage(code: SupportedLanguage): void {
     this.i18n.loadLanguage(code);
+    this.open = false;
   }
 }
