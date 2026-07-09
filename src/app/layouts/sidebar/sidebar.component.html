@@ -1,35 +1,79 @@
-<nav class="navbar navbar-vertical navbar-expand-lg" [class.navbar-collapsed]="isCollapsed">
+<aside class="navbar navbar-vertical navbar-expand-lg"
+       [class.navbar-collapsed]="isCollapsed"
+       [class.navbar-transparent]="transparent"
+       [class.navbar-end]="end"
+       [ngClass]="background ? 'bg-' + background : ''"
+       [attr.data-bs-theme]="dark ? 'dark' : null">
   <div class="container-fluid">
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#sidebar-menu" aria-label="Toggle sidebar">
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#sidebar-menu" aria-controls="sidebar-menu" aria-expanded="false" aria-label="Toggle sidebar navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
-    <h1 class="navbar-brand navbar-brand-autodark">
-      <i-tabler name="layout-dashboard" class="navbar-brand-image"></i-tabler>
+
+    <div class="navbar-brand navbar-brand-autodark">
+      <a href="/" aria-label="{{ 'app.name' | translate }}">
+        <i-tabler name="layout-dashboard" class="navbar-brand-image me-3"></i-tabler>
+      </a>
       {{ 'app.name' | translate }}
-    </h1>
-  </div>
-  <div class="collapse navbar-collapse" id="sidebar-menu">
-    <ul class="navbar-nav pt-lg-3">
-      <li *ngFor="let item of menuItems" class="nav-item" [class.dropdown]="!!item.children" [class.active]="item.children && isExpanded(item.label)">
-        <ng-container *ngIf="!item.children; else hasChildren">
-          <a class="nav-link" [routerLink]="item.route" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
-            <i-tabler [name]="item.icon" class="nav-link-icon"></i-tabler>
-            <span class="nav-link-title">{{ item.label | translate }}</span>
-          </a>
-        </ng-container>
-        <ng-template #hasChildren>
-          <a class="nav-link dropdown-toggle" href="javascript:void(0)" (click)="toggleSubmenu(item.label)" [class.active]="isExpanded(item.label)">
-            <i-tabler [name]="item.icon" class="nav-link-icon"></i-tabler>
-            <span class="nav-link-title">{{ item.label | translate }}</span>
-          </a>
-          <div class="dropdown-menu" [class.show]="isExpanded(item.label)">
-            <a *ngFor="let child of item.children" class="dropdown-item" [routerLink]="child.route" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
-              <i-tabler [name]="child.icon" class="nav-link-icon"></i-tabler>
-              {{ child.label | translate }}
+    </div>
+
+    <div class="navbar-nav flex-row d-lg-none">
+      <app-language-selector></app-language-selector>
+    </div>
+
+    <div class="collapse navbar-collapse" id="sidebar-menu">
+      <ul class="navbar-nav pt-lg-3">
+        <li *ngFor="let item of menuItems" class="nav-item"
+            [class.active]="!item.children && isActiveRoute(item.route)"
+            [class.dropdown]="!!item.children">
+          <ng-container *ngIf="!item.children; else hasChildren">
+            <a class="nav-link" [routerLink]="item.route" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+              <span class="nav-link-icon d-md-none d-lg-inline-block">
+                <i-tabler [name]="item.icon"></i-tabler>
+              </span>
+              <span class="nav-link-title">{{ item.label | translate }}</span>
+              <span *ngIf="item.badge" class="badge badge-sm bg-red text-red-fg ms-auto">{{ item.badge }}</span>
             </a>
-          </div>
-        </ng-template>
-      </li>
-    </ul>
+          </ng-container>
+          <ng-template #hasChildren>
+            <a class="nav-link dropdown-toggle" href="javascript:void(0)" (click)="toggleSubmenu(item.label)"
+               [class.active]="isExpanded(item.label)" role="button" aria-haspopup="true">
+              <span class="nav-link-icon d-md-none d-lg-inline-block">
+                <i-tabler [name]="item.icon"></i-tabler>
+              </span>
+              <span class="nav-link-title">{{ item.label | translate }}</span>
+              <span *ngIf="item.badge" class="badge badge-sm bg-red text-red-fg ms-auto">{{ item.badge }}</span>
+            </a>
+            <div class="dropdown-menu" [class.show]="isExpanded(item.label)">
+              <ng-container *ngFor="let child of item.children">
+                <ng-container *ngIf="!child.children; else childHasChildren">
+                  <a class="dropdown-item" [routerLink]="child.route" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+                    <i-tabler [name]="child.icon" class="icon-inline me-1"></i-tabler>
+                    {{ child.label | translate }}
+                    <span *ngIf="child.badge" class="badge badge-sm bg-green-lt text-uppercase ms-auto">{{ child.badge }}</span>
+                  </a>
+                </ng-container>
+                <ng-template #childHasChildren>
+                  <div class="dropend">
+                    <a class="dropdown-item dropdown-toggle" href="javascript:void(0)" (click)="toggleSubmenu(child.label)"
+                       role="button" aria-haspopup="true">
+                      <i-tabler [name]="child.icon" class="icon-inline me-1"></i-tabler>
+                      {{ child.label | translate }}
+                      <span *ngIf="child.badge" class="badge badge-sm bg-green-lt text-uppercase ms-auto">{{ child.badge }}</span>
+                    </a>
+                    <div class="dropdown-menu" [class.show]="isExpanded(child.label)">
+                      <a *ngFor="let subchild of child.children" class="dropdown-item" [routerLink]="subchild.route" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+                        <i-tabler [name]="subchild.icon" class="icon-inline me-1"></i-tabler>
+                        {{ subchild.label | translate }}
+                        <span *ngIf="subchild.badge" class="badge badge-sm bg-green-lt text-uppercase ms-auto">{{ subchild.badge }}</span>
+                      </a>
+                    </div>
+                  </div>
+                </ng-template>
+              </ng-container>
+            </div>
+          </ng-template>
+        </li>
+      </ul>
+    </div>
   </div>
-</nav>
+</aside>

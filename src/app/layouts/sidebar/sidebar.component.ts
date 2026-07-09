@@ -1,4 +1,5 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, inject } from '@angular/core';
+import { Router } from '@angular/router';
 
 export interface MenuItem {
   label: string;
@@ -16,6 +17,16 @@ export interface MenuItem {
 })
 export class SidebarComponent {
   @Input() isCollapsed = false;
+  @Input() transparent = false;
+  @Input() end = false;
+  @Input() background = '';
+  @Input() dark = false;
+
+  private router = inject(Router);
+
+  isActiveRoute(route: string | undefined): boolean {
+    return route ? this.router.isActive(route, { paths: 'exact', queryParams: 'ignored', fragment: 'ignored', matrixParams: 'ignored' }) : false;
+  }
 
   menuItems: MenuItem[] = [
     { label: 'nav.dashboard', icon: 'layout-dashboard', route: '/dashboard' },

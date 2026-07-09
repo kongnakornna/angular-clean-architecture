@@ -479,3 +479,5 @@ src/assets/tabler/
 ```
 
 C:\github\angular-clean-architecture\src\assets\tabler\dist
+C:\github\angular-clean-architecture\src\assets\tabler\includes
+C:\github\angular-clean-architecture\src\assets\tabler\layouts

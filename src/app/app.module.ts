@@ -18,6 +18,7 @@ import { SidebarComponent } from './layouts/sidebar/sidebar.component';
 import { FooterComponent } from './layouts/footer/footer.component';
 import { AppLayoutComponent } from './layouts/app-layout/app-layout.component';
 import { LayoutSettingsComponent } from './layouts/layout-settings/layout-settings.component';
+import { PageHeaderComponent } from './layouts/page-header/page-header.component';
 import { TranslatePipe } from './shared/pipes/translate.pipe';
 import { LanguageSelectorComponent } from './shared/i18n/presentation/pages/language-selector/language-selector.component';
 import { TablerIconsModule, provideTablerIcons } from 'angular-tabler-icons';
@@ -47,6 +48,7 @@ import { APP_CONFIG, DEFAULT_APP_CONFIG } from './core/config/app.config';
     FooterComponent,
     AppLayoutComponent,
     LayoutSettingsComponent,
+    PageHeaderComponent,
   ],
   imports: [
     BrowserModule,

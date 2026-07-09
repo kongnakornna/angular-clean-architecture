@@ -25,6 +25,25 @@ export class HeaderComponent {
     { label: 'Logout', icon: 'logout', action: 'logout' },
   ];
 
+  horizontalMenu = [
+    { label: 'Dashboard', icon: 'layout-dashboard', route: '/dashboard' },
+    {
+      label: 'Jobs', icon: 'clipboard', route: '/jobs',
+      children: [
+        { label: 'Job List', icon: 'list', route: '/jobs' },
+        { label: 'Job Board', icon: 'layout-kanban', route: '/jobs/board' },
+      ],
+    },
+    {
+      label: 'Customers', icon: 'users', route: '/customers',
+      children: [
+        { label: 'Customer List', icon: 'list', route: '/customers' },
+        { label: 'Customer Create', icon: 'plus', route: '/customers/create' },
+      ],
+    },
+    { label: 'Reports', icon: 'chart-bar', route: '/reports' },
+  ];
+
   get isDarkMode(): boolean {
     return this.layout.theme() === 'dark';
   }
