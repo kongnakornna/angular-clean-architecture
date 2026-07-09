@@ -477,3 +477,5 @@ src/assets/tabler/
 ├── wizard.html
 └── wysiwyg.html
 ```
+
+C:\github\angular-clean-architecture\src\assets\tabler\dist

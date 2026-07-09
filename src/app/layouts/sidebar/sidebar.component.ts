@@ -53,6 +53,20 @@ export class SidebarComponent {
     { label: 'nav.wos', icon: 'shopping-bag', route: '/wos/orders' },
     { label: 'nav.reports', icon: 'chart-bar', route: '/reports' },
     {
+      label: 'Tabler UI', icon: 'layout', route: '/tabler/blank',
+      children: [
+        { label: 'Dashboard', icon: 'layout-dashboard', route: '/tabler/dashboard' },
+        { label: 'Alerts', icon: 'alert-triangle', route: '/tabler/alerts' },
+        { label: 'Buttons', icon: 'smartphone', route: '/tabler/buttons' },
+        { label: 'Cards', icon: 'cards', route: '/tabler/cards' },
+        { label: 'Forms', icon: 'forms', route: '/tabler/form-elements' },
+        { label: 'Tables', icon: 'table', route: '/tabler/tables' },
+        { label: 'Charts', icon: 'chart-bar', route: '/tabler/charts' },
+        { label: 'Icons', icon: 'icons', route: '/tabler/icons' },
+        { label: 'Typography', icon: 'typography', route: '/tabler/typography' },
+      ],
+    },
+    {
       label: 'nav.system', icon: 'settings', route: '/users',
       children: [
         { label: 'nav.users', icon: 'user-circle', route: '/users' },

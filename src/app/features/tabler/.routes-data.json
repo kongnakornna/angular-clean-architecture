@@ -1,0 +1,812 @@
+[
+    {
+        "Path":  "accordion",
+        "Category":  "pages",
+        "Component":  "AccordionComponent",
+        "Import":  "..\\pages\\accordion\\accordion.component"
+    },
+    {
+        "Path":  "activity",
+        "Category":  "pages",
+        "Component":  "ActivityComponent",
+        "Import":  "..\\pages\\activity\\activity.component"
+    },
+    {
+        "Path":  "alerts",
+        "Category":  "pages",
+        "Component":  "AlertsComponent",
+        "Import":  "..\\pages\\alerts\\alerts.component"
+    },
+    {
+        "Path":  "all-elements",
+        "Category":  "pages",
+        "Component":  "AllElementsComponent",
+        "Import":  "..\\pages\\all-elements\\all-elements.component"
+    },
+    {
+        "Path":  "avatars",
+        "Category":  "pages",
+        "Component":  "AvatarsComponent",
+        "Import":  "..\\pages\\avatars\\avatars.component"
+    },
+    {
+        "Path":  "badges",
+        "Category":  "pages",
+        "Component":  "BadgesComponent",
+        "Import":  "..\\pages\\badges\\badges.component"
+    },
+    {
+        "Path":  "blank",
+        "Category":  "pages",
+        "Component":  "BlankComponent",
+        "Import":  "..\\pages\\blank\\blank.component"
+    },
+    {
+        "Path":  "buttons",
+        "Category":  "pages",
+        "Component":  "ButtonsComponent",
+        "Import":  "..\\pages\\buttons\\buttons.component"
+    },
+    {
+        "Path":  "card-actions",
+        "Category":  "pages",
+        "Component":  "CardActionsComponent",
+        "Import":  "..\\pages\\card-actions\\card-actions.component"
+    },
+    {
+        "Path":  "card-gradients",
+        "Category":  "pages",
+        "Component":  "CardGradientsComponent",
+        "Import":  "..\\pages\\card-gradients\\card-gradients.component"
+    },
+    {
+        "Path":  "cards",
+        "Category":  "pages",
+        "Component":  "CardsComponent",
+        "Import":  "..\\pages\\cards\\cards.component"
+    },
+    {
+        "Path":  "cards-masonry",
+        "Category":  "pages",
+        "Component":  "CardsMasonryComponent",
+        "Import":  "..\\pages\\cards-masonry\\cards-masonry.component"
+    },
+    {
+        "Path":  "carousel",
+        "Category":  "pages",
+        "Component":  "CarouselComponent",
+        "Import":  "..\\pages\\carousel\\carousel.component"
+    },
+    {
+        "Path":  "changelog",
+        "Category":  "pages",
+        "Component":  "ChangelogComponent",
+        "Import":  "..\\pages\\changelog\\changelog.component"
+    },
+    {
+        "Path":  "charts",
+        "Category":  "pages",
+        "Component":  "ChartsComponent",
+        "Import":  "..\\pages\\charts\\charts.component"
+    },
+    {
+        "Path":  "chat",
+        "Category":  "pages",
+        "Component":  "ChatComponent",
+        "Import":  "..\\pages\\chat\\chat.component"
+    },
+    {
+        "Path":  "colorpicker",
+        "Category":  "pages",
+        "Component":  "ColorpickerComponent",
+        "Import":  "..\\pages\\colorpicker\\colorpicker.component"
+    },
+    {
+        "Path":  "colors",
+        "Category":  "pages",
+        "Component":  "ColorsComponent",
+        "Import":  "..\\pages\\colors\\colors.component"
+    },
+    {
+        "Path":  "cookie-banner",
+        "Category":  "pages",
+        "Component":  "CookieBannerComponent",
+        "Import":  "..\\pages\\cookie-banner\\cookie-banner.component"
+    },
+    {
+        "Path":  "dashboard-crypto",
+        "Category":  "pages",
+        "Component":  "DashboardCryptoComponent",
+        "Import":  "..\\pages\\dashboard-crypto\\dashboard-crypto.component"
+    },
+    {
+        "Path":  "datagrid",
+        "Category":  "pages",
+        "Component":  "DatagridComponent",
+        "Import":  "..\\pages\\datagrid\\datagrid.component"
+    },
+    {
+        "Path":  "datatables",
+        "Category":  "pages",
+        "Component":  "DatatablesComponent",
+        "Import":  "..\\pages\\datatables\\datatables.component"
+    },
+    {
+        "Path":  "dropdowns",
+        "Category":  "pages",
+        "Component":  "DropdownsComponent",
+        "Import":  "..\\pages\\dropdowns\\dropdowns.component"
+    },
+    {
+        "Path":  "dropzone",
+        "Category":  "pages",
+        "Component":  "DropzoneComponent",
+        "Import":  "..\\pages\\dropzone\\dropzone.component"
+    },
+    {
+        "Path":  "email-inbox",
+        "Category":  "pages",
+        "Component":  "EmailInboxComponent",
+        "Import":  "..\\pages\\email-inbox\\email-inbox.component"
+    },
+    {
+        "Path":  "emails",
+        "Category":  "pages",
+        "Component":  "EmailsComponent",
+        "Import":  "..\\pages\\emails\\emails.component"
+    },
+    {
+        "Path":  "empty",
+        "Category":  "pages",
+        "Component":  "EmptyComponent",
+        "Import":  "..\\pages\\empty\\empty.component"
+    },
+    {
+        "Path":  "error-404",
+        "Category":  "pages",
+        "Component":  "Error404Component",
+        "Import":  "..\\pages\\error-404\\error-404.component"
+    },
+    {
+        "Path":  "error-500",
+        "Category":  "pages",
+        "Component":  "Error500Component",
+        "Import":  "..\\pages\\error-500\\error-500.component"
+    },
+    {
+        "Path":  "error-maintenance",
+        "Category":  "pages",
+        "Component":  "ErrorMaintenanceComponent",
+        "Import":  "..\\pages\\error-maintenance\\error-maintenance.component"
+    },
+    {
+        "Path":  "faq",
+        "Category":  "pages",
+        "Component":  "FaqComponent",
+        "Import":  "..\\pages\\faq\\faq.component"
+    },
+    {
+        "Path":  "flags",
+        "Category":  "pages",
+        "Component":  "FlagsComponent",
+        "Import":  "..\\pages\\flags\\flags.component"
+    },
+    {
+        "Path":  "form-elements",
+        "Category":  "pages",
+        "Component":  "FormElementsComponent",
+        "Import":  "..\\pages\\form-elements\\form-elements.component"
+    },
+    {
+        "Path":  "form-layout",
+        "Category":  "pages",
+        "Component":  "FormLayoutComponent",
+        "Import":  "..\\pages\\form-layout\\form-layout.component"
+    },
+    {
+        "Path":  "fullcalendar",
+        "Category":  "pages",
+        "Component":  "FullcalendarComponent",
+        "Import":  "..\\pages\\fullcalendar\\fullcalendar.component"
+    },
+    {
+        "Path":  "gallery",
+        "Category":  "pages",
+        "Component":  "GalleryComponent",
+        "Import":  "..\\pages\\gallery\\gallery.component"
+    },
+    {
+        "Path":  "icons",
+        "Category":  "pages",
+        "Component":  "IconsComponent",
+        "Import":  "..\\pages\\icons\\icons.component"
+    },
+    {
+        "Path":  "illustrations",
+        "Category":  "pages",
+        "Component":  "IllustrationsComponent",
+        "Import":  "..\\pages\\illustrations\\illustrations.component"
+    },
+    {
+        "Path":  "index",
+        "Category":  "pages",
+        "Component":  "IndexComponent",
+        "Import":  "..\\pages\\index\\index.component"
+    },
+    {
+        "Path":  "inline-player",
+        "Category":  "pages",
+        "Component":  "InlinePlayerComponent",
+        "Import":  "..\\pages\\inline-player\\inline-player.component"
+    },
+    {
+        "Path":  "invoice",
+        "Category":  "pages",
+        "Component":  "InvoiceComponent",
+        "Import":  "..\\pages\\invoice\\invoice.component"
+    },
+    {
+        "Path":  "job-listing",
+        "Category":  "pages",
+        "Component":  "JobListingComponent",
+        "Import":  "..\\pages\\job-listing\\job-listing.component"
+    },
+    {
+        "Path":  "license",
+        "Category":  "pages",
+        "Component":  "LicenseComponent",
+        "Import":  "..\\pages\\license\\license.component"
+    },
+    {
+        "Path":  "lightbox",
+        "Category":  "pages",
+        "Component":  "LightboxComponent",
+        "Import":  "..\\pages\\lightbox\\lightbox.component"
+    },
+    {
+        "Path":  "lists",
+        "Category":  "pages",
+        "Component":  "ListsComponent",
+        "Import":  "..\\pages\\lists\\lists.component"
+    },
+    {
+        "Path":  "logs",
+        "Category":  "pages",
+        "Component":  "LogsComponent",
+        "Import":  "..\\pages\\logs\\logs.component"
+    },
+    {
+        "Path":  "map-fullsize",
+        "Category":  "pages",
+        "Component":  "MapFullsizeComponent",
+        "Import":  "..\\pages\\map-fullsize\\map-fullsize.component"
+    },
+    {
+        "Path":  "maps",
+        "Category":  "pages",
+        "Component":  "MapsComponent",
+        "Import":  "..\\pages\\maps\\maps.component"
+    },
+    {
+        "Path":  "maps-vector",
+        "Category":  "pages",
+        "Component":  "MapsVectorComponent",
+        "Import":  "..\\pages\\maps-vector\\maps-vector.component"
+    },
+    {
+        "Path":  "markdown",
+        "Category":  "pages",
+        "Component":  "MarkdownComponent",
+        "Import":  "..\\pages\\markdown\\markdown.component"
+    },
+    {
+        "Path":  "modals",
+        "Category":  "pages",
+        "Component":  "ModalsComponent",
+        "Import":  "..\\pages\\modals\\modals.component"
+    },
+    {
+        "Path":  "music",
+        "Category":  "pages",
+        "Component":  "MusicComponent",
+        "Import":  "..\\pages\\music\\music.component"
+    },
+    {
+        "Path":  "navigation",
+        "Category":  "pages",
+        "Component":  "NavigationComponent",
+        "Import":  "..\\pages\\navigation\\navigation.component"
+    },
+    {
+        "Path":  "offcanvas",
+        "Category":  "pages",
+        "Component":  "OffcanvasComponent",
+        "Import":  "..\\pages\\offcanvas\\offcanvas.component"
+    },
+    {
+        "Path":  "onboarding",
+        "Category":  "pages",
+        "Component":  "OnboardingComponent",
+        "Import":  "..\\pages\\onboarding\\onboarding.component"
+    },
+    {
+        "Path":  "page-loader",
+        "Category":  "pages",
+        "Component":  "PageLoaderComponent",
+        "Import":  "..\\pages\\page-loader\\page-loader.component"
+    },
+    {
+        "Path":  "pagination",
+        "Category":  "pages",
+        "Component":  "PaginationComponent",
+        "Import":  "..\\pages\\pagination\\pagination.component"
+    },
+    {
+        "Path":  "patterns",
+        "Category":  "pages",
+        "Component":  "PatternsComponent",
+        "Import":  "..\\pages\\patterns\\patterns.component"
+    },
+    {
+        "Path":  "pay",
+        "Category":  "pages",
+        "Component":  "PayComponent",
+        "Import":  "..\\pages\\pay\\pay.component"
+    },
+    {
+        "Path":  "payment-providers",
+        "Category":  "pages",
+        "Component":  "PaymentProvidersComponent",
+        "Import":  "..\\pages\\payment-providers\\payment-providers.component"
+    },
+    {
+        "Path":  "photogrid",
+        "Category":  "pages",
+        "Component":  "PhotogridComponent",
+        "Import":  "..\\pages\\photogrid\\photogrid.component"
+    },
+    {
+        "Path":  "placeholder",
+        "Category":  "pages",
+        "Component":  "PlaceholderComponent",
+        "Import":  "..\\pages\\placeholder\\placeholder.component"
+    },
+    {
+        "Path":  "pricing",
+        "Category":  "pages",
+        "Component":  "PricingComponent",
+        "Import":  "..\\pages\\pricing\\pricing.component"
+    },
+    {
+        "Path":  "pricing-table",
+        "Category":  "pages",
+        "Component":  "PricingTableComponent",
+        "Import":  "..\\pages\\pricing-table\\pricing-table.component"
+    },
+    {
+        "Path":  "profile",
+        "Category":  "pages",
+        "Component":  "ProfileComponent",
+        "Import":  "..\\pages\\profile\\profile.component"
+    },
+    {
+        "Path":  "progress",
+        "Category":  "pages",
+        "Component":  "ProgressComponent",
+        "Import":  "..\\pages\\progress\\progress.component"
+    },
+    {
+        "Path":  "prose",
+        "Category":  "pages",
+        "Component":  "ProseComponent",
+        "Import":  "..\\pages\\prose\\prose.component"
+    },
+    {
+        "Path":  "scroll-spy",
+        "Category":  "pages",
+        "Component":  "ScrollSpyComponent",
+        "Import":  "..\\pages\\scroll-spy\\scroll-spy.component"
+    },
+    {
+        "Path":  "search-results",
+        "Category":  "pages",
+        "Component":  "SearchResultsComponent",
+        "Import":  "..\\pages\\search-results\\search-results.component"
+    },
+    {
+        "Path":  "segmented-control",
+        "Category":  "pages",
+        "Component":  "SegmentedControlComponent",
+        "Import":  "..\\pages\\segmented-control\\segmented-control.component"
+    },
+    {
+        "Path":  "settings",
+        "Category":  "pages",
+        "Component":  "SettingsComponent",
+        "Import":  "..\\pages\\settings\\settings.component"
+    },
+    {
+        "Path":  "settings-plan",
+        "Category":  "pages",
+        "Component":  "SettingsPlanComponent",
+        "Import":  "..\\pages\\settings-plan\\settings-plan.component"
+    },
+    {
+        "Path":  "signatures",
+        "Category":  "pages",
+        "Component":  "SignaturesComponent",
+        "Import":  "..\\pages\\signatures\\signatures.component"
+    },
+    {
+        "Path":  "social-icons",
+        "Category":  "pages",
+        "Component":  "SocialIconsComponent",
+        "Import":  "..\\pages\\social-icons\\social-icons.component"
+    },
+    {
+        "Path":  "sortable",
+        "Category":  "pages",
+        "Component":  "SortableComponent",
+        "Import":  "..\\pages\\sortable\\sortable.component"
+    },
+    {
+        "Path":  "stars-rating",
+        "Category":  "pages",
+        "Component":  "StarsRatingComponent",
+        "Import":  "..\\pages\\stars-rating\\stars-rating.component"
+    },
+    {
+        "Path":  "steps",
+        "Category":  "pages",
+        "Component":  "StepsComponent",
+        "Import":  "..\\pages\\steps\\steps.component"
+    },
+    {
+        "Path":  "tables",
+        "Category":  "pages",
+        "Component":  "TablesComponent",
+        "Import":  "..\\pages\\tables\\tables.component"
+    },
+    {
+        "Path":  "tabs",
+        "Category":  "pages",
+        "Component":  "TabsComponent",
+        "Import":  "..\\pages\\tabs\\tabs.component"
+    },
+    {
+        "Path":  "tags",
+        "Category":  "pages",
+        "Component":  "TagsComponent",
+        "Import":  "..\\pages\\tags\\tags.component"
+    },
+    {
+        "Path":  "tasks",
+        "Category":  "pages",
+        "Component":  "TasksComponent",
+        "Import":  "..\\pages\\tasks\\tasks.component"
+    },
+    {
+        "Path":  "tasks-list",
+        "Category":  "pages",
+        "Component":  "TasksListComponent",
+        "Import":  "..\\pages\\tasks-list\\tasks-list.component"
+    },
+    {
+        "Path":  "text-features",
+        "Category":  "pages",
+        "Component":  "TextFeaturesComponent",
+        "Import":  "..\\pages\\text-features\\text-features.component"
+    },
+    {
+        "Path":  "toasts",
+        "Category":  "pages",
+        "Component":  "ToastsComponent",
+        "Import":  "..\\pages\\toasts\\toasts.component"
+    },
+    {
+        "Path":  "tour",
+        "Category":  "pages",
+        "Component":  "TourComponent",
+        "Import":  "..\\pages\\tour\\tour.component"
+    },
+    {
+        "Path":  "trial-ended",
+        "Category":  "pages",
+        "Component":  "TrialEndedComponent",
+        "Import":  "..\\pages\\trial-ended\\trial-ended.component"
+    },
+    {
+        "Path":  "turbo-loader",
+        "Category":  "pages",
+        "Component":  "TurboLoaderComponent",
+        "Import":  "..\\pages\\turbo-loader\\turbo-loader.component"
+    },
+    {
+        "Path":  "typography",
+        "Category":  "pages",
+        "Component":  "TypographyComponent",
+        "Import":  "..\\pages\\typography\\typography.component"
+    },
+    {
+        "Path":  "uptime",
+        "Category":  "pages",
+        "Component":  "UptimeComponent",
+        "Import":  "..\\pages\\uptime\\uptime.component"
+    },
+    {
+        "Path":  "users",
+        "Category":  "pages",
+        "Component":  "UsersComponent",
+        "Import":  "..\\pages\\users\\users.component"
+    },
+    {
+        "Path":  "widgets",
+        "Category":  "pages",
+        "Component":  "WidgetsComponent",
+        "Import":  "..\\pages\\widgets\\widgets.component"
+    },
+    {
+        "Path":  "wizard",
+        "Category":  "pages",
+        "Component":  "WizardComponent",
+        "Import":  "..\\pages\\wizard\\wizard.component"
+    },
+    {
+        "Path":  "wysiwyg",
+        "Category":  "pages",
+        "Component":  "WysiwygComponent",
+        "Import":  "..\\pages\\wysiwyg\\wysiwyg.component"
+    },
+    {
+        "Path":  "marketing/about",
+        "Category":  "marketing",
+        "Component":  "AboutComponent",
+        "Import":  "..\\marketing\\about\\about.component"
+    },
+    {
+        "Path":  "marketing/hero",
+        "Category":  "marketing",
+        "Component":  "HeroComponent",
+        "Import":  "..\\marketing\\hero\\hero.component"
+    },
+    {
+        "Path":  "marketing/index",
+        "Category":  "marketing",
+        "Component":  "IndexComponent",
+        "Import":  "..\\marketing\\index\\index.component"
+    },
+    {
+        "Path":  "marketing/pricing",
+        "Category":  "marketing",
+        "Component":  "PricingComponent",
+        "Import":  "..\\marketing\\pricing\\pricing.component"
+    },
+    {
+        "Path":  "marketing/real-estate",
+        "Category":  "marketing",
+        "Component":  "RealEstateComponent",
+        "Import":  "..\\marketing\\real-estate\\real-estate.component"
+    },
+    {
+        "Path":  "marketing/testimonials",
+        "Category":  "marketing",
+        "Component":  "TestimonialsComponent",
+        "Import":  "..\\marketing\\testimonials\\testimonials.component"
+    },
+    {
+        "Path":  "marketing/text",
+        "Category":  "marketing",
+        "Component":  "TextComponent",
+        "Import":  "..\\marketing\\text\\text.component"
+    },
+    {
+        "Path":  "docs/index",
+        "Category":  "docs",
+        "Component":  "IndexComponent",
+        "Import":  "..\\docs\\index\\index.component"
+    },
+    {
+        "Path":  "layouts/base",
+        "Category":  "layouts",
+        "Component":  "BaseComponent",
+        "Import":  "..\\layouts\\base\\base.component"
+    },
+    {
+        "Path":  "layouts/card",
+        "Category":  "layouts",
+        "Component":  "CardComponent",
+        "Import":  "..\\layouts\\card\\card.component"
+    },
+    {
+        "Path":  "layouts/default",
+        "Category":  "layouts",
+        "Component":  "DefaultComponent",
+        "Import":  "..\\layouts\\default\\default.component"
+    },
+    {
+        "Path":  "layouts/error",
+        "Category":  "layouts",
+        "Component":  "ErrorComponent",
+        "Import":  "..\\layouts\\error\\error.component"
+    },
+    {
+        "Path":  "layouts/homepage",
+        "Category":  "layouts",
+        "Component":  "HomepageComponent",
+        "Import":  "..\\layouts\\homepage\\homepage.component"
+    },
+    {
+        "Path":  "layouts/layout-boxed",
+        "Category":  "layouts",
+        "Component":  "LayoutBoxedComponent",
+        "Import":  "..\\layouts\\layout-boxed\\layout-boxed.component"
+    },
+    {
+        "Path":  "layouts/layout-combo",
+        "Category":  "layouts",
+        "Component":  "LayoutComboComponent",
+        "Import":  "..\\layouts\\layout-combo\\layout-combo.component"
+    },
+    {
+        "Path":  "layouts/layout-condensed",
+        "Category":  "layouts",
+        "Component":  "LayoutCondensedComponent",
+        "Import":  "..\\layouts\\layout-condensed\\layout-condensed.component"
+    },
+    {
+        "Path":  "layouts/layout-fluid",
+        "Category":  "layouts",
+        "Component":  "LayoutFluidComponent",
+        "Import":  "..\\layouts\\layout-fluid\\layout-fluid.component"
+    },
+    {
+        "Path":  "layouts/layout-fluid-vertical",
+        "Category":  "layouts",
+        "Component":  "LayoutFluidVerticalComponent",
+        "Import":  "..\\layouts\\layout-fluid-vertical\\layout-fluid-vertical.component"
+    },
+    {
+        "Path":  "layouts/layout-horizontal",
+        "Category":  "layouts",
+        "Component":  "LayoutHorizontalComponent",
+        "Import":  "..\\layouts\\layout-horizontal\\layout-horizontal.component"
+    },
+    {
+        "Path":  "layouts/layout-navbar-dark",
+        "Category":  "layouts",
+        "Component":  "LayoutNavbarDarkComponent",
+        "Import":  "..\\layouts\\layout-navbar-dark\\layout-navbar-dark.component"
+    },
+    {
+        "Path":  "layouts/layout-navbar-overlap",
+        "Category":  "layouts",
+        "Component":  "LayoutNavbarOverlapComponent",
+        "Import":  "..\\layouts\\layout-navbar-overlap\\layout-navbar-overlap.component"
+    },
+    {
+        "Path":  "layouts/layout-navbar-sticky",
+        "Category":  "layouts",
+        "Component":  "LayoutNavbarStickyComponent",
+        "Import":  "..\\layouts\\layout-navbar-sticky\\layout-navbar-sticky.component"
+    },
+    {
+        "Path":  "layouts/layout-rtl",
+        "Category":  "layouts",
+        "Component":  "LayoutRtlComponent",
+        "Import":  "..\\layouts\\layout-rtl\\layout-rtl.component"
+    },
+    {
+        "Path":  "layouts/layout-vertical",
+        "Category":  "layouts",
+        "Component":  "LayoutVerticalComponent",
+        "Import":  "..\\layouts\\layout-vertical\\layout-vertical.component"
+    },
+    {
+        "Path":  "layouts/layout-vertical-right",
+        "Category":  "layouts",
+        "Component":  "LayoutVerticalRightComponent",
+        "Import":  "..\\layouts\\layout-vertical-right\\layout-vertical-right.component"
+    },
+    {
+        "Path":  "layouts/layout-vertical-transparent",
+        "Category":  "layouts",
+        "Component":  "LayoutVerticalTransparentComponent",
+        "Import":  "..\\layouts\\layout-vertical-transparent\\layout-vertical-transparent.component"
+    },
+    {
+        "Path":  "layouts/marketing",
+        "Category":  "layouts",
+        "Component":  "MarketingComponent",
+        "Import":  "..\\layouts\\marketing\\marketing.component"
+    },
+    {
+        "Path":  "layouts/pay",
+        "Category":  "layouts",
+        "Component":  "PayComponent",
+        "Import":  "..\\layouts\\pay\\pay.component"
+    },
+    {
+        "Path":  "layouts/prose",
+        "Category":  "layouts",
+        "Component":  "ProseComponent",
+        "Import":  "..\\layouts\\prose\\prose.component"
+    },
+    {
+        "Path":  "layouts/redirect",
+        "Category":  "layouts",
+        "Component":  "RedirectComponent",
+        "Import":  "..\\layouts\\redirect\\redirect.component"
+    },
+    {
+        "Path":  "layouts/settings",
+        "Category":  "layouts",
+        "Component":  "SettingsComponent",
+        "Import":  "..\\layouts\\settings\\settings.component"
+    },
+    {
+        "Path":  "layouts/single",
+        "Category":  "layouts",
+        "Component":  "SingleComponent",
+        "Import":  "..\\layouts\\single\\single.component"
+    },
+    {
+        "Path":  "auth/2-step-verification",
+        "Category":  "auth",
+        "Component":  "2StepVerificationComponent",
+        "Import":  "..\\auth\\2-step-verification\\2-step-verification.component"
+    },
+    {
+        "Path":  "auth/2-step-verification-code",
+        "Category":  "auth",
+        "Component":  "2StepVerificationCodeComponent",
+        "Import":  "..\\auth\\2-step-verification-code\\2-step-verification-code.component"
+    },
+    {
+        "Path":  "auth/auth-lock",
+        "Category":  "auth",
+        "Component":  "AuthLockComponent",
+        "Import":  "..\\auth\\auth-lock\\auth-lock.component"
+    },
+    {
+        "Path":  "auth/forgot-password",
+        "Category":  "auth",
+        "Component":  "ForgotPasswordComponent",
+        "Import":  "..\\auth\\forgot-password\\forgot-password.component"
+    },
+    {
+        "Path":  "auth/sign-in",
+        "Category":  "auth",
+        "Component":  "SignInComponent",
+        "Import":  "..\\auth\\sign-in\\sign-in.component"
+    },
+    {
+        "Path":  "auth/sign-in-cover",
+        "Category":  "auth",
+        "Component":  "SignInCoverComponent",
+        "Import":  "..\\auth\\sign-in-cover\\sign-in-cover.component"
+    },
+    {
+        "Path":  "auth/sign-in-illustration",
+        "Category":  "auth",
+        "Component":  "SignInIllustrationComponent",
+        "Import":  "..\\auth\\sign-in-illustration\\sign-in-illustration.component"
+    },
+    {
+        "Path":  "auth/sign-in-link",
+        "Category":  "auth",
+        "Component":  "SignInLinkComponent",
+        "Import":  "..\\auth\\sign-in-link\\sign-in-link.component"
+    },
+    {
+        "Path":  "auth/sign-up",
+        "Category":  "auth",
+        "Component":  "SignUpComponent",
+        "Import":  "..\\auth\\sign-up\\sign-up.component"
+    },
+    {
+        "Path":  "auth/terms-of-service",
+        "Category":  "auth",
+        "Component":  "TermsOfServiceComponent",
+        "Import":  "..\\auth\\terms-of-service\\terms-of-service.component"
+    }
+]

@@ -9,6 +9,11 @@ export const routes: Routes = [
   { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
 
   {
+    path: 'tabler',
+    loadChildren: () => import('./features/tabler/tabler.module').then((m) => m.TablerModule),
+  },
+
+  {
     path: '',
     component: AuthLayoutComponent,
     children: [
