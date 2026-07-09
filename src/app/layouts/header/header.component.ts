@@ -5,6 +5,7 @@ import { LayoutService } from '../../core/services/layout.service';
   selector: 'app-header',
   standalone: false,
   templateUrl: './header.component.html',
+  styleUrls: ['./header.component.scss'],
 })
 export class HeaderComponent {
   @Output() toggleSidebar = new EventEmitter<void>();

@@ -16,6 +16,7 @@ interface DashboardStats {
   standalone: true,
   imports: [CommonModule, TranslatePipe],
   templateUrl: './main-dashboard.component.html',
+  styleUrls: ['./main-dashboard.component.scss'],
 })
 export class MainDashboardComponent implements OnInit {
   private statsSubject = new BehaviorSubject<DashboardStats | null>(null);

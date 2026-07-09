@@ -7,5 +7,6 @@ import { TablerIconsModule } from 'angular-tabler-icons';
   standalone: true,
   imports: [CommonModule, TablerIconsModule],
   templateUrl: './chat.component.html',
+  styleUrls: ['./chat.component.scss'],
 })
 export class ChatComponent {}

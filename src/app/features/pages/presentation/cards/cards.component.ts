@@ -7,5 +7,6 @@ import { TablerIconsModule } from 'angular-tabler-icons';
   standalone: true,
   imports: [CommonModule, TablerIconsModule],
   templateUrl: './cards.component.html',
+  styleUrls: ['./cards.component.scss'],
 })
 export class CardsComponent {}

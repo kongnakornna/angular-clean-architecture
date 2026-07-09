@@ -8,6 +8,7 @@ import { TablerIconsModule } from 'angular-tabler-icons';
   standalone: true,
   imports: [RouterOutlet, ThemeBuilderComponent, TablerIconsModule],
   templateUrl: './auth-layout.component.html',
+  styleUrls: ['./auth-layout.component.scss'],
 })
 export class AuthLayoutComponent {
   @HostBinding('class.page') pageClass = true;

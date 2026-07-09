@@ -12,6 +12,7 @@ import { AppTranslatePipe } from '../../../../../shared/i18n/presentation/pipes/
   standalone: true,
   imports: [NgIf, FormsModule, RouterLink, TablerIconComponent, AppTranslatePipe],
   templateUrl: './reset-password.component.html',
+  styleUrls: ['./reset-password.component.scss'],
 })
 export class ResetPasswordComponent {
   private resetPasswordUseCase = inject(ResetPasswordUseCase);

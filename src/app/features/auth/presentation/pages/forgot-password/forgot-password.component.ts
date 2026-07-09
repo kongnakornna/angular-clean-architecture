@@ -12,6 +12,7 @@ import { ForgotPasswordUseCase } from '../../../domain/use-cases/forgot-password
   standalone: true,
   imports: [NgIf, FormsModule, RouterLink, TablerIconComponent, AppTranslatePipe],
   templateUrl: './forgot-password.component.html',
+  styleUrls: ['./forgot-password.component.scss'],
 })
 export class ForgotPasswordComponent {
   private forgotPasswordUseCase = inject(ForgotPasswordUseCase);

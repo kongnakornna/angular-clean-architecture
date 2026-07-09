@@ -7,5 +7,6 @@ import { TranslatePipe } from '../../../../../shared/pipes/translate.pipe';
   standalone: true,
   imports: [CommonModule, TranslatePipe],
   templateUrl: './email-templates.component.html',
+  styleUrls: ['./email-templates.component.scss'],
 })
 export class EmailTemplatesComponent {}

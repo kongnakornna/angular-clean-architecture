@@ -8,5 +8,6 @@ import { TranslatePipe } from '../../../../../shared/pipes/translate.pipe';
   standalone: true,
   imports: [CommonModule, RouterLink, TranslatePipe],
   templateUrl: './payment-list.component.html',
+  styleUrls: ['./payment-list.component.scss'],
 })
 export class PaymentListComponent {}

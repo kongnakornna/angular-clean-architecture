@@ -11,6 +11,7 @@ import { AppTranslatePipe } from '../../../../../shared/i18n/presentation/pipes/
   standalone: true,
   imports: [NgIf, FormsModule, RouterLink, AppTranslatePipe],
   templateUrl: './login.component.html',
+  styleUrls: ['./login.component.scss'],
 })
 export class LoginComponent {
   private loginUseCase = inject(LoginUseCase);

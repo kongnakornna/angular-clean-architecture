@@ -60,6 +60,7 @@ import { RouterLink } from '@angular/router';
   </div>
 </div>
   `,
+  styleUrls: ['./quotation-create.component.scss'],
 })
 export class QuotationCreateComponent {
   customerId = '';

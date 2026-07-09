@@ -7,5 +7,6 @@ import { TablerIconsModule } from 'angular-tabler-icons';
   standalone: true,
   imports: [CommonModule, TablerIconsModule],
   templateUrl: './form-elements.component.html',
+  styleUrls: ['./form-elements.component.scss'],
 })
 export class FormElementsComponent {}

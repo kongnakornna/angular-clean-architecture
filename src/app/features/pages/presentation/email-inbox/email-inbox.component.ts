@@ -7,5 +7,6 @@ import { TablerIconsModule } from 'angular-tabler-icons';
   standalone: true,
   imports: [CommonModule, TablerIconsModule],
   templateUrl: './email-inbox.component.html',
+  styleUrls: ['./email-inbox.component.scss'],
 })
 export class EmailInboxComponent {}

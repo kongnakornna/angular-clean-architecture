@@ -15,6 +15,7 @@ import { I18nService } from '../../../data/i18n.service';
     </div>
     <br>
   `,
+  styleUrls: ['./language-selector.component.scss'],
 })
 export class LanguageSelectorComponent {
   protected i18n = inject(I18nService);

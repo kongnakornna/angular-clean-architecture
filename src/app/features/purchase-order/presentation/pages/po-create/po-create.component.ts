@@ -61,6 +61,7 @@ import { TranslatePipe } from '../../../../../shared/pipes/translate.pipe';
   </div>
 </div>
   `,
+  styleUrls: ['./po-create.component.scss'],
 })
 export class POCreateComponent {
   supplierId = '';

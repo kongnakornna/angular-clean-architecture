@@ -71,6 +71,7 @@ import { TranslatePipe } from '../../../../../shared/pipes/translate.pipe';
   </div>
 </div>
   `,
+  styleUrls: ['./order-create.component.scss'],
 })
 export class OrderCreateComponent {
   customerName = '';

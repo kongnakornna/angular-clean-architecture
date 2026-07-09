@@ -4,6 +4,7 @@ import { Component, Input, Output, EventEmitter } from '@angular/core';
   selector: 'app-primary-button',
   standalone: false,
   templateUrl: './primary-button.component.html',
+  styleUrls: ['./primary-button.component.scss'],
 })
 export class PrimaryButtonComponent {
   @Input() icon?: string;

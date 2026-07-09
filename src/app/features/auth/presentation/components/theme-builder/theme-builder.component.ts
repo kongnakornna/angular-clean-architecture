@@ -7,6 +7,7 @@ import { LayoutService } from '../../../../../core/services/layout.service';
   standalone: true,
   imports: [NgFor],
   templateUrl: './theme-builder.component.html',
+  styleUrls: ['./theme-builder.component.scss'],
 })
 export class ThemeBuilderComponent {
   private layoutService = inject(LayoutService);

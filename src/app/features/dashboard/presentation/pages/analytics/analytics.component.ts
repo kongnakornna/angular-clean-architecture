@@ -7,6 +7,7 @@ import { TranslatePipe } from '../../../../../shared/pipes/translate.pipe';
   standalone: true,
   imports: [CommonModule, TranslatePipe],
   templateUrl: './analytics.component.html',
+  styleUrls: ['./analytics.component.scss'],
 })
 export class AnalyticsComponent {
   stats = [

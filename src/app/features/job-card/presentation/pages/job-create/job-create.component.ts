@@ -71,6 +71,7 @@ import { TranslatePipe } from '../../../../../shared/pipes/translate.pipe';
   </div>
 </div>
   `,
+  styleUrls: ['./job-create.component.scss'],
 })
 export class JobCreateComponent {
   customerId = '';
