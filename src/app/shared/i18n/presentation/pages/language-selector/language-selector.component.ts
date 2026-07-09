@@ -1,6 +1,5 @@
 import { Component, inject } from '@angular/core';
 import { NgFor } from '@angular/common';
-import { FormsModule } from '@angular/forms';
 import { I18nService } from '../../../data/i18n.service';
 import type { SupportedLanguage } from '../../../domain/entities/translation.entity';
 
@@ -13,13 +12,25 @@ interface LangEntry {
 @Component({
   selector: 'app-language-selector',
   standalone: true,
-  imports: [NgFor, FormsModule],
+  imports: [NgFor],
   template: `
-    <select class="form-select form-select-sm" [ngModel]="currentCode" (ngModelChange)="loadLanguage($event)">
-      <option *ngFor="let lang of languages" [value]="lang.code">
-        {{ lang.name }}
-      </option>
-    </select>
+    <div class="dropdown">
+      <button class="btn btn-sm btn-outline-secondary dropdown-toggle d-flex align-items-center gap-2"
+              type="button" data-bs-toggle="dropdown" aria-expanded="false">
+        <img [src]="'assets/flags/' + currentCode + '.svg'" height="18" alt="">
+        {{ currentName }}
+      </button>
+      <ul class="dropdown-menu dropdown-menu-end">
+        <li *ngFor="let lang of languages">
+          <a class="dropdown-item d-flex align-items-center gap-2"
+             (click)="loadLanguage(lang.code)"
+             data-bs-toggle="dropdown">
+            <img [src]="'assets/flags/' + lang.code + '.svg'" height="18" alt="">
+            {{ lang.name }}
+          </a>
+        </li>
+      </ul>
+    </div>
   `,
   styleUrls: ['./language-selector.component.scss'],
 })
