@@ -4,13 +4,12 @@ import { FormsModule } from '@angular/forms';
 import { Router, RouterLink, ActivatedRoute } from '@angular/router';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { ResetPasswordUseCase } from '../../../domain/use-cases/reset-password.use-case';
-import { TablerIconComponent } from 'angular-tabler-icons';
 import { AppTranslatePipe } from '../../../../../shared/i18n/presentation/pipes/translate.pipe';
 
 @Component({
   selector: 'app-reset-password',
   standalone: true,
-  imports: [NgIf, FormsModule, RouterLink, TablerIconComponent, AppTranslatePipe],
+  imports: [NgIf, FormsModule, RouterLink, AppTranslatePipe],
   templateUrl: './reset-password.component.html',
   styleUrls: ['./reset-password.component.scss'],
 })

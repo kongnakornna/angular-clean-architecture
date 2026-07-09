@@ -4,7 +4,7 @@ export interface Translation {
   language: string;
 }
 
-export type SupportedLanguage = 'th' | 'en';
+export type SupportedLanguage = 'th' | 'en' | 'zh' | 'ja' | 'ko' | 'vi' | 'ms' | 'my' | 'km' | 'lo';
 
 export interface LanguageOption {
   code: SupportedLanguage;

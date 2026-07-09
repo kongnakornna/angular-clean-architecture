@@ -1,31 +1,31 @@
 <div class="offcanvas offcanvas-start" tabindex="-1" id="themeBuilder">
   <div class="offcanvas-header">
-    <h2 class="offcanvas-title">Theme Builder</h2>
+    <h2 class="offcanvas-title">{{ 'layout.settings.title' | appTranslate }}</h2>
     <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
   </div>
   <div class="offcanvas-body d-flex flex-column">
     <div>
       <div class="mb-4">
-        <label class="form-label">Color mode</label>
-        <p class="form-hint">Choose the color mode for your app.</p>
+        <label class="form-label">{{ 'layout.settings.colorScheme' | appTranslate }}</label>
+        <p class="form-hint">{{ 'layout.settings.title' | appTranslate }}</p>
         <div class="form-selectgroup">
           <label class="form-selectgroup-item">
             <input type="radio" name="theme" value="light" class="form-selectgroup-input" [checked]="theme() === 'light'" (change)="update('theme', 'light')">
-            <span class="form-selectgroup-label">Light</span>
+            <span class="form-selectgroup-label">{{ 'common.statusCompleted' | appTranslate }}</span>
           </label>
           <label class="form-selectgroup-item">
             <input type="radio" name="theme" value="dark" class="form-selectgroup-input" [checked]="theme() === 'dark'" (change)="update('theme', 'dark')">
-            <span class="form-selectgroup-label">Dark</span>
+            <span class="form-selectgroup-label">{{ 'common.statusClosed' | appTranslate }}</span>
           </label>
         </div>
       </div>
 
       <div class="mb-4">
-        <label class="form-label">Color scheme</label>
-        <p class="form-hint">The perfect color mode for your app.</p>
+        <label class="form-label">{{ 'layout.settings.colorScheme' | appTranslate }}</label>
+        <p class="form-hint">{{ 'layout.settings.title' | appTranslate }}</p>
         <div class="row g-2">
           <div class="col-auto" *ngFor="let t of themes">
-            <label class="form-colorinput">
+            <label class="form-colorinput" [title]="t.labelKey | appTranslate">
               <input type="radio" name="theme-primary" [value]="t.key" class="form-colorinput-input" [checked]="themePrimary() === t.key" (change)="update('theme-primary', t.key)">
               <span class="form-colorinput-color" [class]="t.class"></span>
             </label>
@@ -34,19 +34,19 @@
       </div>
 
       <div class="mb-4">
-        <label class="form-label">Font family</label>
-        <p class="form-hint">Choose the font family that fits your app.</p>
+        <label class="form-label">{{ 'layout.settings.fontFamily' | appTranslate }}</label>
+        <p class="form-hint">{{ 'layout.settings.title' | appTranslate }}</p>
         <div class="form-selectgroup">
           <label class="form-selectgroup-item" *ngFor="let f of fonts">
-            <input type="radio" name="theme-font" [value]="f" class="form-selectgroup-input" [checked]="themeFont() === f" (change)="update('theme-font', f)">
-            <span class="form-selectgroup-label">{{ f }}</span>
+            <input type="radio" name="theme-font" [value]="f.key" class="form-selectgroup-input" [checked]="themeFont() === f.key" (change)="update('theme-font', f.key)">
+            <span class="form-selectgroup-label">{{ f.labelKey | appTranslate }}</span>
           </label>
         </div>
       </div>
 
       <div class="mb-4">
-        <label class="form-label">Theme base</label>
-        <p class="form-hint">Choose the gray shade for your app.</p>
+        <label class="form-label">{{ 'layout.settings.themeBase' | appTranslate }}</label>
+        <p class="form-hint">{{ 'layout.settings.title' | appTranslate }}</p>
         <div class="form-selectgroup">
           <label class="form-selectgroup-item" *ngFor="let b of bases">
             <input type="radio" name="theme-base" [value]="b" class="form-selectgroup-input" [checked]="themeBase() === b" (change)="update('theme-base', b)">
@@ -56,8 +56,8 @@
       </div>
 
       <div class="mb-4">
-        <label class="form-label">Corner Radius</label>
-        <p class="form-hint">Choose the border radius factor for your app.</p>
+        <label class="form-label">{{ 'layout.settings.borderRadius' | appTranslate }}</label>
+        <p class="form-hint">{{ 'layout.settings.title' | appTranslate }}</p>
         <div class="form-selectgroup">
           <label class="form-selectgroup-item" *ngFor="let r of radii">
             <input type="radio" name="theme-radius" [value]="r" class="form-selectgroup-input" [checked]="themeRadius() === r" (change)="update('theme-radius', r)">
@@ -72,14 +72,14 @@
         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-1">
           <path d="M19.95 11a8 8 0 1 0 -.5 4m.5 5v-5h-5" />
         </svg>
-        Reset changes
+        {{ 'layout.settings.reset' | appTranslate }}
       </button>
       <a href="javascript:void(0)" class="btn btn-primary w-100" data-bs-dismiss="offcanvas">
         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-1">
           <path d="M10.325 4.317c.426 -1.756 2.924 -1.756 3.35 0a1.724 1.724 0 0 0 2.573 1.066c1.543 -.94 3.31 .826 2.37 2.37a1.724 1.724 0 0 0 1.065 2.572c1.756 .426 1.756 2.924 0 3.35a1.724 1.724 0 0 0 -1.066 2.573c.94 1.543 -.826 3.31 -2.37 2.37a1.724 1.724 0 0 0 -2.572 1.065c-.426 1.756 -2.924 1.756 -3.35 0a1.724 1.724 0 0 0 -2.573 -1.066c-1.543 .94 -3.31 -.826 -2.37 -2.37a1.724 1.724 0 0 0 -1.065 -2.572c-1.756 -.426 -1.756 -2.924 0 -3.35a1.724 1.724 0 0 0 1.066 -2.573c-.94 -1.543 .826 -3.31 2.37 -2.37c1 .608 2.296 .07 2.572 -1.065z" />
           <path d="M9 12a3 3 0 1 0 6 0a3 3 0 0 0 -6 0" />
         </svg>
-        Save settings
+        {{ 'common.save' | appTranslate }}
       </a>
     </div>
   </div>

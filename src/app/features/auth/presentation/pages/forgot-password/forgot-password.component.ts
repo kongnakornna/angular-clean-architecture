@@ -3,14 +3,13 @@ import { NgIf } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { RouterLink } from '@angular/router';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
-import { TablerIconComponent } from 'angular-tabler-icons';
 import { AppTranslatePipe } from '../../../../../shared/i18n/presentation/pipes/translate.pipe';
 import { ForgotPasswordUseCase } from '../../../domain/use-cases/forgot-password.use-case';
 
 @Component({
   selector: 'app-forgot-password',
   standalone: true,
-  imports: [NgIf, FormsModule, RouterLink, TablerIconComponent, AppTranslatePipe],
+  imports: [NgIf, FormsModule, RouterLink, AppTranslatePipe],
   templateUrl: './forgot-password.component.html',
   styleUrls: ['./forgot-password.component.scss'],
 })

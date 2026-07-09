@@ -1,5 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { signal } from '@angular/core';
+import { TranslateService } from '@ngx-translate/core';
+import { of } from 'rxjs';
 import { ThemeBuilderComponent } from './theme-builder.component';
 import { LayoutService } from '../../../../../core/services/layout.service';
 
@@ -21,6 +23,15 @@ describe('ThemeBuilderComponent', () => {
             themeRadius: signal('1'),
             update: jasmine.createSpy('update'),
             reset: jasmine.createSpy('reset'),
+          },
+        },
+        {
+          provide: TranslateService,
+          useValue: {
+            currentLang: 'en',
+            instant: (k: string) => k,
+            use: () => of({}),
+            onLangChange: of({}),
           },
         },
       ],
