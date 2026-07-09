@@ -69,6 +69,7 @@ import { TranslatePipe } from '../../../../../shared/pipes/translate.pipe';
   </div>
 </div>
   `,
+  styleUrls: ['./document-detail.component.scss'],
 })
 export class DocumentDetailComponent {
   document = { name: 'รายงาน_Q1_2026.pdf', type: 'PDF', size: '2.4 MB', uploadedAt: '01/04/2026 14:30', uploadedBy: 'สมชาย ใจดี' };

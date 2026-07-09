@@ -1,0 +1,581 @@
+
+> @tabler/core@1.4.0 build C:\xampp\htdocs\tabler-dev\core
+> pnpm run clean && pnpm run build-assets && pnpm run copy && pnpm run generate-sri
+
+
+> @tabler/core@1.4.0 clean C:\xampp\htdocs\tabler-dev\core
+> shx rm -rf dist demo
+
+
+> @tabler/core@1.4.0 build-assets C:\xampp\htdocs\tabler-dev\core
+> concurrently "pnpm run css" "pnpm run js"
+
+[0] 
+[0] > @tabler/core@1.4.0 css C:\xampp\htdocs\tabler-dev\core
+[0] > pnpm run css-build && pnpm run css-prefix && pnpm run css-rtl && pnpm run css-minify && pnpm run css-banner
+[0] 
+[1] 
+[1] > @tabler/core@1.4.0 js C:\xampp\htdocs\tabler-dev\core
+[1] > pnpm run js-build && pnpm run js-build-min
+[1] 
+[0] 
+[0] > @tabler/core@1.4.0 css-build C:\xampp\htdocs\tabler-dev\core
+[0] > sass --no-source-map --load-path=node_modules --style expanded scss/:dist/css/
+[0] 
+[1] 
+[1] > @tabler/core@1.4.0 js-build C:\xampp\htdocs\tabler-dev\core
+[1] > concurrently "pnpm run js-build-standalone" "pnpm run js-build-theme"
+[1] 
+[0] DEPRECATION WARNING [import]: Sass @import rules are deprecated and will be removed in Dart Sass 3.0.0.
+[0] 
+[0] More info and automated migrator: https://sass-lang.com/d/import
+[0] 
+[0]   ╷
+[0] 1 │ @import 'ui/flags';
+[0]   │         ^^^^^^^^^^
+[0]   ╵
+[0]     scss\tabler-flags.scss 1:9  root stylesheet
+[0] 
+[0] DEPRECATION WARNING [import]: Sass @import rules are deprecated and will be removed in Dart Sass 3.0.0.
+[0] 
+[0] More info and automated migrator: https://sass-lang.com/d/import
+[0] 
+[0]   ╷
+[0] 1 │ @import 'mixins';
+[0]   │         ^^^^^^^^
+[0]   ╵
+[0]     scss\_config.scss 1:9       @use
+[0]     scss\ui\_flags.scss 2:1     @import
+[0]     scss\tabler-flags.scss 1:9  root stylesheet
+[0] 
+[0] DEPRECATION WARNING [import]: Sass @import rules are deprecated and will be removed in Dart Sass 3.0.0.
+[0] 
+[0] More info and automated migrator: https://sass-lang.com/d/import
+[0] 
+[0]   ╷
+[0] 2 │ @import 'variables';
+[0]   │         ^^^^^^^^^^^
+[0]   ╵
+[0]     scss\_config.scss 2:9       @use
+[0]     scss\ui\_flags.scss 2:1     @import
+[0]     scss\tabler-flags.scss 1:9  root stylesheet
+[0] 
+[0] DEPRECATION WARNING [import]: Sass @import rules are deprecated and will be removed in Dart Sass 3.0.0.
+[0] 
+[0] More info and automated migrator: https://sass-lang.com/d/import
+[0] 
+[0]   ╷
+[0] 3 │ @import 'variables-dark';
+[0]   │         ^^^^^^^^^^^^^^^^
+[0]   ╵
+[0]     scss\_config.scss 3:9       @use
+[0]     scss\ui\_flags.scss 2:1     @import
+[0]     scss\tabler-flags.scss 1:9  root stylesheet
+[0] 
+[0] DEPRECATION WARNING [import]: Sass @import rules are deprecated and will be removed in Dart Sass 3.0.0.
+[0] 
+[0] More info and automated migrator: https://sass-lang.com/d/import
+[0] 
+[0]   ╷
+[0] 4 │ @import 'maps';
+[0]   │         ^^^^^^
+[0]   ╵
+[0]     scss\_config.scss 4:9       @use
+[0]     scss\ui\_flags.scss 2:1     @import
+[0]     scss\tabler-flags.scss 1:9  root stylesheet
+[0] 
+[0] WARNING: 29 repetitive deprecation warnings omitted.
+[0] Run in verbose mode to see all warnings.
+[0] 
+[0] DEPRECATION WARNING [import]: Sass @import rules are deprecated and will be removed in Dart Sass 3.0.0.
+[0] 
+[0] More info and automated migrator: https://sass-lang.com/d/import
+[0] 
+[0]   ╷
+[0] 1 │ @import 'config';
+[0]   │         ^^^^^^^^
+[0]   ╵
+[0]     scss\tabler-marketing.scss 1:9  root stylesheet
+[0] 
+[0] DEPRECATION WARNING [import]: Sass @import rules are deprecated and will be removed in Dart Sass 3.0.0.
+[0] 
+[0] More info and automated migrator: https://sass-lang.com/d/import
+[0] 
+[0]   ╷
+[0] 2 │ @import 'variables';
+[0]   │         ^^^^^^^^^^^
+[0]   ╵
+[0]     scss\tabler-marketing.scss 2:9  root stylesheet
+[0] 
+[0] DEPRECATION WARNING [import]: Sass @import rules are deprecated and will be removed in Dart Sass 3.0.0.
+[0] 
+[0] More info and automated migrator: https://sass-lang.com/d/import
+[0] 
+[0]   ╷
+[0] 3 │ @import 'utilities-marketing';
+[0]   │         ^^^^^^^^^^^^^^^^^^^^^
+[0]   ╵
+[0]     scss\tabler-marketing.scss 3:9  root stylesheet
+[0] 
+[0] DEPRECATION WARNING [import]: Sass @import rules are deprecated and will be removed in Dart Sass 3.0.0.
+[0] 
+[0] More info and automated migrator: https://sass-lang.com/d/import
+[0] 
+[0]   ╷
+[0] 5 │ @import 'marketing/core';
+[0]   │         ^^^^^^^^^^^^^^^^
+[0]   ╵
+[0]     scss\tabler-marketing.scss 5:9  root stylesheet
+[0] 
+[0] DEPRECATION WARNING [import]: Sass @import rules are deprecated and will be removed in Dart Sass 3.0.0.
+[0] 
+[0] More info and automated migrator: https://sass-lang.com/d/import
+[0] 
+[0]   ╷
+[0] 6 │ @import 'marketing/hero';
+[0]   │         ^^^^^^^^^^^^^^^^
+[0]   ╵
+[0]     scss\tabler-marketing.scss 6:9  root stylesheet
+[0] 
+[0] WARNING: 39 repetitive deprecation warnings omitted.
+[0] Run in verbose mode to see all warnings.
+[0] 
+[0] DEPRECATION WARNING [import]: Sass @import rules are deprecated and will be removed in Dart Sass 3.0.0.
+[0] 
+[0] More info and automated migrator: https://sass-lang.com/d/import
+[0] 
+[0]   ╷
+[0] 1 │ @import 'mixins';
+[0]   │         ^^^^^^^^
+[0]   ╵
+[0]     scss\_config.scss 1:9          @use
+[0]     scss\ui\_payments.scss 2:1     @forward
+[0]     scss\tabler-payments.scss 1:1  root stylesheet
+[0] 
+[0] DEPRECATION WARNING [import]: Sass @import rules are deprecated and will be removed in Dart Sass 3.0.0.
+[0] 
+[0] More info and automated migrator: https://sass-lang.com/d/import
+[0] 
+[0]   ╷
+[0] 2 │ @import 'variables';
+[0]   │         ^^^^^^^^^^^
+[0]   ╵
+[0]     scss\_config.scss 2:9          @use
+[0]     scss\ui\_payments.scss 2:1     @forward
+[0]     scss\tabler-payments.scss 1:1  root stylesheet
+[0] 
+[0] DEPRECATION WARNING [import]: Sass @import rules are deprecated and will be removed in Dart Sass 3.0.0.
+[0] 
+[0] More info and automated migrator: https://sass-lang.com/d/import
+[0] 
+[0]   ╷
+[0] 3 │ @import 'variables-dark';
+[0]   │         ^^^^^^^^^^^^^^^^
+[0]   ╵
+[0]     scss\_config.scss 3:9          @use
+[0]     scss\ui\_payments.scss 2:1     @forward
+[0]     scss\tabler-payments.scss 1:1  root stylesheet
+[0] 
+[0] DEPRECATION WARNING [import]: Sass @import rules are deprecated and will be removed in Dart Sass 3.0.0.
+[0] 
+[0] More info and automated migrator: https://sass-lang.com/d/import
+[0] 
+[0]   ╷
+[0] 4 │ @import 'maps';
+[0]   │         ^^^^^^
+[0]   ╵
+[0]     scss\_config.scss 4:9          @use
+[0]     scss\ui\_payments.scss 2:1     @forward
+[0]     scss\tabler-payments.scss 1:1  root stylesheet
+[0] 
+[0] DEPRECATION WARNING [import]: Sass @import rules are deprecated and will be removed in Dart Sass 3.0.0.
+[0] 
+[0] More info and automated migrator: https://sass-lang.com/d/import
+[0] 
+[0]   ╷
+[0] 5 │ @import 'utilities';
+[0]   │         ^^^^^^^^^^^
+[0]   ╵
+[0]     scss\_config.scss 5:9          @use
+[0]     scss\ui\_payments.scss 2:1     @forward
+[0]     scss\tabler-payments.scss 1:1  root stylesheet
+[0] 
+[0] WARNING: 28 repetitive deprecation warnings omitted.
+[0] Run in verbose mode to see all warnings.
+[0] 
+[0] DEPRECATION WARNING [import]: Sass @import rules are deprecated and will be removed in Dart Sass 3.0.0.
+[0] 
+[0] More info and automated migrator: https://sass-lang.com/d/import
+[0] 
+[0]   ╷
+[0] 1 │ @import 'props';
+[0]   │         ^^^^^^^
+[0]   ╵
+[0]     scss\tabler-props.scss 1:9  root stylesheet
+[0] 
+[0] DEPRECATION WARNING [import]: Sass @import rules are deprecated and will be removed in Dart Sass 3.0.0.
+[0] 
+[0] More info and automated migrator: https://sass-lang.com/d/import
+[0] 
+[0]   ╷
+[0] 2 │ @import 'config';
+[0]   │         ^^^^^^^^
+[0]   ╵
+[0]     scss\_props.scss 2:9        @import
+[0]     scss\tabler-props.scss 1:9  root stylesheet
+[0] 
+[0] DEPRECATION WARNING [import]: Sass @import rules are deprecated and will be removed in Dart Sass 3.0.0.
+[0] 
+[0] More info and automated migrator: https://sass-lang.com/d/import
+[0] 
+[0]   ╷
+[0] 1 │ @import 'mixins';
+[0]   │         ^^^^^^^^
+[0]   ╵
+[0]     scss\_config.scss 1:9       @import
+[0]     scss\_props.scss 2:9        @import
+[0]     scss\tabler-props.scss 1:9  root stylesheet
+[0] 
+[0] DEPRECATION WARNING [import]: Sass @import rules are deprecated and will be removed in Dart Sass 3.0.0.
+[0] 
+[0] More info and automated migrator: https://sass-lang.com/d/import
+[0] 
+[0]   ╷
+[0] 2 │ @import 'variables';
+[0]   │         ^^^^^^^^^^^
+[0]   ╵
+[0]     scss\_config.scss 2:9       @import
+[0]     scss\_props.scss 2:9        @import
+[0]     scss\tabler-props.scss 1:9  root stylesheet
+[0] 
+[0] DEPRECATION WARNING [import]: Sass @import rules are deprecated and will be removed in Dart Sass 3.0.0.
+[0] 
+[0] More info and automated migrator: https://sass-lang.com/d/import
+[0] 
+[0]   ╷
+[0] 3 │ @import 'variables-dark';
+[0]   │         ^^^^^^^^^^^^^^^^
+[0]   ╵
+[0]     scss\_config.scss 3:9       @import
+[0]     scss\_props.scss 2:9        @import
+[0]     scss\tabler-props.scss 1:9  root stylesheet
+[0] 
+[0] WARNING: 30 repetitive deprecation warnings omitted.
+[0] Run in verbose mode to see all warnings.
+[0] 
+[0] DEPRECATION WARNING [import]: Sass @import rules are deprecated and will be removed in Dart Sass 3.0.0.
+[0] 
+[0] More info and automated migrator: https://sass-lang.com/d/import
+[0] 
+[0]   ╷
+[0] 1 │ @import 'ui/social';
+[0]   │         ^^^^^^^^^^^
+[0]   ╵
+[0]     scss\tabler-socials.scss 1:9  root stylesheet
+[0] 
+[0] DEPRECATION WARNING [import]: Sass @import rules are deprecated and will be removed in Dart Sass 3.0.0.
+[0] 
+[0] More info and automated migrator: https://sass-lang.com/d/import
+[0] 
+[0]   ╷
+[0] 1 │ @import 'mixins';
+[0]   │         ^^^^^^^^
+[0]   ╵
+[0]     scss\_config.scss 1:9         @use
+[0]     scss\ui\_social.scss 2:1      @import
+[0]     scss\tabler-socials.scss 1:9  root stylesheet
+[0] 
+[0] DEPRECATION WARNING [import]: Sass @import rules are deprecated and will be removed in Dart Sass 3.0.0.
+[0] 
+[0] More info and automated migrator: https://sass-lang.com/d/import
+[0] 
+[0]   ╷
+[0] 2 │ @import 'variables';
+[0]   │         ^^^^^^^^^^^
+[0]   ╵
+[0]     scss\_config.scss 2:9         @use
+[0]     scss\ui\_social.scss 2:1      @import
+[0]     scss\tabler-socials.scss 1:9  root stylesheet
+[0] 
+[0] DEPRECATION WARNING [import]: Sass @import rules are deprecated and will be removed in Dart Sass 3.0.0.
+[0] 
+[0] More info and automated migrator: https://sass-lang.com/d/import
+[0] 
+[0]   ╷
+[0] 3 │ @import 'variables-dark';
+[0]   │         ^^^^^^^^^^^^^^^^
+[0]   ╵
+[0]     scss\_config.scss 3:9         @use
+[0]     scss\ui\_social.scss 2:1      @import
+[0]     scss\tabler-socials.scss 1:9  root stylesheet
+[0] 
+[0] DEPRECATION WARNING [import]: Sass @import rules are deprecated and will be removed in Dart Sass 3.0.0.
+[0] 
+[0] More info and automated migrator: https://sass-lang.com/d/import
+[0] 
+[0]   ╷
+[0] 4 │ @import 'maps';
+[0]   │         ^^^^^^
+[0]   ╵
+[0]     scss\_config.scss 4:9         @use
+[0]     scss\ui\_social.scss 2:1      @import
+[0]     scss\tabler-socials.scss 1:9  root stylesheet
+[0] 
+[0] WARNING: 29 repetitive deprecation warnings omitted.
+[0] Run in verbose mode to see all warnings.
+[0] 
+[0] DEPRECATION WARNING [import]: Sass @import rules are deprecated and will be removed in Dart Sass 3.0.0.
+[0] 
+[0] More info and automated migrator: https://sass-lang.com/d/import
+[0] 
+[0]   ╷
+[0] 1 │ @import 'config';
+[0]   │         ^^^^^^^^
+[0]   ╵
+[0]     scss\tabler-themes.scss 1:9  root stylesheet
+[0] 
+[0] DEPRECATION WARNING [import]: Sass @import rules are deprecated and will be removed in Dart Sass 3.0.0.
+[0] 
+[0] More info and automated migrator: https://sass-lang.com/d/import
+[0] 
+[0]   ╷
+[0] 1 │ @import 'mixins';
+[0]   │         ^^^^^^^^
+[0]   ╵
+[0]     scss\_config.scss 1:9        @import
+[0]     scss\tabler-themes.scss 1:9  root stylesheet
+[0] 
+[0] DEPRECATION WARNING [import]: Sass @import rules are deprecated and will be removed in Dart Sass 3.0.0.
+[0] 
+[0] More info and automated migrator: https://sass-lang.com/d/import
+[0] 
+[0]   ╷
+[0] 2 │ @import 'variables';
+[0]   │         ^^^^^^^^^^^
+[0]   ╵
+[0]     scss\_config.scss 2:9        @import
+[0]     scss\tabler-themes.scss 1:9  root stylesheet
+[0] 
+[0] DEPRECATION WARNING [import]: Sass @import rules are deprecated and will be removed in Dart Sass 3.0.0.
+[0] 
+[0] More info and automated migrator: https://sass-lang.com/d/import
+[0] 
+[0]   ╷
+[0] 3 │ @import 'variables-dark';
+[0]   │         ^^^^^^^^^^^^^^^^
+[0]   ╵
+[0]     scss\_config.scss 3:9        @import
+[0]     scss\tabler-themes.scss 1:9  root stylesheet
+[0] 
+[0] DEPRECATION WARNING [import]: Sass @import rules are deprecated and will be removed in Dart Sass 3.0.0.
+[0] 
+[0] More info and automated migrator: https://sass-lang.com/d/import
+[0] 
+[0]   ╷
+[0] 4 │ @import 'maps';
+[0]   │         ^^^^^^
+[0]   ╵
+[0]     scss\_config.scss 4:9        @import
+[0]     scss\tabler-themes.scss 1:9  root stylesheet
+[0] 
+[0] WARNING: 29 repetitive deprecation warnings omitted.
+[0] Run in verbose mode to see all warnings.
+[0] 
+[0] DEPRECATION WARNING [import]: Sass @import rules are deprecated and will be removed in Dart Sass 3.0.0.
+[0] 
+[0] More info and automated migrator: https://sass-lang.com/d/import
+[0] 
+[0]   ╷
+[0] 1 │ @import 'config';
+[0]   │         ^^^^^^^^
+[0]   ╵
+[0]     scss\tabler-vendors.scss 1:9  root stylesheet
+[0] 
+[0] DEPRECATION WARNING [import]: Sass @import rules are deprecated and will be removed in Dart Sass 3.0.0.
+[0] 
+[0] More info and automated migrator: https://sass-lang.com/d/import
+[0] 
+[0]   ╷
+[0] 3 │ @import 'vendor/nouislider';
+[0]   │         ^^^^^^^^^^^^^^^^^^^
+[0]   ╵
+[0]     scss\tabler-vendors.scss 3:9  root stylesheet
+[0] 
+[0] DEPRECATION WARNING [import]: Sass @import rules are deprecated and will be removed in Dart Sass 3.0.0.
+[0] 
+[0] More info and automated migrator: https://sass-lang.com/d/import
+[0] 
+[0]   ╷
+[0] 4 │ @import 'vendor/litepicker';
+[0]   │         ^^^^^^^^^^^^^^^^^^^
+[0]   ╵
+[0]     scss\tabler-vendors.scss 4:9  root stylesheet
+[0] 
+[0] DEPRECATION WARNING [import]: Sass @import rules are deprecated and will be removed in Dart Sass 3.0.0.
+[0] 
+[0] More info and automated migrator: https://sass-lang.com/d/import
+[0] 
+[0]   ╷
+[0] 5 │ @import 'vendor/tom-select';
+[0]   │         ^^^^^^^^^^^^^^^^^^^
+[0]   ╵
+[0]     scss\tabler-vendors.scss 5:9  root stylesheet
+[0] 
+[0] DEPRECATION WARNING [import]: Sass @import rules are deprecated and will be removed in Dart Sass 3.0.0.
+[0] 
+[0] More info and automated migrator: https://sass-lang.com/d/import
+[0] 
+[0]   ╷
+[0] 6 │ @import 'vendor/apexcharts';
+[0]   │         ^^^^^^^^^^^^^^^^^^^
+[0]   ╵
+[0]     scss\tabler-vendors.scss 6:9  root stylesheet
+[0] 
+[0] WARNING: 43 repetitive deprecation warnings omitted.
+[0] Run in verbose mode to see all warnings.
+[0] 
+[0] DEPRECATION WARNING [import]: Sass @import rules are deprecated and will be removed in Dart Sass 3.0.0.
+[0] 
+[0] More info and automated migrator: https://sass-lang.com/d/import
+[0] 
+[0]   ╷
+[0] 1 │ @import 'core';
+[0]   │         ^^^^^^
+[0]   ╵
+[0]     scss\tabler.scss 1:9  root stylesheet
+[0] 
+[0] DEPRECATION WARNING [import]: Sass @import rules are deprecated and will be removed in Dart Sass 3.0.0.
+[0] 
+[0] More info and automated migrator: https://sass-lang.com/d/import
+[0] 
+[0]   ╷
+[0] 1 │ @import 'config';
+[0]   │         ^^^^^^^^
+[0]   ╵
+[0]     scss\_core.scss 1:9   @import
+[0]     scss\tabler.scss 1:9  root stylesheet
+[0] 
+[0] DEPRECATION WARNING [import]: Sass @import rules are deprecated and will be removed in Dart Sass 3.0.0.
+[0] 
+[0] More info and automated migrator: https://sass-lang.com/d/import
+[0] 
+[0]   ╷
+[0] 4 │ @import 'bootstrap/root';
+[0]   │         ^^^^^^^^^^^^^^^^
+[0]   ╵
+[0]     scss\_core.scss 4:9   @import
+[0]     scss\tabler.scss 1:9  root stylesheet
+[0] 
+[0] DEPRECATION WARNING [import]: Sass @import rules are deprecated and will be removed in Dart Sass 3.0.0.
+[0] 
+[0] More info and automated migrator: https://sass-lang.com/d/import
+[0] 
+[0]   ╷
+[0] 5 │ @import 'bootstrap/reboot';
+[0]   │         ^^^^^^^^^^^^^^^^^^
+[0]   ╵
+[0]     scss\_core.scss 5:9   @import
+[0]     scss\tabler.scss 1:9  root stylesheet
+[0] 
+[0] DEPRECATION WARNING [import]: Sass @import rules are deprecated and will be removed in Dart Sass 3.0.0.
+[0] 
+[0] More info and automated migrator: https://sass-lang.com/d/import
+[0] 
+[0]   ╷
+[0] 6 │ @import 'bootstrap/type';
+[0]   │         ^^^^^^^^^^^^^^^^
+[0]   ╵
+[0]     scss\_core.scss 6:9   @import
+[0]     scss\tabler.scss 1:9  root stylesheet
+[0] 
+[0] WARNING: 141 repetitive deprecation warnings omitted.
+[0] Run in verbose mode to see all warnings.
+[0] 
+[1] [0] 
+[1] [0] > @tabler/core@1.4.0 js-build-standalone C:\xampp\htdocs\tabler-dev\core
+[1] [0] > cross-env BASE_NAME=tabler vite build --config .build/vite.config.mts
+[1] [0] 
+[1] [1] 
+[1] [1] > @tabler/core@1.4.0 js-build-theme C:\xampp\htdocs\tabler-dev\core
+[1] [1] > cross-env BASE_NAME=tabler-theme vite build --config .build/vite.config.mts
+[1] [1] 
+[1] [0] [36mvite v7.3.1 [32mbuilding client environment for production...[36m[39m
+[1] [1] [36mvite v7.3.1 [32mbuilding client environment for production...[36m[39m
+[1] [0] transforming...
+[1] [1] transforming...
+[1] [1] [32m✓[39m 1 modules transformed.
+[1] [1] rendering chunks...
+[1] [1] computing gzip size...
+[1] [1] [2mdist/js/[22m[36mtabler-theme.esm.js  [39m[1m[2m0.85 kB[22m[1m[22m[2m │ gzip: 0.40 kB[22m[2m │ map: 2.03 kB[22m
+[1] [1] [2mdist/js/[22m[36mtabler-theme.js  [39m[1m[2m1.03 kB[22m[1m[22m[2m │ gzip: 0.47 kB[22m[2m │ map: 2.04 kB[22m
+[1] [1] [32m✓ built in 89ms[39m
+[0] 
+[0] > @tabler/core@1.4.0 css-prefix C:\xampp\htdocs\tabler-dev\core
+[0] > postcss --config .build/postcss.config.mjs --replace "dist/css/*.css" "!dist/css/*.rtl*.css" "!dist/css/*.min.css"
+[0] 
+[1] [1] pnpm run js-build-theme exited with code 0
+[1] [0] [32m✓[39m 96 modules transformed.
+[1] [0] rendering chunks...
+[1] [0] computing gzip size...
+[1] [0] [2mdist/js/[22m[36mtabler.esm.js  [39m[1m[2m172.39 kB[22m[1m[22m[2m │ gzip: 36.50 kB[22m[2m │ map: 342.52 kB[22m
+[1] [0] [2mdist/js/[22m[36mtabler.js  [39m[1m[2m182.97 kB[22m[1m[22m[2m │ gzip: 37.20 kB[22m[2m │ map: 343.72 kB[22m
+[1] [0] [32m✓ built in 629ms[39m
+[1] [0] pnpm run js-build-standalone exited with code 0
+[1] 
+[1] > @tabler/core@1.4.0 js-build-min C:\xampp\htdocs\tabler-dev\core
+[1] > concurrently "pnpm run js-build-min-standalone" "pnpm run js-build-min-theme"
+[1] 
+[0] 
+[0] > @tabler/core@1.4.0 css-rtl C:\xampp\htdocs\tabler-dev\core
+[0] > cross-env NODE_ENV=RTL postcss --config .build/postcss.config.mjs --dir "dist/css" --ext ".rtl.css" "dist/css/*.css" "!dist/css/*.min.css" "!dist/css/*.rtl.css"
+[0] 
+[1] [0] 
+[1] [0] > @tabler/core@1.4.0 js-build-min-standalone C:\xampp\htdocs\tabler-dev\core
+[1] [0] > concurrently "terser dist/js/tabler.js --compress --mangle --comments '/@license|@preserve|^!/' --source-map \"content=dist/js/tabler.js.map,filename=dist/js/tabler.min.js.map,url=tabler.min.js.map\" -o dist/js/tabler.min.js" "terser dist/js/tabler.esm.js --module --compress --mangle --comments '/@license|@preserve|^!/' --source-map \"content=dist/js/tabler.esm.js.map,filename=dist/js/tabler.esm.min.js.map,url=tabler.esm.min.js.map\" -o dist/js/tabler.esm.min.js"
+[1] [0] 
+[1] [1] 
+[1] [1] > @tabler/core@1.4.0 js-build-min-theme C:\xampp\htdocs\tabler-dev\core
+[1] [1] > concurrently "terser dist/js/tabler-theme.js --compress --mangle --comments '/@license|@preserve|^!/' --source-map \"content=dist/js/tabler-theme.js.map,filename=dist/js/tabler-theme.min.js.map,url=tabler-theme.min.js.map\" -o dist/js/tabler-theme.min.js" "terser dist/js/tabler-theme.esm.js --module --compress --mangle --comments '/@license|@preserve|^!/' --source-map \"content=dist/js/tabler-theme.esm.js.map,filename=dist/js/tabler-theme.esm.min.js.map,url=tabler-theme.esm.min.js.map\" -o dist/js/tabler-theme.esm.min.js"
+[1] [1] 
+[1] [1] [0] 
+[1] [0] [0] 
+[1] [1] 'preserve' is not recognized as an internal or external command,
+[1] [1] [0] operable program or batch file.
+[1] [0] 'preserve' is not recognized as an internal or external command,
+[1] [0] [0] operable program or batch file.
+[1] [0] [1] 'preserve' is not recognized as an internal or external command,
+[1] [0] [1] operable program or batch file.
+[1] [1] [1] 'preserve' is not recognized as an internal or external command,
+[1] [1] [1] operable program or batch file.
+[1] [1] [1] terser dist/js/tabler-theme.esm.js --module --compress --mangle --comments '/@license|@preserve|^!/' --source-map "content=dist/js/tabler-theme.esm.js.map,filename=dist/js/tabler-theme.esm.min.js.map,url=tabler-theme.esm.min.js.map" -o dist/js/tabler-theme.esm.min.js exited with code 255
+[1] [1] [0] terser dist/js/tabler-theme.js --compress --mangle --comments '/@license|@preserve|^!/' --source-map "content=dist/js/tabler-theme.js.map,filename=dist/js/tabler-theme.min.js.map,url=tabler-theme.min.js.map" -o dist/js/tabler-theme.min.js exited with code 255
+[1] [1]  ELIFECYCLE  Command failed with exit code 1.
+[1] [1] pnpm run js-build-min-theme exited with code 1
+[1] [0] [1] terser dist/js/tabler.esm.js --module --compress --mangle --comments '/@license|@preserve|^!/' --source-map "content=dist/js/tabler.esm.js.map,filename=dist/js/tabler.esm.min.js.map,url=tabler.esm.min.js.map" -o dist/js/tabler.esm.min.js exited with code 255
+[1] [0] [0] terser dist/js/tabler.js --compress --mangle --comments '/@license|@preserve|^!/' --source-map "content=dist/js/tabler.js.map,filename=dist/js/tabler.min.js.map,url=tabler.min.js.map" -o dist/js/tabler.min.js exited with code 255
+[1] [0]  ELIFECYCLE  Command failed with exit code 1.
+[1] [0] pnpm run js-build-min-standalone exited with code 1
+[1]  ELIFECYCLE  Command failed with exit code 1.
+[1]  ELIFECYCLE  Command failed with exit code 1.
+[1] pnpm run js exited with code 1
+[0] 
+[0] > @tabler/core@1.4.0 css-minify C:\xampp\htdocs\tabler-dev\core
+[0] > concurrently "pnpm run css-minify-main" "pnpm run css-minify-rtl"
+[0] 
+[0] [0] 
+[0] [0] > @tabler/core@1.4.0 css-minify-main C:\xampp\htdocs\tabler-dev\core
+[0] [0] > cleancss -O1 --format breakWith=lf --with-rebase --source-map --source-map-inline-sources --output dist/css/ --batch --batch-suffix ".min" "dist/css/*.css" "!dist/css/*.min.css" "!dist/css/*rtl*.css"
+[0] [0] 
+[0] [1] 
+[0] [1] > @tabler/core@1.4.0 css-minify-rtl C:\xampp\htdocs\tabler-dev\core
+[0] [1] > cleancss -O1 --format breakWith=lf --with-rebase --source-map --source-map-inline-sources --output dist/css/ --batch --batch-suffix ".min" "dist/css/*rtl.css" "!dist/css/*.min.css"
+[0] [1] 
+[0] [0] pnpm run css-minify-main exited with code 0
+[0] [1] pnpm run css-minify-rtl exited with code 0
+[0] 
+[0] > @tabler/core@1.4.0 css-banner C:\xampp\htdocs\tabler-dev\core
+[0] > tsx .build/add-banner.ts
+[0] 
+[0] pnpm run css exited with code 0
+ ELIFECYCLE  Command failed with exit code 1.
+ ELIFECYCLE  Command failed with exit code 1.

@@ -56,6 +56,7 @@ import { RouterLink } from '@angular/router';
   </div>
 </div>
   `,
+  styleUrls: ['./product-create.component.scss'],
 })
 export class ProductCreateComponent {
   name = '';

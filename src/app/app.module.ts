@@ -18,6 +18,7 @@ import { SidebarComponent } from './layouts/sidebar/sidebar.component';
 import { FooterComponent } from './layouts/footer/footer.component';
 import { AppLayoutComponent } from './layouts/app-layout/app-layout.component';
 import { LayoutSettingsComponent } from './layouts/layout-settings/layout-settings.component';
+import { PageHeaderComponent } from './layouts/page-header/page-header.component';
 import { TranslatePipe } from './shared/pipes/translate.pipe';
 import { LanguageSelectorComponent } from './shared/i18n/presentation/pages/language-selector/language-selector.component';
 import { TablerIconsModule, provideTablerIcons } from 'angular-tabler-icons';
@@ -37,6 +38,7 @@ import { REPOSITORY_PROVIDERS } from './core/di/providers';
 import { AUTH_REPOSITORY } from './core/di/tokens';
 import { DemoAuthRepositoryImpl } from './features/auth/data/repositories/auth.repository.demo';
 import { environment } from '../environments/environment';
+import { APP_CONFIG, DEFAULT_APP_CONFIG } from './core/config/app.config';
 
 @NgModule({
   declarations: [
@@ -46,6 +48,7 @@ import { environment } from '../environments/environment';
     FooterComponent,
     AppLayoutComponent,
     LayoutSettingsComponent,
+    PageHeaderComponent,
   ],
   imports: [
     BrowserModule,
@@ -64,6 +67,7 @@ import { environment } from '../environments/environment';
   providers: [
     ...REPOSITORY_PROVIDERS,
     ...(environment.demo ? [{ provide: AUTH_REPOSITORY, useClass: DemoAuthRepositoryImpl }] : []),
+    { provide: APP_CONFIG, useValue: { ...DEFAULT_APP_CONFIG, apiBaseUrl: environment.apiUrl, production: environment.production } },
     provideTablerIcons({
       IconLayoutDashboard, IconClipboard, IconList, IconLayoutKanban, IconPlus,
       IconUsers, IconFileText, IconShoppingCart, IconPackage, IconCreditCard,

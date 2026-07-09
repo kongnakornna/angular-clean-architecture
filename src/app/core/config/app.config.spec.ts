@@ -10,9 +10,9 @@ describe('AppConfig', () => {
     expect(DEFAULT_APP_CONFIG).toEqual({
       appName: 'iCmon',
       version: '1.0.0',
-      apiBaseUrl: '/api',
+      apiBaseUrl: 'api/v1',
       production: false,
-      defaultLanguage: 'th',
+      defaultLanguage: 'en',
       pageSize: 10,
     });
   });

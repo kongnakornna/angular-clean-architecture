@@ -1,11 +1,24 @@
-<app-sidebar [isCollapsed]="isSidebarCollapsed"></app-sidebar>
+<a href="#content" class="visually-hidden skip-link">{{ 'layout.skipLink' | translate }}</a>
+
+<app-sidebar
+  [isCollapsed]="isSidebarCollapsed"
+  [end]="isSidebarEnd"
+  [dark]="isSidebarDark"
+  [background]="sidebarBackground">
+</app-sidebar>
+
+<app-header (toggleSidebar)="toggleSidebar()"></app-header>
+
 <div class="page-wrapper">
-  <app-header (toggleSidebar)="toggleSidebar()"></app-header>
-  <div class="page-body">
+  <ng-content select="[page-header]"></ng-content>
+
+  <main class="page-body" id="content">
     <div class="container-xl">
       <router-outlet></router-outlet>
     </div>
-  </div>
+  </main>
+
   <app-footer></app-footer>
 </div>
+
 <app-layout-settings></app-layout-settings>

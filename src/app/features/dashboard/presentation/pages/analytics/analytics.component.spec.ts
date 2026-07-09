@@ -1,4 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { TranslateService } from '@ngx-translate/core';
+import { of } from 'rxjs';
 import { AnalyticsComponent } from './analytics.component';
 
 describe('AnalyticsComponent', () => {
@@ -8,6 +10,9 @@ describe('AnalyticsComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [AnalyticsComponent],
+      providers: [
+        { provide: TranslateService, useValue: { currentLang: 'en', getCurrentLang: () => 'en', getBrowserLang: () => 'en', instant: (k: string) => k, use: () => of({}), onLangChange: of({}) } },
+      ],
     }).compileComponents();
 
     fixture = TestBed.createComponent(AnalyticsComponent);

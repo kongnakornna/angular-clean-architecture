@@ -62,6 +62,7 @@ import { TranslatePipe } from '../../../../../shared/pipes/translate.pipe';
   </div>
 </div>
   `,
+  styleUrls: ['./payment-create.component.scss'],
 })
 export class PaymentCreateComponent {
   customerId = '';

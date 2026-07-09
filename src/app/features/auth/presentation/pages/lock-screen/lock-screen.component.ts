@@ -10,6 +10,7 @@ import { TranslatePipe } from '../../../../../shared/pipes/translate.pipe';
   standalone: true,
   imports: [NgIf, FormsModule, RouterLink, TablerIconComponent, TranslatePipe],
   templateUrl: './lock-screen.component.html',
+  styleUrls: ['./lock-screen.component.scss'],
 })
 export class LockScreenComponent {
   password = '';

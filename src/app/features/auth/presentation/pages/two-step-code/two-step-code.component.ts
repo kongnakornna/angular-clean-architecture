@@ -9,6 +9,7 @@ import { TranslatePipe } from '../../../../../shared/pipes/translate.pipe';
   standalone: true,
   imports: [NgIf, NgFor, FormsModule, RouterLink, TranslatePipe],
   templateUrl: './two-step-code.component.html',
+  styleUrls: ['./two-step-code.component.scss'],
 })
 export class TwoStepCodeComponent implements AfterViewInit {
   @ViewChildren('codeInput') codeInputs!: QueryList<ElementRef<HTMLInputElement>>;

@@ -1,12 +1,13 @@
 import { Component } from '@angular/core';
 import { NgIf, NgFor } from '@angular/common';
 import { RouterLink } from '@angular/router';
+import { TablerIconComponent } from 'angular-tabler-icons';
 import { TranslatePipe } from '../../../../../shared/pipes/translate.pipe';
 
 @Component({
   selector: 'app-job-detail',
   standalone: true,
-  imports: [NgIf, NgFor, RouterLink, TranslatePipe],
+  imports: [NgIf, NgFor, RouterLink, TablerIconComponent, TranslatePipe],
   template: `
 <div class="page-header d-print-none">
   <div class="row align-items-center">
@@ -90,6 +91,7 @@ import { TranslatePipe } from '../../../../../shared/pipes/translate.pipe';
   </div>
 </div>
   `,
+  styleUrls: ['./job-detail.component.scss'],
 })
 export class JobDetailComponent {
   job = { jobNumber: 'JC-2026-001', customer: 'บริษัท อิคมอน จำกัด', device: 'PC-001', status: 'กำลังดำเนินการ', priority: 'เร่งด่วน', assignedTo: 'สมชาย ใจดี', problem: 'เครื่องไม่สามารถเปิดเครื่องได้ มีเสียงเตือน และจอไม่ติด' };

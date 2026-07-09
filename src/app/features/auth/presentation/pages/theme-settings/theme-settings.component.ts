@@ -117,6 +117,7 @@ import { LayoutService } from '../../../../../core/services/layout.service';
   </div>
 </div>
   `,
+  styleUrls: ['./theme-settings.component.scss'],
 })
 export class ThemeSettingsComponent {
   protected layout = inject(LayoutService);

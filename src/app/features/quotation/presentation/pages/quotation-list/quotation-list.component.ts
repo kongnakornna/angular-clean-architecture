@@ -8,5 +8,6 @@ import { TranslatePipe } from '../../../../../shared/pipes/translate.pipe';
   standalone: true,
   imports: [CommonModule, RouterLink, TranslatePipe],
   templateUrl: './quotation-list.component.html',
+  styleUrls: ['./quotation-list.component.scss'],
 })
 export class QuotationListComponent {}

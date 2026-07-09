@@ -23,6 +23,7 @@
         "@ngrx/component-store": "^21.1.1",
         "@ngx-translate/core": "^18.0.0",
         "@ngx-translate/http-loader": "^18.0.0",
+        "@tabler/core": "^1.4.0",
         "angular-tabler-icons": "^3.26.0",
         "bootstrap": "^5.3.8",
         "chart.js": "^4.5.1",

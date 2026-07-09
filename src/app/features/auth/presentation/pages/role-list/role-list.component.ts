@@ -68,6 +68,7 @@ interface Role {
   </div>
 </div>
   `,
+  styleUrls: ['./role-list.component.scss'],
 })
 export class RoleListComponent {
   roles: Role[] = [

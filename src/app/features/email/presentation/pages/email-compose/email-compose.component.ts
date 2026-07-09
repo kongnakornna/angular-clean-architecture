@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { NgIf } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { RouterLink } from '@angular/router';
 import { TablerIconComponent } from 'angular-tabler-icons';
@@ -8,7 +7,7 @@ import { TranslatePipe } from '../../../../../shared/pipes/translate.pipe';
 @Component({
   selector: 'app-email-compose',
   standalone: true,
-  imports: [NgIf, FormsModule, RouterLink, TablerIconComponent, TranslatePipe],
+  imports: [FormsModule, RouterLink, TablerIconComponent, TranslatePipe],
   template: `
 <div class="page-header d-print-none">
   <div class="row align-items-center">
@@ -45,6 +44,7 @@ import { TranslatePipe } from '../../../../../shared/pipes/translate.pipe';
   </div>
 </div>
   `,
+  styleUrls: ['./email-compose.component.scss'],
 })
 export class EmailComposeComponent {
   to = '';

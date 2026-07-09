@@ -11,6 +11,7 @@ import { AppTranslatePipe } from '../../../../../shared/i18n/presentation/pipes/
   standalone: true,
   imports: [NgIf, FormsModule, RouterLink, AppTranslatePipe],
   templateUrl: './login.component.html',
+  styleUrls: ['./login.component.scss'],
 })
 export class LoginComponent {
   private loginUseCase = inject(LoginUseCase);
@@ -39,7 +40,11 @@ export class LoginComponent {
         },
         error: (err) => {
           this.loading = false;
-          this.error = err.message || 'Invalid username or password';
+          if (err.status === 401) {
+            this.error = 'ชื่อผู้ใช้หรือรหัสผ่านไม่ถูกต้อง';
+          } else {
+            this.error = err.message || 'Invalid username or password';
+          }
         },
       });
   }

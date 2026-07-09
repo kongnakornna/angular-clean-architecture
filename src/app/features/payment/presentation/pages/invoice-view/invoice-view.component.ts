@@ -64,6 +64,7 @@ import { TranslatePipe } from '../../../../../shared/pipes/translate.pipe';
   </div>
 </div>
   `,
+  styleUrls: ['./invoice-view.component.scss'],
 })
 export class InvoiceViewComponent {
   invoice = {

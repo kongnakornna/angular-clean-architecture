@@ -1,11 +1,12 @@
 import { Component } from '@angular/core';
 import { NgIf, NgFor } from '@angular/common';
 import { RouterLink } from '@angular/router';
+import { TablerIconComponent } from 'angular-tabler-icons';
 
 @Component({
   selector: 'app-quotation-detail',
   standalone: true,
-  imports: [NgIf, NgFor, RouterLink],
+  imports: [NgIf, NgFor, RouterLink, TablerIconComponent],
   template: `
 <div class="page-header d-print-none">
   <div class="row align-items-center">
@@ -67,11 +68,12 @@ import { RouterLink } from '@angular/router';
 </div>
 <div class="card mt-3">
   <div class="card-body d-flex gap-2">
-    <button class="btn btn-success"><i-tabler name="check" class="icon"></i> อนุมัติ</button>
-    <button class="btn btn-outline-danger"><i-tabler name="x" class="icon"></i> ปฏิเสธ</button>
+    <button class="btn btn-success"><i-tabler name="check" class="icon"></i-tabler> อนุมัติ</button>
+    <button class="btn btn-outline-danger"><i-tabler name="x" class="icon"></i-tabler> ปฏิเสธ</button>
   </div>
 </div>
   `,
+  styleUrls: ['./quotation-detail.component.scss'],
 })
 export class QuotationDetailComponent {
   quotation = {

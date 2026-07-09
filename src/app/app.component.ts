@@ -6,6 +6,7 @@ import { PageSeoService } from './core/services/page-seo.service';
   selector: 'app-root',
   standalone: false,
   templateUrl: './app.component.html',
+  styleUrls: ['./app.component.scss'],
 })
 export class AppComponent implements OnInit {
   public constructor(

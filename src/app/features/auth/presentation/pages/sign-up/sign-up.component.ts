@@ -12,6 +12,7 @@ import { SignUpUseCase } from '../../../domain/use-cases/sign-up.use-case';
   standalone: true,
   imports: [NgIf, FormsModule, RouterLink, TablerIconComponent, AppTranslatePipe],
   templateUrl: './sign-up.component.html',
+  styleUrls: ['./sign-up.component.scss'],
 })
 export class SignUpComponent {
   private signUpUseCase = inject(SignUpUseCase);

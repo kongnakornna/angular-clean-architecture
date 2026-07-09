@@ -1,4 +1,5 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, inject } from '@angular/core';
+import { Router } from '@angular/router';
 
 export interface MenuItem {
   label: string;
@@ -13,9 +14,25 @@ export interface MenuItem {
   selector: 'app-sidebar',
   standalone: false,
   templateUrl: './sidebar.component.html',
+  styleUrls: ['./sidebar.component.scss'],
 })
 export class SidebarComponent {
   @Input() isCollapsed = false;
+  @Input() transparent = false;
+  @Input() end = false;
+  @Input() background = '';
+  @Input() dark = false;
+
+  private router = inject(Router);
+
+  isActiveRoute(route: string | undefined): boolean {
+    return route ? this.router.isActive(route, { paths: 'exact', queryParams: 'ignored', fragment: 'ignored', matrixParams: 'ignored' }) : false;
+  }
+
+  isChildActive(children: MenuItem[] | undefined): boolean {
+    if (!children) {return false;}
+    return children.some(c => this.isActiveRoute(c.route) || this.isChildActive(c.children));
+  }
 
   menuItems: MenuItem[] = [
     { label: 'nav.dashboard', icon: 'layout-dashboard', route: '/dashboard' },
@@ -52,6 +69,7 @@ export class SidebarComponent {
     { label: 'nav.iot', icon: 'device-desktop', route: '/iot/devices' },
     { label: 'nav.wos', icon: 'shopping-bag', route: '/wos/orders' },
     { label: 'nav.reports', icon: 'chart-bar', route: '/reports' },
+    
     {
       label: 'nav.system', icon: 'settings', route: '/users',
       children: [

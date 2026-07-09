@@ -47,6 +47,7 @@ import { TranslatePipe } from '../../../../../shared/pipes/translate.pipe';
   </div>
 </div>
   `,
+  styleUrls: ['./batch-create.component.scss'],
 })
 export class BatchCreateComponent {
   name = '';

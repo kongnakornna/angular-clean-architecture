@@ -52,6 +52,7 @@ import { TranslatePipe } from '../../../../../shared/pipes/translate.pipe';
   </div>
 </div>
   `,
+  styleUrls: ['./document-upload.component.scss'],
 })
 export class DocumentUploadComponent {
   selectedFile = '';

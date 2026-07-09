@@ -1,0 +1,19 @@
+<div class="page-header d-print-none"
+     [ngClass]="class"
+     [class.text-white]="overlap && dark">
+  <div class="container-xl">
+    <div class="row g-2 align-items-center">
+      <div class="col">
+        <div *ngIf="pretitle" class="page-pretitle">{{ pretitle | translate }}</div>
+        <h1 class="page-title">
+          <i-tabler *ngIf="icon" [name]="icon" class="icon me-2"></i-tabler>
+          {{ title | translate }}
+        </h1>
+        <div *ngIf="description" class="text-secondary mt-1">{{ description | translate }}</div>
+      </div>
+      <div class="col-auto ms-auto d-print-none">
+        <ng-content select="[actions]"></ng-content>
+      </div>
+    </div>
+  </div>
+</div>

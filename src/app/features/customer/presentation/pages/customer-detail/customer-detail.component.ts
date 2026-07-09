@@ -1,12 +1,13 @@
 import { Component } from '@angular/core';
 import { NgIf, NgFor } from '@angular/common';
 import { RouterLink } from '@angular/router';
+import { TablerIconComponent } from 'angular-tabler-icons';
 import { TranslatePipe } from '../../../../../shared/pipes/translate.pipe';
 
 @Component({
   selector: 'app-customer-detail',
   standalone: true,
-  imports: [NgIf, NgFor, RouterLink, TranslatePipe],
+  imports: [NgIf, NgFor, RouterLink, TablerIconComponent, TranslatePipe],
   template: `
 <div class="page-header d-print-none">
   <div class="row align-items-center">
@@ -85,6 +86,7 @@ import { TranslatePipe } from '../../../../../shared/pipes/translate.pipe';
   </div>
 </div>
   `,
+  styleUrls: ['./customer-detail.component.scss'],
 })
 export class CustomerDetailComponent {
   customer = { name: 'บริษัท อิคมอน จำกัด', email: 'info@icmon.co.th', phone: '02-123-4567', address: '89 ถ.พระราม 9 แขวงห้วยขวาง เขตห้วยขวาง กรุงเทพฯ 10310' };

@@ -30,16 +30,27 @@ export class LayoutService {
   private applySettings(): void {
     const s = this._state();
     const el = document.documentElement;
-    if (s['theme']) el.setAttribute('data-bs-theme', s['theme']);
-    else el.removeAttribute('data-bs-theme');
-    if (s['theme-base']) el.setAttribute('data-bs-theme-base', s['theme-base']);
-    else el.removeAttribute('data-bs-theme-base');
-    if (s['theme-font']) el.setAttribute('data-bs-theme-font', s['theme-font']);
-    else el.removeAttribute('data-bs-theme-font');
-    if (s['theme-primary']) el.setAttribute('data-bs-theme-primary', s['theme-primary']);
-    else el.removeAttribute('data-bs-theme-primary');
-    if (s['theme-radius']) el.setAttribute('data-bs-theme-radius', s['theme-radius']);
-    else el.removeAttribute('data-bs-theme-radius');
+    // theme (light/dark)
+    el.setAttribute('data-bs-theme', s['theme'] || 'light');
+
+    // theme-base
+    el.setAttribute('data-bs-theme-base', s['theme-base'] || 'gray');
+
+    // theme-font
+    el.setAttribute('data-bs-theme-font', s['theme-font'] || 'sans-serif');
+
+    // theme-primary — Tabler uses data-bs-color-scheme for primary color override
+    el.setAttribute('data-bs-color-scheme', s['theme-primary'] || 'blue');
+
+    // theme-radius
+    el.setAttribute('data-bs-theme-radius', s['theme-radius'] || '1');
+
+    // Add theme-base class for visibility
+    el.classList.remove('theme-slate', 'theme-gray', 'theme-zinc', 'theme-neutral', 'theme-stone');
+    el.classList.add('theme-' + (s['theme-base'] || 'gray'));
+
+    el.classList.remove('font-sans-serif', 'font-serif', 'font-monospace', 'font-comic');
+    el.classList.add('font-' + (s['theme-font'] || 'sans-serif'));
   }
 
   private loadSettings(): void {

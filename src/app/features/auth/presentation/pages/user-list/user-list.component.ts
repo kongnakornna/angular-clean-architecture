@@ -76,6 +76,7 @@ interface UserListItem {
   </div>
 </div>
   `,
+  styleUrls: ['./user-list.component.scss'],
 })
 export class UserListComponent {
   users: UserListItem[] = [

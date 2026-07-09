@@ -8,5 +8,6 @@ import { TranslatePipe } from '../../../../../shared/pipes/translate.pipe';
   standalone: true,
   imports: [CommonModule, RouterLink, TranslatePipe],
   templateUrl: './product-list.component.html',
+  styleUrls: ['./product-list.component.scss'],
 })
 export class ProductListComponent {}

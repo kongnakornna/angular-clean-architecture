@@ -4,6 +4,7 @@ import { Component, Input, Output, EventEmitter } from '@angular/core';
   selector: 'app-confirm-modal',
   standalone: false,
   templateUrl: './confirm-modal.component.html',
+  styleUrls: ['./confirm-modal.component.scss'],
 })
 export class ConfirmModalComponent {
   @Input() visible = false;
