@@ -73,6 +73,7 @@ import { TablerIconComponent } from 'angular-tabler-icons';
   </div>
 </div>
   `,
+  styleUrls: ['./quotation-detail.component.scss'],
 })
 export class QuotationDetailComponent {
   quotation = {

@@ -1,11 +1,14 @@
 <div class="page page-center">
   <div class="container container-tight py-4">
-    <div class="text-center mb-4 navbar-brand-autodark d-none-navbar-horizontal pe-0 pe-md-3">
-      <a href="/">
-        <img src="assets/img/logo/logo-dark.png" width="80" height="15" class="navbar-brand-image">
+    <div class="text-center mb-4 position-relative">
+      <div class="position-absolute top-0 end-0">
+        <app-language-selector></app-language-selector>
+      </div>
+      <a href="/" aria-label="Home">
+        <img *ngIf="layoutService.theme() === 'light'" src="assets/img/logo/logo-light.png" height="48" alt="Logo" />
+        <img *ngIf="layoutService.theme() === 'dark'" src="assets/img/logo/logo-dark.png" height="48" alt="Logo" />
       </a>
     </div>
-    <app-language-selector></app-language-selector>
     <router-outlet></router-outlet>
   </div>
 </div>

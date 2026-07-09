@@ -44,6 +44,7 @@ import { TranslatePipe } from '../../../../../shared/pipes/translate.pipe';
   </div>
 </div>
   `,
+  styleUrls: ['./email-compose.component.scss'],
 })
 export class EmailComposeComponent {
   to = '';

@@ -1,0 +1,117 @@
+<div class="page-body">
+  <div class="container-xl">
+    <div class="row g-3">
+      <div class="col-lg-6">
+        <div class="card">
+          <div class="card-header">
+            <h3 class="card-title">URL Check</h3>
+          </div>
+          <div class="card-body">
+            <div class="mb-3">
+              <label class="form-label">Endpoint</label>
+              <input type="text" class="form-control" value="https://api.example.com/health">
+            </div>
+            <div class="mb-3">
+              <label class="form-label">Headers</label>
+              <pre class="bg-light p-2 rounded"><code>Content-Type: application/json
+Authorization: Bearer ****
+Accept: application/json</code></pre>
+            </div>
+            <div class="mb-3">
+              <label class="form-label">Response</label>
+              <pre class="bg-light p-2 rounded"><code>{{ '{' }}
+  "status": "healthy",
+  "uptime": "99.98%",
+  "version": "3.2.1",
+  "timestamp": "2024-03-15T10:32:00Z"
+{{ '}' }}</code></pre>
+            </div>
+            <button type="button" class="btn btn-primary">
+              <i-tabler name="refresh" class="icon"></i-tabler>
+              Check Again
+            </button>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-6">
+        <div class="card">
+          <div class="card-header">
+            <h3 class="card-title">Application Logs</h3>
+          </div>
+          <div class="list-group list-group-flush overflow-auto" style="max-height: 500px;">
+            <div class="list-group-item d-flex align-items-start py-2">
+              <span class="badge bg-success me-2">INFO</span>
+              <div class="flex-fill">
+                <small class="d-block">User authentication successful for john.doe&#64;example.com</small>
+                <small class="text-muted">10:32:15</small>
+              </div>
+            </div>
+            <div class="list-group-item d-flex align-items-start py-2">
+              <span class="badge bg-danger me-2">ERROR</span>
+              <div class="flex-fill">
+                <small class="d-block">Database connection timeout after 30s on pool-primary</small>
+                <small class="text-muted">10:31:42</small>
+              </div>
+            </div>
+            <div class="list-group-item d-flex align-items-start py-2">
+              <span class="badge bg-warning me-2">WARN</span>
+              <div class="flex-fill">
+                <small class="d-block">CPU usage threshold exceeded (92%) on server-prod-01</small>
+                <small class="text-muted">10:30:58</small>
+              </div>
+            </div>
+            <div class="list-group-item d-flex align-items-start py-2">
+              <span class="badge bg-info me-2">DEBUG</span>
+              <div class="flex-fill">
+                <small class="d-block">Cache miss for key "user_profile:12345" — fetching from DB</small>
+                <small class="text-muted">10:29:30</small>
+              </div>
+            </div>
+            <div class="list-group-item d-flex align-items-start py-2">
+              <span class="badge bg-success me-2">INFO</span>
+              <div class="flex-fill">
+                <small class="d-block">Scheduled job "data-sync" completed in 3.2s</small>
+                <small class="text-muted">10:28:00</small>
+              </div>
+            </div>
+            <div class="list-group-item d-flex align-items-start py-2">
+              <span class="badge bg-danger me-2">ERROR</span>
+              <div class="flex-fill">
+                <small class="d-block">Unhandled exception in PaymentService.ProcessAsync(): NullReferenceException</small>
+                <small class="text-muted">10:25:12</small>
+              </div>
+            </div>
+            <div class="list-group-item d-flex align-items-start py-2">
+              <span class="badge bg-success me-2">INFO</span>
+              <div class="flex-fill">
+                <small class="d-block">API rate limit reset for client_id: api_client_42</small>
+                <small class="text-muted">10:20:00</small>
+              </div>
+            </div>
+            <div class="list-group-item d-flex align-items-start py-2">
+              <span class="badge bg-warning me-2">WARN</span>
+              <div class="flex-fill">
+                <small class="d-block">Deprecated endpoint /api/v1/users called — migrate to /api/v2/users</small>
+                <small class="text-muted">10:15:45</small>
+              </div>
+            </div>
+            <div class="list-group-item d-flex align-items-start py-2">
+              <span class="badge bg-success me-2">INFO</span>
+              <div class="flex-fill">
+                <small class="d-block">Payment processed successfully for invoice INV-2024-0042</small>
+                <small class="text-muted">10:10:33</small>
+              </div>
+            </div>
+            <div class="list-group-item d-flex align-items-start py-2">
+              <span class="badge bg-info me-2">DEBUG</span>
+              <div class="flex-fill">
+                <small class="d-block">WebSocket connection established: wss://notify.example.com</small>
+                <small class="text-muted">10:05:00</small>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

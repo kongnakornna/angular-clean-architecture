@@ -7,6 +7,7 @@ import { Toast, ToastService, ToastType } from '../../services/toast.service';
     selector: 'app-toast',
     standalone: false,
     templateUrl: './toast.component.html',
+  styleUrls: ['./toast.component.scss'],
     animations: [
         trigger(
             'inOutAnimation',

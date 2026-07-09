@@ -1,0 +1,127 @@
+<div class="page-body">
+  <div class="container-xl">
+    <div class="card">
+      <div class="card-header">
+        <h3 class="card-title">Modal Showcase</h3>
+      </div>
+      <div class="card-body">
+        <div class="row g-3">
+          <div class="col-auto">
+            <a href="#modal-small" class="btn btn-primary" data-bs-toggle="modal">Small Modal</a>
+          </div>
+          <div class="col-auto">
+            <a href="#modal-large" class="btn btn-primary" data-bs-toggle="modal">Large Modal</a>
+          </div>
+          <div class="col-auto">
+            <a href="#modal-form" class="btn btn-primary" data-bs-toggle="modal">Modal with Form</a>
+          </div>
+          <div class="col-auto">
+            <a href="#modal-scrollable" class="btn btn-primary" data-bs-toggle="modal">Scrollable Modal</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal fade" id="modal-small" tabindex="-1" role="modal">
+      <div class="modal-dialog modal-sm" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">Small Modal</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+          </div>
+          <div class="modal-body">
+            <p>This is a small modal. Perfect for quick confirmations or short messages.</p>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+            <button type="button" class="btn btn-primary">Confirm</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal fade" id="modal-large" tabindex="-1" role="modal">
+      <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">Large Modal</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+          </div>
+          <div class="modal-body">
+            <p>This is a large modal. Suitable for displaying more content like tables or forms.</p>
+            <div class="table-responsive">
+              <table class="table table-vcenter">
+                <thead>
+                  <tr><th>#</th><th>Name</th><th>Status</th></tr>
+                </thead>
+                <tbody>
+                  <tr><td>1</td><td>Item one</td><td><span class="badge bg-success">Active</span></td></tr>
+                  <tr><td>2</td><td>Item two</td><td><span class="badge bg-warning">Pending</span></td></tr>
+                  <tr><td>3</td><td>Item three</td><td><span class="badge bg-secondary">Inactive</span></td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal fade" id="modal-form" tabindex="-1" role="modal">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">Modal with Form</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+          </div>
+          <div class="modal-body">
+            <div class="mb-3">
+              <label class="form-label">Full Name</label>
+              <input type="text" class="form-control" placeholder="Enter your name">
+            </div>
+            <div class="mb-3">
+              <label class="form-label">Email</label>
+              <input type="email" class="form-control" placeholder="Enter your email">
+            </div>
+            <div class="mb-3">
+              <label class="form-label">Message</label>
+              <textarea class="form-control" rows="3" placeholder="Your message"></textarea>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+            <button type="button" class="btn btn-primary">Submit</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal fade" id="modal-scrollable" tabindex="-1" role="modal">
+      <div class="modal-dialog modal-dialog-scrollable" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">Scrollable Modal</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+          </div>
+          <div class="modal-body">
+            <p>1. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+            <p>2. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+            <p>3. Ut enim ad minim veniam, quis nostrud exercitation ullamco.</p>
+            <p>4. Laboris nisi ut aliquip ex ea commodo consequat.</p>
+            <p>5. Duis aute irure dolor in reprehenderit in voluptate velit.</p>
+            <p>6. Esse cillum dolore eu fugiat nulla pariatur.</p>
+            <p>7. Excepteur sint occaecat cupidatat non proident.</p>
+            <p>8. Sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+            <p>9. Sed perspiciatis unde omnis iste natus error sit voluptatem.</p>
+            <p>10. Accusantium doloremque laudantium totam rem aperiam.</p>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

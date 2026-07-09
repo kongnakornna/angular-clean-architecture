@@ -56,6 +56,7 @@ import { TranslatePipe } from '../../../../../shared/pipes/translate.pipe';
   </div>
 </div>
   `,
+  styleUrls: ['./payment-detail.component.scss'],
 })
 export class PaymentDetailComponent {
   payment = { reference: 'PAY-2026-001', customer: 'บริษัท อิคมอน จำกัด', amount: '฿15,000', date: '01/04/2026', channel: 'โอนเงิน', status: 'ชำระแล้ว', invoiceId: 1 };

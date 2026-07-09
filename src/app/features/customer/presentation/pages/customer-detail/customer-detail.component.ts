@@ -86,6 +86,7 @@ import { TranslatePipe } from '../../../../../shared/pipes/translate.pipe';
   </div>
 </div>
   `,
+  styleUrls: ['./customer-detail.component.scss'],
 })
 export class CustomerDetailComponent {
   customer = { name: 'บริษัท อิคมอน จำกัด', email: 'info@icmon.co.th', phone: '02-123-4567', address: '89 ถ.พระราม 9 แขวงห้วยขวาง เขตห้วยขวาง กรุงเทพฯ 10310' };

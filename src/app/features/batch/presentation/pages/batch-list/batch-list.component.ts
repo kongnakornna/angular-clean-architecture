@@ -7,5 +7,6 @@ import { TranslatePipe } from '../../../../../shared/pipes/translate.pipe';
   standalone: true,
   imports: [CommonModule, TranslatePipe],
   templateUrl: './batch-list.component.html',
+  styleUrls: ['./batch-list.component.scss'],
 })
 export class BatchListComponent {}

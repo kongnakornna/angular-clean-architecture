@@ -5,6 +5,7 @@ import { LayoutService } from '../../core/services/layout.service';
   selector: 'app-header',
   standalone: false,
   templateUrl: './header.component.html',
+  styleUrls: ['./header.component.scss'],
 })
 export class HeaderComponent {
   @Output() toggleSidebar = new EventEmitter<void>();
@@ -23,6 +24,25 @@ export class HeaderComponent {
     { label: 'Profile', icon: 'user', route: '/profile' },
     { label: 'Settings', icon: 'settings', route: '/settings' },
     { label: 'Logout', icon: 'logout', action: 'logout' },
+  ];
+
+  horizontalMenu = [
+    { label: 'Dashboard', icon: 'layout-dashboard', route: '/dashboard' },
+    {
+      label: 'Jobs', icon: 'clipboard', route: '/jobs',
+      children: [
+        { label: 'Job List', icon: 'list', route: '/jobs' },
+        { label: 'Job Board', icon: 'layout-kanban', route: '/jobs/board' },
+      ],
+    },
+    {
+      label: 'Customers', icon: 'users', route: '/customers',
+      children: [
+        { label: 'Customer List', icon: 'list', route: '/customers' },
+        { label: 'Customer Create', icon: 'plus', route: '/customers/create' },
+      ],
+    },
+    { label: 'Reports', icon: 'chart-bar', route: '/reports' },
   ];
 
   get isDarkMode(): boolean {

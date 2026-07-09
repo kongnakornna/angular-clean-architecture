@@ -88,6 +88,7 @@ import { TranslatePipe } from '../../../../../shared/pipes/translate.pipe';
   </div>
 </div>
   `,
+  styleUrls: ['./device-detail.component.scss'],
 })
 export class DeviceDetailComponent {
   device = { name: 'Temperature Sensor A1', code: 'TS-A1-001', type: 'Temperature Sensor', status: 'online', location: 'อาคาร A ชั้น 2' };

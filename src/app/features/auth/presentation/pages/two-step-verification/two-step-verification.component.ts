@@ -9,6 +9,7 @@ import { TranslatePipe } from '../../../../../shared/pipes/translate.pipe';
   standalone: true,
   imports: [NgIf, NgFor, FormsModule, RouterLink, TranslatePipe],
   templateUrl: './two-step-verification.component.html',
+  styleUrls: ['./two-step-verification.component.scss'],
 })
 export class TwoStepVerificationComponent {
   phoneNumber = '';

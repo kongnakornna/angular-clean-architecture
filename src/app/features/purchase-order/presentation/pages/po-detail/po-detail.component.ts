@@ -66,6 +66,7 @@ import { TranslatePipe } from '../../../../../shared/pipes/translate.pipe';
   </div>
 </div>
   `,
+  styleUrls: ['./po-detail.component.scss'],
 })
 export class PODetailComponent {
   po = {

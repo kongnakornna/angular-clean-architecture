@@ -6,6 +6,7 @@ import { LayoutService } from '../../core/services/layout.service';
   selector: 'app-layout-settings',
   standalone: false,
   templateUrl: './layout-settings.component.html',
+  styleUrls: ['./layout-settings.component.scss'],
 })
 export class LayoutSettingsComponent {
   protected layout = inject(LayoutService);

@@ -48,6 +48,7 @@ import { TranslatePipe } from '../../../../../shared/pipes/translate.pipe';
   </div>
 </div>
   `,
+  styleUrls: ['./device-map.component.scss'],
 })
 export class DeviceMapComponent {
   devices = [

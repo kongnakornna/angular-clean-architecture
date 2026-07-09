@@ -61,6 +61,7 @@ import { RouterLink } from '@angular/router';
   </div>
 </div>
   `,
+  styleUrls: ['./stock-adjustment.component.scss'],
 })
 export class StockAdjustmentComponent {
   adjustType = 'เพิ่ม';

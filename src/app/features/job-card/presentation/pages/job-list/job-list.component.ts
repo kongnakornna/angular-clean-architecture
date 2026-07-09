@@ -13,6 +13,7 @@ import { TranslatePipe } from '../../../../../shared/pipes/translate.pipe';
   standalone: true,
   imports: [CommonModule, RouterLink, FormsModule, TranslatePipe],
   templateUrl: './job-list.component.html',
+  styleUrls: ['./job-list.component.scss'],
 })
 export class JobListComponent implements OnInit {
 

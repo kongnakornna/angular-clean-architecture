@@ -82,6 +82,7 @@ import { RouterLink } from '@angular/router';
   </div>
 </div>
   `,
+  styleUrls: ['./product-detail.component.scss'],
 })
 export class ProductDetailComponent {
   product = { name: 'Laptop HP ProBook 450', sku: 'NB-HP-001', price: '฿25,000', stock: 5, category: 'อิเล็กทรอนิกส์' };

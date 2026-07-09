@@ -91,6 +91,7 @@ import { TranslatePipe } from '../../../../../shared/pipes/translate.pipe';
   </div>
 </div>
   `,
+  styleUrls: ['./job-detail.component.scss'],
 })
 export class JobDetailComponent {
   job = { jobNumber: 'JC-2026-001', customer: 'บริษัท อิคมอน จำกัด', device: 'PC-001', status: 'กำลังดำเนินการ', priority: 'เร่งด่วน', assignedTo: 'สมชาย ใจดี', problem: 'เครื่องไม่สามารถเปิดเครื่องได้ มีเสียงเตือน และจอไม่ติด' };

@@ -80,6 +80,7 @@ import { TranslatePipe } from '../../../../../shared/pipes/translate.pipe';
   </div>
 </div>
   `,
+  styleUrls: ['./order-detail.component.scss'],
 })
 export class OrderDetailComponent {
   order = {
