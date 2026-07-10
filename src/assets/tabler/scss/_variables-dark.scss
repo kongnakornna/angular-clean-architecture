@@ -1,4 +1,5 @@
 @use 'sass:color';
+@use 'variables' as *;
 
 //
 // Dark mode
@@ -18,32 +19,32 @@ $code-color-dark: var(--#{$prefix}gray-300) !default;
 $text-secondary-dark: rgba(153, 159, 164, 1) !default;
 
 // Theme text emphasis dark
-$primary-text-emphasis-dark: tint-color($primary, 40%) !default;
-$secondary-text-emphasis-dark: tint-color($secondary, 40%) !default;
-$success-text-emphasis-dark: tint-color($success, 40%) !default;
-$info-text-emphasis-dark: tint-color($info, 40%) !default;
-$warning-text-emphasis-dark: tint-color($warning, 40%) !default;
-$danger-text-emphasis-dark: tint-color($danger, 40%) !default;
+$primary-text-emphasis-dark: color.mix(white, $primary, 40%) !default;
+$secondary-text-emphasis-dark: color.mix(white, $secondary, 40%) !default;
+$success-text-emphasis-dark: color.mix(white, $success, 40%) !default;
+$info-text-emphasis-dark: color.mix(white, $info, 40%) !default;
+$warning-text-emphasis-dark: color.mix(white, $warning, 40%) !default;
+$danger-text-emphasis-dark: color.mix(white, $danger, 40%) !default;
 $light-text-emphasis-dark: $gray-100 !default;
 $dark-text-emphasis-dark: $gray-300 !default;
 
 // Theme bg subtle dark
-$primary-bg-subtle-dark: shade-color($primary, 80%) !default;
-$secondary-bg-subtle-dark: shade-color($secondary, 80%) !default;
-$success-bg-subtle-dark: shade-color($success, 80%) !default;
-$info-bg-subtle-dark: shade-color($info, 80%) !default;
-$warning-bg-subtle-dark: shade-color($warning, 80%) !default;
-$danger-bg-subtle-dark: shade-color($danger, 80%) !default;
+$primary-bg-subtle-dark: color.mix(black, $primary, 80%) !default;
+$secondary-bg-subtle-dark: color.mix(black, $secondary, 80%) !default;
+$success-bg-subtle-dark: color.mix(black, $success, 80%) !default;
+$info-bg-subtle-dark: color.mix(black, $info, 80%) !default;
+$warning-bg-subtle-dark: color.mix(black, $warning, 80%) !default;
+$danger-bg-subtle-dark: color.mix(black, $danger, 80%) !default;
 $light-bg-subtle-dark: $gray-800 !default;
 $dark-bg-subtle-dark: color.mix($gray-800, $black) !default;
 
 // Theme border subtle dark
-$primary-border-subtle-dark: shade-color($primary, 40%) !default;
-$secondary-border-subtle-dark: shade-color($secondary, 40%) !default;
-$success-border-subtle-dark: shade-color($success, 40%) !default;
-$info-border-subtle-dark: shade-color($info, 40%) !default;
-$warning-border-subtle-dark: shade-color($warning, 40%) !default;
-$danger-border-subtle-dark: shade-color($danger, 40%) !default;
+$primary-border-subtle-dark: color.mix(black, $primary, 40%) !default;
+$secondary-border-subtle-dark: color.mix(black, $secondary, 40%) !default;
+$success-border-subtle-dark: color.mix(black, $success, 40%) !default;
+$info-border-subtle-dark: color.mix(black, $info, 40%) !default;
+$warning-border-subtle-dark: color.mix(black, $warning, 40%) !default;
+$danger-border-subtle-dark: color.mix(black, $danger, 40%) !default;
 $light-border-subtle-dark: $gray-700 !default;
 $dark-border-subtle-dark: $gray-800 !default;
 
@@ -58,12 +59,12 @@ $body-tertiary-bg-dark: color.mix($gray-800, $gray-900, 50%) !default;
 $headings-color-dark: inherit !default;
 
 // Link dark
-$link-color-dark: tint-color($primary, 40%) !default;
-$link-hover-color-dark: shift-color($link-color-dark, -$link-shade-percentage) !default;
+$link-color-dark: color.mix(white, $primary, 40%) !default;
+$link-hover-color-dark: color.mix(white, $link-color-dark, $link-shade-percentage) !default;
 
 // Mark dark
 $mark-color-dark: $body-color-dark !default;
-$mark-bg-dark: shade-color($yellow, 60%) !default;
+$mark-bg-dark: color.mix(black, $yellow, 60%) !default;
 
 //
 // Forms dark
@@ -76,10 +77,10 @@ $form-switch-color-dark: rgba($white, 0.25) !default;
 $form-switch-bg-image-dark: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'><circle r='3' fill='#{$form-switch-color-dark}'/></svg>") !default;
 
 // Form validation colors dark
-$form-valid-color-dark: tint-color($green, 40%) !default;
-$form-valid-border-color-dark: tint-color($green, 40%) !default;
-$form-invalid-color-dark: tint-color($red, 40%) !default;
-$form-invalid-border-color-dark: tint-color($red, 40%) !default;
+$form-valid-color-dark: color.mix(white, $green, 40%) !default;
+$form-valid-border-color-dark: color.mix(white, $green, 40%) !default;
+$form-invalid-color-dark: color.mix(white, $red, 40%) !default;
+$form-invalid-border-color-dark: color.mix(white, $red, 40%) !default;
 
 //
 // Accordion dark

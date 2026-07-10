@@ -1,6 +1,7 @@
 // stylelint-disable function-disallowed-list
 
-@use "sass:map";
+@use "sass:map";
+@use '../config' as *;
 
 // .modal-open      - body class for killing the scroll
 // .modal           - container to scroll within

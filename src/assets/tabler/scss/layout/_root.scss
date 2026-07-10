@@ -1,3 +1,6 @@
+@use '../config' as *;
+@use '../variables-dark' as *;
+
 :root,
 :host {
   font-size: 16px;

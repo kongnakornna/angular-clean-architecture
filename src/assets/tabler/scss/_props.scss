@@ -1,5 +1,5 @@
 @use 'sass:map';
-@import 'config';
+@use 'variables' as *;
 
 :root,
 :host {
@@ -22,71 +22,69 @@
   --#{$prefix}gray-900: #{$gray-900};
   --#{$prefix}gray-950: #{$gray-950};
 
-  --#{$prefix}white: #{$white};
-  --#{$prefix}black: #{$black};
-  --#{$prefix}dark: #{$dark};
-  --#{$prefix}light: #{$light};
+  /** Social colors */
+  --#{$prefix}facebook: #{$facebook};
+  --#{$prefix}twitter: #{$twitter};
+  --#{$prefix}linkedin: #{$linkedin};
+  --#{$prefix}google: #{$google};
+  --#{$prefix}youtube: #{$youtube};
+  --#{$prefix}vimeo: #{$vimeo};
+  --#{$prefix}dribbble: #{$dribbble};
+  --#{$prefix}github: #{$github};
+  --#{$prefix}instagram: #{$instagram};
+  --#{$prefix}pinterest: #{$pinterest};
+  --#{$prefix}vk: #{$vk};
+  --#{$prefix}rss: #{$rss};
+  --#{$prefix}flickr: #{$flickr};
+  --#{$prefix}bitbucket: #{$bitbucket};
+  --#{$prefix}tabler: #{$tabler};
+  --#{$prefix}discord: #{$discord};
+  --#{$prefix}whatsapp: #{$whatsapp};
+  --#{$prefix}telegram: #{$telegram};
+  --#{$prefix}twitch: #{$twitch};
+  --#{$prefix}reddit: #{$reddit};
+  --#{$prefix}snapchat: #{$snapchat};
+  --#{$prefix}email: #{$email};
+  --#{$prefix}slack: #{$slack};
+  --#{$prefix}weibo: #{$weibo};
+  --#{$prefix}meetup: #{$meetup};
+  --#{$prefix}paypal: #{$paypal};
+  --#{$prefix}apple: #{$apple};
+  --#{$prefix}x: #{$x};
+  --#{$prefix}bluesky: #{$bluesky};
+  --#{$prefix}mastodon: #{$mastodon};
+  --#{$prefix}threads: #{$threads};
 
-  /** Brand colors */
-  --#{$prefix}brand: #{$primary};
-
-  /** Theme colors */
-  @each $name, $color in map.merge($theme-colors, $social-colors) {
-    --#{$prefix}#{$name}: #{$color};
-    --#{$prefix}#{$name}-rgb: #{to-rgb($color)};
-    --#{$prefix}#{$name}-fg: #{if(sass(contrast-ratio($color) > $min-contrast-ratio): var(--#{$prefix}light); else: var(--#{$prefix}dark))};
-    --#{$prefix}#{$name}-darken: #{theme-color-darker($color)};
-    --#{$prefix}#{$name}-darken: color-mix(in oklab, var(--#{$prefix}#{$name}), transparent 20%);
-    --#{$prefix}#{$name}-lt: #{theme-color-lighter($color)};
-    --#{$prefix}#{$name}-lt: color-mix(in oklab, var(--#{$prefix}#{$name}) 10%, transparent);
-    --#{$prefix}#{$name}-200: color-mix(in oklab, var(--#{$prefix}#{$name}) 20%, transparent);
-    --#{$prefix}#{$name}-lt-rgb: #{to-rgb(theme-color-lighter($color))};
-  }
-
-  /** Gray colors */
-  @each $name, $color in $gray-colors {
-    --#{$prefix}#{$name}-fg: #{if(sass(contrast-ratio($color, white) > $min-contrast-ratio): var(--#{$prefix}white); else: var(--#{$prefix}body-color))};
-  }
-
-  /** Spacers */
-  @each $name, $value in $spacers {
-    --#{$prefix}spacer-#{$name}: #{$value};
-  }
-
-  /** Font sizes */
-  @each $name, $value in $font-weights {
-    --#{$prefix}font-weight-#{$name}: #{$value};
-  }
-
-  @each $name, $value in $font-sizes {
-    --#{$prefix}font-size-h#{$name}: #{$value};
-  }
-
-  @each $name, $value in $line-heights {
-    --#{$prefix}line-height-#{$name}: #{$value};
-  }
-
-  /** Shadows */
-  @each $name, $value in $box-shadows {
-    --#{$prefix}shadow#{if(sass($name): '-#{$name}'; else: '')}: #{$value};
-  }
-
-  /** Border radiuses */
-  --#{$prefix}border-radius-scale: 1;
-  @each $name, $value in $border-radiuses {
-    @if $name {
-      --#{$prefix}border-radius-#{$name}: calc(#{$value} * var(--#{$prefix}border-radius-scale, 1));
-    } @else {
-      --#{$prefix}border-radius: #{$value};
-    }
-  }
-
-  /** Backdrops */
-  --#{$prefix}backdrop-opacity: #{$backdrop-opacity};
-  --#{$prefix}backdrop-bg: var(--#{$prefix}bg-surface-dark);
-  @each $name, $value in $backdrops {
-    --#{$prefix}backdrop-bg#{if(sass($name): '-#{$name}'; else: '')}: #{$value};
-  }
-  --#{$prefix}backdrop-blur: #{$backdrop-blur};
-  --#{$prefix}backdrop-filter: blur(var(--#{$prefix}backdrop-blur));
+  /** Social colors - Outline */
+  --#{$prefix}facebook-outline: #{$facebook};
+  --#{$prefix}twitter-outline: #{$twitter};
+  --#{$prefix}linkedin-outline: #{$linkedin};
+  --#{$prefix}google-outline: #{$google};
+  --#{$prefix}youtube-outline: #{$youtube};
+  --#{$prefix}vimeo-outline: #{$vimeo};
+  --#{$prefix}dribbble-outline: #{$dribbble};
+  --#{$prefix}github-outline: #{$github};
+  --#{$prefix}instagram-outline: #{$instagram};
+  --#{$prefix}pinterest-outline: #{$pinterest};
+  --#{$prefix}vk-outline: #{$vk};
+  --#{$prefix}rss-outline: #{$rss};
+  --#{$prefix}flickr-outline: #{$flickr};
+  --#{$prefix}bitbucket-outline: #{$bitbucket};
+  --#{$prefix}tabler-outline: #{$tabler};
+  --#{$prefix}discord-outline: #{$discord};
+  --#{$prefix}whatsapp-outline: #{$whatsapp};
+  --#{$prefix}telegram-outline: #{$telegram};
+  --#{$prefix}twitch-outline: #{$twitch};
+  --#{$prefix}reddit-outline: #{$reddit};
+  --#{$prefix}snapchat-outline: #{$snapchat};
+  --#{$prefix}email-outline: #{$email};
+  --#{$prefix}slack-outline: #{$slack};
+  --#{$prefix}weibo-outline: #{$weibo};
+  --#{$prefix}meetup-outline: #{$meetup};
+  --#{$prefix}paypal-outline: #{$paypal};
+  --#{$prefix}apple-outline: #{$apple};
+  --#{$prefix}x-outline: #{$x};
+  --#{$prefix}bluesky-outline: #{$bluesky};
+  --#{$prefix}mastodon-outline: #{$mastodon};
+  --#{$prefix}threads-outline: #{$threads};
 }

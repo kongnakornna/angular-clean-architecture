@@ -1,4 +1,6 @@
-@use "sass:map";
+@use "sass:map";
+@use '../config' as *;
+@use '../variables-dark' as *;
 
 // The dropdown wrapper (`<div>`)
 .dropup,

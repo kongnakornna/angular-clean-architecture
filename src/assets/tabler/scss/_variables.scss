@@ -105,105 +105,105 @@ $min-contrast-ratio: 2 !default;
 $color-contrast-dark: $black !default;
 $color-contrast-light: $white !default;
 
-$blue-100: tint-color($blue, 80%) !default;
-$blue-200: tint-color($blue, 60%) !default;
-$blue-300: tint-color($blue, 40%) !default;
-$blue-400: tint-color($blue, 20%) !default;
+$blue-100: color.mix(white, $blue, 80%) !default;
+$blue-200: color.mix(white, $blue, 60%) !default;
+$blue-300: color.mix(white, $blue, 40%) !default;
+$blue-400: color.mix(white, $blue, 20%) !default;
 $blue-500: $blue !default;
-$blue-600: shade-color($blue, 20%) !default;
-$blue-700: shade-color($blue, 40%) !default;
-$blue-800: shade-color($blue, 60%) !default;
-$blue-900: shade-color($blue, 80%) !default;
+$blue-600: color.mix(black, $blue, 20%) !default;
+$blue-700: color.mix(black, $blue, 40%) !default;
+$blue-800: color.mix(black, $blue, 60%) !default;
+$blue-900: color.mix(black, $blue, 80%) !default;
 
-$indigo-100: tint-color($indigo, 80%) !default;
-$indigo-200: tint-color($indigo, 60%) !default;
-$indigo-300: tint-color($indigo, 40%) !default;
-$indigo-400: tint-color($indigo, 20%) !default;
+$indigo-100: color.mix(white, $indigo, 80%) !default;
+$indigo-200: color.mix(white, $indigo, 60%) !default;
+$indigo-300: color.mix(white, $indigo, 40%) !default;
+$indigo-400: color.mix(white, $indigo, 20%) !default;
 $indigo-500: $indigo !default;
-$indigo-600: shade-color($indigo, 20%) !default;
-$indigo-700: shade-color($indigo, 40%) !default;
-$indigo-800: shade-color($indigo, 60%) !default;
-$indigo-900: shade-color($indigo, 80%) !default;
+$indigo-600: color.mix(black, $indigo, 20%) !default;
+$indigo-700: color.mix(black, $indigo, 40%) !default;
+$indigo-800: color.mix(black, $indigo, 60%) !default;
+$indigo-900: color.mix(black, $indigo, 80%) !default;
 
-$purple-100: tint-color($purple, 80%) !default;
-$purple-200: tint-color($purple, 60%) !default;
-$purple-300: tint-color($purple, 40%) !default;
-$purple-400: tint-color($purple, 20%) !default;
+$purple-100: color.mix(white, $purple, 80%) !default;
+$purple-200: color.mix(white, $purple, 60%) !default;
+$purple-300: color.mix(white, $purple, 40%) !default;
+$purple-400: color.mix(white, $purple, 20%) !default;
 $purple-500: $purple !default;
-$purple-600: shade-color($purple, 20%) !default;
-$purple-700: shade-color($purple, 40%) !default;
-$purple-800: shade-color($purple, 60%) !default;
-$purple-900: shade-color($purple, 80%) !default;
+$purple-600: color.mix(black, $purple, 20%) !default;
+$purple-700: color.mix(black, $purple, 40%) !default;
+$purple-800: color.mix(black, $purple, 60%) !default;
+$purple-900: color.mix(black, $purple, 80%) !default;
 
-$pink-100: tint-color($pink, 80%) !default;
-$pink-200: tint-color($pink, 60%) !default;
-$pink-300: tint-color($pink, 40%) !default;
-$pink-400: tint-color($pink, 20%) !default;
+$pink-100: color.mix(white, $pink, 80%) !default;
+$pink-200: color.mix(white, $pink, 60%) !default;
+$pink-300: color.mix(white, $pink, 40%) !default;
+$pink-400: color.mix(white, $pink, 20%) !default;
 $pink-500: $pink !default;
-$pink-600: shade-color($pink, 20%) !default;
-$pink-700: shade-color($pink, 40%) !default;
-$pink-800: shade-color($pink, 60%) !default;
-$pink-900: shade-color($pink, 80%) !default;
+$pink-600: color.mix(black, $pink, 20%) !default;
+$pink-700: color.mix(black, $pink, 40%) !default;
+$pink-800: color.mix(black, $pink, 60%) !default;
+$pink-900: color.mix(black, $pink, 80%) !default;
 
-$red-100: tint-color($red, 80%) !default;
-$red-200: tint-color($red, 60%) !default;
-$red-300: tint-color($red, 40%) !default;
-$red-400: tint-color($red, 20%) !default;
+$red-100: color.mix(white, $red, 80%) !default;
+$red-200: color.mix(white, $red, 60%) !default;
+$red-300: color.mix(white, $red, 40%) !default;
+$red-400: color.mix(white, $red, 20%) !default;
 $red-500: $red !default;
-$red-600: shade-color($red, 20%) !default;
-$red-700: shade-color($red, 40%) !default;
-$red-800: shade-color($red, 60%) !default;
-$red-900: shade-color($red, 80%) !default;
+$red-600: color.mix(black, $red, 20%) !default;
+$red-700: color.mix(black, $red, 40%) !default;
+$red-800: color.mix(black, $red, 60%) !default;
+$red-900: color.mix(black, $red, 80%) !default;
 
-$orange-100: tint-color($orange, 80%) !default;
-$orange-200: tint-color($orange, 60%) !default;
-$orange-300: tint-color($orange, 40%) !default;
-$orange-400: tint-color($orange, 20%) !default;
+$orange-100: color.mix(white, $orange, 80%) !default;
+$orange-200: color.mix(white, $orange, 60%) !default;
+$orange-300: color.mix(white, $orange, 40%) !default;
+$orange-400: color.mix(white, $orange, 20%) !default;
 $orange-500: $orange !default;
-$orange-600: shade-color($orange, 20%) !default;
-$orange-700: shade-color($orange, 40%) !default;
-$orange-800: shade-color($orange, 60%) !default;
-$orange-900: shade-color($orange, 80%) !default;
+$orange-600: color.mix(black, $orange, 20%) !default;
+$orange-700: color.mix(black, $orange, 40%) !default;
+$orange-800: color.mix(black, $orange, 60%) !default;
+$orange-900: color.mix(black, $orange, 80%) !default;
 
-$yellow-100: tint-color($yellow, 80%) !default;
-$yellow-200: tint-color($yellow, 60%) !default;
-$yellow-300: tint-color($yellow, 40%) !default;
-$yellow-400: tint-color($yellow, 20%) !default;
+$yellow-100: color.mix(white, $yellow, 80%) !default;
+$yellow-200: color.mix(white, $yellow, 60%) !default;
+$yellow-300: color.mix(white, $yellow, 40%) !default;
+$yellow-400: color.mix(white, $yellow, 20%) !default;
 $yellow-500: $yellow !default;
-$yellow-600: shade-color($yellow, 20%) !default;
-$yellow-700: shade-color($yellow, 40%) !default;
-$yellow-800: shade-color($yellow, 60%) !default;
-$yellow-900: shade-color($yellow, 80%) !default;
+$yellow-600: color.mix(black, $yellow, 20%) !default;
+$yellow-700: color.mix(black, $yellow, 40%) !default;
+$yellow-800: color.mix(black, $yellow, 60%) !default;
+$yellow-900: color.mix(black, $yellow, 80%) !default;
 
-$green-100: tint-color($green, 80%) !default;
-$green-200: tint-color($green, 60%) !default;
-$green-300: tint-color($green, 40%) !default;
-$green-400: tint-color($green, 20%) !default;
+$green-100: color.mix(white, $green, 80%) !default;
+$green-200: color.mix(white, $green, 60%) !default;
+$green-300: color.mix(white, $green, 40%) !default;
+$green-400: color.mix(white, $green, 20%) !default;
 $green-500: $green !default;
-$green-600: shade-color($green, 20%) !default;
-$green-700: shade-color($green, 40%) !default;
-$green-800: shade-color($green, 60%) !default;
-$green-900: shade-color($green, 80%) !default;
+$green-600: color.mix(black, $green, 20%) !default;
+$green-700: color.mix(black, $green, 40%) !default;
+$green-800: color.mix(black, $green, 60%) !default;
+$green-900: color.mix(black, $green, 80%) !default;
 
-$teal-100: tint-color($teal, 80%) !default;
-$teal-200: tint-color($teal, 60%) !default;
-$teal-300: tint-color($teal, 40%) !default;
-$teal-400: tint-color($teal, 20%) !default;
+$teal-100: color.mix(white, $teal, 80%) !default;
+$teal-200: color.mix(white, $teal, 60%) !default;
+$teal-300: color.mix(white, $teal, 40%) !default;
+$teal-400: color.mix(white, $teal, 20%) !default;
 $teal-500: $teal !default;
-$teal-600: shade-color($teal, 20%) !default;
-$teal-700: shade-color($teal, 40%) !default;
-$teal-800: shade-color($teal, 60%) !default;
-$teal-900: shade-color($teal, 80%) !default;
+$teal-600: color.mix(black, $teal, 20%) !default;
+$teal-700: color.mix(black, $teal, 40%) !default;
+$teal-800: color.mix(black, $teal, 60%) !default;
+$teal-900: color.mix(black, $teal, 80%) !default;
 
-$cyan-100: tint-color($cyan, 80%) !default;
-$cyan-200: tint-color($cyan, 60%) !default;
-$cyan-300: tint-color($cyan, 40%) !default;
-$cyan-400: tint-color($cyan, 20%) !default;
+$cyan-100: color.mix(white, $cyan, 80%) !default;
+$cyan-200: color.mix(white, $cyan, 60%) !default;
+$cyan-300: color.mix(white, $cyan, 40%) !default;
+$cyan-400: color.mix(white, $cyan, 20%) !default;
 $cyan-500: $cyan !default;
-$cyan-600: shade-color($cyan, 20%) !default;
-$cyan-700: shade-color($cyan, 40%) !default;
-$cyan-800: shade-color($cyan, 60%) !default;
-$cyan-900: shade-color($cyan, 80%) !default;
+$cyan-600: color.mix(black, $cyan, 20%) !default;
+$cyan-700: color.mix(black, $cyan, 40%) !default;
+$cyan-800: color.mix(black, $cyan, 60%) !default;
+$cyan-900: color.mix(black, $cyan, 80%) !default;
 
 $blues: (
   'blue-100': $blue-100,
@@ -362,6 +362,8 @@ $spacers-extra: (
   12: $spacer-12,
 ) !default;
 
+$gutters: $spacers !default;
+
 $negative-spacers: null !default;
 
 // Body
@@ -450,10 +452,10 @@ $font-weights: (
   'headings': $headings-font-weight,
 ) !default;
 
-$line-height-base: divide(1.25rem, $font-size-base) !default;
-$line-height-sm: divide(1rem, $font-size-base) !default;
-$line-height-lg: divide(1.5rem, $font-size-base) !default;
-$line-height-xl: divide(1.75rem, $font-size-base) !default;
+$line-height-base: math.div(1.25rem, $font-size-base) !default;
+$line-height-sm: math.div(1rem, $font-size-base) !default;
+$line-height-lg: math.div(1.5rem, $font-size-base) !default;
+$line-height-xl: math.div(1.75rem, $font-size-base) !default;
 
 $h1-font-size: 1.5rem !default;
 $h1-line-height: 2rem !default;
@@ -613,7 +615,7 @@ $danger: $red !default;
 
 $link-color: $primary !default;
 $link-shade-percentage: 20% !default;
-$link-hover-color: shift-color($link-color, $link-shade-percentage) !default;
+// $link-hover-color moved to _maps.scss (needs shift-color from mixins)
 $link-hover-decoration: null !default;
 $stretched-link-pseudo-element: after !default;
 $stretched-link-z-index: 1 !default;
@@ -674,6 +676,38 @@ $social-colors: (
   'tabler': #066fd1,
 ) !default;
 
+$facebook: #1877f2 !default;
+$twitter: #1da1f2 !default;
+$linkedin: #0a66c2 !default;
+$google: #dc4e41 !default;
+$youtube: #ff0000 !default;
+$vimeo: #1ab7ea !default;
+$dribbble: #ea4c89 !default;
+$github: #181717 !default;
+$instagram: #e4405f !default;
+$pinterest: #bd081c !default;
+$vk: #6383a8 !default;
+$rss: #ffa500 !default;
+$flickr: #0063dc !default;
+$bitbucket: #0052cc !default;
+$tabler: #066fd1 !default;
+$discord: #5865f2 !default;
+$whatsapp: #25d366 !default;
+$telegram: #0088cc !default;
+$twitch: #9146ff !default;
+$reddit: #ff4500 !default;
+$snapchat: #fffc00 !default;
+$email: #656d76 !default;
+$slack: #4a154b !default;
+$weibo: #e6162d !default;
+$meetup: #e0393e !default;
+$paypal: #003087 !default;
+$apple: #000000 !default;
+$x: #000000 !default;
+$bluesky: #1185fe !default;
+$mastodon: #6364ff !default;
+$threads: #000000 !default;
+
 $gray-colors: (
   gray-50: $gray-50,
   gray-100: $gray-100,
@@ -690,7 +724,7 @@ $gray-colors: (
 
 $theme-colors: map.merge($theme-colors, map.merge($extra-colors, ()));
 
-$theme-colors-rgb: map-loop($theme-colors, to-rgb, '$value') !default;
+
 $grays: (
   '100': $gray-100,
   '200': $gray-200,
@@ -721,32 +755,32 @@ $colors: (
 ) !default;
 
 // Theme color emphasis
-$primary-text-emphasis: shade-color($primary, 60%) !default;
-$secondary-text-emphasis: shade-color($secondary, 60%) !default;
-$success-text-emphasis: shade-color($success, 60%) !default;
-$info-text-emphasis: shade-color($info, 60%) !default;
-$warning-text-emphasis: shade-color($warning, 60%) !default;
-$danger-text-emphasis: shade-color($danger, 60%) !default;
+$primary-text-emphasis: color.mix(black, $primary, 60%) !default;
+$secondary-text-emphasis: color.mix(black, $secondary, 60%) !default;
+$success-text-emphasis: color.mix(black, $success, 60%) !default;
+$info-text-emphasis: color.mix(black, $info, 60%) !default;
+$warning-text-emphasis: color.mix(black, $warning, 60%) !default;
+$danger-text-emphasis: color.mix(black, $danger, 60%) !default;
 $light-text-emphasis: $gray-700 !default;
 $dark-text-emphasis: $gray-700 !default;
 
 // Theme bg subtle
-$primary-bg-subtle: tint-color($primary, 80%) !default;
-$secondary-bg-subtle: tint-color($secondary, 80%) !default;
-$success-bg-subtle: tint-color($success, 80%) !default;
-$info-bg-subtle: tint-color($info, 80%) !default;
-$warning-bg-subtle: tint-color($warning, 80%) !default;
-$danger-bg-subtle: tint-color($danger, 80%) !default;
+$primary-bg-subtle: color.mix(white, $primary, 80%) !default;
+$secondary-bg-subtle: color.mix(white, $secondary, 80%) !default;
+$success-bg-subtle: color.mix(white, $success, 80%) !default;
+$info-bg-subtle: color.mix(white, $info, 80%) !default;
+$warning-bg-subtle: color.mix(white, $warning, 80%) !default;
+$danger-bg-subtle: color.mix(white, $danger, 80%) !default;
 $light-bg-subtle: color.mix($gray-100, $white) !default;
 $dark-bg-subtle: $gray-400 !default;
 
 // Theme border subtle
-$primary-border-subtle: tint-color($primary, 60%) !default;
-$secondary-border-subtle: tint-color($secondary, 60%) !default;
-$success-border-subtle: tint-color($success, 60%) !default;
-$info-border-subtle: tint-color($info, 60%) !default;
-$warning-border-subtle: tint-color($warning, 60%) !default;
-$danger-border-subtle: tint-color($danger, 60%) !default;
+$primary-border-subtle: color.mix(white, $primary, 60%) !default;
+$secondary-border-subtle: color.mix(white, $secondary, 60%) !default;
+$success-border-subtle: color.mix(white, $success, 60%) !default;
+$info-border-subtle: color.mix(white, $info, 60%) !default;
+$warning-border-subtle: color.mix(white, $warning, 60%) !default;
+$danger-border-subtle: color.mix(white, $danger, 60%) !default;
 $light-border-subtle: $gray-200 !default;
 $dark-border-subtle: $gray-500 !default;
 
@@ -1143,7 +1177,7 @@ $btn-active-box-shadow: inset 0 3px 5px rgba($black, 0.125) !default;
 $btn-link-color: var(--#{$prefix}link-color) !default;
 $btn-link-hover-color: var(--#{$prefix}link-hover-color) !default;
 $btn-link-disabled-color: $gray-600 !default;
-$btn-link-focus-shadow-rgb: to-rgb(color.mix(color-contrast($link-color), $link-color, 15%)) !default;
+// $btn-link-focus-shadow-rgb moved to _maps.scss (needs to-rgb + color-contrast from mixins)
 
 $btn-border-radius: var(--#{$prefix}border-radius) !default;
 $btn-border-radius-sm: var(--#{$prefix}border-radius-sm) !default;
@@ -1203,7 +1237,7 @@ $input-box-shadow: var(--#{$prefix}shadow-input) !default;
 $input-plaintext-color: var(--#{$prefix}body-color) !default;
 
 $input-focus-bg: $input-bg !default;
-$input-focus-border-color: tint-color($component-active-bg, 50%) !default;
+$input-focus-border-color: color.mix(white, $component-active-bg, 50%) !default;
 $input-focus-color: var(--#{$prefix}body-color) !default;
 $input-focus-width: $input-btn-focus-width !default;
 $input-focus-box-shadow: $input-btn-focus-box-shadow !default;
@@ -1716,16 +1750,7 @@ $table-caption-color: var(--#{$prefix}secondary-color) !default;
 
 $table-bg-scale: -80% !default;
 
-$table-variants: (
-  'primary': shift-color($primary, $table-bg-scale),
-  'secondary': shift-color($secondary, $table-bg-scale),
-  'success': shift-color($success, $table-bg-scale),
-  'info': shift-color($info, $table-bg-scale),
-  'warning': shift-color($warning, $table-bg-scale),
-  'danger': shift-color($danger, $table-bg-scale),
-  'light': $light,
-  'dark': $dark,
-) !default;
+// $table-variants moved to _maps.scss (needs shift-color from mixins)
 
 $table-sort-bg-image: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' width='16' height='16' fill='none' stroke='currentColor' stroke-linecap='round' stroke-linejoin='round' stroke-width='1'><path d='M5 7l3 -3l3 3'/><path d='M5 10l3 3l3 -3'/></svg>") !default;
 $table-sort-asc-bg-image: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' width='16' height='16'><path fill='none' stroke='currentColor' stroke-linecap='round' stroke-linejoin='round' stroke-width='1' d='M5 7l3 3l3 -3'/></svg>") !default;
@@ -1911,7 +1936,7 @@ $form-range-thumb-focus-box-shadow:
   0 0 0 1px $body-bg,
   $input-focus-box-shadow !default;
 $form-range-thumb-focus-box-shadow-width: 0.125rem !default;
-$form-range-thumb-active-bg: tint-color($component-active-bg, 70%) !default;
+$form-range-thumb-active-bg: color.mix(white, $component-active-bg, 70%) !default;
 $form-range-thumb-disabled-bg: var(--#{$prefix}secondary-color) !default;
 $form-range-thumb-transition:
   background-color 0.15s ease-in-out,
@@ -1957,35 +1982,7 @@ $form-feedback-invalid-color: $danger !default;
 
 $form-feedback-icon-valid-color: $form-feedback-valid-color !default;
 $form-feedback-icon-invalid-color: $form-feedback-invalid-color !default;
-$form-feedback-icon-valid: str-replace(
-  url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='" + $green + "' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><polyline points='20 6 9 17 4 12'></polyline></svg>"),
-  '#',
-  '%23'
-) !default;
-$form-feedback-icon-invalid: str-replace(
-  url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='" + $red + "' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><line x1='18' y1='6' x2='6' y2='18'></line><line x1='6' y1='6' x2='18' y2='18'></line></svg>"),
-  '#',
-  '%23'
-) !default;
-// Form validation states
-$form-validation-states: (
-  'valid': (
-    'color': var(--#{$prefix}form-valid-color),
-    'icon': $form-feedback-icon-valid,
-    'tooltip-color': #fff,
-    'tooltip-bg-color': var(--#{$prefix}success),
-    'focus-box-shadow': 0 0 $input-btn-focus-blur $input-focus-width color-mix(in srgb, var(--#{$prefix}success) #{math.percentage($input-btn-focus-color-opacity)}, transparent),
-    'border-color': var(--#{$prefix}form-valid-border-color),
-  ),
-  'invalid': (
-    'color': var(--#{$prefix}form-invalid-color),
-    'icon': $form-feedback-icon-invalid,
-    'tooltip-color': #fff,
-    'tooltip-bg-color': var(--#{$prefix}danger),
-    'focus-box-shadow': 0 0 $input-btn-focus-blur $input-focus-width color-mix(in srgb, var(--#{$prefix}danger) #{math.percentage($input-btn-focus-color-opacity)}, transparent),
-    'border-color': var(--#{$prefix}form-invalid-border-color),
-  ),
-) !default;
+// $form-feedback-icon-valid, $form-feedback-icon-invalid, and $form-validation-states moved to _maps.scss (needs str-replace from mixins)
 
 // Form feedback tooltip
 $form-feedback-tooltip-padding-y: $tooltip-padding-y !default;

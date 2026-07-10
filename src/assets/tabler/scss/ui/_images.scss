@@ -1,4 +1,5 @@
-@use 'sass:math';
+@use 'sass:math';
+@use '../config' as *;
 
 .img-responsive {
   --#{$prefix}img-responsive-ratio: #{math.percentage(0.75)};

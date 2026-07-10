@@ -1,4 +1,7 @@
 @use "sass:meta";
+@use '../variables' as *;
+@use 'bootstrap/transition' as *;
+@use 'bootstrap/border-radius' as *;
 
 @mixin subheader($include-color: true, $include-line-height: true) {
   font-size: $h5-font-size;

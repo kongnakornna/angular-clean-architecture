@@ -1,6 +1,4 @@
-$assets-base: '/assets';
-
-@import 'assets/tabler/scss/tabler';
+@use 'assets/tabler/scss/tabler' with ($assets-base: '/assets');
 
 @tailwind base;
 @tailwind components;
