@@ -1,4 +1,5 @@
 import { Provider } from '@angular/core';
+import { APP_CONFIG, LOGGER_CONFIG, DEFAULT_APP_CONFIG } from '../config/app.config';
 import {
   AUTH_REPOSITORY, JOB_CARD_REPOSITORY, CUSTOMER_REPOSITORY,
   QUOTATION_REPOSITORY, PURCHASE_ORDER_REPOSITORY, INVENTORY_REPOSITORY,
@@ -22,6 +23,11 @@ import { IoTRepositoryImpl } from '../../features/iot/data/repositories/iot.repo
 import { WebOrderRepositoryImpl } from '../../features/wos/data/repositories/web-order.repository.impl';
 import { OrderRepositoryImpl } from '../../features/orders/data/repositories/order.repository.impl';
 import { SystemRepositoryImpl } from '../../features/system/data/repositories/system.repository.impl';
+
+export const CONFIG_PROVIDERS: Provider[] = [
+  { provide: APP_CONFIG, useValue: DEFAULT_APP_CONFIG },
+  { provide: LOGGER_CONFIG, useValue: DEFAULT_APP_CONFIG.logger },
+];
 
 export const REPOSITORY_PROVIDERS: Provider[] = [
   { provide: AUTH_REPOSITORY, useClass: AuthRepositoryImpl },
