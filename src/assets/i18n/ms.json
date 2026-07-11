@@ -545,18 +545,5 @@
     "monthlySalesChart": "Carta jualan bulanan",
     "pieChart": "Carta pai",
     "comparedToLastMonth": "berbanding bulan lalu"
-  },
-  "errors": {
-        "unknown": "Ralat tidak diketahui berlaku",
-        "client": "Ralat pelanggan",
-        "400": "Data tidak sah",
-        "401": "Sila log masuk semula",
-        "403": "Anda tidak mempunyai kebenaran untuk mengakses data ini",
-        "404": "Data tidak ditemui",
-        "409": "Data pendua",
-        "422": "Data tidak sah, sila semak semula",
-        "429": "Terlalu banyak permintaan, sila tunggu",
-        "500": "Ralat pelayan, sila cuba lagi kemudian",
-        "503": "Sistem sedang dalam penyelenggaraan, sila cuba lagi kemudian"
   }
 }

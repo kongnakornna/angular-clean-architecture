@@ -544,18 +544,5 @@
     "monthlySalesChart": "Monthly sales chart",
     "pieChart": "Pie chart",
     "comparedToLastMonth": "compared to last month"
-  },
-  "errors": {
-        "unknown": "An unknown error occurred",
-        "client": "Client error",
-        "400": "Invalid data",
-        "401": "Please login again",
-        "403": "You do not have permission to access this data",
-        "404": "Data not found",
-        "409": "Duplicate data",
-        "422": "Invalid data, please check again",
-        "429": "Too many requests, please wait",
-        "500": "Server error, please try again later",
-        "503": "System is under maintenance, please try again later"
-    }
+  }
 }
