@@ -1,10 +1,12 @@
 import { Component, inject } from '@angular/core';
 import { NgFor } from '@angular/common';
 import { LayoutService } from '../../core/services/layout.service';
+import { AppTranslatePipe } from '../../shared/i18n/presentation/pipes/translate.pipe';
 
 @Component({
   selector: 'app-layout-settings',
-  standalone: false,
+  standalone: true,
+  imports: [NgFor, AppTranslatePipe],
   templateUrl: './layout-settings.component.html',
   styleUrls: ['./layout-settings.component.scss'],
 })

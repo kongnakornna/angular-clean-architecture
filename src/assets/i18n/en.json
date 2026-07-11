@@ -87,7 +87,8 @@
     "noAccount": "Don't have an account?",
     "signUp": "Sign up",
     "contactAdmin": "Contact administrator",
-    "testCredentials": "Use admin / P@ssw0rd to test the system"
+    "testCredentials": "Use admin / P@ssw0rd to test the system",
+    "invalidCredentials": "Invalid username or password"
   },
   "auth": {
     "forgotPassword": {
@@ -163,6 +164,8 @@
     "settings": {
       "title": "Layout Settings",
       "layoutMode": "Layout Mode",
+      "lightmode": "Light",
+      "darkmode": "Dark",
       "layoutVertical": "Vertical",
       "layoutFluid": "Full Width",
       "layoutBoxed": "Boxed",

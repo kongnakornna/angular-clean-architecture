@@ -88,7 +88,8 @@
     "noAccount": "ยังไม่มีบัญชี?",
     "signUp": "สมัครสมาชิก",
     "contactAdmin": "ติดต่อผู้ดูแลระบบ",
-    "testCredentials": "ใช้ admin / P@ssw0rd เพื่อทดสอบระบบ"
+    "testCredentials": "ใช้ admin / P@ssw0rd เพื่อทดสอบระบบ",
+    "invalidCredentials": "ชื่อผู้ใช้หรือรหัสผ่านไม่ถูกต้อง"
   },
   "auth": {
     "forgotPassword": {
@@ -164,6 +165,10 @@
     "settings": {
       "title": "ตั้งค่าเค้าโครง",
       "layoutMode": "รูปแบบเค้าโครง",
+      "lightmode": "สว่าง",
+      "darkmode": "มืด",
+      "completed": "เสร็จสิ้น",
+      "closed": "ปิดงาน",
       "layoutVertical": "แนวตั้ง",
       "layoutFluid": "เต็มจอ",
       "layoutBoxed": "Boxed",

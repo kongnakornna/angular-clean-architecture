@@ -163,6 +163,10 @@
     "settings": {
       "title": "レイアウト設定",
       "layoutMode": "レイアウトモード",
+      "lightmode": "ライト",
+      "darkmode": "ダーク",
+      "completed": "完了",
+      "closed": "クローズ",
       "layoutVertical": "縦型",
       "layoutFluid": "全幅",
       "layoutBoxed": "ボックス型",

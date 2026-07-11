@@ -163,6 +163,10 @@
     "settings": {
       "title": "အပြင်အဆင်သတ်မှတ်ချက်များ",
       "layoutMode": "အပြင်အဆင်မုဒ်",
+      "lightmode": "အလင်း",
+      "darkmode": "အမှောင်",
+      "completed": "ပြီးစီး",
+      "closed": "ပိတ်ပြီး",
       "layoutVertical": "ဒေါင်လိုက်",
       "layoutFluid": "အပြည့်အနံ",
       "layoutBoxed": "ဘောက်စ်",

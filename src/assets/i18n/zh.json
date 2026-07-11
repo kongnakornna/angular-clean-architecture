@@ -163,6 +163,10 @@
     "settings": {
       "title": "布局设置",
       "layoutMode": "布局模式",
+      "lightmode": "浅色",
+      "darkmode": "深色",
+      "completed": "已完成",
+      "closed": "已关闭",
       "layoutVertical": "垂直",
       "layoutFluid": "全宽",
       "layoutBoxed": "盒状",

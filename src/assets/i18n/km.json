@@ -163,6 +163,10 @@
     "settings": {
       "title": "ការកំណត់ប្លង់",
       "layoutMode": "របៀបប្លង់",
+      "lightmode": "ភ្លឺ",
+      "darkmode": "ងងឹត",
+      "completed": "បានបញ្ចប់",
+      "closed": "បានបិទ",
       "layoutVertical": "បញ្ឈរ",
       "layoutFluid": "ពេញទទឹង",
       "layoutBoxed": "ប្រអប់",

@@ -163,6 +163,10 @@
     "settings": {
       "title": "Tetapan Susun Atur",
       "layoutMode": "Mod Susun Atur",
+      "lightmode": "Terang",
+      "darkmode": "Gelap",
+      "completed": "Selesai",
+      "closed": "Ditutup",
       "layoutVertical": "Menegak",
       "layoutFluid": "Lebar Penuh",
       "layoutBoxed": "Berkotak",

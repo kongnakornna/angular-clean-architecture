@@ -163,6 +163,10 @@
     "settings": {
       "title": "레이아웃 설정",
       "layoutMode": "레이아웃 모드",
+      "lightmode": "라이트",
+      "darkmode": "다크",
+      "completed": "완료",
+      "closed": "종료",
       "layoutVertical": "세로",
       "layoutFluid": "전체 너비",
       "layoutBoxed": "박스형",

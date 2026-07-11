@@ -163,6 +163,10 @@
     "settings": {
       "title": "Cài đặt bố cục",
       "layoutMode": "Chế độ bố cục",
+      "lightmode": "Sáng",
+      "darkmode": "Tối",
+      "completed": "Hoàn thành",
+      "closed": "Đã đóng",
       "layoutVertical": "Dọc",
       "layoutFluid": "Toàn chiều rộng",
       "layoutBoxed": "Dạng hộp",

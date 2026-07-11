@@ -47,7 +47,6 @@ import { APP_CONFIG, DEFAULT_APP_CONFIG } from './core/config/app.config';
     SidebarComponent,
     FooterComponent,
     AppLayoutComponent,
-    LayoutSettingsComponent,
     PageHeaderComponent,
   ],
   imports: [
@@ -63,6 +62,7 @@ import { APP_CONFIG, DEFAULT_APP_CONFIG } from './core/config/app.config';
     TablerIconsModule,
     LanguageSelectorComponent,
     TranslatePipe,
+    LayoutSettingsComponent,
   ],
   providers: [
     ...REPOSITORY_PROVIDERS,

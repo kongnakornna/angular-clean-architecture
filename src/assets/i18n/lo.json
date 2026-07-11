@@ -163,6 +163,10 @@
     "settings": {
       "title": "ຕັ້ງຄ່າຜັງ",
       "layoutMode": "ຮູບແບບຈັດວາງ",
+      "lightmode": "ສະຫວ່າງ",
+      "darkmode": "ມືດ",
+      "completed": "ສຳເລັດ",
+      "closed": "ປິດ",
       "layoutVertical": "ແນວຕັ້ງ",
       "layoutFluid": "ເຕັມຄວາມກວ້າງ",
       "layoutBoxed": "ກັອບ",
