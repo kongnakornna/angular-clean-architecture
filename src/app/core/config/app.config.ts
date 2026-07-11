@@ -20,6 +20,7 @@ export interface AppConfig {
   appName: string;
   version: string;
   apiBaseUrl: string;
+  apiTargetUrl: string;
   production: boolean;
   defaultLanguage: string;
   pageSize: number;
@@ -44,8 +45,9 @@ export const DEFAULT_LOGGER_CONFIG: LoggerConfig = {
 export const DEFAULT_APP_CONFIG: AppConfig = {
   appName: 'iCmon',
   version: '1.0.0',
-  apiBaseUrl: '/api',
-  production: false,
+  apiBaseUrl: environment.apiBaseUrl,
+  apiTargetUrl: environment.apiTargetUrl,
+  production: environment.production,
   defaultLanguage: 'en',
   pageSize: 10,
   logger: {

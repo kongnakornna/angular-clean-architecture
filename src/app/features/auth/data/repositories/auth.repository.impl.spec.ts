@@ -13,7 +13,7 @@ describe('AuthRepositoryImpl', () => {
       providers: [
         AuthRepositoryImpl,
         AuthApiDataSource,
-        { provide: APP_CONFIG, useValue: { apiUrl: 'http://localhost:1080/api/v1', production: false } },
+        { provide: APP_CONFIG, useValue: { apiBaseUrl: 'http://localhost:1080/api/v1', production: false } },
       ],
     }).compileComponents();
 

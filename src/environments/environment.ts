@@ -1,7 +1,8 @@
 export const environment = {
   production: false,
   demo: false,
-  apiUrl: '/api',
+  apiBaseUrl: '/api',
+  apiTargetUrl: 'http://localhost:5000',
   logger: {
     enabled: true,
     level: 'debug' as const,
