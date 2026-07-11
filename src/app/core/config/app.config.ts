@@ -44,7 +44,7 @@ export const DEFAULT_LOGGER_CONFIG: LoggerConfig = {
 export const DEFAULT_APP_CONFIG: AppConfig = {
   appName: 'iCmon',
   version: '1.0.0',
-  apiBaseUrl: 'api/v1',
+  apiBaseUrl: '/api',
   production: false,
   defaultLanguage: 'en',
   pageSize: 10,

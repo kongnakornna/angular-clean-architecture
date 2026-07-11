@@ -12,6 +12,9 @@ export const API_ENDPOINTS = {
     me: '/user/me',
     permissions: '/auth/permissions',
     register: '/register',
+    // Root level variants
+    loginRoot: '/login',
+    signinRoot: '/signin',
   },
   users: {
     list: '/user/',

@@ -6,6 +6,7 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { TablerIconComponent } from 'angular-tabler-icons';
 import { AppTranslatePipe } from '../../../../../shared/i18n/presentation/pipes/translate.pipe';
 import { SignUpUseCase } from '../../../domain/use-cases/sign-up.use-case';
+import { RegisterCredentials } from '../../../domain/repositories/auth.repository';
 
 @Component({
   selector: 'app-sign-up',
@@ -19,11 +20,17 @@ export class SignUpComponent {
   private destroyRef = inject(DestroyRef);
 
   username = '';
+  firstName = '';
+  lastName = '';
   fullName = '';
   email = '';
   password = '';
   confirmPassword = '';
   phoneNumber = '';
+  mobileNumber = '';
+  lineId = '';
+  locationId = '';
+  roleId = 2;
   agreeTerms = false;
   loading = false;
   error = '';
@@ -36,13 +43,21 @@ export class SignUpComponent {
   onSubmit(): void {
     this.loading = true;
     this.error = '';
-    this.signUpUseCase.execute({
+    const credentials: RegisterCredentials = {
       username: this.username,
-      fullName: this.fullName,
+      firstName: this.firstName,
+      lastName: this.lastName,
+      fullName: this.fullName || `${this.firstName} ${this.lastName}`,
       email: this.email,
       password: this.password,
+      confirmPassword: this.confirmPassword,
       phoneNumber: this.phoneNumber,
-    })
+      mobileNumber: this.mobileNumber || this.phoneNumber,
+      lineId: this.lineId,
+      locationId: this.locationId,
+      roleId: this.roleId,
+    };
+    this.signUpUseCase.execute(credentials)
       .pipe(takeUntilDestroyed(this.destroyRef))
       .subscribe({
         next: () => {
@@ -50,7 +65,7 @@ export class SignUpComponent {
         },
         error: (err) => {
           this.loading = false;
-          this.error = err.message || 'เกิดข้อผิดพลาด กรุณาลองอีกครั้ง';
+          this.error = err.message || 'An error occurred, please try again';
         },
       });
   }

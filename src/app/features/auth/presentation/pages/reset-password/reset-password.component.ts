@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { Router, RouterLink, ActivatedRoute } from '@angular/router';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { ResetPasswordUseCase } from '../../../domain/use-cases/reset-password.use-case';
+import { ResetPasswordCredentials } from '../../../domain/repositories/auth.repository';
 import { AppTranslatePipe } from '../../../../../shared/i18n/presentation/pipes/translate.pipe';
 
 @Component({
@@ -29,8 +30,8 @@ export class ResetPasswordComponent {
   confirmVisible = false;
 
   constructor() {
-    this.route.queryParams.pipe(takeUntilDestroyed(this.destroyRef)).subscribe(params => {
-      this.token = params['token'] || '';
+    this.route.queryParams.pipe(takeUntilDestroyed(this.destroyRef)).subscribe((params) => {
+      this.token = params['token'] || params['code'] || '';
     });
   }
 
@@ -49,7 +50,12 @@ export class ResetPasswordComponent {
     }
     this.loading = true;
     this.error = '';
-    this.resetPasswordUseCase.execute(this.token, this.password)
+    const credentials: ResetPasswordCredentials = {
+      code: this.token,
+      newPassword: this.password,
+      confirmPassword: this.confirmPassword,
+    };
+    this.resetPasswordUseCase.execute(credentials)
       .pipe(takeUntilDestroyed(this.destroyRef))
       .subscribe({
         next: () => {
