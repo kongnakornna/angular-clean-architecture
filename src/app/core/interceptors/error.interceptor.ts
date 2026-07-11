@@ -62,6 +62,10 @@ export class ErrorInterceptor implements HttpInterceptor {
               errorKey = 'errors.503';
               errorMessage = 'System is under maintenance, please try again later';
               break;
+            case 504:
+              errorKey = 'errors.504';
+              errorMessage = 'Gateway Timeout';
+              break;
             default:
               errorKey = 'errors.unknown';
               errorMessage = 'An unknown error occurred';
@@ -79,7 +83,8 @@ export class ErrorInterceptor implements HttpInterceptor {
 
         // เรียกใช้ TranslateService แบบ Lazy ผ่าน Injector
         const translate = this.injector.get(TranslateService);
-
+        alert(`HTTP Error ${error.status}: ${errorMessage}`);
+        alert(`HTTP Error ${error.status}: ${translate.instant(errorKey) || errorMessage}`);
         return translate.get(errorKey).pipe(
           take(1),
           switchMap((translated: string) => {

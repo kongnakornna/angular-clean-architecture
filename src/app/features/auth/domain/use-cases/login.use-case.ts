@@ -15,6 +15,8 @@ export class LoginUseCase {
       tap((response) => {
         localStorage.setItem(APP_CONSTANTS.TOKEN_KEY, response.accessToken);
         localStorage.setItem(APP_CONSTANTS.REFRESH_TOKEN_KEY, response.refreshToken);
+        localStorage.setItem(APP_CONSTANTS.EXPIRES_IN_KEY, response.expiresIn.toString());
+        localStorage.setItem(APP_CONSTANTS.TOKEN_TYPE_KEY, response.tokenType);
         localStorage.setItem(APP_CONSTANTS.USER_KEY, JSON.stringify(response.user));
       })
     );
