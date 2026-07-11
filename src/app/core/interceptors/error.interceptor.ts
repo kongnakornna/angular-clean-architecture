@@ -83,8 +83,8 @@ export class ErrorInterceptor implements HttpInterceptor {
 
         // เรียกใช้ TranslateService แบบ Lazy ผ่าน Injector
         const translate = this.injector.get(TranslateService);
-        alert(`HTTP Error ${error.status}: ${errorMessage}`);
-        alert(`HTTP Error ${error.status}: ${translate.instant(errorKey) || errorMessage}`);
+        // alert(`HTTP Error ${error.status}: ${errorMessage}`);
+        // alert(`HTTP Error ${error.status}: ${translate.instant(errorKey) || errorMessage}`);
         return translate.get(errorKey).pipe(
           take(1),
           switchMap((translated: string) => {
