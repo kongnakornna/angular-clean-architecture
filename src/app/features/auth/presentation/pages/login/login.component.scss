@@ -13,3 +13,11 @@ body.dark li>strong {
     color: white;
     font-weight: bold;
 }
+
+@media (min-width: 992px) {
+  :host ::ng-deep .card.card-md {
+    width: 40%;
+    max-width: 40%;
+    margin-inline: auto;
+  }
+}
