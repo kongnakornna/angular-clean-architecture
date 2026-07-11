@@ -33,9 +33,9 @@
                             "src/styles.scss"
                         ],
                         "scripts": [
-                            "src/assets/tabler/dist/js/tabler-theme.js",
+                            "node_modules/@tabler/core/dist/js/tabler-theme.js",
                             "node_modules/bootstrap/dist/js/bootstrap.bundle.min.js",
-                            "src/assets/tabler/dist/js/tabler.js"
+                            "node_modules/@tabler/core/dist/js/tabler.js"
                         ],
                         "stylePreprocessorOptions": {
                             "includePaths": ["src"]
@@ -111,9 +111,9 @@
                             "src/styles.scss"
                         ],
                         "scripts": [
-                            "src/assets/tabler/dist/js/tabler-theme.js",
+                            "node_modules/@tabler/core/dist/js/tabler-theme.js",
                             "node_modules/bootstrap/dist/js/bootstrap.bundle.min.js",
-                            "src/assets/tabler/dist/js/tabler.js"
+                            "node_modules/@tabler/core/dist/js/tabler.js"
                         ],
                         "stylePreprocessorOptions": {
                             "includePaths": ["src"]

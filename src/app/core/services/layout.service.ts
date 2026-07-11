@@ -39,8 +39,8 @@ export class LayoutService {
     // theme-font
     el.setAttribute('data-bs-theme-font', s['theme-font'] || 'sans-serif');
 
-    // theme-primary — Tabler uses data-bs-color-scheme for primary color override
-    el.setAttribute('data-bs-color-scheme', s['theme-primary'] || 'blue');
+    // theme-primary
+    el.setAttribute('data-bs-theme-primary', s['theme-primary'] || 'blue');
 
     // theme-radius
     el.setAttribute('data-bs-theme-radius', s['theme-radius'] || '1');
