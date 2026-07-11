@@ -4,7 +4,7 @@ import {
   QUOTATION_REPOSITORY, PURCHASE_ORDER_REPOSITORY, INVENTORY_REPOSITORY,
   PAYMENT_REPOSITORY, DASHBOARD_REPOSITORY, DOCUMENT_REPOSITORY,
   EMAIL_REPOSITORY, BATCH_JOB_REPOSITORY, TRANSLATION_REPOSITORY,
-  IOT_REPOSITORY, WEB_ORDER_REPOSITORY,
+  IOT_REPOSITORY, WEB_ORDER_REPOSITORY, ORDER_REPOSITORY, SYSTEM_REPOSITORY,
 } from './tokens';
 import { AuthRepositoryImpl } from '../../features/auth/data/repositories/auth.repository.impl';
 import { JobCardRepositoryImpl } from '../../features/job-card/data/repositories/job-card.repository.impl';
@@ -20,6 +20,8 @@ import { BatchJobRepositoryImpl } from '../../features/batch/data/repositories/b
 import { TranslationRepositoryImpl } from '../../shared/i18n/data/repositories/translation.repository.impl';
 import { IoTRepositoryImpl } from '../../features/iot/data/repositories/iot.repository.impl';
 import { WebOrderRepositoryImpl } from '../../features/wos/data/repositories/web-order.repository.impl';
+import { OrderRepositoryImpl } from '../../features/orders/data/repositories/order.repository.impl';
+import { SystemRepositoryImpl } from '../../features/system/data/repositories/system.repository.impl';
 
 export const REPOSITORY_PROVIDERS: Provider[] = [
   { provide: AUTH_REPOSITORY, useClass: AuthRepositoryImpl },
@@ -36,4 +38,6 @@ export const REPOSITORY_PROVIDERS: Provider[] = [
   { provide: TRANSLATION_REPOSITORY, useClass: TranslationRepositoryImpl },
   { provide: IOT_REPOSITORY, useClass: IoTRepositoryImpl },
   { provide: WEB_ORDER_REPOSITORY, useClass: WebOrderRepositoryImpl },
+  { provide: ORDER_REPOSITORY, useClass: OrderRepositoryImpl },
+  { provide: SYSTEM_REPOSITORY, useClass: SystemRepositoryImpl },
 ];
