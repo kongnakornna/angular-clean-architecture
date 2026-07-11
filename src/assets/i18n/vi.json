@@ -2,6 +2,19 @@
   "app": {
     "name": "iCmon"
   },
+  "errors": {
+    "unknown": "Đã xảy ra lỗi không xác định",
+    "client": "Đã xảy ra lỗi phía người dùng",
+    "400": "Dữ liệu không hợp lệ",
+    "401": "Vui lòng đăng nhập lại",
+    "403": "Bạn không có quyền truy cập dữ liệu này",
+    "404": "Không tìm thấy dữ liệu",
+    "409": "Dữ liệu bị trùng lặp",
+    "422": "Dữ liệu không hợp lệ, vui lòng kiểm tra lại",
+    "429": "Quá nhiều yêu cầu, vui lòng chờ",
+    "500": "Lỗi máy chủ, vui lòng thử lại sau",
+    "503": "Hệ thống đang bảo trì, vui lòng thử lại sau"
+  },
   "nav": {
     "dashboard": "Bảng điều khiển",
     "jobs": "Quản lý công việc",
@@ -532,5 +545,18 @@
     "monthlySalesChart": "Biểu đồ doanh số hàng tháng",
     "pieChart": "Biểu đồ tròn",
     "comparedToLastMonth": "so với tháng trước"
-  }
+  },
+  "errors": {
+        "unknown": "မသိသော အမှားတစ်ခု ဖြစ်ပွားခဲ့သည်",
+        "client": "ကလိုင်းယင့်အမှား",
+        "400": "ဒေတာမမှန်ကန်ပါ",
+        "401": "ကျေးဇူးပြု၍ ပြန်လည်ဝင်ရောက်ပါ",
+        "403": "ဤဒေတာကို ဝင်ရောက်ကြည့်ရှုရန် ခွင့်မပြုပါ",
+        "404": "ဒေတာမတွေ့ပါ",
+        "409": "ဒေတာထပ်နေသည်",
+        "422": "ဒေတာမမှန်ကန်ပါ၊ ကျေးဇူးပြု၍ ပြန်စစ်ပါ",
+        "429": "တောင်းဆိုမှုများလွန်းသည်၊ ကျေးဇူးပြု၍ စောင့်ပါ",
+        "500": "ဆာဗာအမှား၊ ကျေးဇူးပြု၍ နောက်မှထပ်စမ်းပါ",
+        "503": "စနစ်အား ပြုပြင်ထိန်းသိမ်းနေသည်၊ ကျေးဇူးပြု၍ နောက်မှထပ်စမ်းပါ"
+    }
 }
