@@ -14,6 +14,8 @@ import {
   TRANSLATION_REPOSITORY,
   IOT_REPOSITORY,
   WEB_ORDER_REPOSITORY,
+  ORDER_REPOSITORY,
+  SYSTEM_REPOSITORY,
 } from './tokens';
 
 describe('REPOSITORY_PROVIDERS', () => {
@@ -21,8 +23,8 @@ describe('REPOSITORY_PROVIDERS', () => {
     expect(Array.isArray(REPOSITORY_PROVIDERS)).toBeTrue();
   });
 
-  it('should have 14 providers', () => {
-    expect(REPOSITORY_PROVIDERS.length).toBe(14);
+  it('should have 16 providers', () => {
+    expect(REPOSITORY_PROVIDERS.length).toBe(16);
   });
 
   it('should include AUTH_REPOSITORY provider', () => {
@@ -37,7 +39,7 @@ describe('REPOSITORY_PROVIDERS', () => {
       QUOTATION_REPOSITORY, PURCHASE_ORDER_REPOSITORY, INVENTORY_REPOSITORY,
       PAYMENT_REPOSITORY, DASHBOARD_REPOSITORY, DOCUMENT_REPOSITORY,
       EMAIL_REPOSITORY, BATCH_JOB_REPOSITORY, TRANSLATION_REPOSITORY,
-      IOT_REPOSITORY, WEB_ORDER_REPOSITORY,
+      IOT_REPOSITORY, WEB_ORDER_REPOSITORY, ORDER_REPOSITORY, SYSTEM_REPOSITORY,
     ];
     const providedTokens = REPOSITORY_PROVIDERS.map((p: any) => p.provide);
     tokens.forEach((token) => expect(providedTokens).toContain(token));

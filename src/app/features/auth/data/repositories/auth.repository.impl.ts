@@ -6,6 +6,7 @@ import { AuthApiDataSource } from '../datasources/auth.api.datasource';
 import { LoginResponseDto } from '../dtos/login-response.dto';
 import { UserResponseDto } from '../dtos/user-response.dto';
 import { RegisterRequestDto } from '../dtos/register-request.dto';
+import { APP_CONSTANTS } from '../../../../core/constants/app.constants';
 
 @Injectable({ providedIn: 'root' })
 export class AuthRepositoryImpl implements IAuthRepository {
@@ -14,6 +15,8 @@ export class AuthRepositoryImpl implements IAuthRepository {
   login(credentials: LoginCredentials): Observable<AuthResponse> {
     return this.dataSource.login({ username: credentials.username, password: credentials.password }).pipe(
       switchMap((dto) => {
+        localStorage.setItem(APP_CONSTANTS.TOKEN_KEY, dto.accessToken);
+        localStorage.setItem(APP_CONSTANTS.REFRESH_TOKEN_KEY, dto.refreshToken);
         const tokens = this.mapToTokens(dto);
         return this.dataSource.getCurrentUser().pipe(
           map((userDto) => ({
@@ -28,6 +31,8 @@ export class AuthRepositoryImpl implements IAuthRepository {
   signIn(credentials: SignInCredentials): Observable<AuthResponse> {
     return this.dataSource.signIn({ email: credentials.email, password: credentials.password }).pipe(
       switchMap((dto) => {
+        localStorage.setItem(APP_CONSTANTS.TOKEN_KEY, dto.accessToken);
+        localStorage.setItem(APP_CONSTANTS.REFRESH_TOKEN_KEY, dto.refreshToken);
         const tokens = this.mapToTokens(dto);
         return this.dataSource.getCurrentUser().pipe(
           map((userDto) => ({
@@ -50,6 +55,8 @@ export class AuthRepositoryImpl implements IAuthRepository {
   refreshToken(): Observable<AuthResponse> {
     return this.dataSource.refreshToken().pipe(
       switchMap((dto) => {
+        localStorage.setItem(APP_CONSTANTS.TOKEN_KEY, dto.accessToken);
+        localStorage.setItem(APP_CONSTANTS.REFRESH_TOKEN_KEY, dto.refreshToken);
         const tokens = this.mapToTokens(dto);
         return this.dataSource.getCurrentUser().pipe(
           map((userDto) => ({
