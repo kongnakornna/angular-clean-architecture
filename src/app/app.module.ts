@@ -67,7 +67,7 @@ import { APP_CONFIG, DEFAULT_APP_CONFIG } from './core/config/app.config';
   providers: [
     ...REPOSITORY_PROVIDERS,
     ...(environment.demo ? [{ provide: AUTH_REPOSITORY, useClass: DemoAuthRepositoryImpl }] : []),
-    { provide: APP_CONFIG, useValue: { ...DEFAULT_APP_CONFIG, apiBaseUrl: environment.apiBaseUrl, production: environment.production } },
+    { provide: APP_CONFIG, useValue: { ...DEFAULT_APP_CONFIG, useProxy: environment.useProxy, production: environment.production } },
     provideTablerIcons({
       IconLayoutDashboard, IconClipboard, IconList, IconLayoutKanban, IconPlus,
       IconUsers, IconFileText, IconShoppingCart, IconPackage, IconCreditCard,
