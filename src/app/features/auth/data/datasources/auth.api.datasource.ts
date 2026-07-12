@@ -100,10 +100,6 @@ export class AuthApiDataSource {
   // ------------------------------------------------------------
   // API Methods
   // ------------------------------------------------------------
-
-  /**
-   * Login - ไม่มี logging และ alert แล้ว
-   */
   login(data: LoginRequestDto): Observable<LoginResponseDto> {
     return this.http
       .post<any>(`${this.baseUrl}${API_ENDPOINTS.auth.login}`, data, this.getOptions())
