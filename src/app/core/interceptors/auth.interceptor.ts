@@ -29,7 +29,10 @@ export class AuthInterceptor implements HttpInterceptor {
 
     return next.handle(req).pipe(
       catchError((error) => {
-        if (error instanceof HttpErrorResponse && error.status === 401 && !isRefreshRequest) {
+        // Check for 401 status on both HttpErrorResponse and plain objects
+        // (ErrorInterceptor transforms errors to plain objects before this interceptor)
+        const status = error?.status || error?.statusCode;
+        if (status === 401 && !isRefreshRequest) {
           return this.handle401Error(req, next);
         }
         return throwError(() => error);
