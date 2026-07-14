@@ -43,7 +43,7 @@
       <div class="card">
         <div class="card-body">
           <div class="subheader">{{ 'dashboard.revenue' | translate }}</div>
-          <div class="h1 mb-3">{{ s.revenue | currency:'THB':'symbol':'1.0-0' }}</div>
+          <div class="h1 mb-3">{{ s.totalRevenue | currency:'THB':'symbol':'1.0-0' }}</div>
           <div class="d-flex align-items-baseline">
             <span class="text-green me-1">+5.2%</span>
             <span class="text-secondary">{{ 'dashboard.fromLastMonth' | translate }}</span>
@@ -61,12 +61,18 @@
         </div>
         <div class="card-body">
           <div id="chart-revenue" style="height: 250px">
-            <div class="d-flex align-items-end" style="height: 250px; gap: 8px;">
-              <div *ngFor="let v of chartData.values; let i = index" class="flex-fill text-center">
-                <div class="bg-primary rounded-top" [style.height.px]="v * 2" style="min-height: 10px;"></div>
-                <small class="text-secondary mt-1 d-block">{{ chartData.labels[i] }}</small>
+            <div *ngIf="(revenue$ | async) as revenueData; else noRevenueData"
+                 class="d-flex align-items-end" style="height: 250px; gap: 8px;">
+              <div *ngFor="let d of revenueData" class="flex-fill text-center">
+                <div class="bg-primary rounded-top" [style.height.px]="d.revenue / 100" style="min-height: 10px;"></div>
+                <small class="text-secondary mt-1 d-block">{{ d.month }}</small>
               </div>
             </div>
+            <ng-template #noRevenueData>
+              <div class="d-flex align-items-center justify-content-center h-100">
+                <span class="text-secondary">{{ 'dashboard.noData' | translate }}</span>
+              </div>
+            </ng-template>
           </div>
         </div>
       </div>
@@ -77,14 +83,14 @@
           <h3 class="card-title">{{ 'dashboard.recentActivity' | translate }}</h3>
         </div>
         <div class="list-group list-group-flush">
-          <div *ngFor="let a of recentActivities" class="list-group-item">
+          <div *ngFor="let a of (activities$ | async)" class="list-group-item">
             <div class="row align-items-center">
               <div class="col-auto">
                 <span class="avatar avatar-sm">{{ a.user.charAt(0) }}</span>
               </div>
               <div class="col text-truncate">
                 <strong>{{ a.user }}</strong> {{ a.action }}
-                <div class="text-secondary">{{ a.time }}</div>
+                <div class="text-secondary">{{ a.time | date:'short' }}</div>
               </div>
               <div class="col-auto">
                 <span class="badge bg-primary">{{ a.target }}</span>

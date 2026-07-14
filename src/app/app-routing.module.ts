@@ -161,6 +161,13 @@ export const routes: Routes = [
           ),
       },
       {
+        path: 'reports',
+        loadComponent: () =>
+          import('./features/dashboard/presentation/pages/reports/reports.component').then(
+            (m) => m.ReportsComponent
+          ),
+      },
+      {
         path: 'email/compose',
         loadComponent: () =>
           import('./features/email/presentation/pages/email-compose/email-compose.component').then(

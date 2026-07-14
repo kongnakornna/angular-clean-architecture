@@ -1,15 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, Subject, takeUntil } from 'rxjs';
 import { TranslatePipe } from '../../../../../shared/pipes/translate.pipe';
-
-interface DashboardStats {
-  totalJobs: number;
-  activeJobs: number;
-  totalCustomers: number;
-  revenue: number;
-  conversionRate: number;
-}
+import { DashboardStats, RevenueData, Activity } from '../../../domain/entities/dashboard-stats.entity';
+import { GetDashboardStatsUseCase } from '../../../domain/use-cases/get-dashboard-stats.use-case';
+import { GetRevenueChartUseCase } from '../../../domain/use-cases/get-revenue-chart.use-case';
+import { GetRecentActivitiesUseCase } from '../../../domain/use-cases/get-recent-activities.use-case';
 
 @Component({
   selector: 'app-main-dashboard',
@@ -18,31 +14,61 @@ interface DashboardStats {
   templateUrl: './main-dashboard.component.html',
   styleUrls: ['./main-dashboard.component.scss'],
 })
-export class MainDashboardComponent implements OnInit {
+export class MainDashboardComponent implements OnInit, OnDestroy {
   private statsSubject = new BehaviorSubject<DashboardStats | null>(null);
   stats$ = this.statsSubject.asObservable();
+
+  private revenueSubject = new BehaviorSubject<RevenueData[]>([]);
+  revenue$ = this.revenueSubject.asObservable();
+
+  private activitiesSubject = new BehaviorSubject<Activity[]>([]);
+  activities$ = this.activitiesSubject.asObservable();
 
   private loadingSubject = new BehaviorSubject<boolean>(true);
   loading$ = this.loadingSubject.asObservable();
 
-  chartData = {
-    labels: ['ม.ค.', 'ก.พ.', 'มี.ค.', 'เม.ย.', 'พ.ค.', 'มิ.ย.'],
-    values: [65, 78, 90, 85, 95, 110],
-  };
+  private destroy$ = new Subject<void>();
 
-  recentActivities = [
-    { user: 'สมชาย', action: 'สร้างงานใหม่', target: 'JC-2026-001', time: '5 นาทีที่แล้ว' },
-    { user: 'นางสาวกนก', action: 'อนุมัติ Quotation', target: 'QT-2026-045', time: '1 ชั่วโมงที่แล้ว' },
-    { user: 'นายวิชัย', action: 'อัปเดตสถานะงาน', target: 'JC-2026-023', time: '2 ชั่วโมงที่แล้ว' },
-  ];
+  constructor(
+    private getDashboardStats: GetDashboardStatsUseCase,
+    private getRevenueChart: GetRevenueChartUseCase,
+    private getRecentActivities: GetRecentActivitiesUseCase,
+  ) {}
 
   ngOnInit(): void {
-    setTimeout(() => {
-      this.statsSubject.next({
-        totalJobs: 156, activeJobs: 42, totalCustomers: 89,
-        revenue: 45230, conversionRate: 3.2,
+    this.loadDashboard();
+  }
+
+  ngOnDestroy(): void {
+    this.destroy$.next();
+    this.destroy$.complete();
+  }
+
+  private loadDashboard(): void {
+    this.loadingSubject.next(true);
+
+    this.getDashboardStats.execute()
+      .pipe(takeUntil(this.destroy$))
+      .subscribe({
+        next: (stats) => {
+          this.statsSubject.next(stats);
+          this.loadingSubject.next(false);
+        },
+        error: () => {
+          this.loadingSubject.next(false);
+        },
       });
-      this.loadingSubject.next(false);
-    }, 1000);
+
+    this.getRevenueChart.execute('6m')
+      .pipe(takeUntil(this.destroy$))
+      .subscribe({
+        next: (data) => this.revenueSubject.next(data),
+      });
+
+    this.getRecentActivities.execute()
+      .pipe(takeUntil(this.destroy$))
+      .subscribe({
+        next: (activities) => this.activitiesSubject.next(activities),
+      });
   }
 }

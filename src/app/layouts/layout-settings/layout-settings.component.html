@@ -10,13 +10,13 @@
         <input type="radio" name="theme" value="light" class="form-check-input"
           [checked]="layout.theme() === 'light'"
           (change)="update('theme', 'light')">
-        <span class="form-check-label">{{ 'layout.settings.completed' | appTranslate }}</span>
+        <span class="form-check-label">{{ 'layout.settings.completed' | translate }}</span>
       </label>
       <label class="form-check">
         <input type="radio" name="theme" value="dark" class="form-check-input"
           [checked]="layout.theme() === 'dark'"
           (change)="update('theme', 'dark')">
-        <span class="form-check-label">{{ 'layout.settings.closed' | appTranslate }}</span>
+        <span class="form-check-label">{{ 'layout.settings.closed' | translate }}</span>
       </label>
     </div>
 

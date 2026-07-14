@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scrutinize Report: Dashboard Feature &amp; Layouts Module</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: #f5f5f5; color: #333; line-height: 1.6; }
+        .container { max-width: 1000px; margin: 0 auto; padding: 20px; }
+        .header { background: linear-gradient(135deg, #e74c3c 0%, #c0392b 100%); color: white; padding: 30px; border-radius: 10px; margin-bottom: 30px; }
+        .header h1 { font-size: 24px; margin-bottom: 10px; }
+        .header p { opacity: 0.9; }
+        .section { background: white; border-radius: 10px; padding: 25px; margin-bottom: 20px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
+        .section h2 { color: #333; font-size: 20px; margin-bottom: 15px; border-bottom: 2px solid #e74c3c; padding-bottom: 10px; }
+        .section h3 { color: #555; font-size: 16px; margin: 15px 0 10px 0; }
+        .section p { margin: 8px 0; }
+        .finding { border-left: 4px solid #ddd; padding: 15px; margin: 15px 0; background: #fafafa; border-radius: 0 8px 8px 0; }
+        .finding.blocker { border-left-color: #e74c3c; background: #fdf2f2; }
+        .finding.major { border-left-color: #f39c12; background: #fef9e7; }
+        .finding.nit { border-left-color: #95a5a6; background: #f8f9fa; }
+        .finding-title { font-weight: bold; font-size: 16px; margin-bottom: 8px; }
+        .finding-blocker { color: #e74c3c; }
+        .finding-major { color: #f39c12; }
+        .finding-nit { color: #95a5a6; }
+        .finding-detail { margin: 8px 0; }
+        .finding-detail strong { color: #555; }
+        .evidence { background: #1e1e1e; color: #d4d4d4; padding: 10px; border-radius: 5px; font-family: 'Consolas', 'Courier New', monospace; font-size: 13px; margin: 8px 0; white-space: pre-wrap; word-break: break-all; line-height: 1.5; }
+        .fix { background: #d5f5e3; padding: 10px; border-radius: 5px; margin: 8px 0; }
+        .fix ul { margin: 5px 0 0 20px; }
+        .fix li { margin: 3px 0; }
+        .verdict { text-align: center; padding: 20px; }
+        .verdict-badge { display: inline-block; padding: 12px 30px; border-radius: 25px; font-size: 18px; font-weight: bold; text-transform: uppercase; }
+        .verdict-rework { background: #f39c12; color: white; }
+        .verdict-ship { background: #27ae60; color: white; }
+        .verdict-fix-then-ship { background: #f1c40f; color: #333; }
+        .verdict-reject { background: #e74c3c; color: white; }
+        .reason { margin-top: 15px; font-size: 14px; color: #666; }
+        code { background: #ecf0f1; padding: 2px 6px; border-radius: 3px; font-family: monospace; font-size: 13px; }
+        .checklist { margin: 10px 0; }
+        .checklist li { margin: 5px 0; padding-left: 5px; }
+        .checklist li::marker { color: #667eea; }
+        .flow { background: #ecf0f1; padding: 10px; border-radius: 5px; font-family: monospace; font-size: 13px; margin: 8px 0; white-space: pre-wrap; }
+        .claim { background: #ebf5fb; padding: 12px; border-radius: 8px; margin: 10px 0; border-left: 3px solid #3498db; }
+        .claim-title { font-weight: bold; color: #2c3e50; }
+        .claim-result { margin-top: 5px; }
+        .result-false { color: #e74c3c; font-weight: bold; }
+        .result-true { color: #27ae60; font-weight: bold; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Scrutinize Report: Dashboard Feature &amp; Layouts Module</h1>
+            <p>วันที่: 14 กรกฎาคม 2569 | ตรวจสอบ: src/app/features/dashboard + src/app/layouts</p>
+        </div>
+
+        <!-- SECTION 1: Intent -->
+        <div class="section">
+            <h2>1. เจตนา (Intent)</h2>
+            <p><strong>เป้าหมาย:</strong> ตรวจสอบว่า Dashboard feature module (domain/data/presentation) และ Layouts module ทำงานเชื่อมต่อกัน end-to-end ได้จริง — คือ user คลิก dashboard แล้วเห็นข้อมูลจริงจาก API ผ่าน use case chain</p>
+            <p style="margin-top: 10px;"><strong>มีวิธีง่ายกว่าไหม?</strong> ปัญหาไม่ใช่เรื่อง approach — โค้ดเขียนไว้แล้ว ปัญหาคือ <strong>ชั้นโค้ดเชื่อมกันไม่ได้เลย</strong> ดังนั้นสิ่งที่มีค่ากว่าคือไล่ให้เห็นว่าจุดไหนขาดตรงไหน</p>
+        </div>
+
+        <!-- SECTION 2: Code Path Traces -->
+        <div class="section">
+            <h2>2. ติดตาม — เดิน code path จริง</h2>
+
+            <h3>Path A: User คลิก Dashboard → เห็นข้อมูล</h3>
+            <div class="evidence">app-routing.module.ts:73-78
+  → /dashboard → loadComponent(MainDashboardComponent)
+
+main-dashboard.component.ts
+  → ngOnInit() → setTimeout(1000ms) → statsSubject.next({ mock data })
+  → <span style="color:#e74c3c;">ไม่มี inject Use Case ใดๆ</span>
+  → <span style="color:#e74c3c;">ไม่มี import จาก domain/ หรือ data/</span>
+
+<span style="color:#e74c3c;">สรุป: ไม่ได้เรียก API จริงเลย ใช้ mock data ล้วนๆ</span></div>
+
+            <h3>Path B: User คลิก Reports → เห็นหน้า reports</h3>
+            <div class="evidence">sidebar.component.ts menuItems: { label: 'nav.reports', route: '/reports' }
+header.component.ts horizontalMenu: { label: 'Reports', route: '/reports' }
+header.component.ts app dropdown: &lt;a href="/reports"&gt;
+
+app-routing.module.ts:67-227 (children ของ AppLayoutComponent)
+  → มี /dashboard ✓, /analytics ✓, /customers ✓, ...
+  → <span style="color:#e74c3c;">ไม่มี path: 'reports' เลย!</span>
+
+<span style="color:#e74c3c;">สรุป: คลิก Reports → Angular Router หา route ไม่เจอ → 404 / blank page</span></div>
+
+            <h3>Path C: DI chain — ถ้า inject Use Case จะทำงานไหม?</h3>
+            <div class="evidence">GetDashboardStatsUseCase (providedIn: 'root')
+  → @Inject(DASHBOARD_REPOSITORY) → tokens.ts:27
+
+providers.ts:40
+  → { provide: DASHBOARD_REPOSITORY, useClass: DashboardRepositoryImpl }
+
+DashboardRepositoryImpl
+  → inject DashboardApiDataSource (concrete class)
+
+DashboardApiDataSource
+  → inject HttpClient
+  → GET /dashboard/stats
+
+<span style="color:#27ae60;">DI chain สมบูรณ์</span> แต่ <span style="color:#e74c3c;">ไม่มี component ไหน inject Use Case → chain ไม่เคยถูกเรียก</span></div>
+
+            <h3>Path D: ถ้าเชื่อมจริง — field name ตรงกันไหม?</h3>
+            <div class="evidence"><span style="color:#3498db;">Domain entity</span> (dashboard-stats.entity.ts):
+  DashboardStats { totalJobs, activeJobs, totalCustomers, <span style="color:#27ae60;">totalRevenue</span>, <span style="color:#27ae60;">monthlyRevenue</span>, ... }
+
+<span style="color:#f39c12;">MainDashboardComponent local interface</span>:
+  DashboardStats { totalJobs, activeJobs, totalCustomers, <span style="color:#e74c3c;">revenue</span>, conversionRate }
+
+<span style="color:#e74c3c;">Template</span> (main-dashboard.component.html): {{ s.revenue | currency:'THB' }}
+
+<span style="color:#e74c3c;">ถ้าเชื่อมกับ domain entity → s.revenue = undefined → แสดง "THB0" หรือ error</span></div>
+
+            <h3>Path E: ReportsComponent download button</h3>
+            <div class="evidence">reports.component.html:
+  &lt;button class="btn btn-sm btn-primary"&gt;{{ 'reports.download' | translate }}&lt;/button&gt;
+  → <span style="color:#e74c3c;">ไม่มี (click) handler → คลิกแล้วไม่ทำอะไร</span></div>
+
+            <h3>Path F: HeaderComponent logout</h3>
+            <div class="evidence">header.component.ts: logout()
+  → localStorage.clear()     ← <span style="color:#e74c3c;">ลบ theme settings ที่ LayoutService เก็บไว้ด้วย!</span>
+  → window.location.href = '/login'
+
+LayoutService เก็บ theme/font/radius ใน localStorage:
+  'theme', 'theme-base', 'theme-font', 'theme-primary', 'theme-radius'
+→ พอ logout ทุกอย่างหาย</div>
+        </div>
+
+        <!-- SECTION 3: Claim Verification -->
+        <div class="section">
+            <h2>3. ตรวจสอบ — ทำได้จริงตามที่อ้างไหม</h2>
+
+            <div class="claim">
+                <div class="claim-title">Claim: "Clean Architecture 3 ชั้นทำงานได้"</div>
+                <div class="claim-result"><span class="result-false">ไม่จริง.</span> Domain/Data layer ถูกสร้างไว้สมบูรณ์ แต่ Presentation layer ไม่ได้ inject หรือเรียก Use Case ใดๆ ทั้ง 3 components ใช้ hard-coded mock data ชั้นทั้ง 3 แยกจากกันโดยสิ้นเชิง</div>
+            </div>
+
+            <div class="claim">
+                <div class="claim-title">Claim: "DI Token pattern ทำให้ swappable"</div>
+                <div class="claim-result"><span class="result-false">ไม่จริง.</span> Token + Provider + Use Case injection infrastructure ถูกต้อง แต่ไม่มี component ไหนเข้าถึง chain นี้ ทำให้ไม่สามารถ test หรือ swap ได้จริง</div>
+            </div>
+
+            <div class="claim">
+                <div class="claim-title">Claim: "Dashboard แสดงข้อมูลจาก API"</div>
+                <div class="claim-result"><span class="result-false">ไม่จริง.</span> MainDashboardComponent ใช้ setTimeout(1000ms) + hard-coded values ไม่มี HTTP call เกิดขึ้น</div>
+            </div>
+
+            <div class="claim">
+                <div class="claim-title">Claim: "Reports page ใช้งานได้"</div>
+                <div class="claim-result"><span class="result-false">ไม่จริง.</span> ไม่มี route registration → user คลิกแล้วเจอ 404</div>
+            </div>
+
+            <div class="claim">
+                <div class="claim-title">Claim: "Tests ครอบคลุม"</div>
+                <div class="claim-result"><span class="result-false">ไม่จริง.</span> ทุก spec ทดสอบแค่ "component should create" — ไม่มี test ที่ inject use case, mock API, หรือ verify data flow</div>
+            </div>
+        </div>
+
+        <!-- SECTION 4: Findings -->
+        <div class="section">
+            <h2>4. Findings</h2>
+
+            <div class="finding blocker">
+                <div class="finding-title finding-blocker">BLOCKER #1: ReportsComponent ไม่มี route — ไม่สามารถเข้าถึงได้</div>
+                <div class="finding-detail">
+                    <strong>สิ่งที่เจอ:</strong> ไม่มี route entry สำหรับ <code>/reports</code> ใน <code>app-routing.module.ts:67-227</code> แต่มี 3 จุดที่ link ไปที่ <code>/reports</code>
+                </div>
+                <div class="finding-detail">
+                    <strong>ทำไมถึงสำคัญ:</strong> User คลิก "Reports" จาก sidebar หรือ header → Angular Router หา route ไม่เจอ → แสดง blank page หรือ error — feature ใช้งานไม่ได้
+                </div>
+                <div class="finding-detail">
+                    <strong>หลักฐาน:</strong>
+                    <div class="evidence">app-routing.module.ts:71-226 — children ของ AppLayoutComponent:
+  path: 'dashboard'    ✓ (line 73)
+  path: 'analytics'    ✓ (line 157)
+  path: 'reports'      ❌ ไม่มี!
+
+Link ที่ชี้ไป /reports (3 จุด):
+  sidebar.component.ts menuItems: { route: '/reports' }
+  header.component.ts horizontalMenu: { route: '/reports' }
+  header.component.ts app dropdown: &lt;a href="/reports"&gt;</div>
+                </div>
+                <div class="fix">
+                    <strong>แนวทางแก้ไข:</strong>
+                    <ul class="checklist">
+                        <li>เพิ่ม route ใน <code>app-routing.module.ts</code> หลัง line 162:</li>
+                        <li><code>{ path: 'reports', loadComponent: () =&gt; import('./features/dashboard/presentation/pages/reports/reports.component').then((m) =&gt; m.ReportsComponent) },</code></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="finding blocker">
+                <div class="finding-title finding-blocker">BLOCKER #2: Presentation layer ไม่ได้เชื่อมกับ Domain/Data layer — ทั้ง Use Case chain เป็น dead code</div>
+                <div class="finding-detail">
+                    <strong>สิ่งที่เจอ:</strong> ทั้ง 3 components ไม่มีตัวไหน inject หรือ import Use Case จาก domain layer
+                </div>
+                <div class="finding-detail">
+                    <strong>ทำไมถึงสำคัญ:</strong> Domain layer (3 use cases), Data layer (repository impl, datasource, DTO) ทั้งหมดถูกสร้างไว้สมบูรณ์แต่ไม่เคยถูกเรียกใช้ — เป็น dead code ที่เพิ่ม complexity โดยไม่ได้ value
+                </div>
+                <div class="finding-detail">
+                    <strong>หลักฐาน:</strong>
+                    <div class="evidence">main-dashboard.component.ts imports:
+  Component, OnInit, CommonModule, BehaviorSubject, TranslatePipe
+  → ❌ ไม่มี GetDashboardStatsUseCase
+  → ❌ ไม่มี GetRevenueChartUseCase
+
+reports.component.ts imports:
+  Component, CommonModule, RouterLink, TranslatePipe
+  → ❌ ไม่มี GenerateReportUseCase
+
+analytics.component.ts imports:
+  Component, CommonModule, TranslatePipe
+  → ❌ ไม่มี Use Case ใดๆ
+
+DashboardApiDataSource ทั้งไฟล์:
+  → ไม่มีใคร inject → ไม่มี HTTP request เกิดขึ้นจริง</div>
+                </div>
+                <div class="fix">
+                    <strong>แนวทางแก้ไข:</strong>
+                    <ul class="checklist">
+                        <li>Inject <code>GetDashboardStatsUseCase</code> และ <code>GetRevenueChartUseCase</code> ใน MainDashboardComponent</li>
+                        <li>เรียก <code>execute()</code> ใน <code>ngOnInit()</code> แล้ว subscribe ลง <code>statsSubject</code></li>
+                        <li>ลบ <code>setTimeout</code> mock data ออก</li>
+                        <li>ทำเช่นเดียวกันกับ ReportsComponent (inject <code>GenerateReportUseCase</code>) และ AnalyticsComponent</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="finding major">
+                <div class="finding-title finding-major">MAJOR #1: MainDashboardComponent นิยาม DashboardStats interface ซ้ำ — field name ไม่ตรงกัน</div>
+                <div class="finding-detail">
+                    <strong>สิ่งที่เจอ:</strong> <code>main-dashboard.component.ts:7-12</code> นิยาม local <code>DashboardStats</code> interface ที่มี field <code>revenue</code> แต่ domain entity (<code>dashboard-stats.entity.ts:3</code>) ใช้ <code>totalRevenue</code> + <code>monthlyRevenue</code>
+                </div>
+                <div class="finding-detail">
+                    <strong>ทำไมถึงสำคัญ:</strong> ถ้าเชื่อมกับ use case จริง → domain entity คืน <code>{ totalRevenue: 45230 }</code> → template แสดง <code>s.revenue</code> → <strong>undefined</strong> → แสดง "THB0"
+                </div>
+                <div class="finding-detail">
+                    <strong>หลักฐาน:</strong>
+                    <div class="evidence">main-dashboard.component.ts:7-12 (local):
+  interface DashboardStats { ..., revenue: number, ... }
+
+dashboard-stats.entity.ts:3 (domain):
+  export interface DashboardStats { ..., totalRevenue: number, monthlyRevenue: number, ... }
+
+main-dashboard.component.html:34:
+  {{ s.revenue | currency:'THB':'symbol':'1.0-0' }}
+  ← field นี้ไม่มีใน domain entity!</div>
+                </div>
+                <div class="fix">
+                    <strong>แนวทางแก้ไข:</strong> ลบ local interface ออก แล้ว import จาก domain entity แล้วแก้ template เป็น <code>{{ s.totalRevenue | currency:'THB':'symbol':'1.0-0' }}</code>
+                </div>
+            </div>
+
+            <div class="finding major">
+                <div class="finding-title finding-major">MAJOR #2: ReportsComponent download button ไม่มี click handler</div>
+                <div class="finding-detail">
+                    <strong>สิ่งที่เจอ:</strong> <code>reports.component.html</code> มีปุ่ม download แต่ไม่มี <code>(click)</code> binding — คลิกแล้วไม่ทำอะไร
+                </div>
+                <div class="finding-detail">
+                    <strong>ทำไมถึงสำคัญ:</strong> ปุ่ม download เป็น UI element หลักของหน้า reports แต่ไม่มี functionality
+                </div>
+                <div class="finding-detail">
+                    <strong>หลักฐาน:</strong>
+                    <div class="evidence">&lt;button class="btn btn-sm btn-primary"&gt;
+  {{ 'reports.download' | translate }}
+&lt;/button&gt;
+&lt;!-- ไม่มี (click)="download(r)" หรือ event binding ใดๆ --&gt;</div>
+                </div>
+                <div class="fix">
+                    <strong>แนวทางแก้ไข:</strong> เพิ่ม click handler ที่เรียก <code>GenerateReportUseCase.execute()</code> แล้ว download blob ที่ได้
+                </div>
+            </div>
+
+            <div class="finding major">
+                <div class="finding-title finding-major">MAJOR #3: HeaderComponent.logout() ลบ localStorage ทั้งหมด — สูญเสีย theme settings</div>
+                <div class="finding-detail">
+                    <strong>สิ่งที่เจอ:</strong> <code>header.component.ts</code> logout() เรียก <code>localStorage.clear()</code> ซึ่งลบ theme/font/radius ที่ LayoutService เก็บไว้ด้วย
+                </div>
+                <div class="finding-detail">
+                    <strong>ทำไมถึงสำคัญ:</strong> User login ใหม่แล้วจะต้องตั้ง theme ใหม่ทุกครั้ง เพราะข้อมูล settings หายไป
+                </div>
+                <div class="finding-detail">
+                    <strong>หลักฐาน:</strong>
+                    <div class="evidence">header.component.ts: logout():
+  localStorage.clear()    ← ลบ key ทั้งหมดรวมถึง 'theme', 'theme-primary' ฯลฯ
+
+layout.service.ts ใช้ localStorage สำหรับ:
+  'theme', 'theme-base', 'theme-font', 'theme-primary', 'theme-radius'</div>
+                </div>
+                <div class="fix">
+                    <strong>แนวทางแก้ไข:</strong> ลบเฉพาะ auth-related keys แทน เช่น <code>localStorage.removeItem('token')</code>
+                </div>
+            </div>
+
+            <div class="finding major">
+                <div class="finding-title finding-major">MAJOR #4: สอง translate pipe ต่างกัน — ใช้สลับกันใน layout</div>
+                <div class="finding-detail">
+                    <strong>สิ่งที่เจอ:</strong> Layouts ใช้ translate pipe 2 ตัวที่ต่างกัน — <code>LayoutSettingsComponent</code> ใช้ <code>AppTranslatePipe</code> (custom I18nService) ส่วน component อื่นใช้ <code>TranslatePipe</code> (@ngx-translate)
+                </div>
+                <div class="finding-detail">
+                    <strong>ทำไมถึงสำคัญ:</strong> ถ้า I18nService และ TranslateService มี translation data ต่างกัน → LayoutSettings แสดงข้อความภาษาหนึ่ง แต่ส่วนอื่นแสดงอีกภาษา
+                </div>
+                <div class="finding-detail">
+                    <strong>หลักฐาน:</strong>
+                    <div class="evidence">layout-settings.component.ts:5:
+  import { AppTranslatePipe } from '.../i18n/presentation/pipes/translate.pipe'
+  → uses I18nService.translate()
+
+header/sidebar/footer:
+  import { TranslatePipe } from '.../shared/pipes/translate.pipe'
+  → uses TranslateService.instant()
+
+TranslatePipe (shared/pipes):
+  → inject TranslateService from @ngx-translate/core
+  → subscribes to onLangChange, handles cleanup
+
+AppTranslatePipe (shared/i18n):
+  → inject I18nService (custom)
+  → no subscription, no cleanup</div>
+                </div>
+                <div class="fix">
+                    <strong>แนวทางแก้ไข:</strong> เลือกใช้ pipe ตัวใดตัวหนึ่งให้ทั้ง project — แนะนำ <code>TranslatePipe</code> (@ngx-translate) ตัวเดียว
+                </div>
+            </div>
+
+            <div class="finding major">
+                <div class="finding-title finding-major">MAJOR #5: Navigation ซ้ำกันระหว่าง sidebar และ header — ต้อง sync มือ</div>
+                <div class="finding-detail">
+                    <strong>สิ่งที่เจอ:</strong> Sidebar และ Header ต่างมี menu items list ของตัวเองที่ overlap กัน แต่ไม่มี single source of truth
+                </div>
+                <div class="finding-detail">
+                    <strong>ทำไมถึงสำคัญ:</strong> เพิ่ม menu ใหม่ ต้องแก้ 2 ที่ ถ้าแก้ที่เดียวจะไม่ sync → user เห็น menu ต่างกัน
+                </div>
+                <div class="finding-detail">
+                    <strong>หลักฐาน:</strong>
+                    <div class="evidence">sidebar.component.ts menuItems: [
+  { label: 'nav.dashboard', route: '/dashboard' },
+  { label: 'nav.jobs', route: '/jobs', children: [3 items] },
+  { label: 'nav.reports', route: '/reports' },
+  ... (13 items)
+]
+
+header.component.ts horizontalMenu: [
+  { label: 'Dashboard', route: '/dashboard' },
+  { label: 'Jobs', route: '/jobs', children: [2 items] },
+  { label: 'Reports', route: '/reports' },
+]
+→ label ต่างกัน ('nav.dashboard' vs 'Dashboard')
+→ children ต่างกัน (sidebar มี 3, header มี 2)</div>
+                </div>
+                <div class="fix">
+                    <strong>แนวทางแก้ไข:</strong> สร้าง shared <code>NavigationConfig</code> service หรือ constant ที่ทั้ง 2 import ใช้ร่วมกัน
+                </div>
+            </div>
+
+            <div class="finding nit">
+                <div class="finding-title finding-nit">NIT #1: DashboardStatsResponseDto ไม่ได้ใช้งาน</div>
+                <div class="finding-detail">
+                    <strong>สิ่งที่เจอ:</strong> <code>data/dtos/dashboard-stats-response.dto.ts</code> นิยามไว้แต่ไม่มีไฟล์ไหน import
+                </div>
+                <div class="fix">
+                    <strong>แนวทางแก้ไข:</strong> ใช้ใน <code>DashboardApiDataSource.getStats()</code> return type แทน <code>Observable&lt;any&gt;</code>
+                </div>
+            </div>
+
+            <div class="finding nit">
+                <div class="finding-title finding-nit">NIT #2: DashboardApiDataSource ใช้ Observable&lt;any&gt; ทุก method</div>
+                <div class="finding-detail">
+                    <strong>สิ่งที่เจอ:</strong> <code>dashboard.api.datasource.ts</code> return <code>Observable&lt;any&gt;</code> ทุก method — ไม่มี type safety
+                </div>
+                <div class="fix">
+                    <strong>แนวทางแก้ไข:</strong> ใช้ <code>DashboardStatsResponseDto</code> เป็น return type
+                </div>
+            </div>
+
+            <div class="finding nit">
+                <div class="finding-title finding-nit">NIT #3: MainDashboardComponent setTimeout ไม่ cleanup</div>
+                <div class="finding-detail">
+                    <strong>สิ่งที่เจอ:</strong> <code>main-dashboard.component.ts</code> ใช้ <code>setTimeout(1000ms)</code> แต่ไม่ clear ใน <code>ngOnDestroy</code>
+                </div>
+                <div class="fix">
+                    <strong>แนวทางแก้ไข:</strong> เก็บ timeout id แล้ว clear ใน <code>ngOnDestroy</code> หรือใช้ <code>takeUntil</code> pattern
+                </div>
+            </div>
+
+            <div class="finding nit">
+                <div class="finding-title finding-nit">NIT #4: Tests ไม่ cover data flow</div>
+                <div class="finding-detail">
+                    <strong>สิ่งที่เจอ:</strong> ทุก spec ทดสอบแค่ "component should create" — ไม่มี test ที่ inject mock use case แล้ว verify data flow
+                </div>
+                <div class="fix">
+                    <strong>แนวทางแก้ไข:</strong> เพิ่ม tests ที่ inject mock use case แล้ว verify ว่า <code>execute()</code> ถูกเรียก
+                </div>
+            </div>
+        </div>
+
+        <!-- Verdict -->
+        <div class="section">
+            <h2>Verdict</h2>
+            <div class="verdict">
+                <div class="verdict-badge verdict-rework">REWORK</div>
+                <div class="reason">
+                    <strong>เหตุผลใหญ่สุด:</strong> Dashboard feature มี architecture ที่ออกแบบไว้ดี (Clean Architecture + DI Token) แต่ <strong>presentation layer ไม่ได้เชื่อมกับ domain/data layer เลย</strong> ทำให้ทั้ง Use Case chain เป็น dead code + ReportsComponent ไม่มี route (เข้าถึงไม่ได้) + template ใช้ field name ผิด (<code>revenue</code> vs <code>totalRevenue</code>) → จะพังทันทีถ้าเชื่อมจริง
+                </div>
+            </div>
+        </div>
+
+        <!-- Fix Plan -->
+        <div class="section">
+            <h2>5. แผนการแก้ไข (Recommended Order)</h2>
+            <table>
+                <tr>
+                    <th>#</th>
+                    <th>งาน</th>
+                    <th>ไฟล์</th>
+                    <th>Severity</th>
+                </tr>
+                <tr>
+                    <td>1</td>
+                    <td><strong>เพิ่ม route สำหรับ Reports</strong></td>
+                    <td><code>app-routing.module.ts</code></td>
+                    <td><span style="color:#e74c3c;font-weight:bold;">Blocker</span></td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td><strong>เชื่อม MainDashboardComponent กับ Use Cases</strong> — inject, เรียก execute(), ลบ mock</td>
+                    <td><code>main-dashboard.component.ts</code></td>
+                    <td><span style="color:#e74c3c;font-weight:bold;">Blocker</span></td>
+                </tr>
+                <tr>
+                    <td>3</td>
+                    <td><strong>ลบ local DashboardStats interface</strong> — import จาก domain entity</td>
+                    <td><code>main-dashboard.component.ts</code></td>
+                    <td><span style="color:#f39c12;font-weight:bold;">Major</span></td>
+                </tr>
+                <tr>
+                    <td>4</td>
+                    <td><strong>เชื่อม ReportsComponent กับ GenerateReportUseCase</strong></td>
+                    <td><code>reports.component.ts</code></td>
+                    <td><span style="color:#f39c12;font-weight:bold;">Major</span></td>
+                </tr>
+                <tr>
+                    <td>5</td>
+                    <td><strong>เพิ่ม download handler</strong> ใน ReportsComponent</td>
+                    <td><code>reports.component.ts/html</code></td>
+                    <td><span style="color:#f39c12;font-weight:bold;">Major</span></td>
+                </tr>
+                <tr>
+                    <td>6</td>
+                    <td><strong>แก้ logout()</strong> — ลบเฉพาะ auth keys</td>
+                    <td><code>header.component.ts</code></td>
+                    <td><span style="color:#f39c12;font-weight:bold;">Major</span></td>
+                </tr>
+                <tr>
+                    <td>7</td>
+                    <td><strong>Unified translate pipe</strong> — เลือกใช้ตัวเดียว</td>
+                    <td><code>layout-settings.component.ts</code></td>
+                    <td><span style="color:#f39c12;font-weight:bold;">Major</span></td>
+                </tr>
+                <tr>
+                    <td>8</td>
+                    <td><strong>Unified navigation config</strong> — single source of truth</td>
+                    <td><code>sidebar/header components</code></td>
+                    <td><span style="color:#f39c12;font-weight:bold;">Major</span></td>
+                </tr>
+                <tr>
+                    <td>9</td>
+                    <td><strong>ใช้ DTO ใน DataSource</strong></td>
+                    <td><code>dashboard.api.datasource.ts</code></td>
+                    <td><span style="color:#95a5a6;font-weight:bold;">Nit</span></td>
+                </tr>
+                <tr>
+                    <td>10</td>
+                    <td><strong>เพิ่ม tests ที่ cover data flow</strong></td>
+                    <td><code>*.spec.ts</code></td>
+                    <td><span style="color:#95a5a6;font-weight:bold;">Nit</span></td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</body>
+</html>

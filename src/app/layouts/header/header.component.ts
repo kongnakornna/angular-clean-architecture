@@ -58,7 +58,22 @@ export class HeaderComponent {
   }
 
   logout(): void {
+    const themeKeys: string[] = [];
+    for (let i = 0; i < localStorage.length; i++) {
+      const key = localStorage.key(i);
+      if (key?.startsWith('tabler-')) {
+        themeKeys.push(key);
+      }
+    }
+    const themeValues: Record<string, string> = {};
+    themeKeys.forEach((k) => {
+      themeValues[k] = localStorage.getItem(k) || '';
+    });
+
     localStorage.clear();
+
+    Object.entries(themeValues).forEach(([k, v]) => localStorage.setItem(k, v));
+
     window.location.href = '/login';
   }
 }

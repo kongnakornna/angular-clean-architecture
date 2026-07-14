@@ -22,7 +22,11 @@
             <span class="badge" [class.bg-green]="r.status === 'พร้อม'" [class.bg-yellow]="r.status === 'กำลังสร้าง'">{{ r.status }}</span>
           </td>
           <td>
-            <button class="btn btn-sm btn-primary">{{ 'reports.download' | translate }}</button>
+            <button class="btn btn-sm btn-primary"
+                    [disabled]="downloading || r.status !== 'พร้อม'"
+                    (click)="download(r.reportType)">
+              {{ 'reports.download' | translate }}
+            </button>
           </td>
         </tr>
         <tr *ngIf="reports.length === 0">
