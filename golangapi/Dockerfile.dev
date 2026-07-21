@@ -1,0 +1,16 @@
+FROM golang:1.25-alpine
+
+WORKDIR /app
+
+# Install air for hot reload
+RUN go install github.com/cosmtrek/air@v1.42.0
+
+# Install wait-for-it (correct syntax)
+RUN go install github.com/roerohan/wait-for-it@v0.2.13
+
+# Copy dependency files and download modules
+COPY go.mod go.sum ./
+RUN go mod download
+
+# Default command (can be overridden by compose)
+CMD ["air", "-c", ".air.toml", "serve"]

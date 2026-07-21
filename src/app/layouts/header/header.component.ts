@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Output, inject } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { LayoutService } from '../../core/services/layout.service';
 
 @Component({
@@ -8,8 +8,6 @@ import { LayoutService } from '../../core/services/layout.service';
   styleUrls: ['./header.component.scss'],
 })
 export class HeaderComponent {
-  @Output() toggleSidebar = new EventEmitter<void>();
-
   private layout = inject(LayoutService);
 
   unreadCount = 3;
@@ -47,10 +45,6 @@ export class HeaderComponent {
 
   get isDarkMode(): boolean {
     return this.layout.theme() === 'dark';
-  }
-
-  onToggle(): void {
-    this.toggleSidebar.emit();
   }
 
   toggleTheme(): void {

@@ -32,10 +32,4 @@ describe('HeaderComponent', () => {
   it('should have 3 notifications', () => {
     expect(component.notifications.length).toBe(3);
   });
-
-  it('should emit toggleSidebar on onToggle', () => {
-    spyOn(component.toggleSidebar, 'emit');
-    component.onToggle();
-    expect(component.toggleSidebar.emit).toHaveBeenCalled();
-  });
 });

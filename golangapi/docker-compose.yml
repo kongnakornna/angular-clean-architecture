@@ -1,0 +1,26 @@
+services:
+  backend:
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    command: sh -c "wait-for-it host.docker.internal:5432 -t 30 && wait-for-it host.docker.internal:6379 -t 30 && go run main.go migrate && go run main.go initdata && air -c .air.toml serve"
+    ports:
+      - ${SERVER_PORT:-5000}:${SERVER_PORT:-5000}
+    volumes:
+      - .:/app                     # ✅ mounts whole project root
+    env_file:
+      - ${COMPOSE_ENV_FILE:-.env.dev}
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+
+  worker:
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    command: sh -c "wait-for-it host.docker.internal:5432 -t 30 && wait-for-it host.docker.internal:6379 -t 30 && sleep 10 && go run main.go worker"
+    volumes:
+      - .:/app                     # ✅ mounts whole project root
+    env_file:
+      - ${COMPOSE_ENV_FILE:-.env.dev}
+    extra_hosts:
+      - "host.docker.internal:host-gateway"

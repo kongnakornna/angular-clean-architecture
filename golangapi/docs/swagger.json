@@ -1,0 +1,4404 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "description": "API for ICMON project",
+        "title": "Go IoT API",
+        "contact": {},
+        "version": "1.0"
+    },
+    "basePath": "/api",
+    "paths": {
+        "/alarm/validate": {
+            "post": {
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "description": "Calculates alarm level, title, subject, content and control messages based on sensor data and thresholds. Uses Thai language messages.",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "alarm"
+                ],
+                "summary": "Validate alarm status (default Thai)",
+                "parameters": [
+                    {
+                        "description": "Alarm input data",
+                        "name": "request",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/helpers.AlarmDetailDto"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/helpers.AlarmDetailResult"
+                        }
+                    },
+                    "400": {
+                        "description": "invalid JSON body",
+                        "schema": {
+                            "$ref": "#/definitions/icmongolang_internal_modules_alarm_delivery_http.errResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/alarm/validate/en": {
+            "post": {
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "description": "Same as /validate but uses English messages.",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "alarm"
+                ],
+                "summary": "Validate alarm status (English)",
+                "parameters": [
+                    {
+                        "description": "Alarm input data",
+                        "name": "request",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/helpers.AlarmDetailDto"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/helpers.AlarmDetailResult"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/icmongolang_internal_modules_alarm_delivery_http.errResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/alarm/validate/th": {
+            "post": {
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "description": "Same as /validate but explicitly uses Thai messages.",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "alarm"
+                ],
+                "summary": "Validate alarm status (Thai)",
+                "parameters": [
+                    {
+                        "description": "Alarm input data",
+                        "name": "request",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/helpers.AlarmDetailDto"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/helpers.AlarmDetailResult"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/icmongolang_internal_modules_alarm_delivery_http.errResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/auth/forgotpassword": {
+            "post": {
+                "description": "Forgot password, code will send to email.",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "auth"
+                ],
+                "summary": "Forgot password",
+                "parameters": [
+                    {
+                        "description": "Forgot Password",
+                        "name": "forgotPassword",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/presenter.ForgotPassword"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/responses.ErrorResponse"
+                        }
+                    },
+                    "422": {
+                        "description": "Unprocessable Entity",
+                        "schema": {
+                            "$ref": "#/definitions/responses.ErrorResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/auth/login": {
+            "post": {
+                "description": "Authenticates a user using username and password. Returns access and refresh tokens.",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "auth"
+                ],
+                "summary": "User login with username and password",
+                "parameters": [
+                    {
+                        "description": "User credentials (username + password)",
+                        "name": "request",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/presenter.SignIn"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Tokens returned successfully",
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": true
+                        }
+                    },
+                    "400": {
+                        "description": "Bad request / validation error",
+                        "schema": {
+                            "$ref": "#/definitions/responses.ErrorResponse"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized (wrong username/password)",
+                        "schema": {
+                            "$ref": "#/definitions/responses.ErrorResponse"
+                        }
+                    },
+                    "404": {
+                        "description": "User not found",
+                        "schema": {
+                            "$ref": "#/definitions/responses.ErrorResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/auth/logout": {
+            "get": {
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "description": "Logout, remove current refresh token in db.",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "auth"
+                ],
+                "summary": "Logout",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Authentication header",
+                        "name": "Authorization",
+                        "in": "header",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/responses.ErrorResponse"
+                        }
+                    },
+                    "422": {
+                        "description": "Unprocessable Entity",
+                        "schema": {
+                            "$ref": "#/definitions/responses.ErrorResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/auth/logoutall": {
+            "get": {
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "description": "Logout all session of this user.",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "auth"
+                ],
+                "summary": "Logout all session",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Authentication header",
+                        "name": "Authorization",
+                        "in": "header",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/responses.ErrorResponse"
+                        }
+                    },
+                    "422": {
+                        "description": "Unprocessable Entity",
+                        "schema": {
+                            "$ref": "#/definitions/responses.ErrorResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/auth/publickey": {
+            "get": {
+                "description": "Get rsa public key to decode token.",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "auth"
+                ],
+                "summary": "Get public key",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/presenter.PublicKey"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/responses.ErrorResponse"
+                        }
+                    },
+                    "422": {
+                        "description": "Unprocessable Entity",
+                        "schema": {
+                            "$ref": "#/definitions/responses.ErrorResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/auth/refresh": {
+            "get": {
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "description": "Get new access token from refresh token.",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "auth"
+                ],
+                "summary": "Refresh token",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Authentication header",
+                        "name": "Authorization",
+                        "in": "header",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/presenter.Token"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/responses.ErrorResponse"
+                        }
+                    },
+                    "422": {
+                        "description": "Unprocessable Entity",
+                        "schema": {
+                            "$ref": "#/definitions/responses.ErrorResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/auth/resetpassword": {
+            "patch": {
+                "description": "Reset Password, using code from email.",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "auth"
+                ],
+                "summary": "Reset Password",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "format": "code",
+                        "description": "code",
+                        "name": "code",
+                        "in": "query",
+                        "required": true
+                    },
+                    {
+                        "description": "Reset Password",
+                        "name": "resetPassword",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/presenter.ResetPassword"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/responses.ErrorResponse"
+                        }
+                    },
+                    "422": {
+                        "description": "Unprocessable Entity",
+                        "schema": {
+                            "$ref": "#/definitions/responses.ErrorResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/auth/signin": {
+            "post": {
+                "description": "Authenticates a user using email and password. Returns access and refresh tokens.",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "auth"
+                ],
+                "summary": "User login with email and password",
+                "parameters": [
+                    {
+                        "description": "User credentials",
+                        "name": "request",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/presenter.UserSignIn"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Tokens returned successfully",
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": true
+                        }
+                    },
+                    "400": {
+                        "description": "Bad request / validation error",
+                        "schema": {
+                            "$ref": "#/definitions/responses.ErrorResponse"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized (wrong email/password)",
+                        "schema": {
+                            "$ref": "#/definitions/responses.ErrorResponse"
+                        }
+                    },
+                    "404": {
+                        "description": "User not found",
+                        "schema": {
+                            "$ref": "#/definitions/responses.ErrorResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/auth/verifyemail": {
+            "get": {
+                "description": "Verify user using code from email.",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "auth"
+                ],
+                "summary": "Verify user",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "format": "code",
+                        "description": "offset",
+                        "name": "code",
+                        "in": "query",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/responses.ErrorResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/influx/devicechart": {
+            "post": {
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "description": "Retrieves filtered data points from InfluxDB",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "influxdb"
+                ],
+                "summary": "Query raw time-series data",
+                "parameters": [
+                    {
+                        "description": "Filter parameters",
+                        "name": "request",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/presenter.Querydevicechart"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/presenter.DataPointResponse"
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/icmongolang_internal_modules_influxdb_delivery_http.errResponse"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/icmongolang_internal_modules_influxdb_delivery_http.errResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/influx/filters": {
+            "post": {
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "description": "Retrieves filtered data points from InfluxDB",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "influxdb"
+                ],
+                "summary": "Query raw time-series data",
+                "parameters": [
+                    {
+                        "description": "Filter parameters",
+                        "name": "request",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/presenter.QueryFilterRequest"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/presenter.DataPointResponse"
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/icmongolang_internal_modules_influxdb_delivery_http.errResponse"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/icmongolang_internal_modules_influxdb_delivery_http.errResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/influx/query": {
+            "get": {
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "description": "Retrieves filtered data points from InfluxDB. Use query parameters for filtering.",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "influxdb"
+                ],
+                "summary": "Query raw time-series data via query parameters",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Measurement name",
+                        "name": "measurement",
+                        "in": "query",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "Field name",
+                        "name": "field",
+                        "in": "query",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "Start time (e.g. -1h, 2023-01-01T00:00:00Z)",
+                        "name": "start",
+                        "in": "query"
+                    },
+                    {
+                        "type": "string",
+                        "description": "Stop time (default: now())",
+                        "name": "stop",
+                        "in": "query"
+                    },
+                    {
+                        "type": "integer",
+                        "description": "Limit number of records (default: 1000)",
+                        "name": "limit",
+                        "in": "query"
+                    },
+                    {
+                        "type": "integer",
+                        "description": "Offset for pagination (default: 0)",
+                        "name": "offset",
+                        "in": "query"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/presenter.DataPointResponse"
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/icmongolang_internal_modules_influxdb_delivery_http.errResponse"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/icmongolang_internal_modules_influxdb_delivery_http.errResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/influx/statistics": {
+            "post": {
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "description": "Aggregates data using mean, median, percentile, etc.",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "influxdb"
+                ],
+                "summary": "Compute statistics over time-series data",
+                "parameters": [
+                    {
+                        "description": "Statistics parameters",
+                        "name": "request",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/presenter.StatisticsRequest"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/presenter.StatisticsResponse"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/icmongolang_internal_modules_influxdb_delivery_http.errResponse"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/icmongolang_internal_modules_influxdb_delivery_http.errResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/influx/write": {
+            "post": {
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "description": "Writes a single measurement with fields and tags",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "influxdb"
+                ],
+                "summary": "Write a data point to InfluxDB",
+                "parameters": [
+                    {
+                        "description": "Data point",
+                        "name": "request",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/presenter.WriteDataRequest"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": {
+                                "type": "string"
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/icmongolang_internal_modules_influxdb_delivery_http.errResponse"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/icmongolang_internal_modules_influxdb_delivery_http.errResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/iot/alarmdevicestatus": {
+            "get": {
+                "security": [
+                    {
+                        "OAuth2Password": []
+                    }
+                ],
+                "description": "Returns current alarm status for devices",
+                "tags": [
+                    "iot"
+                ],
+                "summary": "Get alarm status of devices",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Filter by bucket",
+                        "name": "bucket",
+                        "in": "query"
+                    },
+                    {
+                        "type": "string",
+                        "description": "Filter by measurement",
+                        "name": "measurement",
+                        "in": "query"
+                    },
+                    {
+                        "type": "integer",
+                        "description": "Filter by device ID",
+                        "name": "device_id",
+                        "in": "query"
+                    },
+                    {
+                        "type": "integer",
+                        "description": "Filter by device type ID",
+                        "name": "type_id",
+                        "in": "query"
+                    },
+                    {
+                        "type": "integer",
+                        "description": "Filter by hardware ID",
+                        "name": "hardware_id",
+                        "in": "query"
+                    },
+                    {
+                        "type": "integer",
+                        "description": "Page number (default:1)",
+                        "name": "page",
+                        "in": "query"
+                    },
+                    {
+                        "type": "integer",
+                        "description": "Items per page (default:1000)",
+                        "name": "pageSize",
+                        "in": "query"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/responses.SwaggerSuccessResponse"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/responses.ErrorResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/iot/alarmdevicestatuscontrol": {
+            "get": {
+                "security": [
+                    {
+                        "OAuth2Password": []
+                    }
+                ],
+                "description": "Returns alarm status and available control actions for each device",
+                "tags": [
+                    "iot"
+                ],
+                "summary": "Get alarm status with control information",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Filter by bucket",
+                        "name": "bucket",
+                        "in": "query"
+                    },
+                    {
+                        "type": "integer",
+                        "description": "Filter by device ID",
+                        "name": "device_id",
+                        "in": "query"
+                    },
+                    {
+                        "type": "integer",
+                        "description": "Filter by device type ID",
+                        "name": "type_id",
+                        "in": "query"
+                    },
+                    {
+                        "type": "integer",
+                        "description": "Filter by hardware ID",
+                        "name": "hardware_id",
+                        "in": "query"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/responses.SwaggerSuccessResponse"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/responses.ErrorResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/iot/control": {
+            "post": {
+                "security": [
+                    {
+                        "OAuth2Password": []
+                    }
+                ],
+                "description": "Publishes a control message to a topic (usually ending with CONTROL)",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "iot"
+                ],
+                "summary": "Send control command to an MQTT device",
+                "parameters": [
+                    {
+                        "description": "Control request",
+                        "name": "request",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/presenter.ControlRequest"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/responses.SwaggerSuccessResponse"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/responses.ErrorResponse"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/responses.ErrorResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/iot/controls": {
+            "get": {
+                "description": "Publishes a control message to a topic (usually ending with CONTROL) using GET query params",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "iot"
+                ],
+                "summary": "Send control command to an MQTT device via query parameters",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "MQTT topic name (e.g. BAACTW05/CONTROL)",
+                        "name": "topic",
+                        "in": "query",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "Control message (e.g., ON, OFF, 1, 0)",
+                        "name": "message",
+                        "in": "query",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/responses.SwaggerSuccessResponse"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/responses.ErrorResponse"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/responses.ErrorResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/iot/device": {
+            "get": {
+                "security": [
+                    {
+                        "OAuth2Password": []
+                    }
+                ],
+                "description": "Returns a paginated list of devices",
+                "tags": [
+                    "iot"
+                ],
+                "summary": "List devices with pagination",
+                "parameters": [
+                    {
+                        "type": "integer",
+                        "description": "Page number (default:1)",
+                        "name": "page",
+                        "in": "query"
+                    },
+                    {
+                        "type": "integer",
+                        "description": "Items per page (default:10)",
+                        "name": "pageSize",
+                        "in": "query"
+                    },
+                    {
+                        "type": "string",
+                        "description": "Filter by bucket",
+                        "name": "bucket",
+                        "in": "query"
+                    },
+                    {
+                        "type": "integer",
+                        "description": "Filter by hardware ID",
+                        "name": "hardware_id",
+                        "in": "query"
+                    },
+                    {
+                        "type": "integer",
+                        "description": "Filter by device type ID",
+                        "name": "type_id",
+                        "in": "query"
+                    },
+                    {
+                        "type": "string",
+                        "description": "Search keyword",
+                        "name": "keyword",
+                        "in": "query"
+                    },
+                    {
+                        "type": "string",
+                        "description": "Language (en/th)",
+                        "name": "lang",
+                        "in": "query"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/responses.SwaggerSuccessResponse"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/responses.ErrorResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/iot/devicebuckets": {
+            "get": {
+                "security": [
+                    {
+                        "OAuth2Password": []
+                    }
+                ],
+                "description": "Returns all devices belonging to a specific bucket",
+                "tags": [
+                    "iot"
+                ],
+                "summary": "Get devices by bucket",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Bucket name",
+                        "name": "bucket",
+                        "in": "query",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/responses.SwaggerSuccessResponse"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/responses.ErrorResponse"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/responses.ErrorResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/iot/deviceconfig": {
+            "get": {
+                "description": "Returns device configuration",
+                "tags": [
+                    "iot"
+                ],
+                "summary": "Get device configuration",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Device ID",
+                        "name": "deviceId",
+                        "in": "query",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": true
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/responses.ErrorResponse"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/responses.ErrorResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/iot/devicedatacleanup": {
+            "delete": {
+                "description": "Deletes data older than specified days",
+                "tags": [
+                    "iot"
+                ],
+                "summary": "Delete old IoT data",
+                "parameters": [
+                    {
+                        "type": "integer",
+                        "description": "Number of days (default 30)",
+                        "name": "days",
+                        "in": "query"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/responses.SwaggerSuccessResponse"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/responses.ErrorResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/iot/devicedataexport": {
+            "get": {
+                "description": "Exports data in CSV or JSON format",
+                "tags": [
+                    "iot"
+                ],
+                "summary": "Export IoT data",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Device ID",
+                        "name": "deviceId",
+                        "in": "query",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "Start date (RFC3339)",
+                        "name": "startDate",
+                        "in": "query",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "End date (RFC3339)",
+                        "name": "endDate",
+                        "in": "query",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "Format: csv or json (default json)",
+                        "name": "format",
+                        "in": "query"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "file"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/responses.ErrorResponse"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/responses.ErrorResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/iot/deviceiotdata": {
+            "get": {
+                "description": "Returns paginated IoT data for a device",
+                "tags": [
+                    "iot"
+                ],
+                "summary": "List IoT data with pagination",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Device ID",
+                        "name": "deviceId",
+                        "in": "query",
+                        "required": true
+                    },
+                    {
+                        "type": "integer",
+                        "description": "Page number",
+                        "name": "page",
+                        "in": "query"
+                    },
+                    {
+                        "type": "integer",
+                        "description": "Items per page",
+                        "name": "limit",
+                        "in": "query"
+                    },
+                    {
+                        "type": "string",
+                        "description": "Start date (RFC3339)",
+                        "name": "startDate",
+                        "in": "query"
+                    },
+                    {
+                        "type": "string",
+                        "description": "End date (RFC3339)",
+                        "name": "endDate",
+                        "in": "query"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "allOf": [
+                                {
+                                    "$ref": "#/definitions/responses.SwaggerSuccessResponse"
+                                },
+                                {
+                                    "type": "object",
+                                    "properties": {
+                                        "data": {
+                                            "$ref": "#/definitions/presenter.PaginatedIotData"
+                                        }
+                                    }
+                                }
+                            ]
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/responses.ErrorResponse"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/responses.ErrorResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/iot/devicesensercharts": {
+            "get": {
+                "description": "Alias for GetSenserCharts – returns time‑series chart data from InfluxDB for a specific device/sensor.\nThis endpoint behaves identically to GET /iot/sensercharts.",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "iot"
+                ],
+                "summary": "Get device sensor chart data (alias for /iot/sensercharts)",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "InfluxDB bucket name (e.g., AIRCOM1)",
+                        "name": "bucket",
+                        "in": "query",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "Measurement name (e.g., temperature)",
+                        "name": "measurement",
+                        "in": "query",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "Field name (default: value)",
+                        "name": "field",
+                        "in": "query"
+                    },
+                    {
+                        "type": "string",
+                        "description": "Start time (e.g., -10m, -1h, RFC3339)",
+                        "name": "start",
+                        "in": "query"
+                    },
+                    {
+                        "type": "string",
+                        "description": "Stop time (e.g., now(), RFC3339)",
+                        "name": "stop",
+                        "in": "query"
+                    },
+                    {
+                        "type": "integer",
+                        "description": "Maximum number of points (default: 100)",
+                        "name": "limit",
+                        "in": "query"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "allOf": [
+                                {
+                                    "$ref": "#/definitions/responses.SwaggerSuccessResponse"
+                                },
+                                {
+                                    "type": "object",
+                                    "properties": {
+                                        "data": {
+                                            "$ref": "#/definitions/presenter.SenserChartResponse"
+                                        }
+                                    }
+                                }
+                            ]
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/responses.ErrorResponse"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/responses.ErrorResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/iot/devicestats": {
+            "get": {
+                "description": "Returns statistics for a device (count, first/last record, etc.)",
+                "tags": [
+                    "iot"
+                ],
+                "summary": "Get device statistics",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Device ID",
+                        "name": "deviceId",
+                        "in": "query",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "allOf": [
+                                {
+                                    "$ref": "#/definitions/responses.SwaggerSuccessResponse"
+                                },
+                                {
+                                    "type": "object",
+                                    "properties": {
+                                        "data": {
+                                            "$ref": "#/definitions/presenter.DeviceStats"
+                                        }
+                                    }
+                                }
+                            ]
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/responses.ErrorResponse"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/responses.ErrorResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/iot/devicestatus": {
+            "get": {
+                "description": "Returns current status of a device",
+                "tags": [
+                    "iot"
+                ],
+                "summary": "Get device status",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Device ID",
+                        "name": "deviceId",
+                        "in": "query",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "allOf": [
+                                {
+                                    "$ref": "#/definitions/responses.SwaggerSuccessResponse"
+                                },
+                                {
+                                    "type": "object",
+                                    "properties": {
+                                        "data": {
+                                            "$ref": "#/definitions/presenter.DeviceStatusResponse"
+                                        }
+                                    }
+                                }
+                            ]
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/responses.ErrorResponse"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/responses.ErrorResponse"
+                        }
+                    }
+                }
+            },
+            "put": {
+                "description": "Updates device status fields",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "iot"
+                ],
+                "summary": "Update device status",
+                "parameters": [
+                    {
+                        "description": "Device status data (must include deviceId)",
+                        "name": "request",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": true
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/responses.SwaggerSuccessResponse"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/responses.ErrorResponse"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/responses.ErrorResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/iot/locationdevice": {
+            "get": {
+                "security": [
+                    {
+                        "OAuth2Password": []
+                    }
+                ],
+                "description": "Returns all devices that belong to a specific location",
+                "tags": [
+                    "iot"
+                ],
+                "summary": "Get devices by location ID",
+                "parameters": [
+                    {
+                        "type": "integer",
+                        "description": "Location ID",
+                        "name": "location_id",
+                        "in": "query",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/responses.SwaggerSuccessResponse"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/responses.ErrorResponse"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/responses.ErrorResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/iot/monitordevicechart": {
+            "get": {
+                "description": "Returns time‑series data for devices in a group",
+                "tags": [
+                    "iot"
+                ],
+                "summary": "Get chart data for monitoring dashboard",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Bucket name",
+                        "name": "bucket",
+                        "in": "query",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "Measurement name",
+                        "name": "measurement",
+                        "in": "query",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "Field name",
+                        "name": "field",
+                        "in": "query"
+                    },
+                    {
+                        "type": "string",
+                        "description": "Start time",
+                        "name": "start",
+                        "in": "query"
+                    },
+                    {
+                        "type": "string",
+                        "description": "Stop time",
+                        "name": "stop",
+                        "in": "query"
+                    },
+                    {
+                        "type": "integer",
+                        "description": "Limit",
+                        "name": "limit",
+                        "in": "query"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/responses.SwaggerSuccessResponse"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/responses.ErrorResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/iot/monitordevicegroup": {
+            "get": {
+                "description": "Returns devices grouped by type/location",
+                "tags": [
+                    "iot"
+                ],
+                "summary": "Get device groups for monitoring dashboard",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Bucket name",
+                        "name": "bucket",
+                        "in": "query",
+                        "required": true
+                    },
+                    {
+                        "type": "integer",
+                        "description": "Filter by location ID",
+                        "name": "location_id",
+                        "in": "query"
+                    },
+                    {
+                        "type": "integer",
+                        "description": "Filter by hardware ID",
+                        "name": "hardware_id",
+                        "in": "query"
+                    },
+                    {
+                        "type": "string",
+                        "description": "Filter by lang",
+                        "name": "lang",
+                        "in": "query"
+                    },
+                    {
+                        "type": "integer",
+                        "description": "Set delcache",
+                        "name": "delcache",
+                        "in": "query"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/responses.SwaggerSuccessResponse"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/responses.ErrorResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/iot/sensercharts": {
+            "get": {
+                "security": [
+                    {
+                        "OAuth2Password": []
+                    }
+                ],
+                "description": "Returns aggregated data points",
+                "tags": [
+                    "iot"
+                ],
+                "summary": "Get time-series chart data from InfluxDB",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "InfluxDB bucket",
+                        "name": "bucket",
+                        "in": "query",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "Measurement name",
+                        "name": "measurement",
+                        "in": "query",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "Field name (default:value)",
+                        "name": "field",
+                        "in": "query"
+                    },
+                    {
+                        "type": "string",
+                        "description": "Start time",
+                        "name": "start",
+                        "in": "query"
+                    },
+                    {
+                        "type": "string",
+                        "description": "Stop time",
+                        "name": "stop",
+                        "in": "query"
+                    },
+                    {
+                        "type": "integer",
+                        "description": "Max points",
+                        "name": "limit",
+                        "in": "query"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/responses.SwaggerSuccessResponse"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/responses.ErrorResponse"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/responses.ErrorResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/iot/topic": {
+            "get": {
+                "description": "Subscribes to the given topic, waits for a single message, then unsubscribes. Caches the result for 60 seconds.\nUse \u0026delcache=1 to force deletion of the cached value and fetch a fresh payload.",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "iot"
+                ],
+                "summary": "Get live or cached MQTT topic data",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "MQTT topic name (e.g. BAACTW05/DATA)",
+                        "name": "topic",
+                        "in": "query",
+                        "required": true
+                    },
+                    {
+                        "enum": [
+                            "1"
+                        ],
+                        "type": "string",
+                        "description": "Delete cache (1 to delete)",
+                        "name": "delcache",
+                        "in": "query"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/responses.SwaggerSuccessResponse"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/responses.ErrorResponse"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/responses.ErrorResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/iot/topicdevicechart": {
+            "get": {
+                "description": "Returns time‑series data from InfluxDB for the given topic/bucket,\nplus the most recent MQTT message received on that topic.\nUses Redis cache for both parts (45s for chart, 10s for live payload).\nUse \u0026delcache=1 to force deletion of all caches and fetch fresh data.",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "iot"
+                ],
+                "summary": "Get device chart data (historical) + latest MQTT payload",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "default": "AIRCOM1",
+                        "description": "InfluxDB bucket name (e.g. AIRCOM1 default from topic)",
+                        "name": "bucket",
+                        "in": "query"
+                    },
+                    {
+                        "type": "string",
+                        "default": "AIRCOM1/DATA",
+                        "description": "MQTT topic (e.g. AIRCOM1/DATA)",
+                        "name": "topic",
+                        "in": "query",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "default": "temperature",
+                        "description": "Measurement name (default 'temperature')",
+                        "name": "measurement",
+                        "in": "query"
+                    },
+                    {
+                        "type": "string",
+                        "default": "value",
+                        "description": "Field name (default 'value')",
+                        "name": "field",
+                        "in": "query"
+                    },
+                    {
+                        "type": "string",
+                        "default": "-10m",
+                        "description": "Start time (e.g. -10m, -1h, 2023-01-01T00:00:00Z)",
+                        "name": "start",
+                        "in": "query"
+                    },
+                    {
+                        "type": "string",
+                        "description": "Stop time (default now())",
+                        "name": "stop",
+                        "in": "query"
+                    },
+                    {
+                        "type": "integer",
+                        "default": 100,
+                        "description": "Limit (default 100)",
+                        "name": "limit",
+                        "in": "query"
+                    },
+                    {
+                        "enum": [
+                            "1"
+                        ],
+                        "type": "string",
+                        "description": "Delete all caches (1 to delete)",
+                        "name": "delcache",
+                        "in": "query"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "allOf": [
+                                {
+                                    "$ref": "#/definitions/responses.SwaggerSuccessResponse"
+                                },
+                                {
+                                    "type": "object",
+                                    "properties": {
+                                        "data": {
+                                            "type": "object",
+                                            "additionalProperties": true
+                                        }
+                                    }
+                                }
+                            ]
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/responses.ErrorResponse"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/responses.ErrorResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/iot/updatedeviceconfig": {
+            "put": {
+                "description": "Updates device configuration (merges with existing)",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "iot"
+                ],
+                "summary": "Update device configuration",
+                "parameters": [
+                    {
+                        "description": "New config (must include deviceId)",
+                        "name": "request",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": true
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/responses.SwaggerSuccessResponse"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/responses.ErrorResponse"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/responses.ErrorResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/item": {
+            "get": {
+                "security": [
+                    {
+                        "OAuth2Password": []
+                    }
+                ],
+                "description": "Retrieve items with pagination (page \u0026 per_page) or offset/limit.",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "items"
+                ],
+                "summary": "Read Items",
+                "parameters": [
+                    {
+                        "type": "integer",
+                        "format": "page",
+                        "description": "Page number (default 1)",
+                        "name": "page",
+                        "in": "query"
+                    },
+                    {
+                        "type": "integer",
+                        "format": "per_page",
+                        "description": "Items per page (default 10)",
+                        "name": "per_page",
+                        "in": "query"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/responses.SuccessResponse-presenter_PaginatedItemsResponse"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/responses.ErrorResponse"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "schema": {
+                            "$ref": "#/definitions/responses.ErrorResponse"
+                        }
+                    },
+                    "422": {
+                        "description": "Unprocessable Entity",
+                        "schema": {
+                            "$ref": "#/definitions/responses.ErrorResponse"
+                        }
+                    }
+                }
+            },
+            "post": {
+                "security": [
+                    {
+                        "OAuth2Password": []
+                    }
+                ],
+                "description": "Create new item.",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "items"
+                ],
+                "summary": "Create Item",
+                "parameters": [
+                    {
+                        "description": "Add item",
+                        "name": "item",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/presenter.ItemCreate"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/responses.SuccessResponse-presenter_ItemResponse"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/responses.ErrorResponse"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "schema": {
+                            "$ref": "#/definitions/responses.ErrorResponse"
+                        }
+                    },
+                    "422": {
+                        "description": "Unprocessable Entity",
+                        "schema": {
+                            "$ref": "#/definitions/responses.ErrorResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/item/{id}": {
+            "get": {
+                "security": [
+                    {
+                        "OAuth2Password": []
+                    }
+                ],
+                "description": "Get item by ID.",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "items"
+                ],
+                "summary": "Read item",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Item Id",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/responses.SuccessResponse-presenter_ItemResponse"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/responses.ErrorResponse"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "schema": {
+                            "$ref": "#/definitions/responses.ErrorResponse"
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "schema": {
+                            "$ref": "#/definitions/responses.ErrorResponse"
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "schema": {
+                            "$ref": "#/definitions/responses.ErrorResponse"
+                        }
+                    },
+                    "422": {
+                        "description": "Unprocessable Entity",
+                        "schema": {
+                            "$ref": "#/definitions/responses.ErrorResponse"
+                        }
+                    }
+                }
+            },
+            "put": {
+                "security": [
+                    {
+                        "OAuth2Password": []
+                    }
+                ],
+                "description": "Update an item by ID.",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "items"
+                ],
+                "summary": "Update item",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Item Id",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "description": "Update item",
+                        "name": "item",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/presenter.ItemUpdate"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/responses.SuccessResponse-presenter_ItemResponse"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/responses.ErrorResponse"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "schema": {
+                            "$ref": "#/definitions/responses.ErrorResponse"
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "schema": {
+                            "$ref": "#/definitions/responses.ErrorResponse"
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "schema": {
+                            "$ref": "#/definitions/responses.ErrorResponse"
+                        }
+                    },
+                    "422": {
+                        "description": "Unprocessable Entity",
+                        "schema": {
+                            "$ref": "#/definitions/responses.ErrorResponse"
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "security": [
+                    {
+                        "OAuth2Password": []
+                    }
+                ],
+                "description": "Delete an item by ID.",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "items"
+                ],
+                "summary": "Delete item",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Item Id",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/responses.SuccessResponse-presenter_ItemResponse"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/responses.ErrorResponse"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "schema": {
+                            "$ref": "#/definitions/responses.ErrorResponse"
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "schema": {
+                            "$ref": "#/definitions/responses.ErrorResponse"
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "schema": {
+                            "$ref": "#/definitions/responses.ErrorResponse"
+                        }
+                    },
+                    "422": {
+                        "description": "Unprocessable Entity",
+                        "schema": {
+                            "$ref": "#/definitions/responses.ErrorResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/mqtt/devicecontrol": {
+            "get": {
+                "security": [
+                    {
+                        "OAuth2Password": []
+                    }
+                ],
+                "description": "Publishes a control message to a topic (usually ending with CONTROL), then listens on the corresponding DATA topic (CONTROL replaced by DATA) for a response.",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "mqtt"
+                ],
+                "summary": "Send control command to an MQTT device and wait for response",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "MQTT topic to send control message (e.g., BAACTW02/CONTROL)",
+                        "name": "topic",
+                        "in": "query",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "Control message (e.g., ON, OFF, 1, 0)",
+                        "name": "message",
+                        "in": "query",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/presenter.DeviceControlResponse"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/icmongolang_internal_modules_mqtt_delivery_http.errResponse"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/icmongolang_internal_modules_mqtt_delivery_http.errResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/mqtt/gettopicdata": {
+            "get": {
+                "security": [
+                    {
+                        "OAuth2Password": []
+                    }
+                ],
+                "description": "Subscribes to the given topic, waits for a single message, then unsubscribes. Caches the result for 60 seconds.",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "mqtt"
+                ],
+                "summary": "Get live or cached MQTT topic data (request‑response)",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "MQTT topic name (e.g. BAACTW05/DATA)",
+                        "name": "topic",
+                        "in": "query",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/icmongolang_internal_modules_mqtt_presenter.MQTTTopicDataResponse"
+                        }
+                    },
+                    "400": {
+                        "description": "missing topic parameter",
+                        "schema": {
+                            "$ref": "#/definitions/icmongolang_internal_modules_mqtt_delivery_http.errResponse"
+                        }
+                    },
+                    "500": {
+                        "description": "MQTT timeout or internal error",
+                        "schema": {
+                            "$ref": "#/definitions/icmongolang_internal_modules_mqtt_delivery_http.errResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/mqtt/publish": {
+            "post": {
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "description": "Publishes a payload to a specified MQTT topic. Supports QoS 0,1,2 and retained flag.",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "mqtt"
+                ],
+                "summary": "Publish an MQTT message",
+                "parameters": [
+                    {
+                        "description": "Publish request",
+                        "name": "request",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/presenter.PublishRequest"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/presenter.PublishResponse"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/icmongolang_internal_modules_mqtt_delivery_http.errResponse"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/icmongolang_internal_modules_mqtt_delivery_http.errResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/mqtt/status": {
+            "get": {
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "description": "Returns the current connection state of the MQTT client to the broker, along with a timestamp (Asia/Bangkok).",
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "mqtt"
+                ],
+                "summary": "Get MQTT connection status",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": true
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/icmongolang_internal_modules_mqtt_delivery_http.errResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/mqtt/subscribe": {
+            "post": {
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "description": "Subscribes to a topic and starts receiving messages (persistent subscription). The connection will stay open and messages will be broadcast via WebSocket.",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "mqtt"
+                ],
+                "summary": "Subscribe to an MQTT topic",
+                "parameters": [
+                    {
+                        "description": "Subscribe request",
+                        "name": "request",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/presenter.SubscribeRequest"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/presenter.SubscribeResponse"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/icmongolang_internal_modules_mqtt_delivery_http.errResponse"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/icmongolang_internal_modules_mqtt_delivery_http.errResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/mqtt/subscriptions": {
+            "get": {
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "description": "Returns an array of topics that the MQTT client is currently subscribed to (persistent subscriptions).",
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "mqtt"
+                ],
+                "summary": "List all subscribed topics",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/presenter.SubscriptionsResponse"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/icmongolang_internal_modules_mqtt_delivery_http.errResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/mqtt/unsubscribe": {
+            "post": {
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "description": "Removes a previous subscription from a topic. Messages will no longer be received.",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "mqtt"
+                ],
+                "summary": "Unsubscribe from an MQTT topic",
+                "parameters": [
+                    {
+                        "description": "Unsubscribe request",
+                        "name": "request",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/presenter.UnsubscribeRequest"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/presenter.UnsubscribeResponse"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/icmongolang_internal_modules_mqtt_delivery_http.errResponse"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/icmongolang_internal_modules_mqtt_delivery_http.errResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/orders": {
+            "post": {
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "description": "Submit an order request. The order will be processed asynchronously by Kafka consumer.",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Orders"
+                ],
+                "summary": "Create a new order (async via Kafka)",
+                "parameters": [
+                    {
+                        "description": "Order details",
+                        "name": "request",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/models.CreateOrderRequest"
+                        }
+                    }
+                ],
+                "responses": {
+                    "202": {
+                        "description": "Order accepted",
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": true
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid request",
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": {
+                                "type": "string"
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal server error",
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": {
+                                "type": "string"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/register": {
+            "post": {
+                "description": "ลงทะเบียนผู้ใช้ทั่วไป (ไม่ต้องใช้ token)",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "users"
+                ],
+                "summary": "สมัครสมาชิกผู้ใช้ใหม่",
+                "parameters": [
+                    {
+                        "description": "ข้อมูลสมัคร",
+                        "name": "user",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/presenter.UserCreate"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": true
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/responses.ErrorResponse"
+                        }
+                    },
+                    "422": {
+                        "description": "Unprocessable Entity",
+                        "schema": {
+                            "$ref": "#/definitions/responses.ErrorResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/user": {
+            "get": {
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "users"
+                ],
+                "summary": "List users (admin only)",
+                "parameters": [
+                    {
+                        "type": "integer",
+                        "default": 20,
+                        "description": "Page size",
+                        "name": "limit",
+                        "in": "query"
+                    },
+                    {
+                        "type": "integer",
+                        "default": 0,
+                        "description": "Offset",
+                        "name": "offset",
+                        "in": "query"
+                    },
+                    {
+                        "type": "string",
+                        "description": "Filter by email",
+                        "name": "email",
+                        "in": "query"
+                    },
+                    {
+                        "type": "string",
+                        "description": "Filter by username",
+                        "name": "username",
+                        "in": "query"
+                    },
+                    {
+                        "type": "integer",
+                        "description": "Filter by status",
+                        "name": "status",
+                        "in": "query"
+                    },
+                    {
+                        "type": "integer",
+                        "description": "Filter by role ID",
+                        "name": "role_id",
+                        "in": "query"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": true
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/responses.ErrorResponse"
+                        }
+                    }
+                }
+            },
+            "post": {
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "users"
+                ],
+                "summary": "Create user (admin only)",
+                "parameters": [
+                    {
+                        "description": "User creation data",
+                        "name": "user",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/presenter.UserCreate"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": true
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/responses.ErrorResponse"
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "schema": {
+                            "$ref": "#/definitions/responses.ErrorResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/user/me": {
+            "get": {
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "users"
+                ],
+                "summary": "Get current user profile",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": true
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "schema": {
+                            "$ref": "#/definitions/responses.ErrorResponse"
+                        }
+                    }
+                }
+            },
+            "put": {
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "users"
+                ],
+                "summary": "Update current user profile",
+                "parameters": [
+                    {
+                        "description": "Fields to update",
+                        "name": "user",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/presenter.UserUpdate"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": true
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/responses.ErrorResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/user/me/updatepass": {
+            "patch": {
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "users"
+                ],
+                "summary": "Change current user password",
+                "parameters": [
+                    {
+                        "description": "Password data",
+                        "name": "password",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/presenter.UserUpdatePassword"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": true
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/responses.ErrorResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/user/{id}": {
+            "get": {
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "users"
+                ],
+                "summary": "Get user by ID",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "User ID",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": true
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/responses.ErrorResponse"
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "schema": {
+                            "$ref": "#/definitions/responses.ErrorResponse"
+                        }
+                    }
+                }
+            },
+            "put": {
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "users"
+                ],
+                "summary": "Update user (admin only)",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "User ID",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "description": "Fields to update",
+                        "name": "user",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/presenter.UserUpdate"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": true
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/responses.ErrorResponse"
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "tags": [
+                    "users"
+                ],
+                "summary": "Delete user (admin only)",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "User ID",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": true
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/responses.ErrorResponse"
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "schema": {
+                            "$ref": "#/definitions/responses.ErrorResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/user/{id}/logoutall": {
+            "get": {
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "tags": [
+                    "users"
+                ],
+                "summary": "Force logout all sessions of a user (admin only)",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "User ID",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": true
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/responses.ErrorResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/user/{id}/role": {
+            "patch": {
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "users"
+                ],
+                "summary": "Update user role (admin only)",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "User ID",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "description": "Role ID",
+                        "name": "role",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/presenter.UserUpdateRole"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": true
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/responses.ErrorResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/user/{id}/updatepass": {
+            "patch": {
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "users"
+                ],
+                "summary": "Update user password (admin only)",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "User ID",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "description": "Password data",
+                        "name": "password",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/presenter.UserUpdatePassword"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": true
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/responses.ErrorResponse"
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "helpers.AlarmDetailDto": {
+            "type": "object",
+            "properties": {
+                "actionName": {
+                    "type": "string"
+                },
+                "countAlarm": {},
+                "deviceName": {
+                    "type": "string"
+                },
+                "event": {},
+                "hardwareID": {},
+                "max": {},
+                "min": {},
+                "mqttControlOff": {
+                    "type": "string"
+                },
+                "mqttControlOn": {
+                    "type": "string"
+                },
+                "mqttName": {
+                    "type": "string"
+                },
+                "recoveryAlert": {},
+                "recoveryWarning": {},
+                "sensorValueData": {},
+                "statusAlert": {},
+                "statusWarning": {},
+                "unit": {
+                    "type": "string"
+                },
+                "valueAlarm": {},
+                "valueControlRelay": {},
+                "valueData": {},
+                "valueRelay": {}
+            }
+        },
+        "helpers.AlarmDetailResult": {
+            "type": "object",
+            "properties": {
+                "alarmActionName": {
+                    "type": "string"
+                },
+                "alarmStatusSet": {
+                    "type": "integer"
+                },
+                "alarmTypeId": {
+                    "type": "integer"
+                },
+                "content": {
+                    "type": "string"
+                },
+                "countAlarm": {
+                    "type": "integer"
+                },
+                "dataAlarm": {
+                    "type": "integer"
+                },
+                "dataAlarmRaw": {
+                    "type": "integer"
+                },
+                "deviceNameStr": {
+                    "type": "string"
+                },
+                "deviceNameVal": {
+                    "type": "string"
+                },
+                "eventControl": {
+                    "type": "integer"
+                },
+                "eventVal": {
+                    "type": "integer"
+                },
+                "hardwareId": {
+                    "type": "integer"
+                },
+                "lang": {
+                    "type": "string"
+                },
+                "max": {},
+                "messageMqttControl": {
+                    "type": "string"
+                },
+                "min": {},
+                "mqttControlOffVal": {
+                    "type": "string"
+                },
+                "mqttControlOnStr": {
+                    "type": "string"
+                },
+                "mqttControlOnVal": {
+                    "type": "string"
+                },
+                "mqttName": {
+                    "type": "string"
+                },
+                "mqttNameStr": {
+                    "type": "string"
+                },
+                "recoveryAlertVal": {
+                    "type": "integer"
+                },
+                "recoveryWarningVal": {
+                    "type": "integer"
+                },
+                "sensorData": {},
+                "sensorValue": {},
+                "status": {
+                    "type": "integer"
+                },
+                "statusAlertVal": {
+                    "type": "integer"
+                },
+                "statusControl": {
+                    "type": "integer"
+                },
+                "statusWarningVal": {
+                    "type": "integer"
+                },
+                "subject": {
+                    "type": "string"
+                },
+                "timestamp": {
+                    "type": "string"
+                },
+                "title": {
+                    "type": "string"
+                },
+                "typeId": {
+                    "type": "integer"
+                },
+                "unit": {
+                    "type": "string"
+                },
+                "valueAlarm": {},
+                "valueControlRelay": {},
+                "valueData": {},
+                "valueRelay": {}
+            }
+        },
+        "httpErrors.ErrResponse": {
+            "type": "object",
+            "properties": {
+                "msg": {
+                    "description": "application-level error message, for debugging",
+                    "type": "string",
+                    "example": "not found user"
+                },
+                "status": {
+                    "description": "http response status code",
+                    "type": "integer",
+                    "example": 404
+                },
+                "statusText": {
+                    "description": "user-level status message",
+                    "type": "string",
+                    "example": "not_found"
+                }
+            }
+        },
+        "icmongolang_internal_modules_alarm_delivery_http.errResponse": {
+            "type": "object",
+            "properties": {
+                "error": {
+                    "type": "string"
+                }
+            }
+        },
+        "icmongolang_internal_modules_influxdb_delivery_http.errResponse": {
+            "type": "object",
+            "properties": {
+                "error": {
+                    "type": "string"
+                }
+            }
+        },
+        "icmongolang_internal_modules_mqtt_delivery_http.errResponse": {
+            "type": "object",
+            "properties": {
+                "error": {
+                    "type": "string"
+                }
+            }
+        },
+        "icmongolang_internal_modules_mqtt_presenter.MQTTTopicDataResponse": {
+            "type": "object",
+            "properties": {
+                "cache_enabled": {
+                    "type": "boolean",
+                    "example": true
+                },
+                "cache_hit": {
+                    "type": "boolean",
+                    "example": false
+                },
+                "code": {
+                    "type": "integer",
+                    "example": 200
+                },
+                "data_length": {
+                    "type": "integer",
+                    "example": 128
+                },
+                "error_detail": {
+                    "type": "string",
+                    "example": "timeout waiting for message"
+                },
+                "fetch_duration_ms": {
+                    "type": "integer",
+                    "example": 145
+                },
+                "from": {
+                    "type": "string",
+                    "example": "mqtt"
+                },
+                "message": {
+                    "type": "string",
+                    "example": "live data"
+                },
+                "mqtt_connected": {
+                    "type": "boolean",
+                    "example": true
+                },
+                "payload": {
+                    "description": "✅ remove example:\"25.5,60,1013\""
+                },
+                "statuscode": {
+                    "type": "integer",
+                    "example": 200
+                },
+                "timestamp": {
+                    "type": "string",
+                    "example": "2026-06-08T12:36:58+07:00"
+                },
+                "topic": {
+                    "type": "string",
+                    "example": "AIRCOM4/DATA"
+                }
+            }
+        },
+        "models.CreateOrderRequest": {
+            "type": "object",
+            "required": [
+                "product_id",
+                "quantity"
+            ],
+            "properties": {
+                "product_id": {
+                    "type": "string"
+                },
+                "quantity": {
+                    "type": "integer",
+                    "minimum": 1
+                }
+            }
+        },
+        "presenter.ControlRequest": {
+            "type": "object",
+            "properties": {
+                "message": {
+                    "type": "string",
+                    "example": "ON"
+                },
+                "topic": {
+                    "type": "string",
+                    "example": "CMONBUGKET01/CONTROL"
+                }
+            }
+        },
+        "presenter.DataPointResponse": {
+            "type": "object",
+            "properties": {
+                "time": {
+                    "type": "string"
+                },
+                "value": {}
+            }
+        },
+        "presenter.DeviceControlResponse": {
+            "type": "object",
+            "properties": {
+                "cachelift": {},
+                "code": {
+                    "type": "integer"
+                },
+                "data": {},
+                "error_detail": {
+                    "type": "string"
+                },
+                "fetch_duration_ms": {
+                    "type": "integer"
+                },
+                "from": {
+                    "type": "string"
+                },
+                "message": {
+                    "type": "string"
+                },
+                "message_sent": {
+                    "type": "string"
+                },
+                "message_th": {
+                    "type": "string"
+                },
+                "payload": {},
+                "status": {
+                    "type": "integer"
+                },
+                "status_msg": {
+                    "type": "string"
+                },
+                "statuscode": {
+                    "type": "integer"
+                },
+                "timestamp": {
+                    "type": "string"
+                },
+                "topic_control": {
+                    "type": "string"
+                },
+                "topic_data": {
+                    "type": "string"
+                }
+            }
+        },
+        "presenter.DeviceStats": {
+            "type": "object",
+            "properties": {
+                "count": {
+                    "type": "integer"
+                },
+                "dataPoints": {
+                    "type": "object",
+                    "additionalProperties": true
+                },
+                "firstRecord": {
+                    "type": "string"
+                },
+                "lastRecord": {
+                    "type": "string"
+                }
+            }
+        },
+        "presenter.DeviceStatusResponse": {
+            "type": "object",
+            "properties": {
+                "batteryLevel": {
+                    "type": "integer"
+                },
+                "deviceId": {
+                    "type": "string"
+                },
+                "firmwareVersion": {
+                    "type": "string"
+                },
+                "isActive": {
+                    "type": "boolean"
+                },
+                "isOnline": {
+                    "type": "boolean"
+                },
+                "lastData": {
+                    "type": "object",
+                    "additionalProperties": true
+                },
+                "lastSeen": {
+                    "type": "string"
+                },
+                "location": {
+                    "type": "object",
+                    "additionalProperties": true
+                },
+                "signalStrength": {
+                    "type": "integer"
+                },
+                "uptime": {
+                    "type": "string"
+                }
+            }
+        },
+        "presenter.ForgotPassword": {
+            "type": "object",
+            "required": [
+                "email"
+            ],
+            "properties": {
+                "email": {
+                    "type": "string",
+                    "example": "kongnakornna@gmail.com"
+                }
+            }
+        },
+        "presenter.IotDataResponse": {
+            "type": "object",
+            "properties": {
+                "data": {},
+                "device_id": {
+                    "type": "string"
+                },
+                "id": {
+                    "type": "integer"
+                },
+                "location": {},
+                "metadata": {},
+                "timestamp": {
+                    "type": "string"
+                }
+            }
+        },
+        "presenter.ItemCreate": {
+            "type": "object",
+            "required": [
+                "description",
+                "title"
+            ],
+            "properties": {
+                "description": {
+                    "type": "string",
+                    "example": "item description"
+                },
+                "title": {
+                    "type": "string",
+                    "example": "item title"
+                }
+            }
+        },
+        "presenter.ItemResponse": {
+            "type": "object",
+            "properties": {
+                "description": {
+                    "type": "string"
+                },
+                "id": {
+                    "type": "string"
+                },
+                "owner_id": {
+                    "type": "string"
+                },
+                "title": {
+                    "type": "string"
+                }
+            }
+        },
+        "presenter.ItemUpdate": {
+            "type": "object",
+            "properties": {
+                "description": {
+                    "type": "string",
+                    "example": "item description"
+                },
+                "title": {
+                    "type": "string",
+                    "example": "item title"
+                }
+            }
+        },
+        "presenter.PaginatedIotData": {
+            "type": "object",
+            "properties": {
+                "data": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/presenter.IotDataResponse"
+                    }
+                },
+                "pagination": {
+                    "$ref": "#/definitions/presenter.Pagination"
+                }
+            }
+        },
+        "presenter.PaginatedItemsResponse": {
+            "type": "object",
+            "properties": {
+                "items": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/presenter.ItemResponse"
+                    }
+                },
+                "page": {
+                    "type": "integer"
+                },
+                "per_page": {
+                    "type": "integer"
+                },
+                "total": {
+                    "type": "integer"
+                },
+                "total_pages": {
+                    "type": "integer"
+                }
+            }
+        },
+        "presenter.Pagination": {
+            "type": "object",
+            "properties": {
+                "limit": {
+                    "type": "integer"
+                },
+                "page": {
+                    "type": "integer"
+                },
+                "pages": {
+                    "type": "integer"
+                },
+                "total": {
+                    "type": "integer"
+                }
+            }
+        },
+        "presenter.PublicKey": {
+            "type": "object",
+            "properties": {
+                "public_key_access_token": {
+                    "type": "string"
+                },
+                "public_key_refresh_token": {
+                    "type": "string"
+                }
+            }
+        },
+        "presenter.PublishRequest": {
+            "type": "object",
+            "required": [
+                "payload",
+                "topic"
+            ],
+            "properties": {
+                "payload": {},
+                "qos": {
+                    "type": "integer",
+                    "maximum": 2,
+                    "minimum": 0
+                },
+                "retained": {
+                    "type": "boolean"
+                },
+                "topic": {
+                    "type": "string"
+                }
+            }
+        },
+        "presenter.PublishResponse": {
+            "type": "object",
+            "properties": {
+                "message": {
+                    "type": "string"
+                },
+                "success": {
+                    "type": "boolean"
+                }
+            }
+        },
+        "presenter.QueryFilterRequest": {
+            "type": "object",
+            "required": [
+                "field",
+                "measurement"
+            ],
+            "properties": {
+                "bucket": {
+                    "type": "string",
+                    "example": "AIRCOM1"
+                },
+                "field": {
+                    "type": "string",
+                    "example": "value"
+                },
+                "limit": {
+                    "type": "integer",
+                    "example": 10000
+                },
+                "measurement": {
+                    "type": "string",
+                    "example": "temperature"
+                },
+                "offset": {
+                    "type": "integer",
+                    "example": 1
+                },
+                "start": {
+                    "type": "string",
+                    "example": "-1h"
+                },
+                "stop": {
+                    "type": "string",
+                    "example": "now()"
+                }
+            }
+        },
+        "presenter.Querydevicechart": {
+            "type": "object",
+            "required": [
+                "field",
+                "measurement"
+            ],
+            "properties": {
+                "bucket": {
+                    "type": "string",
+                    "example": "AIRCOM1"
+                },
+                "field": {
+                    "type": "string",
+                    "example": "value"
+                },
+                "limit": {
+                    "type": "integer",
+                    "example": 10000
+                },
+                "measurement": {
+                    "type": "string",
+                    "example": "temperature"
+                },
+                "offset": {
+                    "type": "integer",
+                    "example": 1
+                },
+                "start": {
+                    "type": "string",
+                    "example": "-1h"
+                },
+                "stop": {
+                    "type": "string",
+                    "example": "now()"
+                }
+            }
+        },
+        "presenter.ResetPassword": {
+            "type": "object",
+            "required": [
+                "confirm_password",
+                "new_password"
+            ],
+            "properties": {
+                "confirm_password": {
+                    "type": "string",
+                    "minLength": 8,
+                    "example": "password"
+                },
+                "new_password": {
+                    "type": "string",
+                    "minLength": 8,
+                    "example": "password"
+                }
+            }
+        },
+        "presenter.SenserChartResponse": {
+            "type": "object",
+            "properties": {
+                "cache": {
+                    "type": "string"
+                },
+                "data": {
+                    "type": "array",
+                    "items": {
+                        "type": "number"
+                    }
+                },
+                "date": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                }
+            }
+        },
+        "presenter.SignIn": {
+            "type": "object",
+            "required": [
+                "password",
+                "username"
+            ],
+            "properties": {
+                "password": {
+                    "type": "string",
+                    "minLength": 8,
+                    "example": "password"
+                },
+                "username": {
+                    "type": "string",
+                    "example": "kongnakornna"
+                }
+            }
+        },
+        "presenter.StatisticsRequest": {
+            "type": "object",
+            "required": [
+                "aggregate",
+                "bucket",
+                "field",
+                "measurement"
+            ],
+            "properties": {
+                "aggregate": {
+                    "type": "string",
+                    "example": "value"
+                },
+                "bucket": {
+                    "type": "string",
+                    "example": "AIRCOM1"
+                },
+                "field": {
+                    "type": "string",
+                    "example": "value"
+                },
+                "measurement": {
+                    "type": "string",
+                    "example": "temperature"
+                },
+                "percentile": {
+                    "type": "number",
+                    "example": 95
+                },
+                "start": {
+                    "type": "string",
+                    "example": "-15s"
+                },
+                "stop": {
+                    "type": "string",
+                    "example": "now()"
+                },
+                "windowPeriod": {
+                    "type": "string",
+                    "example": "15s"
+                }
+            }
+        },
+        "presenter.StatisticsResponse": {
+            "type": "object",
+            "properties": {
+                "aggregate": {
+                    "type": "string"
+                },
+                "data": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/presenter.DataPointResponse"
+                    }
+                },
+                "value": {}
+            }
+        },
+        "presenter.SubscribeRequest": {
+            "type": "object",
+            "required": [
+                "topic"
+            ],
+            "properties": {
+                "qos": {
+                    "type": "integer",
+                    "maximum": 2,
+                    "minimum": 0
+                },
+                "topic": {
+                    "type": "string"
+                }
+            }
+        },
+        "presenter.SubscribeResponse": {
+            "type": "object",
+            "properties": {
+                "message": {
+                    "type": "string"
+                },
+                "qos": {
+                    "type": "integer"
+                },
+                "subscribed_at": {
+                    "type": "string"
+                },
+                "topic": {
+                    "type": "string"
+                }
+            }
+        },
+        "presenter.SubscriptionsResponse": {
+            "type": "object",
+            "properties": {
+                "count": {
+                    "type": "integer"
+                },
+                "topics": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                }
+            }
+        },
+        "presenter.Token": {
+            "type": "object",
+            "properties": {
+                "access_token": {
+                    "type": "string"
+                },
+                "refresh_token": {
+                    "type": "string"
+                },
+                "token_type": {
+                    "type": "string"
+                }
+            }
+        },
+        "presenter.UnsubscribeRequest": {
+            "type": "object",
+            "required": [
+                "topic"
+            ],
+            "properties": {
+                "topic": {
+                    "type": "string"
+                }
+            }
+        },
+        "presenter.UnsubscribeResponse": {
+            "type": "object",
+            "properties": {
+                "message": {
+                    "type": "string"
+                },
+                "success": {
+                    "type": "boolean"
+                },
+                "topic": {
+                    "type": "string"
+                }
+            }
+        },
+        "presenter.UserCreate": {
+            "type": "object",
+            "required": [
+                "confirm_password",
+                "email",
+                "password",
+                "role_id"
+            ],
+            "properties": {
+                "confirm_password": {
+                    "type": "string",
+                    "minLength": 8,
+                    "example": "password"
+                },
+                "email": {
+                    "type": "string",
+                    "example": "kongnakornna@gmail.com"
+                },
+                "firstname": {
+                    "type": "string",
+                    "example": "Kongnakorn"
+                },
+                "fullname": {
+                    "type": "string",
+                    "example": "Kongnakorn Jantakun"
+                },
+                "lastname": {
+                    "type": "string",
+                    "example": "Jantakun"
+                },
+                "line_id": {
+                    "type": "string",
+                    "example": "kongnakorn_line"
+                },
+                "location_id": {
+                    "type": "string",
+                    "example": "loc_001"
+                },
+                "mobile_number": {
+                    "type": "string",
+                    "example": "0812345678"
+                },
+                "password": {
+                    "type": "string",
+                    "minLength": 8,
+                    "example": "password"
+                },
+                "phone_number": {
+                    "type": "string",
+                    "example": "021234567"
+                },
+                "role_id": {
+                    "type": "integer",
+                    "minimum": 1,
+                    "example": 2
+                },
+                "username": {
+                    "type": "string",
+                    "example": "kongnakornna"
+                }
+            }
+        },
+        "presenter.UserSignIn": {
+            "type": "object",
+            "required": [
+                "email",
+                "password"
+            ],
+            "properties": {
+                "email": {
+                    "type": "string",
+                    "example": "kongnakornna@gmail.com"
+                },
+                "password": {
+                    "type": "string",
+                    "minLength": 8,
+                    "example": "password"
+                }
+            }
+        },
+        "presenter.UserUpdate": {
+            "type": "object",
+            "properties": {
+                "firstname": {
+                    "type": "string"
+                },
+                "fullname": {
+                    "type": "string"
+                },
+                "lastname": {
+                    "type": "string"
+                },
+                "line_id": {
+                    "type": "string"
+                },
+                "location_id": {
+                    "type": "string"
+                },
+                "mobile_number": {
+                    "type": "string"
+                },
+                "phone_number": {
+                    "type": "string"
+                }
+            }
+        },
+        "presenter.UserUpdatePassword": {
+            "type": "object",
+            "required": [
+                "confirm_password",
+                "new_password",
+                "old_password"
+            ],
+            "properties": {
+                "confirm_password": {
+                    "type": "string",
+                    "minLength": 8
+                },
+                "new_password": {
+                    "type": "string",
+                    "minLength": 8
+                },
+                "old_password": {
+                    "type": "string",
+                    "minLength": 8
+                }
+            }
+        },
+        "presenter.UserUpdateRole": {
+            "type": "object",
+            "required": [
+                "role_id"
+            ],
+            "properties": {
+                "role_id": {
+                    "type": "integer"
+                }
+            }
+        },
+        "presenter.WriteDataRequest": {
+            "type": "object",
+            "required": [
+                "fields",
+                "measurement"
+            ],
+            "properties": {
+                "fields": {
+                    "type": "object",
+                    "additionalProperties": true
+                },
+                "measurement": {
+                    "type": "string"
+                },
+                "tags": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "type": "string"
+                    }
+                }
+            }
+        },
+        "responses.ErrorResponse": {
+            "type": "object",
+            "properties": {
+                "error": {
+                    "$ref": "#/definitions/httpErrors.ErrResponse"
+                },
+                "is_success": {
+                    "type": "boolean",
+                    "example": false
+                }
+            }
+        },
+        "responses.SuccessResponse-presenter_ItemResponse": {
+            "type": "object",
+            "properties": {
+                "data": {
+                    "$ref": "#/definitions/presenter.ItemResponse"
+                },
+                "is_success": {
+                    "type": "boolean",
+                    "example": true
+                }
+            }
+        },
+        "responses.SuccessResponse-presenter_PaginatedItemsResponse": {
+            "type": "object",
+            "properties": {
+                "data": {
+                    "$ref": "#/definitions/presenter.PaginatedItemsResponse"
+                },
+                "is_success": {
+                    "type": "boolean",
+                    "example": true
+                }
+            }
+        },
+        "responses.SwaggerSuccessResponse": {
+            "type": "object",
+            "properties": {
+                "data": {},
+                "is_success": {
+                    "type": "boolean"
+                }
+            }
+        }
+    },
+    "securityDefinitions": {
+        "BearerAuth": {
+            "description": "Type \"Bearer \" followed by your access token. Example: \"Bearer eyJhbGciOiJSUzI1NiIs...\"",
+            "type": "apiKey",
+            "name": "Authorization",
+            "in": "header"
+        },
+        "OAuth2Password": {
+            "type": "oauth2",
+            "flow": "password",
+            "tokenUrl": "/api/auth/login",
+            "scopes": {
+                "read": "Grants read access",
+                "write": "Grants write access"
+            }
+        }
+    }
+}

@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+
 import { AppLayoutComponent } from './layouts/app-layout/app-layout.component';
 import { AuthGuard } from './shared/guards/auth.guard';
 import { PermissionGuard } from './shared/guards/permission.guard';
@@ -8,7 +9,7 @@ import { AuthLayoutComponent } from './features/auth/presentation/layouts/auth-l
 export const routes: Routes = [
   { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
 
-  
+
 
   {
     path: '',

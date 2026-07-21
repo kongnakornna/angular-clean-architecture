@@ -1,0 +1,16 @@
+root = "."
+tmp_dir = "tmp"
+env_files = [".env.dev"]   # โหลด env โดยอัตโนมัติ
+
+[build]
+  # เปลี่ยน entrypoint เป็น "kafka" เพื่อรัน Kafka service
+  entrypoint = ["./tmp/main.exe", "kafka"]
+  cmd = "go build -o ./tmp/main.exe ./"
+  env = ["GOOS=windows", "GOARCH=amd64"]
+  clean_on_exit = true
+
+[log]
+  time = true
+
+[misc]
+  clean_on_exit = true
