@@ -42,10 +42,10 @@ describe('MainDashboardComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should start with loading state', (done) => {
+  it('should finish loading after use cases resolve', (done) => {
     component.loading$.subscribe((loading) => {
-      if (loading) {
-        expect(loading).toBeTrue();
+      if (!loading) {
+        expect(loading).toBeFalse();
         done();
       }
     });

@@ -225,6 +225,13 @@ export const routes: Routes = [
           ),
       },
       {
+        path: 'users/:id/edit',
+        loadComponent: () =>
+          import('./features/auth/presentation/pages/user-edit/user-edit.component').then(
+            (m) => m.UserEditComponent
+          ),
+      },
+      {
         path: 'roles',
         loadComponent: () =>
           import('./features/auth/presentation/pages/role-list/role-list.component').then(

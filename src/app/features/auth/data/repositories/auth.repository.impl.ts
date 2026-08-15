@@ -101,7 +101,7 @@ export class AuthRepositoryImpl implements IAuthRepository {
   }
 
   updateProfile(data: Partial<User>): Observable<User> {
-    return this.dataSource.updateProfile(data as Partial<UserResponseDto>).pipe(map((dto) => this.mapToUser(dto)));
+    return this.dataSource.updateProfile(this.mapToUpdateDto(data)).pipe(map((dto) => this.mapToUser(dto)));
   }
 
   register(credentials: RegisterCredentials): Observable<void> {
@@ -134,7 +134,7 @@ export class AuthRepositoryImpl implements IAuthRepository {
   }
 
   updateUser(id: string, data: Partial<User>): Observable<User> {
-    return this.dataSource.updateUser(id, data as Partial<UserResponseDto>).pipe(map((dto) => this.mapToUser(dto)));
+    return this.dataSource.updateUser(id, this.mapToUpdateDto(data)).pipe(map((dto) => this.mapToUser(dto)));
   }
 
   deleteUser(id: string): Observable<void> {
@@ -168,14 +168,25 @@ export class AuthRepositoryImpl implements IAuthRepository {
       username: dto.username,
       email: dto.email,
       fullName: dto.fullname,
-      status: dto.status.toString(),
-      phoneNumber: dto.mobile_number,
+      firstName: dto.firstname,
+      lastName: dto.lastname,
+      status: dto.status?.toString() ?? '1',
+      phoneNumber: dto.phone_number,
+      mobileNumber: dto.mobile_number,
       profileImageUrl: null,
-      role: dto.role_id.toString(),
+      role: dto.role_id?.toString() ?? '',
+      roleId: dto.role_id,
       permissions: [],
+      isSuperuser: dto.is_superuser,
+      verified: dto.verified,
+      lineId: dto.line_id,
+      locationId: dto.location_id,
       lastLogin: dto.last_sign_in ? new Date(dto.last_sign_in) : undefined,
-      createdAt: new Date(dto.createddate),
-      updatedAt: new Date(dto.updateddate),
+      lastSignIn: dto.last_sign_in,
+      createdAt: dto.createddate ? new Date(dto.createddate) : new Date(),
+      createdDate: dto.createddate,
+      updatedAt: dto.updateddate ? new Date(dto.updateddate) : new Date(),
+      updatedDate: dto.updateddate,
     };
   }
 
@@ -194,5 +205,17 @@ export class AuthRepositoryImpl implements IAuthRepository {
       location_id: credentials.locationId,
       role_id: credentials.roleId,
     };
+  }
+
+  private mapToUpdateDto(data: Partial<User>): Partial<UserResponseDto> {
+    const dto: Partial<UserResponseDto> = {};
+    if (data.firstName !== undefined) dto.firstname = data.firstName;
+    if (data.lastName !== undefined) dto.lastname = data.lastName;
+    if (data.fullName !== undefined) dto.fullname = data.fullName;
+    if (data.mobileNumber !== undefined) dto.mobile_number = data.mobileNumber;
+    if (data.phoneNumber !== undefined) dto.phone_number = data.phoneNumber;
+    if (data.lineId !== undefined) dto.line_id = data.lineId;
+    if (data.locationId !== undefined) dto.location_id = data.locationId;
+    return dto;
   }
 }

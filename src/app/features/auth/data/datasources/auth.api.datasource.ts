@@ -119,8 +119,19 @@ export class AuthApiDataSource {
 
   signIn(data: SignInRequestDto): Observable<LoginResponseDto> {
     return this.http
-      .post<LoginResponseDto>(`${this.baseUrl}${API_ENDPOINTS.auth.signin}`, data, this.getOptions())
-      .pipe(timeout(this.DEFAULT_TIMEOUT), retry(this.DEFAULT_RETRY), catchError(this.handleError));
+      .post<any>(`${this.baseUrl}${API_ENDPOINTS.auth.signin}`, data, this.getOptions())
+      .pipe(
+        timeout(this.DEFAULT_TIMEOUT),
+        retry(this.DEFAULT_RETRY),
+        map((raw) => ({
+          accessToken: raw.access_token,
+          refreshToken: raw.refresh_token,
+          expiresIn: raw.expires_in,
+          tokenType: raw.token_type,
+          user: raw.user || null,
+        })),
+        catchError(this.handleError)
+      );
   }
 
   logout(): Observable<void> {
@@ -176,19 +187,30 @@ export class AuthApiDataSource {
 
   getCurrentUser(): Observable<UserResponseDto> {
     return this.http
-      .get<UserResponseDto>(`${this.baseUrl}${API_ENDPOINTS.auth.me}`, this.getOptions())
-      .pipe(catchError(this.handleError));
+      .get<any>(`${this.baseUrl}${API_ENDPOINTS.auth.me}`, this.getOptions())
+      .pipe(
+        map((raw) => raw?.data ?? raw),
+        catchError(this.handleError)
+      );
   }
 
   updateProfile(data: Partial<UserResponseDto>): Observable<UserResponseDto> {
     return this.http
-      .put<UserResponseDto>(`${this.baseUrl}${API_ENDPOINTS.users.updateMe}`, data, this.getOptions())
-      .pipe(catchError(this.handleError));
+      .put<any>(`${this.baseUrl}${API_ENDPOINTS.users.updateMe}`, data, this.getOptions())
+      .pipe(
+        map((raw) => raw?.data ?? raw),
+        catchError(this.handleError)
+      );
   }
 
   changeMyPassword(data: ChangePasswordRequestDto): Observable<void> {
+    const body = {
+      old_password: data.currentPassword,
+      new_password: data.newPassword,
+      confirm_password: data.confirmPassword,
+    };
     return this.http
-      .patch<void>(`${this.baseUrl}${API_ENDPOINTS.users.changeMyPassword}`, data, this.getOptions())
+      .patch<void>(`${this.baseUrl}${API_ENDPOINTS.users.changeMyPassword}`, body, this.getOptions())
       .pipe(catchError(this.handleError));
   }
 
@@ -215,31 +237,53 @@ export class AuthApiDataSource {
     status?: string;
     roleId?: string;
   }): Observable<{ data: UserResponseDto[]; total: number }> {
-    const httpParams = this.buildParams(params);
+    const { roleId, ...rest } = params || {};
+    const queryParams = {
+      ...rest,
+      ...(roleId !== undefined && roleId !== null && roleId !== '' ? { role_id: roleId } : {}),
+    };
+    const httpParams = this.buildParams(queryParams);
     return this.http
-      .get<{ data: UserResponseDto[]; total: number }>(
-        `${this.baseUrl}${API_ENDPOINTS.users.list}`,
-        { ...this.getOptions(), params: httpParams }
-      )
-      .pipe(catchError(this.handleError));
+      .get<any>(`${this.baseUrl}${API_ENDPOINTS.users.list}`, {
+        ...this.getOptions(),
+        params: httpParams,
+      })
+      .pipe(
+        map((raw) => {
+          const body = raw?.data ?? raw;
+          const payload = body?.payload ?? body;
+          const total = body?.pagination?.total ?? (Array.isArray(payload) ? payload.length : 0);
+          return { data: payload || [], total };
+        }),
+        catchError(this.handleError)
+      );
   }
 
   getUserById(id: string): Observable<UserResponseDto> {
     return this.http
-      .get<UserResponseDto>(`${this.baseUrl}${API_ENDPOINTS.users.detail(id)}`, this.getOptions())
-      .pipe(catchError(this.handleError));
+      .get<any>(`${this.baseUrl}${API_ENDPOINTS.users.detail(id)}`, this.getOptions())
+      .pipe(
+        map((raw) => raw?.data ?? raw),
+        catchError(this.handleError)
+      );
   }
 
   createUser(data: RegisterRequestDto): Observable<UserResponseDto> {
     return this.http
-      .post<UserResponseDto>(`${this.baseUrl}${API_ENDPOINTS.users.create}`, data, this.getOptions())
-      .pipe(catchError(this.handleError));
+      .post<any>(`${this.baseUrl}${API_ENDPOINTS.users.create}`, data, this.getOptions())
+      .pipe(
+        map((raw) => raw?.data ?? raw),
+        catchError(this.handleError)
+      );
   }
 
   updateUser(id: string, data: Partial<UserResponseDto>): Observable<UserResponseDto> {
     return this.http
-      .put<UserResponseDto>(`${this.baseUrl}${API_ENDPOINTS.users.update(id)}`, data, this.getOptions())
-      .pipe(catchError(this.handleError));
+      .put<any>(`${this.baseUrl}${API_ENDPOINTS.users.update(id)}`, data, this.getOptions())
+      .pipe(
+        map((raw) => raw?.data ?? raw),
+        catchError(this.handleError)
+      );
   }
 
   deleteUser(id: string): Observable<void> {
@@ -250,7 +294,7 @@ export class AuthApiDataSource {
 
   updateUserRole(id: string, roleId: number): Observable<void> {
     return this.http
-      .patch<void>(`${this.baseUrl}${API_ENDPOINTS.users.updateRole(id)}`, { roleId }, this.getOptions())
+      .patch<void>(`${this.baseUrl}${API_ENDPOINTS.users.updateRole(id)}`, { role_id: roleId }, this.getOptions())
       .pipe(catchError(this.handleError));
   }
 
@@ -263,7 +307,7 @@ export class AuthApiDataSource {
     return this.http
       .patch<void>(
         `${this.baseUrl}${API_ENDPOINTS.users.updatePassword(id)}`,
-        { oldPassword, newPassword, confirmPassword },
+        { old_password: oldPassword, new_password: newPassword, confirm_password: confirmPassword },
         this.getOptions()
       )
       .pipe(catchError(this.handleError));
@@ -271,7 +315,7 @@ export class AuthApiDataSource {
 
   forceLogoutUser(id: string): Observable<void> {
     return this.http
-      .post<void>(`${this.baseUrl}${API_ENDPOINTS.users.logoutall(id)}`, {}, this.getOptions())
+      .get<void>(`${this.baseUrl}${API_ENDPOINTS.users.logoutall(id)}`, this.getOptions())
       .pipe(catchError(this.handleError));
   }
 }
