@@ -51,13 +51,18 @@ export class AuthApiDataSource {
   }
 
   private handleError(error: HttpErrorResponse): Observable<never> {
+    const body = error.error as { error?: { msg?: string }; msg?: string; message?: string };
+    const serverMsg = body?.error?.msg || body?.msg || body?.message || null;
     let errorMessage = 'เกิดข้อผิดพลาดในการเชื่อมต่อกับเซิร์ฟเวอร์';
 
     if (error.error instanceof ErrorEvent) {
       errorMessage = `Client Error: ${error.error.message}`;
     } else {
-      const serverError = error.error?.message || error.message;
-      errorMessage = `Server Error (${error.status}): ${serverError}`;
+      if (serverMsg) {
+        errorMessage = serverMsg;
+      } else {
+        errorMessage = `Server Error (${error.status}): ${error.message}`;
+      }
 
       if (error.status === 401) {
         errorMessage = 'ไม่ได้รับอนุญาต กรุณาเข้าสู่ระบบอีกครั้ง';
@@ -70,9 +75,12 @@ export class AuthApiDataSource {
       }
     }
 
+    const appError = new Error(errorMessage) as Error & { status?: number };
+    appError.status = error.status;
+
     // เก็บ log error ไว้เพื่อดีบัก (ถ้าต้องการเอาออกก็ลบได้)
     console.error('[AuthApiDataSource] HTTP Error:', errorMessage, error);
-    return throwError(() => new Error(errorMessage));
+    return throwError(() => appError);
   }
 
   private getOptions(additionalHeaders?: Record<string, string>): {

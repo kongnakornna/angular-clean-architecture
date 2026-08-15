@@ -101,7 +101,8 @@
     "signUp": "Sign up",
     "contactAdmin": "Contact administrator",
     "testCredentials": "Use admin / P@ssw0rd to test the system",
-    "invalidCredentials": "Invalid username or password"
+    "invalidCredentials": "Invalid username or password",
+    "validationError": "Validation Error"
   },
   "auth": {
     "forgotPassword": {

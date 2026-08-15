@@ -3,6 +3,7 @@ import { NgIf } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import Swal from 'sweetalert2';
 import { LoginUseCase } from '../../../domain/use-cases/login.use-case';
 import { AppTranslatePipe } from '../../../../../shared/i18n/presentation/pipes/translate.pipe';
 import { I18nService } from '../../../../../shared/i18n/data/i18n.service';
@@ -44,6 +45,12 @@ export class LoginComponent {
           this.loading = false;
           if (err.status === 401) {
             this.error = this.i18n.translate('login.invalidCredentials');
+          } else if (err.status === 422) {
+            Swal.fire({
+              icon: 'error',
+              title: this.i18n.translate('login.validationError'),
+              text: err.message,
+            });
           } else {
             this.error = err.message || this.i18n.translate('login.invalidCredentials');
           }

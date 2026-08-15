@@ -102,7 +102,8 @@
     "signUp": "สมัครสมาชิก",
     "contactAdmin": "ติดต่อผู้ดูแลระบบ",
     "testCredentials": "ใช้ admin / P@ssw0rd เพื่อทดสอบระบบ",
-    "invalidCredentials": "ชื่อผู้ใช้หรือรหัสผ่านไม่ถูกต้อง"
+    "invalidCredentials": "ชื่อผู้ใช้หรือรหัสผ่านไม่ถูกต้อง",
+    "validationError": "ข้อผิดพลาดการตรวจสอบข้อมูล"
   },
   "auth": {
     "forgotPassword": {
