@@ -7,7 +7,7 @@ import { PermissionGuard } from './shared/guards/permission.guard';
 import { AuthLayoutComponent } from './features/auth/presentation/layouts/auth-layout/auth-layout.component';
 
 export const routes: Routes = [
-  { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
+  { path: '', redirectTo: '/iot/devices', pathMatch: 'full' },
 
 
 

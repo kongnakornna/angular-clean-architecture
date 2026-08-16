@@ -1,77 +1,99 @@
-<div class="offcanvas offcanvas-end" tabindex="-1" id="layoutSettingsPanel">
-  <div class="offcanvas-header">
-    <h3 class="offcanvas-title">Theme Settings</h3>
-    <button type="button" class="btn-close" data-bs-dismiss="offcanvas"></button>
-  </div>
-  <div class="offcanvas-body">
-    <div class="mb-4">
-      <label class="form-label">Color mode</label>
-      <label class="form-check">
-        <input type="radio" name="theme" value="light" class="form-check-input"
-          [checked]="layout.theme() === 'light'"
-          (change)="update('theme', 'light')">
-        <span class="form-check-label">{{ 'layout.settings.completed' | translate }}</span>
-      </label>
-      <label class="form-check">
-        <input type="radio" name="theme" value="dark" class="form-check-input"
-          [checked]="layout.theme() === 'dark'"
-          (change)="update('theme', 'dark')">
-        <span class="form-check-label">{{ 'layout.settings.closed' | translate }}</span>
-      </label>
-    </div>
+<div class="settings">
+  <a href="#" class="btn btn-floating btn-icon btn-primary" data-bs-toggle="offcanvas" data-bs-target="#offcanvas-settings" aria-controls="offcanvas-settings" [attr.aria-label]="'layout.settings.title' | translate">
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false" class="icon icon-1" style="opacity: .7">
+      <path d="M3 21v-4a4 4 0 1 1 4 4h-4" />
+      <path d="M21 3a16 16 0 0 0 -12.8 10.2" />
+      <path d="M21 3a16 16 0 0 1 -10.2 12.8" />
+      <path d="M10.6 9a9 9 0 0 1 4.4 4.4" />
+    </svg>
+  </a>
 
-    <div class="mb-4">
-      <label class="form-label">Color scheme</label>
-      <div class="row g-2">
-        <div class="col-auto" *ngFor="let t of themes">
-          <label class="form-colorinput">
-            <input type="radio" name="theme-primary" [value]="t.key" class="form-colorinput-input"
-              [checked]="layout.themePrimary() === t.key"
-              (change)="update('theme-primary', t.key)">
-            <span class="form-colorinput-color" [class]="t.class"></span>
+  <form class="offcanvas offcanvas-start offcanvas-narrow" tabindex="-1" id="offcanvas-settings" role="dialog" aria-modal="true" aria-labelledby="offcanvas-settings-title">
+    <div class="offcanvas-header">
+      <h2 class="offcanvas-title" id="offcanvas-settings-title">{{ 'layout.settings.title' | translate }}</h2>
+      <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+    </div>
+    <div class="offcanvas-body d-flex flex-column">
+      <div>
+        <div class="mb-4">
+          <label class="form-label">{{ 'layout.settings.colorMode' | translate }}</label>
+          <p class="form-hint">{{ 'layout.settings.colorModeHint' | translate }}</p>
+          <label class="form-check">
+            <div class="form-selectgroup-item">
+              <input type="radio" name="theme" value="light" class="form-check-input" [checked]="layout.theme() === 'light'" (change)="update('theme', 'light')" />
+              <div class="form-check-label">{{ 'layout.settings.lightmode' | translate }}</div>
+            </div>
+          </label>
+          <label class="form-check">
+            <div class="form-selectgroup-item">
+              <input type="radio" name="theme" value="dark" class="form-check-input" [checked]="layout.theme() === 'dark'" (change)="update('theme', 'dark')" />
+              <div class="form-check-label">{{ 'layout.settings.darkmode' | translate }}</div>
+            </div>
           </label>
         </div>
+
+        <div class="mb-4">
+          <label class="form-label">{{ 'layout.settings.colorScheme' | translate }}</label>
+          <p class="form-hint">{{ 'layout.settings.colorSchemeHint' | translate }}</p>
+          <div class="row g-2">
+            <div class="col-auto" *ngFor="let t of themes">
+              <label class="form-colorinput">
+                <input name="theme-primary" type="radio" [value]="t.key" class="form-colorinput-input" [checked]="layout.themePrimary() === t.key" (change)="update('theme-primary', t.key)" />
+                <span class="form-colorinput-color" [class]="t.class"></span>
+              </label>
+            </div>
+          </div>
+        </div>
+
+        <div class="mb-4">
+          <label class="form-label">{{ 'layout.settings.fontFamily' | translate }}</label>
+          <p class="form-hint">{{ 'layout.settings.fontFamilyHint' | translate }}</p>
+          <div>
+            <label class="form-check" *ngFor="let f of fonts">
+              <div class="form-selectgroup-item">
+                <input type="radio" name="theme-font" [value]="f.key" class="form-check-input" [checked]="layout.themeFont() === f.key" (change)="update('theme-font', f.key)" />
+                <div class="form-check-label">{{ f.label | translate }}</div>
+              </div>
+            </label>
+          </div>
+        </div>
+
+        <div class="mb-4">
+          <label class="form-label">{{ 'layout.settings.themeBase' | translate }}</label>
+          <p class="form-hint">{{ 'layout.settings.themeBaseHint' | translate }}</p>
+          <div>
+            <label class="form-check" *ngFor="let b of bases">
+              <div class="form-selectgroup-item">
+                <input type="radio" name="theme-base" [value]="b" class="form-check-input" [checked]="layout.themeBase() === b" (change)="update('theme-base', b)" />
+                <div class="form-check-label">{{ b }}</div>
+              </div>
+            </label>
+          </div>
+        </div>
+
+        <div class="mb-4">
+          <label class="form-label">{{ 'layout.settings.borderRadius' | translate }}</label>
+          <p class="form-hint">{{ 'layout.settings.borderRadiusHint' | translate }}</p>
+          <div>
+            <label class="form-check" *ngFor="let r of radii">
+              <div class="form-selectgroup-item">
+                <input type="radio" name="theme-radius" [value]="r" class="form-check-input" [checked]="layout.themeRadius() === r" (change)="update('theme-radius', r)" />
+                <div class="form-check-label">{{ r }}</div>
+              </div>
+            </label>
+          </div>
+        </div>
+      </div>
+
+      <div class="mt-auto space-y">
+        <button type="button" class="btn w-100" id="reset-changes" (click)="reset()">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false" class="icon icon-1">
+            <path d="M19.95 11a8 8 0 1 0 -.5 4m.5 5v-5h-5" />
+          </svg>
+          {{ 'layout.settings.reset' | translate }}
+        </button>
+        <a href="#" class="btn btn-primary w-100" data-bs-dismiss="offcanvas">{{ 'layout.settings.save' | translate }}</a>
       </div>
     </div>
-
-    <div class="mb-4">
-      <label class="form-label">Font family</label>
-      <div *ngFor="let f of fonts">
-        <label class="form-check">
-          <input type="radio" name="theme-font" [value]="f" class="form-check-input"
-            [checked]="layout.themeFont() === f"
-            (change)="update('theme-font', f)">
-          <span class="form-check-label">{{ f }}</span>
-        </label>
-      </div>
-    </div>
-
-    <div class="mb-4">
-      <label class="form-label">Theme base</label>
-      <div *ngFor="let b of bases">
-        <label class="form-check">
-          <input type="radio" name="theme-base" [value]="b" class="form-check-input"
-            [checked]="layout.themeBase() === b"
-            (change)="update('theme-base', b)">
-          <span class="form-check-label">{{ b }}</span>
-        </label>
-      </div>
-    </div>
-
-    <div class="mb-4">
-      <label class="form-label">Corner Radius</label>
-      <div *ngFor="let r of radii">
-        <label class="form-check">
-          <input type="radio" name="theme-radius" [value]="r" class="form-check-input"
-            [checked]="layout.themeRadius() === r"
-            (change)="update('theme-radius', r)">
-          <span class="form-check-label">{{ r }}</span>
-        </label>
-      </div>
-    </div>
-
-    <div class="mt-4">
-      <button type="button" class="btn btn-outline-danger w-100" (click)="reset()">Reset</button>
-    </div>
-  </div>
+  </form>
 </div>

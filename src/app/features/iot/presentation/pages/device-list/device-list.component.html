@@ -1,16 +1,460 @@
 <div class="page-header d-print-none">
-  <div class="row align-items-center">
+  <div class="row g-2 align-items-center">
     <div class="col">
-      <h2 class="page-title">{{ 'iot.title' | translate }}</h2>
-      <div class="text-secondary mt-1">{{ 'iot.subtitle' | translate }}</div>
+      <div class="page-pretitle">{{ 'iot.subtitle' | translate }}</div>
+      <h1 class="page-title">{{ 'iot.title' | translate }}</h1>
     </div>
     <div class="col-auto ms-auto d-print-none">
-      <a routerLink="/iot/devices/create" class="btn btn-primary">{{ 'iot.create' | translate }}</a>
+      <a href="javascript:void(0)" class="btn btn-outline-secondary" data-bs-toggle="offcanvas" data-bs-target="#offcanvas-settings">
+        <i-tabler name="settings" class="icon icon-2"></i-tabler>
+        {{ 'layout.settings.title' | translate }}
+      </a>
+      <a routerLink="/iot/devices/create" class="btn btn-primary">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false" class="icon icon-2">
+          <path d="M12 5l0 14" />
+          <path d="M5 12l14 0" />
+        </svg>
+        {{ 'iot.create' | translate }}
+      </a>
     </div>
   </div>
 </div>
-<div class="card">
-  <div class="card-body text-center py-5">
-    <div class="text-secondary">{{ 'common.underDevelopment' | translate }}</div>
+
+<div class="row row-deck row-cards">
+  <div class="col-sm-12 col-lg-6">
+    <div class="card card-gradient">
+      <div class="card-body">
+        <div class="row gy-3">
+          <div class="col-12 col-sm-6 d-flex flex-column">
+            <h3 class="h2">{{ 'iot.welcomeMessage' | translate }}</h3>
+            <p class="text-secondary">{{ 'iot.subtitle' | translate }}</p>
+            <div class="row g-5 mt-auto">
+              <div class="col-auto">
+                <div class="subheader">{{ 'iot.totalDevices' | translate }}</div>
+                <div class="d-flex align-items-baseline">
+                  <div class="h3 me-2">132</div>
+                  <div class="me-auto">
+                    <span class="text-green d-inline-flex align-items-center lh-1">
+                      12%
+                      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false" class="icon ms-0 icon-sm">
+                        <path d="M12 5l0 14" />
+                        <path d="M18 11l-6 -6" />
+                        <path d="M6 11l6 -6" />
+                      </svg>
+                    </span>
+                  </div>
+                </div>
+              </div>
+              <div class="col-auto">
+                <div class="subheader">{{ 'iot.onlineDevices' | translate }}</div>
+                <div class="d-flex align-items-baseline">
+                  <div class="h3 me-2">118</div>
+                  <div class="me-auto">
+                    <span class="text-green d-inline-flex align-items-center lh-1">
+                      4%
+                      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false" class="icon ms-0 icon-sm">
+                        <path d="M12 5l0 14" />
+                        <path d="M18 11l-6 -6" />
+                        <path d="M6 11l6 -6" />
+                      </svg>
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-12 col-sm-6 d-flex justify-content-center">
+            <app-welcome-illustration></app-welcome-illustration>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-sm-6 col-lg-3">
+    <div class="card">
+      <div class="card-body">
+        <div class="subheader">{{ 'iot.totalDevices' | translate }}</div>
+        <div class="d-flex align-items-baseline">
+          <div class="h1 mb-0 me-2">132</div>
+          <div class="me-auto">
+            <span class="text-green d-inline-flex align-items-center lh-1">
+              12%
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false" class="icon ms-0 icon-sm">
+                <path d="M12 5l0 14" />
+                <path d="M18 11l-6 -6" />
+                <path d="M6 11l6 -6" />
+              </svg>
+            </span>
+          </div>
+        </div>
+        <div class="text-secondary mt-2">{{ 'dashboard.fromLastMonth' | translate }}</div>
+      </div>
+      <div class="position-relative p-3">
+        <svg class="w-100" height="40" viewBox="0 0 100 40" preserveAspectRatio="none" aria-hidden="true">
+          <polyline fill="none" stroke="var(--tblr-primary)" stroke-width="2" points="0,30 12,26 24,28 36,20 48,24 60,16 72,20 84,12 100,16" />
+        </svg>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-sm-6 col-lg-3">
+    <div class="card">
+      <div class="card-body">
+        <div class="subheader">{{ 'iot.onlineDevices' | translate }}</div>
+        <div class="d-flex align-items-baseline mb-2">
+          <div class="h1 mb-0 me-2">118</div>
+          <div class="me-auto">
+            <span class="text-green d-inline-flex align-items-center lh-1">
+              4%
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false" class="icon ms-0 icon-sm">
+                <path d="M12 5l0 14" />
+                <path d="M18 11l-6 -6" />
+                <path d="M6 11l6 -6" />
+              </svg>
+            </span>
+          </div>
+        </div>
+      </div>
+      <div class="position-relative p-3">
+        <svg class="w-100" height="40" viewBox="0 0 100 40" preserveAspectRatio="none" aria-hidden="true">
+          <polyline fill="none" stroke="var(--tblr-primary)" stroke-width="2" points="0,26 12,22 24,24 36,16 48,20 60,12 72,16 84,10 100,12" />
+        </svg>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-sm-6 col-lg-3">
+    <div class="card">
+      <div class="card-body">
+        <div class="subheader">{{ 'iot.offlineDevices' | translate }}</div>
+        <div class="d-flex align-items-baseline mb-2">
+          <div class="h1 mb-0 me-2">8</div>
+          <div class="me-auto">
+            <span class="text-red d-inline-flex align-items-center lh-1">
+              -2%
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false" class="icon ms-0 icon-sm">
+                <path d="M12 5l0 14" />
+                <path d="M18 13l-6 6" />
+                <path d="M6 13l6 6" />
+              </svg>
+            </span>
+          </div>
+        </div>
+      </div>
+      <div class="position-relative p-3">
+        <svg class="w-100" height="40" viewBox="0 0 100 40" preserveAspectRatio="none" aria-hidden="true">
+          <polyline fill="none" stroke="var(--tblr-danger)" stroke-width="2" points="0,12 12,18 24,14 36,24 48,20 60,30 72,26 84,34 100,28" />
+        </svg>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-sm-6 col-lg-3">
+    <div class="card">
+      <div class="card-body">
+        <div class="subheader">{{ 'iot.sensorAlerts' | translate }}</div>
+        <div class="d-flex align-items-baseline mb-2">
+          <div class="h1 mb-0 me-2">18</div>
+          <div class="me-auto">
+            <span class="text-green d-inline-flex align-items-center lh-1">
+              8%
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false" class="icon ms-0 icon-sm">
+                <path d="M12 5l0 14" />
+                <path d="M18 11l-6 -6" />
+                <path d="M6 11l6 -6" />
+              </svg>
+            </span>
+          </div>
+        </div>
+      </div>
+      <div class="position-relative p-3">
+        <svg class="w-100" height="40" viewBox="0 0 100 40" preserveAspectRatio="none" aria-hidden="true">
+          <polyline fill="none" stroke="var(--tblr-warning)" stroke-width="2" points="0,28 12,24 24,26 36,18 48,22 60,14 72,18 84,10 100,14" />
+        </svg>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-12">
+    <div class="row row-cards">
+      <div class="col-sm-6 col-lg-3">
+        <div class="card card-sm">
+          <div class="card-body">
+            <div class="row align-items-center">
+              <div class="col-auto">
+                <span class="bg-info text-white avatar avatar-square">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false" class="icon icon-1">
+                    <path d="M10 13.5a4 4 0 1 0 4 0V5a2 2 0 0 0 -4 0v8.5Z" />
+                    <path d="M12 9a1 1 0 0 1 1 1v3a1 1 0 0 1 -2 0v-3a1 1 0 0 1 1 -1Z" />
+                  </svg>
+                </span>
+              </div>
+              <div class="col">
+                <div class="fw-medium">86</div>
+                <div class="text-secondary">{{ 'iot.temperatureSensors' | translate }}</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-6 col-lg-3">
+        <div class="card card-sm">
+          <div class="card-body">
+            <div class="row align-items-center">
+              <div class="col-auto">
+                <span class="bg-purple text-white avatar avatar-square">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false" class="icon icon-1">
+                    <path d="M5 5h14v14H5z" />
+                    <path d="M9 9h6v6H9z" />
+                    <path d="M9 2v2" />
+                    <path d="M15 2v2" />
+                    <path d="M9 20v2" />
+                    <path d="M15 20v2" />
+                    <path d="M2 9h2" />
+                    <path d="M2 15h2" />
+                    <path d="M20 9h2" />
+                    <path d="M20 15h2" />
+                  </svg>
+                </span>
+              </div>
+              <div class="col">
+                <div class="fw-medium">12</div>
+                <div class="text-secondary">{{ 'iot.gateways' | translate }}</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-6 col-lg-3">
+        <div class="card card-sm">
+          <div class="card-body">
+            <div class="row align-items-center">
+              <div class="col-auto">
+                <span class="bg-warning text-white avatar avatar-square">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false" class="icon icon-1">
+                    <path d="M12 9v4" />
+                    <path d="M12 17h.01" />
+                    <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z" />
+                  </svg>
+                </span>
+              </div>
+              <div class="col">
+                <div class="fw-medium">5</div>
+                <div class="text-secondary">{{ 'iot.activeAlerts' | translate }}</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-6 col-lg-3">
+        <div class="card card-sm">
+          <div class="card-body">
+            <div class="row align-items-center">
+              <div class="col-auto">
+                <span class="bg-danger text-white avatar avatar-square">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false" class="icon icon-1">
+                    <path d="M12 3l8 4.5v9L12 21l-8-4.5v-9L12 3Z" />
+                    <path d="M12 12l8-4.5" />
+                    <path d="M12 12v9" />
+                    <path d="M12 12L4 7.5" />
+                  </svg>
+                </span>
+              </div>
+              <div class="col">
+                <div class="fw-medium">7</div>
+                <div class="text-secondary">{{ 'iot.pendingUpdates' | translate }}</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-lg-6">
+    <div class="card">
+      <div class="card-body">
+        <h3 class="card-title">{{ 'iot.deviceStatus' | translate }}</h3>
+        <div class="d-flex flex-column align-items-center">
+          <div class="position-relative" style="width: 180px; height: 180px;">
+            <div style="width: 100%; height: 100%; border-radius: 50%; background: conic-gradient(#66a860 0 89%, #c6c7cd 89% 95%, #ffb42b 95% 100%);"></div>
+            <div class="position-absolute rounded-circle" style="inset: 32px; background: var(--tblr-card-bg);"></div>
+          </div>
+          <div class="mt-4 w-100">
+            <div class="d-flex align-items-center">
+              <span class="legend me-2 bg-success"></span>
+              <span>{{ 'iot.onlineStatus' | translate }}</span>
+              <span class="ms-auto text-secondary">118</span>
+            </div>
+            <div class="d-flex align-items-center mt-2">
+              <span class="legend me-2 bg-secondary"></span>
+              <span>{{ 'iot.offlineStatus' | translate }}</span>
+              <span class="ms-auto text-secondary">8</span>
+            </div>
+            <div class="d-flex align-items-center mt-2">
+              <span class="legend me-2 bg-warning"></span>
+              <span>{{ 'iot.maintenance' | translate }}</span>
+              <span class="ms-auto text-secondary">6</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-lg-6">
+    <div class="card">
+      <div class="card-header">
+        <h3 class="card-title">{{ 'iot.mapTitle' | translate }}</h3>
+      </div>
+      <div class="card-body">
+        <div class="ratio ratio-21x9">
+          <div class="d-flex align-items-center justify-content-center flex-column text-secondary">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false" class="icon icon-2 mb-2">
+              <path d="M12 21s-7-4.35-9-8.5C1.5 9 3.5 5 8 5s6 2.5 6 2.5S16 3.5 20.5 4.5 23 9 21 12.5c-2 4.15-9 8.5-9 8.5Z" />
+              <path d="M12 11a2 2 0 1 0 0-4 2 2 0 0 0 0 4Z" />
+            </svg>
+            <div>{{ 'iot.mapPlaceholder' | translate }}</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-lg-6">
+    <div class="card" style="height: 28rem">
+      <div class="card-header">
+        <h3 class="card-title">{{ 'iot.deviceActivity' | translate }}</h3>
+      </div>
+      <div class="card-body card-body-scrollable card-body-scrollable-shadow">
+        <div class="divide-y">
+          <div>
+            <div class="row">
+              <div class="col-auto">
+                <span class="avatar bg-green-lt">A</span>
+              </div>
+              <div class="col">
+                <div class="text-truncate"><strong>Admin</strong> registered <strong>Gateway A-01</strong></div>
+                <div class="text-secondary">2 min ago</div>
+              </div>
+              <div class="col-auto align-self-center">
+                <div class="badge bg-primary"></div>
+              </div>
+            </div>
+          </div>
+          <div>
+            <div class="row">
+              <div class="col-auto">
+                <span class="avatar bg-yellow-lt">T</span>
+              </div>
+              <div class="col">
+                <div class="text-truncate"><strong>Sensor T-102</strong> reported high temperature</div>
+                <div class="text-secondary">15 min ago</div>
+              </div>
+              <div class="col-auto align-self-center">
+                <div class="badge bg-danger"></div>
+              </div>
+            </div>
+          </div>
+          <div>
+            <div class="row">
+              <div class="col-auto">
+                <span class="avatar bg-purple-lt">F</span>
+              </div>
+              <div class="col">
+                <div class="text-truncate">Firmware <strong>v1.8.0</strong> deployed to 3 sensors</div>
+                <div class="text-secondary">1 hr ago</div>
+              </div>
+              <div class="col-auto align-self-center">
+                <div class="badge bg-primary"></div>
+              </div>
+            </div>
+          </div>
+          <div>
+            <div class="row">
+              <div class="col-auto">
+                <span class="avatar bg-red-lt">T</span>
+              </div>
+              <div class="col">
+                <div class="text-truncate"><strong>Sensor T-207</strong> went offline</div>
+                <div class="text-secondary">3 hrs ago</div>
+              </div>
+              <div class="col-auto align-self-center">
+                <div class="badge bg-danger"></div>
+              </div>
+            </div>
+          </div>
+          <div>
+            <div class="row">
+              <div class="col-auto">
+                <span class="avatar bg-cyan-lt">T</span>
+              </div>
+              <div class="col">
+                <div class="text-truncate">Battery replaced on <strong>Sensor T-101</strong></div>
+                <div class="text-secondary">5 hrs ago</div>
+              </div>
+              <div class="col-auto align-self-center">
+                <div class="badge bg-primary"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-lg-6">
+    <div class="card">
+      <div class="card-header">
+        <h3 class="card-title">{{ 'iot.firmwareUpdates' | translate }}</h3>
+      </div>
+      <div class="card-table table-responsive">
+        <table class="table table-vcenter">
+          <thead>
+            <tr>
+              <th>{{ 'iot.deviceName' | translate }}</th>
+              <th>{{ 'iot.version' | translate }}</th>
+              <th>{{ 'iot.lastUpdated' | translate }}</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Gateway A-01</td>
+              <td>v2.4.1</td>
+              <td class="text-secondary">5 min ago</td>
+              <td class="text-end">
+                <span class="badge bg-yellow-lt">{{ 'iot.pendingUpdates' | translate }}</span>
+              </td>
+            </tr>
+            <tr>
+              <td>Sensor T-102</td>
+              <td>v1.8.0</td>
+              <td class="text-secondary">1 hr ago</td>
+              <td class="text-end">
+                <span class="badge bg-yellow-lt">{{ 'iot.pendingUpdates' | translate }}</span>
+              </td>
+            </tr>
+            <tr>
+              <td>Sensor T-207</td>
+              <td>v1.8.0</td>
+              <td class="text-secondary">2 hrs ago</td>
+              <td class="text-end">
+                <span class="badge bg-yellow-lt">{{ 'iot.pendingUpdates' | translate }}</span>
+              </td>
+            </tr>
+            <tr>
+              <td>Gateway B-02</td>
+              <td>v2.3.9</td>
+              <td class="text-secondary">6 hrs ago</td>
+              <td class="text-end">
+                <span class="badge bg-yellow-lt">{{ 'iot.pendingUpdates' | translate }}</span>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
   </div>
 </div>

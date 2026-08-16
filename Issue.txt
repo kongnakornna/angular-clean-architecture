@@ -1,0 +1,3 @@
+เกิดปัญหาดังนี้
+1. navbar ไม่แสดง
+2.Theme Settings

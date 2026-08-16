@@ -1,7 +1,9 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { RouterLink } from '@angular/router';
 import { BehaviorSubject, Subject, takeUntil } from 'rxjs';
 import { TranslatePipe } from '../../../../../shared/pipes/translate.pipe';
+import { WelcomeIllustrationComponent } from '../../../../../shared/components/welcome-illustration/welcome-illustration.component';
 import { DashboardStats, RevenueData, Activity } from '../../../domain/entities/dashboard-stats.entity';
 import { GetDashboardStatsUseCase } from '../../../domain/use-cases/get-dashboard-stats.use-case';
 import { GetRevenueChartUseCase } from '../../../domain/use-cases/get-revenue-chart.use-case';
@@ -10,7 +12,7 @@ import { GetRecentActivitiesUseCase } from '../../../domain/use-cases/get-recent
 @Component({
   selector: 'app-main-dashboard',
   standalone: true,
-  imports: [CommonModule, TranslatePipe],
+  imports: [CommonModule, RouterLink, TranslatePipe, WelcomeIllustrationComponent],
   templateUrl: './main-dashboard.component.html',
   styleUrls: ['./main-dashboard.component.scss'],
 })
@@ -42,6 +44,11 @@ export class MainDashboardComponent implements OnInit, OnDestroy {
   ngOnDestroy(): void {
     this.destroy$.next();
     this.destroy$.complete();
+  }
+
+  revenueBarHeight(revenue: number, data: RevenueData[]): number {
+    const max = Math.max(...data.map((d) => d.revenue), 1);
+    return (revenue / max) * 40;
   }
 
   private loadDashboard(): void {
