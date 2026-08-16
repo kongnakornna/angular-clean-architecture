@@ -5,3 +5,7 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.layout-boxed-2 {
+  --tblr-theme-boxed-width: 1600px;
+}

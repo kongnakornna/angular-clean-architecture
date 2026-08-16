@@ -170,7 +170,12 @@
     "header": {
       "notifications": "Notifications",
       "userName": "Jane Pearson",
-      "userRole": "Administrator"
+      "userRole": "Administrator",
+      "layoutTitle": "Layout",
+      "layoutFluid": "Fluid",
+      "layoutBoxed": "Boxed",
+      "layoutBoxed2": "Boxed 2",
+      "fullScreen": "Full Screen"
     },
     "footer": {
       "about": "About",

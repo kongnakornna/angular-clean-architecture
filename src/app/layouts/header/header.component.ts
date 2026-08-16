@@ -64,8 +64,36 @@ export class HeaderComponent {
     return this.layout.theme() === 'dark';
   }
 
+  get layoutMode(): string {
+    return this.layout.layout();
+  }
+
   toggleTheme(): void {
     this.layout.update('theme', this.isDarkMode ? 'light' : 'dark');
+  }
+
+  setLayout(mode: 'fluid' | 'boxed' | 'boxed-2'): void {
+    this.layout.update('layout', mode);
+  }
+
+  openFullscreen(): void {
+    const el = document.documentElement as HTMLElement & {
+      webkitRequestFullscreen?: () => void;
+      msRequestFullscreen?: () => void;
+      mozRequestFullScreen?: () => void;
+    };
+
+    if (document.fullscreenElement) {
+      document.exitFullscreen();
+    } else if (el.requestFullscreen) {
+      el.requestFullscreen();
+    } else if (el.webkitRequestFullscreen) {
+      el.webkitRequestFullscreen();
+    } else if (el.msRequestFullscreen) {
+      el.msRequestFullscreen();
+    } else if (el.mozRequestFullScreen) {
+      el.mozRequestFullScreen();
+    }
   }
 
   logout(): void {

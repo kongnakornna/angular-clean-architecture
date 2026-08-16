@@ -7,6 +7,7 @@ import {
   IconLayoutDashboard, IconClipboard, IconList, IconLayoutKanban, IconPlus,
   IconUsers, IconDeviceDesktop, IconSettings, IconBell, IconUser, IconLogout,
   IconMenu2, IconMoon, IconSun, IconApps, IconChartBar, IconChartLine, IconChartPie,
+  IconAdjustmentsAlt, IconArrowAutofitWidth, IconArrowsMinimize, IconAspectRatio, IconArrowsMaximize,
 } from 'angular-tabler-icons/icons';
 import { HeaderComponent } from './header.component';
 import { TranslatePipe } from '../../shared/pipes/translate.pipe';
@@ -16,6 +17,7 @@ declare const window: any;
 
 describe('HeaderComponent dropdown close behavior', () => {
   let fixture: ComponentFixture<HeaderComponent>;
+  let component: HeaderComponent;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
@@ -31,12 +33,14 @@ describe('HeaderComponent dropdown close behavior', () => {
           IconLayoutDashboard, IconClipboard, IconList, IconLayoutKanban, IconPlus,
           IconUsers, IconDeviceDesktop, IconSettings, IconBell, IconUser, IconLogout,
           IconMenu2, IconMoon, IconSun, IconApps, IconChartBar, IconChartLine, IconChartPie,
+          IconAdjustmentsAlt, IconArrowAutofitWidth, IconArrowsMinimize, IconAspectRatio, IconArrowsMaximize,
         }),
         { provide: TranslateService, useValue: { currentLang: 'en', instant: (k: string) => k, use: () => of({}), onLangChange: of({}) } },
       ],
     }).compileComponents();
 
     fixture = TestBed.createComponent(HeaderComponent);
+    component = fixture.componentInstance;
     fixture.detectChanges();
   });
 
@@ -101,5 +105,55 @@ describe('HeaderComponent dropdown close behavior', () => {
     expect(icons[2]).toBeNull();
     expect(icons[3]).toBeNull();
     expect(icons[4]).toBeNull();
+  });
+
+  function layoutItems(): HTMLElement[] {
+    return Array.from(fixture.nativeElement.querySelectorAll('a.list-group-item-actions')) as HTMLElement[];
+  }
+
+  it('renders the layout menu with 4 options', () => {
+    const items = layoutItems();
+    expect(items.length).toBe(4);
+    expect(items[0].querySelector('svg')).not.toBeNull();
+  });
+
+  it('applies boxed layout to the body when Boxed is selected', () => {
+    document.body.classList.remove('layout-boxed', 'layout-boxed-2');
+    click(layoutItems()[1]);
+    expect(document.body.classList.contains('layout-boxed')).toBeTrue();
+    expect(document.body.classList.contains('layout-boxed-2')).toBeFalse();
+    expect(component.layoutMode).toBe('boxed');
+  });
+
+  it('applies boxed-2 layout to the body when Boxed 2 is selected', () => {
+    click(layoutItems()[2]);
+    expect(document.body.classList.contains('layout-boxed')).toBeTrue();
+    expect(document.body.classList.contains('layout-boxed-2')).toBeTrue();
+    expect(component.layoutMode).toBe('boxed-2');
+  });
+
+  it('removes boxed classes when Fluid is selected', () => {
+    click(layoutItems()[1]);
+    expect(document.body.classList.contains('layout-boxed')).toBeTrue();
+    click(layoutItems()[0]);
+    expect(document.body.classList.contains('layout-boxed')).toBeFalse();
+    expect(document.body.classList.contains('layout-boxed-2')).toBeFalse();
+    expect(component.layoutMode).toBe('fluid');
+  });
+
+  it('enters fullscreen when Full Screen is selected', () => {
+    const el = document.documentElement as any;
+    const enterSpy = jasmine.createSpy('requestFullscreen');
+    const exitSpy = jasmine.createSpy('exitFullscreen');
+    Object.defineProperty(el, 'requestFullscreen', { value: enterSpy, configurable: true });
+    Object.defineProperty(document, 'exitFullscreen', { value: exitSpy, configurable: true });
+
+    Object.defineProperty(document, 'fullscreenElement', { value: null, configurable: true });
+    click(layoutItems()[3]);
+    expect(enterSpy).toHaveBeenCalled();
+
+    Object.defineProperty(document, 'fullscreenElement', { value: el, configurable: true });
+    click(layoutItems()[3]);
+    expect(exitSpy).toHaveBeenCalled();
   });
 });

@@ -171,7 +171,12 @@
     "header": {
       "notifications": "การแจ้งเตือน",
       "userName": "เจน เพียร์สัน",
-      "userRole": "ผู้ดูแลระบบ"
+      "userRole": "ผู้ดูแลระบบ",
+      "layoutTitle": "เค้าโครง",
+      "layoutFluid": "เต็มจอ",
+      "layoutBoxed": "กล่อง",
+      "layoutBoxed2": "กล่อง 2",
+      "fullScreen": "เต็มหน้าจอ"
     },
     "footer": {
       "about": "เกี่ยวกับ",

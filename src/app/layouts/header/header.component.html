@@ -25,6 +25,58 @@
         </div>
 
         <div class="nav-item dropdown d-none d-md-flex">
+          <a href="javascript:void(0)" class="nav-link px-0" data-bs-toggle="dropdown" tabindex="-1" [attr.aria-label]="'layout.header.layoutTitle' | translate" data-bs-auto-close="outside" aria-expanded="false">
+            <i-tabler name="adjustments-alt" class="icon icon-sm"></i-tabler>
+          </a>
+          <div class="dropdown-menu dropdown-menu-arrow dropdown-menu-end dropdown-menu-card">
+            <div class="card">
+              <div class="list-group list-group-flush list-group-hoverable">
+                <div class="list-group-item" [class.active]="layoutMode === 'fluid'">
+                  <div class="row align-items-center">
+                    <div class="col-auto">
+                      <a href="javascript:void(0)" class="list-group-item-actions" (click)="setLayout('fluid')">
+                        <i-tabler name="arrow-autofit-width" class="icon"></i-tabler>
+                        {{ 'layout.header.layoutFluid' | translate }}
+                      </a>
+                    </div>
+                  </div>
+                </div>
+                <div class="list-group-item" [class.active]="layoutMode === 'boxed'">
+                  <div class="row align-items-center">
+                    <div class="col-auto">
+                      <a href="javascript:void(0)" class="list-group-item-actions" (click)="setLayout('boxed')">
+                        <i-tabler name="arrows-minimize" class="icon"></i-tabler>
+                        {{ 'layout.header.layoutBoxed' | translate }}
+                      </a>
+                    </div>
+                  </div>
+                </div>
+                <div class="list-group-item" [class.active]="layoutMode === 'boxed-2'">
+                  <div class="row align-items-center">
+                    <div class="col-auto">
+                      <a href="javascript:void(0)" class="list-group-item-actions" (click)="setLayout('boxed-2')">
+                        <i-tabler name="aspect-ratio" class="icon"></i-tabler>
+                        {{ 'layout.header.layoutBoxed2' | translate }}
+                      </a>
+                    </div>
+                  </div>
+                </div>
+                <div class="list-group-item">
+                  <div class="row align-items-center">
+                    <div class="col-auto">
+                      <a href="javascript:void(0)" class="list-group-item-actions" (click)="openFullscreen()">
+                        <i-tabler name="arrows-maximize" class="icon"></i-tabler>
+                        {{ 'layout.header.fullScreen' | translate }}
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="nav-item dropdown d-none d-md-flex">
           <a href="javascript:void(0)" class="nav-link px-0" data-bs-toggle="dropdown" tabindex="-1" aria-label="Show notifications" data-bs-auto-close="outside" aria-expanded="false">
             <i-tabler name="bell" class="icon icon-sm"></i-tabler>
             <span class="badge bg-red" *ngIf="unreadCount > 0">{{ unreadCount }}</span>
