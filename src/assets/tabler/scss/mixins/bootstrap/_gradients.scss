@@ -1,3 +1,5 @@
+@use '../../variables' as *;
+
 // Gradients
 
 @mixin gradient-bg($color: null) {

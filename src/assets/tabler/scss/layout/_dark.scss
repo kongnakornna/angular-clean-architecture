@@ -1,5 +1,7 @@
 @use 'sass:color';
 
+@use '../config' as *;
+@use '../variables-dark' as *;
 // stylelint-disable declaration-no-important
 
 @if $enable-dark-mode {

@@ -4,6 +4,15 @@
 @use 'sass:map';
 @use 'sass:color';
 @use 'sass:meta';
+@use '../variables' as *;
+
+// !default vars for module-system configuration (configured via @forward ... with
+// in _mixins.scss). When @import'd into _variables.scss, these stay behind the
+// real values already set above in _variables.scss.
+$color-contrast-dark: null !default;
+$color-contrast-light: null !default;
+$min-contrast-ratio: null !default;
+$prefix: '' !default;
 
 @function theme-color-lighter($color, $background: #fff) {
   @return color.mix($color, $background, 10%);

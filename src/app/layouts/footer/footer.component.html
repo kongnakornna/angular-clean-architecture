@@ -7,21 +7,14 @@
             <li class="list-inline-item"><a href="javascript:void(0)" class="link-secondary" routerLink="/">{{ 'layout.footer.about' | translate }}</a></li>
             <li class="list-inline-item"><a href="javascript:void(0)" class="link-secondary" routerLink="/">{{ 'layout.footer.help' | translate }}</a></li>
             <li class="list-inline-item"><a href="javascript:void(0)" class="link-secondary" routerLink="/">{{ 'layout.footer.privacy' | translate }}</a></li>
-            <li class="list-inline-item">
-              <a href="javascript:void(0)" class="link-secondary" target="_blank" rel="noopener">
-                <i-tabler name="heart" class="icon-inline text-pink"></i-tabler>
-                {{ 'layout.footer.sponsor' | translate }}
-              </a>
-            </li>
           </ul>
         </nav>
       </div>
       <div class="col-12 col-lg-auto mt-3 mt-lg-0">
         <ul class="list-inline list-inline-dots mb-0">
           <li class="list-inline-item">
-            {{ 'layout.footer.copyright' | translate }} {{ currentYear }}
-            <a href="/" class="link-secondary">{{ 'app.name' | translate }}</a>.
-            {{ 'layout.footer.allRightsReserved' | translate }}
+            {{ 'layout.footer.copyright' | translate }} {{ displayYear() }}
+            <a href="/" class="link-secondary"> {{ 'app.name' | translate }} </a>  {{ 'layout.footer.allRightsReserved' | translate }}
           </li>
           <li class="list-inline-item">
             {{ appVersion }}

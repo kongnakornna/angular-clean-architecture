@@ -3,93 +3,395 @@
     <span class="visually-hidden">{{ 'dashboard.loading' | translate }}</span>
   </div>
 </div>
-
 <div *ngIf="(stats$ | async) as s">
-  <div class="row row-deck row-cards">
-    <div class="col-sm-6 col-lg-3">
-      <div class="card">
-        <div class="card-body">
-          <div class="subheader">{{ 'dashboard.totalJobs' | translate }}</div>
-          <div class="h1 mb-3">{{ s.totalJobs }}</div>
-          <div class="d-flex align-items-baseline">
-            <span class="text-green me-1">+12%</span>
-            <span class="text-secondary">{{ 'dashboard.fromLastMonth' | translate }}</span>
-          </div>
-        </div>
+  <div class="page-header d-print-none">
+    <div class="row g-2 align-items-center">
+      <div class="col">
+        <div class="page-pretitle">{{ 'dashboard.overview' | translate }}</div>
+        <h1 class="page-title">{{ 'dashboard.title' | translate }}</h1>
       </div>
-    </div>
-    <div class="col-sm-6 col-lg-3">
-      <div class="card">
-        <div class="card-body">
-          <div class="subheader">{{ 'dashboard.activeJobs' | translate }}</div>
-          <div class="h1 mb-3">{{ s.activeJobs }}</div>
-          <div class="text-secondary">{{ 'dashboard.inProgress' | translate }}</div>
-        </div>
-      </div>
-    </div>
-    <div class="col-sm-6 col-lg-3">
-      <div class="card">
-        <div class="card-body">
-          <div class="subheader">{{ 'dashboard.totalCustomers' | translate }}</div>
-          <div class="h1 mb-3">{{ s.totalCustomers }}</div>
-          <div class="d-flex align-items-baseline">
-            <span class="text-green me-1">+8%</span>
-            <span class="text-secondary">{{ 'dashboard.fromLastMonth' | translate }}</span>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="col-sm-6 col-lg-3">
-      <div class="card">
-        <div class="card-body">
-          <div class="subheader">{{ 'dashboard.revenue' | translate }}</div>
-          <div class="h1 mb-3">{{ s.revenue | currency:'THB':'symbol':'1.0-0' }}</div>
-          <div class="d-flex align-items-baseline">
-            <span class="text-green me-1">+5.2%</span>
-            <span class="text-secondary">{{ 'dashboard.fromLastMonth' | translate }}</span>
-          </div>
+      <div class="col-auto ms-auto d-print-none">
+        <div class="btn-list">
+          <span class="d-none d-sm-inline">
+            <a href="#" class="btn btn-outline-secondary">{{ 'dashboard.newView' | translate }}</a>
+          </span>
+          <a routerLink="/reports" class="btn btn-primary d-none d-sm-inline-block">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false" class="icon icon-md">
+              <path d="M12 5l0 14" />
+              <path d="M5 12l14 0" />
+            </svg>
+            {{ 'dashboard.createReport' | translate }}
+          </a>
+          <a routerLink="/reports" class="btn btn-primary d-sm-none btn-icon" [attr.aria-label]="'dashboard.createReport' | translate">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false" class="icon icon-md">
+              <path d="M12 5l0 14" />
+              <path d="M5 12l14 0" />
+            </svg>
+          </a>
         </div>
       </div>
     </div>
   </div>
 
-  <div class="row mt-4">
-    <div class="col-lg-8">
-      <div class="card">
-        <div class="card-header">
-          <h3 class="card-title">{{ 'dashboard.revenueMonthly' | translate }}</h3>
-        </div>
+  <div class="row row-deck row-cards">
+    <div class="col-sm-12 col-lg-6">
+      <div class="card card-gradient">
         <div class="card-body">
-          <div id="chart-revenue" style="height: 250px">
-            <div class="d-flex align-items-end" style="height: 250px; gap: 8px;">
-              <div *ngFor="let v of chartData.values; let i = index" class="flex-fill text-center">
-                <div class="bg-primary rounded-top" [style.height.px]="v * 2" style="min-height: 10px;"></div>
-                <small class="text-secondary mt-1 d-block">{{ chartData.labels[i] }}</small>
+          <div class="row gy-3">
+            <div class="col-12 col-sm-7 d-flex flex-column">
+              <h3 class="h2">{{ 'dashboard.welcome' | translate }}</h3>
+              <p class="text-secondary">{{ 'dashboard.welcomeMessage' | translate }}</p>
+              <div class="row g-5 mt-auto">
+                <div class="col-auto">
+                  <div class="subheader">{{ 'dashboard.onlineRate' | translate }}</div>
+                  <div class="d-flex align-items-baseline">
+                    <div class="h3 me-2">{{ onlineRate(s) }}%</div>
+                    <div class="me-auto">
+                      <span class="text-green d-inline-flex align-items-center lh-1">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false" class="icon ms-0 icon-sm">
+                          <path d="M12 5l0 14" />
+                          <path d="M18 11l-6 -6" />
+                          <path d="M6 11l6 -6" />
+                        </svg>
+                      </span>
+                    </div>
+                  </div>
+                  <div class="progress progress-sm">
+                    <div class="progress-bar bg-success" [style.width.%]="onlineRate(s)" role="progressbar" [attr.aria-valuenow]="onlineRate(s)" aria-valuemin="0" aria-valuemax="100"></div>
+                  </div>
+                </div>
+                <div class="col-auto">
+                  <div class="subheader">{{ 'dashboard.onlineDevices' | translate }}</div>
+                  <div class="d-flex align-items-baseline">
+                    <div class="h3 me-2">{{ s.onlineDevices | number }}</div>
+                    <div class="text-secondary small">{{ 'dashboard.ofTotal' | translate }} {{ s.totalDevices | number }}</div>
+                  </div>
+                </div>
               </div>
+            </div>
+            <div class="col-12 col-sm-5 d-flex justify-content-center">
+              <app-welcome-illustration></app-welcome-illustration>
             </div>
           </div>
         </div>
       </div>
     </div>
-    <div class="col-lg-4">
+
+    <div class="col-sm-6 col-lg-3">
+      <div class="card">
+        <div class="card-body">
+          <div class="subheader">{{ 'dashboard.totalDevices' | translate }}</div>
+          <div class="d-flex align-items-baseline">
+            <div class="h1 mb-0 me-2">{{ s.totalDevices | number }}</div>
+          </div>
+          <div class="text-secondary mt-2">{{ 'dashboard.allRegisteredDevices' | translate }}</div>
+        </div>
+        <div class="position-relative p-3">
+          <svg class="w-100" height="40" viewBox="0 0 100 40" preserveAspectRatio="none" aria-hidden="true">
+            <polyline fill="none" stroke="var(--tblr-primary)" stroke-width="2" points="0,30 12,26 24,28 36,20 48,24 60,16 72,20 84,12 100,16" />
+          </svg>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-sm-6 col-lg-3">
+      <div class="card">
+        <div class="card-body">
+          <div class="subheader">{{ 'dashboard.onlineDevices' | translate }}</div>
+          <div class="d-flex align-items-baseline mb-2">
+            <div class="h1 mb-0 me-2">{{ s.onlineDevices | number }}</div>
+          </div>
+        </div>
+        <div class="position-relative p-3">
+          <svg class="w-100" height="40" viewBox="0 0 100 40" preserveAspectRatio="none" aria-hidden="true">
+            <polyline fill="none" stroke="var(--tblr-success)" stroke-width="2" points="0,12 12,18 24,14 36,24 48,20 60,30 72,26 84,34 100,28" />
+          </svg>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-sm-6 col-lg-3">
+      <div class="card">
+        <div class="card-body">
+          <div class="d-flex align-items-center">
+            <div class="subheader">{{ 'dashboard.todayCommands' | translate }}</div>
+          </div>
+          <div class="h1 mb-3">{{ s.todayCommands | number }}</div>
+          <div class="progress progress-sm">
+            <div class="progress-bar bg-primary" style="width: 75%" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-sm-6 col-lg-3">
+      <div class="card">
+        <div class="card-body">
+          <div class="d-flex align-items-center">
+            <div class="subheader">{{ 'dashboard.activeAlerts' | translate }}</div>
+          </div>
+          <div class="h1 mb-3">{{ s.activeAlerts | number }}</div>
+          <div class="progress progress-sm">
+            <div class="progress-bar bg-danger" style="width: 50%" role="progressbar" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-12">
       <div class="card">
         <div class="card-header">
-          <h3 class="card-title">{{ 'dashboard.recentActivity' | translate }}</h3>
+          <h3 class="card-title">{{ 'dashboard.revenueMonthly' | translate }}</h3>
         </div>
-        <div class="list-group list-group-flush">
-          <div *ngFor="let a of recentActivities" class="list-group-item">
-            <div class="row align-items-center">
-              <div class="col-auto">
-                <span class="avatar avatar-sm">{{ a.user.charAt(0) }}</span>
-              </div>
-              <div class="col text-truncate">
-                <strong>{{ a.user }}</strong> {{ a.action }}
-                <div class="text-secondary">{{ a.time }}</div>
-              </div>
-              <div class="col-auto">
-                <span class="badge bg-primary">{{ a.target }}</span>
+        <div class="card-body">
+          <div class="d-flex align-items-baseline mb-3">
+            <div class="h2 mb-0 me-2">{{ totalRevenue(revenue$ | async) | currency:'THB':'symbol':'1.0-0' }}</div>
+            <span class="text-secondary small">{{ 'dashboard.totalRevenuePeriod' | translate }}</span>
+          </div>
+          <div *ngIf="(revenue$ | async)?.length; else noRevenueData" class="d-flex align-items-end" style="height: 160px; gap: 6px;">
+            <div *ngFor="let d of (revenue$ | async)" class="flex-fill text-center">
+              <div class="bg-primary rounded-top" [style.height.%]="revenueBarHeight(d.amount, revenue$ | async)" style="min-height: 4px;"></div>
+              <small class="text-secondary mt-1 d-block">{{ d.period }}</small>
+            </div>
+          </div>
+          <ng-template #noRevenueData>
+            <div class="d-flex align-items-center justify-content-center" style="height: 160px;">
+              <span class="text-secondary">{{ 'dashboard.noData' | translate }}</span>
+            </div>
+          </ng-template>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-lg-6">
+      <div class="card">
+        <div class="card-header">
+          <h3 class="card-title">{{ 'dashboard.jobStatus' | translate }}</h3>
+        </div>
+        <div class="card-body">
+          <div class="divide-y" *ngIf="(jobStatus$ | async)?.length; else noJobStatus">
+            <div *ngFor="let j of (jobStatus$ | async)">
+              <div class="row">
+                <div class="col">
+                  <div class="text-truncate">
+                    <span class="badge me-2" [ngClass]="statusBadge(j.status)">{{ statusLabel(j.status) | translate }}</span>
+                    <strong>{{ j.count | number }}</strong>
+                  </div>
+                  <div class="progress progress-sm mt-2">
+                    <div class="progress-bar" [ngClass]="statusBadge(j.status)" [style.width.%]="statusPercent(j.count, jobStatus$ | async)" role="progressbar"></div>
+                  </div>
+                </div>
               </div>
             </div>
+          </div>
+          <ng-template #noJobStatus>
+            <div class="text-secondary text-center py-4">{{ 'dashboard.noData' | translate }}</div>
+          </ng-template>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-lg-6">
+      <div class="card">
+        <div class="card-body">
+          <h3 class="card-title">{{ 'dashboard.locations' | translate }}</h3>
+          <div class="ratio ratio-21x9">
+            <div class="d-flex align-items-center justify-content-center flex-column text-secondary">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false" class="icon icon-md mb-2">
+                <path d="M12 21s-7-4.35-9-8.5C1.5 9 3.5 5 8 5s6 2.5 6 2.5S16 3.5 20.5 4.5 23 9 21 12.5c-2 4.15-9 8.5-9 8.5Z" />
+                <path d="M12 11a2 2 0 1 0 0-4 2 2 0 0 0 0 4Z" />
+              </svg>
+              <div>{{ 'dashboard.mapPlaceholder' | translate }}</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-lg-6">
+      <div class="card">
+        <div class="card-body">
+          <p class="mb-3">{{ 'dashboard.usingStorage' | translate }} <strong>6,854 MB</strong> <span class="text-secondary">{{ 'dashboard.ofStorage' | translate }} 8 GB</span></p>
+          <div class="progress progress-separated mb-3">
+            <div class="progress-bar bg-primary" role="progressbar" style="width: 44%"></div>
+            <div class="progress-bar bg-info" role="progressbar" style="width: 19%"></div>
+            <div class="progress-bar bg-success" role="progressbar" style="width: 9%"></div>
+          </div>
+          <div class="row">
+            <div class="col-auto d-flex align-items-center pe-2">
+              <span class="legend me-2 bg-primary"></span>
+              <span>{{ 'dashboard.regular' | translate }}</span>
+              <span class="d-none d-md-inline d-lg-none d-xxl-inline ms-2 text-secondary">915MB</span>
+            </div>
+            <div class="col-auto d-flex align-items-center px-2">
+              <span class="legend me-2 bg-info"></span>
+              <span>{{ 'dashboard.system' | translate }}</span>
+              <span class="d-none d-md-inline d-lg-none d-xxl-inline ms-2 text-secondary">415MB</span>
+            </div>
+            <div class="col-auto d-flex align-items-center px-2">
+              <span class="legend me-2 bg-success"></span>
+              <span>{{ 'dashboard.shared' | translate }}</span>
+              <span class="d-none d-md-inline d-lg-none d-xxl-inline ms-2 text-secondary">201MB</span>
+            </div>
+            <div class="col-auto d-flex align-items-center ps-2">
+              <span class="legend me-2"></span>
+              <span>{{ 'dashboard.free' | translate }}</span>
+              <span class="d-none d-md-inline d-lg-none d-xxl-inline ms-2 text-secondary">612MB</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-lg-6">
+      <div class="card">
+        <div class="card-header">
+          <h3 class="card-title">{{ 'dashboard.topParts' | translate }}</h3>
+        </div>
+        <div class="card-table table-responsive">
+          <table class="table table-vcenter">
+            <thead>
+              <tr>
+                <th>{{ 'dashboard.partName' | translate }}</th>
+                <th>{{ 'dashboard.count' | translate }}</th>
+                <th class="w-25">{{ 'dashboard.usage' | translate }}</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let t of (topParts$ | async)">
+                <td>{{ t.partName }}</td>
+                <td class="text-secondary">{{ t.count | number }}</td>
+                <td>
+                  <div class="progress progress-sm">
+                    <div class="progress-bar bg-primary" [style.width.%]="partPercent(t.count, topParts$ | async)" role="progressbar"></div>
+                  </div>
+                </td>
+              </tr>
+              <tr *ngIf="(topParts$ | async)?.length === 0">
+                <td colspan="3" class="text-center text-secondary py-4">{{ 'dashboard.noData' | translate }}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-12 col-lg-8">
+      <div class="card">
+        <div class="card-header">
+          <h3 class="card-title">{{ 'dashboard.mostVisitedPages' | translate }}</h3>
+        </div>
+        <div class="card-table table-responsive">
+          <table class="table table-vcenter">
+            <thead>
+              <tr>
+                <th>{{ 'dashboard.pageName' | translate }}</th>
+                <th>{{ 'dashboard.visitors' | translate }}</th>
+                <th>{{ 'dashboard.unique' | translate }}</th>
+                <th colspan="2">{{ 'dashboard.bounceRate' | translate }}</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>
+                  /
+                  <a href="#" class="ms-1" [attr.aria-label]="'dashboard.openWebsite' | translate">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false" class="icon icon-sm">
+                      <path d="M9 15l6 -6" />
+                      <path d="M11 6l.463 -.536a5 5 0 0 1 7.071 7.072l-.534 .464" />
+                      <path d="M13 18l-.397 .534a5.068 5.068 0 0 1 -7.127 0a4.972 4.972 0 0 1 0 -7.071l.524 -.463" />
+                    </svg>
+                  </a>
+                </td>
+                <td class="text-secondary">4,896</td>
+                <td class="text-secondary">3,654</td>
+                <td class="text-secondary">82.54%</td>
+                <td class="text-end w-1">
+                  <svg width="80" height="24" viewBox="0 0 80 24" aria-hidden="true">
+                    <polyline fill="none" stroke="var(--tblr-primary)" stroke-width="2" points="0,20 10,16 20,18 30,10 40,14 50,8 60,12 70,6 80,8" />
+                  </svg>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  /form-elements.html
+                  <a href="#" class="ms-1" [attr.aria-label]="'dashboard.openWebsite' | translate">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false" class="icon icon-sm">
+                      <path d="M9 15l6 -6" />
+                      <path d="M11 6l.463 -.536a5 5 0 0 1 7.071 7.072l-.534 .464" />
+                      <path d="M13 18l-.397 .534a5.068 5.068 0 0 1 -7.127 0a4.972 4.972 0 0 1 0 -7.071l.524 -.463" />
+                    </svg>
+                  </a>
+                </td>
+                <td class="text-secondary">3,652</td>
+                <td class="text-secondary">3,215</td>
+                <td class="text-secondary">76.29%</td>
+                <td class="text-end w-1">
+                  <svg width="80" height="24" viewBox="0 0 80 24" aria-hidden="true">
+                    <polyline fill="none" stroke="var(--tblr-primary)" stroke-width="2" points="0,16 10,20 20,14 30,18 40,12 50,16 60,8 70,12 80,6" />
+                  </svg>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  /index.html
+                  <a href="#" class="ms-1" [attr.aria-label]="'dashboard.openWebsite' | translate">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false" class="icon icon-sm">
+                      <path d="M9 15l6 -6" />
+                      <path d="M11 6l.463 -.536a5 5 0 0 1 7.071 7.072l-.534 .464" />
+                      <path d="M13 18l-.397 .534a5.068 5.068 0 0 1 -7.127 0a4.972 4.972 0 0 1 0 -7.071l.524 -.463" />
+                    </svg>
+                  </a>
+                </td>
+                <td class="text-secondary">3,256</td>
+                <td class="text-secondary">2,865</td>
+                <td class="text-secondary">72.65%</td>
+                <td class="text-end w-1">
+                  <svg width="80" height="24" viewBox="0 0 80 24" aria-hidden="true">
+                    <polyline fill="none" stroke="var(--tblr-primary)" stroke-width="2" points="0,14 10,18 20,12 30,16 40,10 50,14 60,6 70,10 80,4" />
+                  </svg>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  /icons.html
+                  <a href="#" class="ms-1" [attr.aria-label]="'dashboard.openWebsite' | translate">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false" class="icon icon-sm">
+                      <path d="M9 15l6 -6" />
+                      <path d="M11 6l.463 -.536a5 5 0 0 1 7.071 7.072l-.534 .464" />
+                      <path d="M13 18l-.397 .534a5.068 5.068 0 0 1 -7.127 0a4.972 4.972 0 0 1 0 -7.071l.524 -.463" />
+                    </svg>
+                  </a>
+                </td>
+                <td class="text-secondary">986</td>
+                <td class="text-secondary">865</td>
+                <td class="text-secondary">44.89%</td>
+                <td class="text-end w-1">
+                  <svg width="80" height="24" viewBox="0 0 80 24" aria-hidden="true">
+                    <polyline fill="none" stroke="var(--tblr-primary)" stroke-width="2" points="0,20 10,16 20,18 30,12 40,16 50,10 60,12 70,8 80,10" />
+                  </svg>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-6 col-lg-4">
+      <div class="card border-primary" style="background: color-mix(in srgb, var(--tblr-primary) 4%, var(--tblr-bg-surface))">
+        <div class="card-body">
+          <h3 class="h2">{{ 'dashboard.tablerIcons' | translate }}</h3>
+          <div class="text-secondary">{{ 'dashboard.tablerIconsShort' | translate }}</div>
+          <div class="mt-3">
+            <a href="https://tabler.io/icons" class="btn btn-primary" target="_blank" rel="noopener">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false" class="icon icon-sm">
+                <path d="M4 17v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2 -2v-2" />
+                <path d="M7 11l5 5l5 -5" />
+                <path d="M12 4l0 12" />
+              </svg>
+              {{ 'dashboard.downloadIcons' | translate }}
+            </a>
           </div>
         </div>
       </div>

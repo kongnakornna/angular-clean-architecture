@@ -1,10 +1,42 @@
+@use 'sass:color';
+@use 'sass:math';
 @use 'sass:map';
+@use 'variables' as *;
+@use 'mixins' as *;
+@use 'variables-dark' as *;
 
 // Re-assigned maps
 //
 // Placed here so that others can override the default Sass maps and see automatic updates to utilities and more.
 
 $theme-colors-rgb: map-loop($theme-colors, to-rgb, '$value') !default;
+
+// Moved from _variables.scss (need mixin functions not available in module-scoped variables)
+$link-hover-color: shift-color($link-color, $link-shade-percentage) !default;
+
+$table-variants: (
+  'primary': shift-color($primary, $table-bg-scale),
+  'secondary': shift-color($secondary, $table-bg-scale),
+  'success': shift-color($success, $table-bg-scale),
+  'info': shift-color($info, $table-bg-scale),
+  'warning': shift-color($warning, $table-bg-scale),
+  'danger': shift-color($danger, $table-bg-scale),
+  'light': $light,
+  'dark': $dark,
+) !default;
+
+$btn-link-focus-shadow-rgb: to-rgb(color.mix(color-contrast($link-color), $link-color, 15%)) !default;
+
+$form-feedback-icon-valid: str-replace(
+  url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='" + $green + "' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><polyline points='20 6 9 17 4 12'></polyline></svg>"),
+  '#',
+  '%23'
+) !default;
+$form-feedback-icon-invalid: str-replace(
+  url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='" + $red + "' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><line x1='18' y1='6' x2='6' y2='18'></line><line x1='6' y1='6' x2='18' y2='18'></line></svg>"),
+  '#',
+  '%23'
+) !default;
 
 $theme-colors-text: (
   'primary': $primary-text-emphasis,
@@ -37,6 +69,26 @@ $theme-colors-border-subtle: (
   'danger': $danger-border-subtle,
   'light': $light-border-subtle,
   'dark': $dark-border-subtle,
+) !default;
+
+// Moved from _variables.scss (references $form-feedback-icon-valid which needs str-replace from mixins)
+$form-validation-states: (
+  'valid': (
+    'color': var(--#{$prefix}form-valid-color),
+    'icon': $form-feedback-icon-valid,
+    'tooltip-color': #fff,
+    'tooltip-bg-color': var(--#{$prefix}success),
+    'focus-box-shadow': 0 0 $input-btn-focus-blur $input-focus-width color-mix(in srgb, var(--#{$prefix}success) #{math.percentage($input-btn-focus-color-opacity)}, transparent),
+    'border-color': var(--#{$prefix}form-valid-border-color),
+  ),
+  'invalid': (
+    'color': var(--#{$prefix}form-invalid-color),
+    'icon': $form-feedback-icon-invalid,
+    'tooltip-color': #fff,
+    'tooltip-bg-color': var(--#{$prefix}danger),
+    'focus-box-shadow': 0 0 $input-btn-focus-blur $input-focus-width color-mix(in srgb, var(--#{$prefix}danger) #{math.percentage($input-btn-focus-color-opacity)}, transparent),
+    'border-color': var(--#{$prefix}form-invalid-border-color),
+  ),
 ) !default;
 
 $theme-colors-text-dark: null !default;
@@ -150,6 +202,5 @@ $utilities-border-subtle: (
 
 $utilities-links-underline: map-loop($utilities-colors, rgba-css-var, '$key', 'link-underline') !default;
 
-$negative-spacers: if(sass($enable-negative-margins): negativify-map($spacers); else: null) !default;
+$negative-spacers: if($enable-negative-margins, negativify-map($spacers), null) !default;
 
-$gutters: $spacers !default;

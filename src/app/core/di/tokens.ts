@@ -12,7 +12,10 @@ import { IEmailRepository } from '../../features/email/domain/repositories/email
 import { IBatchJobRepository } from '../../features/batch/domain/repositories/batch-job.repository';
 import { ITranslationRepository } from '../../shared/i18n/domain/repositories/translation.repository';
 import { IIoTRepository } from '../../features/iot/domain/repositories/iot.repository';
+import { IAlarmRepository } from '../../features/alarm/domain/repositories/alarm.repository';
 import { IWebOrderRepository } from '../../features/wos/domain/repositories/web-order.repository';
+import { IOrderRepository } from '../../features/orders/domain/repositories/order.repository';
+import { ISystemRepository } from '../../features/system/domain/repositories/system.repository';
 
 export const AUTH_REPOSITORY = new InjectionToken<IAuthRepository>('auth.repository');
 export const JOB_CARD_REPOSITORY = new InjectionToken<IJobCardRepository>('job-card.repository');
@@ -27,4 +30,7 @@ export const EMAIL_REPOSITORY = new InjectionToken<IEmailRepository>('email.repo
 export const BATCH_JOB_REPOSITORY = new InjectionToken<IBatchJobRepository>('batch-job.repository');
 export const TRANSLATION_REPOSITORY = new InjectionToken<ITranslationRepository>('translation.repository');
 export const IOT_REPOSITORY = new InjectionToken<IIoTRepository>('iot.repository');
+export const ALARM_REPOSITORY = new InjectionToken<IAlarmRepository>('alarm.repository');
 export const WEB_ORDER_REPOSITORY = new InjectionToken<IWebOrderRepository>('web-order.repository');
+export const ORDER_REPOSITORY = new InjectionToken<IOrderRepository>('order.repository');
+export const SYSTEM_REPOSITORY = new InjectionToken<ISystemRepository>('system.repository');

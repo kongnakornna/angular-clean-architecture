@@ -22,7 +22,7 @@ export class PageSeoService {
 
     public setSEO(data?: SeoData): void {
         const defaultImage = `${window.location.origin}/assets/img/blog-thumbnail.jpg`;
-        const author = `${data?.author ?? 'iCmon'}`;
+        const author = `${data?.author ?? 'iCmonIoT'}`;
         const imagePath = `${data?.pageImageUrl ?? defaultImage}`;
         const pageTitle = `${data?.pageTitle ?? 'iCmon System'}`;
         const description = `${data?.pageDescription ?? 'iCmon Management System'}`;

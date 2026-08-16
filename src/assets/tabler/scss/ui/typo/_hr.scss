@@ -1,8 +1,10 @@
+@use '../../config' as *;
+
 /**
 Horizontal rules
  */
 .hr {
-  @extend hr;
+  @extend hr !optional;
 }
 
 /**

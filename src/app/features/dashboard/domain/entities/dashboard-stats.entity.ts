@@ -1,26 +1,21 @@
 export interface DashboardStats {
-  totalJobs: number;
-  activeJobs: number;
-  totalCustomers: number;
-  totalRevenue: number;
-  monthlyRevenue: number;
-  conversionRate: number;
-  pendingApprovals: number;
-  lowStockItems: number;
+  totalDevices: number;
+  onlineDevices: number;
+  activeAlerts: number;
+  todayCommands: number;
 }
 
 export interface RevenueData {
-  month: string;
-  revenue: number;
-  expenses: number;
-  profit: number;
+  period: string;
+  amount: number;
 }
 
-export interface Activity {
-  id: string;
-  user: string;
-  action: string;
-  target: string;
-  time: Date;
-  type: string;
+export interface JobStatusSummary {
+  status: string;
+  count: number;
+}
+
+export interface TopPartData {
+  partName: string;
+  count: number;
 }

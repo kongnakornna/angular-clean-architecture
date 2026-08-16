@@ -3,8 +3,10 @@ import { NgIf } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import Swal from 'sweetalert2';
 import { LoginUseCase } from '../../../domain/use-cases/login.use-case';
 import { AppTranslatePipe } from '../../../../../shared/i18n/presentation/pipes/translate.pipe';
+import { I18nService } from '../../../../../shared/i18n/data/i18n.service';
 
 @Component({
   selector: 'app-login',
@@ -17,6 +19,7 @@ export class LoginComponent {
   private loginUseCase = inject(LoginUseCase);
   private router = inject(Router);
   private destroyRef = inject(DestroyRef);
+  private i18n = inject(I18nService);
 
   username = '';
   password = '';
@@ -41,9 +44,15 @@ export class LoginComponent {
         error: (err) => {
           this.loading = false;
           if (err.status === 401) {
-            this.error = 'ชื่อผู้ใช้หรือรหัสผ่านไม่ถูกต้อง';
+            this.error = this.i18n.translate('login.invalidCredentials');
+          } else if (err.status === 422) {
+            Swal.fire({
+              icon: 'error',
+              title: this.i18n.translate('login.validationError'),
+              text: err.message,
+            });
           } else {
-            this.error = err.message || 'Invalid username or password';
+            this.error = err.message || this.i18n.translate('login.invalidCredentials');
           }
         },
       });

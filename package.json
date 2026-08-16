@@ -3,10 +3,10 @@
     "version": "0.0.0",
     "scripts": {
         "ng": "ng",
-        "start": "ng serve",
-        "build": "ng build",
-        "watch": "ng build --watch --configuration development",
-        "test": "ng test"
+        "start": "set SASS_SILENCE_DEPRECATIONS=import && ng serve",
+        "build": "set SASS_SILENCE_DEPRECATIONS=import && ng build",
+        "watch": "set SASS_SILENCE_DEPRECATIONS=import && ng build --watch --configuration development",
+        "test": "set SASS_SILENCE_DEPRECATIONS=import && ng test"
     },
     "private": true,
     "dependencies": {
@@ -35,6 +35,7 @@
         "ngx-tabler-icons": "^3.0.1",
         "prismjs": "^1.29.0",
         "rxjs": "~7.8.0",
+        "sweetalert2": "^11.26.25",
         "tslib": "^2.3.0"
     },
     "devDependencies": {

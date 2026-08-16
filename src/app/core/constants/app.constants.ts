@@ -1,10 +1,10 @@
 export const APP_CONSTANTS = {
   TOKEN_KEY: 'access_token',
   REFRESH_TOKEN_KEY: 'refresh_token',
+  EXPIRES_IN_KEY: 'expires_in',
+  TOKEN_TYPE_KEY: 'token_type',
   USER_KEY: 'current_user',
   LANGUAGE_KEY: 'app_language',
-  THEME_KEY: 'app_theme',
-  SIDEBAR_COLLAPSED_KEY: 'sidebar_collapsed',
 };
 
 export const CACHE_TTL = {

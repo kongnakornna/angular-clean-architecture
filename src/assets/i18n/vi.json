@@ -2,6 +2,19 @@
   "app": {
     "name": "iCmon"
   },
+  "errors": {
+    "400": "Dữ liệu không hợp lệ",
+    "401": "Vui lòng đăng nhập lại",
+    "403": "Bạn không có quyền truy cập dữ liệu này",
+    "404": "Không tìm thấy dữ liệu",
+    "409": "Dữ liệu bị trùng lặp",
+    "422": "Dữ liệu không hợp lệ, vui lòng kiểm tra lại",
+    "429": "Quá nhiều yêu cầu, vui lòng chờ",
+    "500": "Lỗi máy chủ, vui lòng thử lại sau",
+    "503": "Hệ thống đang bảo trì, vui lòng thử lại sau",
+    "unknown": "Đã xảy ra lỗi không xác định",
+    "client": "Đã xảy ra lỗi phía người dùng"
+  },
   "nav": {
     "dashboard": "Bảng điều khiển",
     "jobs": "Quản lý công việc",
@@ -163,6 +176,10 @@
     "settings": {
       "title": "Cài đặt bố cục",
       "layoutMode": "Chế độ bố cục",
+      "lightmode": "Sáng",
+      "darkmode": "Tối",
+      "completed": "Hoàn thành",
+      "closed": "Đã đóng",
       "layoutVertical": "Dọc",
       "layoutFluid": "Toàn chiều rộng",
       "layoutBoxed": "Dạng hộp",
@@ -208,7 +225,20 @@
     "recentActivity": "Hoạt động gần đây",
     "fromLastMonth": "so với tháng trước",
     "inProgress": "Đang thực hiện",
-    "loading": "Đang tải..."
+    "loading": "Đang tải...",
+    "totalDevices": "Total Devices",
+    "onlineDevices": "Online Devices",
+    "todayCommands": "Today's Commands",
+    "activeAlerts": "Active Alerts",
+    "ofTotal": "of",
+    "allRegisteredDevices": "All registered devices",
+    "totalRevenuePeriod": "in the period",
+    "jobStatus": "Job Status",
+    "failed": "Failed",
+    "topParts": "Top Parts",
+    "partName": "Part Name",
+    "count": "Count",
+    "usage": "Usage"
   },
   "customer": {
     "title": "Danh sách khách hàng",
@@ -361,7 +391,7 @@
   "document": {
     "title": "Tài liệu",
     "subtitle": "Quản lý tất cả tài liệu",
-    "upload": "Tải lên tài liệu",
+    "upload": "Tải lên",
     "detail": "Chi tiết tài liệu",
     "back": "Quay lại",
     "download": "Tải xuống",
@@ -381,7 +411,6 @@
     "supportedFormats": "Hỗ trợ PDF, JPG, PNG, DOC tối đa 10MB",
     "category": "Danh mục",
     "note": "Ghi chú",
-    "upload": "Tải lên",
     "categoryReport": "Báo cáo",
     "categoryInvoice": "Hóa đơn",
     "categoryContract": "Hợp đồng",
@@ -527,6 +556,7 @@
     "workDistribution": "Phân phối công việc",
     "monthlySalesChart": "Biểu đồ doanh số hàng tháng",
     "pieChart": "Biểu đồ tròn",
-    "comparedToLastMonth": "so với tháng trước"
+    "comparedToLastMonth": "so với tháng trước",
+    "summary": "Summary"
   }
 }

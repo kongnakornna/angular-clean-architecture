@@ -1,4 +1,6 @@
-@use "sass:meta";
+@use "sass:meta";
+@use '../config' as *;
+@use '../variables-dark' as *;
 
 :root,
 [data-bs-theme="light"],

@@ -1,0 +1,748 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>รายงานโครงสร้าง: Dashboard &amp; Layouts Module</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: #f5f5f5; color: #333; line-height: 1.6; }
+        .container { max-width: 1100px; margin: 0 auto; padding: 20px; }
+        .header { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 30px; border-radius: 10px; margin-bottom: 30px; }
+        .header h1 { font-size: 24px; margin-bottom: 10px; }
+        .header p { opacity: 0.9; }
+        .section { background: white; border-radius: 10px; padding: 25px; margin-bottom: 20px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
+        .section h2 { color: #333; font-size: 20px; margin-bottom: 15px; border-bottom: 2px solid #667eea; padding-bottom: 10px; }
+        .section h3 { color: #555; font-size: 16px; margin: 15px 0 10px 0; }
+        .section p { margin: 8px 0; }
+        .finding { border-left: 4px solid #ddd; padding: 15px; margin: 15px 0; background: #fafafa; border-radius: 0 8px 8px 0; }
+        .finding.ok { border-left-color: #27ae60; background: #eafaf1; }
+        .finding.warn { border-left-color: #f39c12; background: #fef9e7; }
+        .finding.gap { border-left-color: #e74c3c; background: #fdf2f2; }
+        .finding.info { border-left-color: #3498db; background: #ebf5fb; }
+        .finding-title { font-weight: bold; font-size: 16px; margin-bottom: 8px; }
+        .finding-title-ok { color: #27ae60; }
+        .finding-title-warn { color: #f39c12; }
+        .finding-title-gap { color: #e74c3c; }
+        .finding-title-info { color: #3498db; }
+        .finding-detail { margin: 8px 0; }
+        .finding-detail strong { color: #555; }
+        .evidence { background: #ecf0f1; padding: 10px; border-radius: 5px; font-family: monospace; font-size: 13px; margin: 8px 0; white-space: pre-wrap; word-break: break-all; }
+        .fix { background: #d5f5e3; padding: 10px; border-radius: 5px; margin: 8px 0; }
+        .fix ul { margin: 5px 0 0 20px; }
+        .fix li { margin: 3px 0; }
+        code { background: #ecf0f1; padding: 2px 6px; border-radius: 3px; font-family: monospace; font-size: 13px; }
+        .tree { background: #1e1e1e; color: #d4d4d4; padding: 15px; border-radius: 8px; font-family: 'Consolas', 'Courier New', monospace; font-size: 13px; line-height: 1.5; overflow-x: auto; white-space: pre; }
+        .tree .folder { color: #569cd6; }
+        .tree .file { color: #d4d4d4; }
+        .tree .ts { color: #4ec9b0; }
+        .tree .html { color: #ce9178; }
+        .tree .scss { color: #d7ba7d; }
+        .tree .md { color: #608b4e; }
+        .diagram { background: #1e1e1e; color: #d4d4d4; padding: 15px; border-radius: 8px; font-family: 'Consolas', 'Courier New', monospace; font-size: 13px; line-height: 1.5; overflow-x: auto; white-space: pre; }
+        .diagram .layer-domain { color: #4ec9b0; }
+        .diagram .layer-data { color: #ce9178; }
+        .diagram .layer-presentation { color: #569cd6; }
+        .diagram .arrow { color: #d7ba7d; }
+        .diagram .token { color: #c586c0; }
+        .badge { display: inline-block; padding: 3px 10px; border-radius: 12px; font-size: 12px; font-weight: bold; margin: 2px 4px 2px 0; }
+        .badge-ok { background: #27ae60; color: white; }
+        .badge-warn { background: #f39c12; color: white; }
+        .badge-gap { background: #e74c3c; color: white; }
+        .badge-info { background: #3498db; color: white; }
+        table { width: 100%; border-collapse: collapse; margin: 10px 0; }
+        th, td { text-align: left; padding: 10px 12px; border-bottom: 1px solid #eee; font-size: 14px; }
+        th { background: #f8f9fa; font-weight: 600; color: #555; }
+        tr:hover { background: #f8f9fa; }
+        .summary-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin: 15px 0; }
+        .summary-card { background: #f8f9fa; border-radius: 8px; padding: 15px; border: 1px solid #e9ecef; }
+        .summary-card h4 { color: #667eea; margin-bottom: 8px; font-size: 14px; }
+        .summary-card .count { font-size: 28px; font-weight: bold; color: #333; }
+        .summary-card .label { font-size: 12px; color: #888; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>รายงานโครงสร้าง: Dashboard Feature &amp; Layouts Module</h1>
+            <p>วันที่: 14 กรกฎาคม 2569 | วิเคราะห์: src/app/features/dashboard &amp; src/app/layouts</p>
+        </div>
+
+        <!-- ============ SECTION 1: Overview ============ -->
+        <div class="section">
+            <h2>1. ภาพรวม (Overview)</h2>
+            <div class="summary-grid">
+                <div class="summary-card">
+                    <h4>Dashboard Feature</h4>
+                    <div class="count">34</div>
+                    <div class="label">ไฟล์ทั้งหมด (10 .ts / 3 .spec / 3 .html / 3 .scss / 15 .md)</div>
+                </div>
+                <div class="summary-card">
+                    <h4>Layouts Module</h4>
+                    <div class="count">26</div>
+                    <div class="label">ไฟล์ทั้งหมด (6 .ts / 5 .spec / 5 .html / 6 .scss / 4 .md)</div>
+                </div>
+                <div class="summary-card">
+                    <h4>Architecture Pattern</h4>
+                    <div class="count" style="font-size:18px;">Clean Architecture</div>
+                    <div class="label">domain → data → presentation (3 ชั้น)</div>
+                </div>
+                <div class="summary-card">
+                    <h4>สถานะการเชื่อมต่อ</h4>
+                    <div class="count" style="font-size:18px; color:#e74c3c;">ยังไม่เชื่อม</div>
+                    <div class="label">Presentation layer ไม่ได้ inject Use Case ใดๆ</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ============ SECTION 2: Dashboard File Tree ============ -->
+        <div class="section">
+            <h2>2. โครงสร้างไฟล์ — Dashboard Feature</h2>
+            <div class="tree"><span class="folder">features/dashboard/</span>
+├── <span class="md">README.md</span>
+│
+├── <span class="folder">domain/</span>                          <span style="color:#608b4e;">← ชั้น Domain (Business Logic)</span>
+│   ├── <span class="folder">entities/</span>
+│   │   └── <span class="ts">dashboard-stats.entity.ts</span>   <span style="color:#608b4e;">← interface: DashboardStats, RevenueData, Activity</span>
+│   ├── <span class="folder">repositories/</span>
+│   │   └── <span class="ts">dashboard.repository.ts</span>      <span style="color:#608b4e;">← interface: IDashboardRepository (Port)</span>
+│   └── <span class="folder">use-cases/</span>
+│       ├── <span class="ts">get-dashboard-stats.use-case.ts</span>   <span style="color:#608b4e;">← @Injectable, inject DASHBOARD_REPOSITORY</span>
+│       ├── <span class="ts">get-revenue-chart.use-case.ts</span>     <span style="color:#608b4e;">← @Injectable, inject DASHBOARD_REPOSITORY</span>
+│       └── <span class="ts">generate-report.use-case.ts</span>       <span style="color:#608b4e;">← @Injectable, inject DASHBOARD_REPOSITORY</span>
+│
+├── <span class="folder">data/</span>                            <span style="color:#ce9178;">← ชั้น Data (API &amp; Mapping)</span>
+│   ├── <span class="folder">dtos/</span>
+│   │   └── <span class="ts">dashboard-stats-response.dto.ts</span> <span style="color:#ce9178;">← interface: DashboardStatsResponseDto</span>
+│   ├── <span class="folder">datasources/</span>
+│   │   └── <span class="ts">dashboard.api.datasource.ts</span>   <span style="color:#ce9178;">← @Injectable, HttpClient → REST API</span>
+│   └── <span class="folder">repositories/</span>
+│       └── <span class="ts">dashboard.repository.impl.ts</span> <span style="color:#ce9178;">← implements IDashboardRepository, map any→Entity</span>
+│
+└── <span class="folder">presentation/</span>                    <span style="color:#569cd6;">← ชั้น Presentation (UI Components)</span>
+    └── <span class="folder">pages/</span>
+        ├── <span class="folder">main-dashboard/</span>
+        │   ├── <span class="ts">main-dashboard.component.ts</span>    <span style="color:#569cd6;">← standalone, ไม่ inject Use Case</span>
+        │   ├── <span class="html">main-dashboard.component.html</span>  <span style="color:#569cd6;">← template ใช้ mock data</span>
+        │   ├── <span class="scss">main-dashboard.component.scss</span>
+        │   └── <span class="ts">main-dashboard.component.spec.ts</span>
+        ├── <span class="folder">reports/</span>
+        │   ├── <span class="ts">reports.component.ts</span>            <span style="color:#569cd6;">← standalone, ไม่ inject Use Case</span>
+        │   ├── <span class="html">reports.component.html</span>
+        │   ├── <span class="scss">reports.component.scss</span>
+        │   └── <span class="ts">reports.component.spec.ts</span>
+        └── <span class="folder">analytics/</span>
+            ├── <span class="ts">analytics.component.ts</span>           <span style="color:#569cd6;">← standalone, ไม่ inject Use Case</span>
+            ├── <span class="html">analytics.component.html</span>
+            ├── <span class="scss">analytics.component.scss</span>
+            └── <span class="ts">analytics.component.spec.ts</span></div>
+        </div>
+
+        <!-- ============ SECTION 3: Layouts File Tree ============ -->
+        <div class="section">
+            <h2>3. โครงสร้างไฟล์ — Layouts Module</h2>
+            <div class="tree"><span class="folder">layouts/</span>
+├── <span class="md">README.md</span>
+│
+├── <span class="folder">app-layout/</span>                      <span style="color:#608b4e;">← Master Shell Component (composition root)</span>
+│   ├── <span class="ts">app-layout.component.ts</span>        <span style="color:#608b4e;">← standalone: false, สลับ sidebar</span>
+│   ├── <span class="html">app-layout.component.html</span>      <span style="color:#608b4e;">← รวม Header+Sidebar+Footer+router-outlet</span>
+│   ├── <span class="scss">app-layout.component.scss</span>
+│   └── <span class="ts">app-layout.component.spec.ts</span>
+│
+├── <span class="folder">header/</span>
+│   ├── <span class="ts">header.component.ts</span>             <span style="color:#569cd6;">← standalone: false, inject LayoutService</span>
+│   ├── <span class="html">header.component.html</span>           <span style="color:#569cd6;">← Top navbar + dropdowns + theme toggle</span>
+│   ├── <span class="scss">header.component.scss</span>
+│   └── <span class="ts">header.component.spec.ts</span>
+│
+├── <span class="folder">sidebar/</span>
+│   ├── <span class="ts">sidebar.component.ts</span>            <span style="color:#569cd6;">← standalone: false, inject Router</span>
+│   ├── <span class="html">sidebar.component.html</span>          <span style="color:#569cd6;">← recursive menu, 13 items</span>
+│   ├── <span class="scss">sidebar.component.scss</span>
+│   └── <span class="ts">sidebar.component.spec.ts</span>
+│
+├── <span class="folder">footer/</span>
+│   ├── <span class="ts">footer.component.ts</span>             <span style="color:#d4d4d4;">← standalone: no deps</span>
+│   ├── <span class="html">footer.component.html</span>
+│   ├── <span class="scss">footer.component.scss</span>
+│   └── <span class="ts">footer.component.spec.ts</span>
+│
+├── <span class="folder">page-header/</span>
+│   ├── <span class="ts">page-header.component.ts</span>        <span style="color:#d4d4d4;">← standalone: no deps, content projection</span>
+│   ├── <span class="html">page-header.component.html</span>
+│   ├── <span class="scss">page-header.component.scss</span>
+│   └── <span class="ts">page-header.component.spec.ts</span>
+│
+├── <span class="folder">layout-settings/</span>
+│   ├── <span class="ts">layout-settings.component.ts</span>    <span style="color:#c586c0;">← standalone: TRUE (มีตัวเดียว), inject LayoutService</span>
+│   ├── <span class="html">layout-settings.component.html</span>
+│   └── <span class="scss">layout-settings.component.scss</span>
+│
+├── <span class="folder">blank/</span>                           <span style="color:#888;">← มีแค่ README.md (placeholder)</span>
+│   └── <span class="md">README.md</span>
+│
+└── <span class="folder">classic/</span>                          <span style="color:#888;">← มีแค่ README.md (placeholder)</span>
+    └── <span class="md">README.md</span></div>
+        </div>
+
+        <!-- ============ SECTION 4: Architecture Diagram ============ -->
+        <div class="section">
+            <h2>4. แผนภาพสถาปัตยกรรม — Dashboard (ตั้งใจ)</h2>
+            <p>สถาปัตยกรรมที่ออกแบบไว้ (Clean Architecture) ยังไม่ได้เชื่อมต่อทั้งหมด:</p>
+            <div class="diagram"><span class="layer-presentation">┌─────────────────────────────────────────────────────────────────────────┐
+│                         PRESENTATION LAYER                             │
+│                                                                       │
+│  MainDashboardComponent  ───┐                                         │
+│  ReportsComponent       ────┼── ควร inject ──▶  USE CASES            │
+│  AnalyticsComponent     ───┘  (ตอนนี้ไม่ได้ inject อะไรเลย!)          │
+└─────────────────────────────┼─────────────────────────────────────────┘
+                              │ <span class="arrow">SHOULD inject</span>
+                              ▼
+<span class="layer-domain">┌─────────────────────────────────────────────────────────────────────────┐
+│                           DOMAIN LAYER                                 │
+│                                                                       │
+│  GetDashboardStatsUseCase  ──▶ IDashboardRepository.getStats()        │
+│  GetRevenueChartUseCase    ──▶ IDashboardRepository.getRevenueChart()  │
+│  GenerateReportUseCase     ──▶ IDashboardRepository.generateReport()   │
+│                                          │                            │
+│          ทุก Use Case ใช้ <span class="token">@Inject(DASHBOARD_REPOSITORY)</span>         │
+└──────────────────────────┼─────────────────────────────────────────────┘
+                           │
+                  <span class="token">DASHBOARD_REPOSITORY</span> token
+                           │
+<span class="layer-data">┌──────────────────────────┼─────────────────────────────────────────────┐
+│                          DATA LAYER                                   │
+│                          ▼                                            │
+│  DashboardRepositoryImpl implements IDashboardRepository             │
+│       │                                                              │
+│       │ inject (concrete class)                                      │
+│       ▼                                                              │
+│  DashboardApiDataSource                                               │
+│       │                                                              │
+│       │ inject HttpClient                                            │
+│       ▼                                                              │
+│  HttpClient ──▶ REST API:                                            │
+│       GET /dashboard/stats                                           │
+│       GET /dashboard/revenue?period=...                               │
+│       GET /dashboard/activities                                       │
+│       GET /reports/export?type=...&amp;startDate=...&amp;endDate=...      │
+└───────────────────────────────────────────────────────────────────────┘</div>
+        </div>
+
+        <!-- ============ SECTION 5: Layouts Composition ============ -->
+        <div class="section">
+            <h2>5. แผนภาพ Composition — Layouts</h2>
+            <div class="diagram"><span class="layer-presentation">AppLayoutComponent (Master Shell)
+│
+├─── <span class="arrow">embeds</span> ──▶ <span style="color:#4ec9b0;">SidebarComponent</span> (app-sidebar)
+│                Inputs: [isCollapsed] [end] [dark] [background]
+│                Uses: Router (route-active detection)
+│
+├─── <span class="arrow">embeds</span> ──▶ <span style="color:#ce9178;">HeaderComponent</span> (app-header)
+│                Output: (toggleSidebar) ──▶ AppLayout.toggleSidebar()
+│                Uses: LayoutService (theme read/write)
+│                Embeds: &lt;app-language-selector&gt;
+│
+├─── <span class="arrow">project</span> ──▶ <span class="layer-domain">&lt;ng-content select="[page-header]"&gt;</span>
+│                (Feature pages project &lt;app-page-header&gt; ลงตรงนี้)
+│
+├─── <span class="arrow">route</span> ──▶ <span class="layer-data">&lt;router-outlet&gt;</span>
+│                (Child route components render ตรงนี้ เช่น /dashboard, /analytics)
+│
+├─── <span class="arrow">embeds</span> ──▶ <span style="color:#d4d4d4;">FooterComponent</span> (app-footer)
+│                ไม่มี binding, display-only
+│
+└─── <span class="arrow">embeds</span> ──▶ <span style="color:#c586c0;">LayoutSettingsComponent</span> (app-layout-settings)
+                 standalone: true, inject LayoutService
+                 Triggered via Bootstrap offcanvas จาก Header "Theme Settings" link
+
+<span style="color:#888;">─── Content Projection Pattern ───</span>
+Feature Page Component
+    └── uses &lt;app-page-header [title]="..."&gt;
+        └── projected into AppLayout's &lt;ng-content select="[page-header]"&gt;</div>
+        </div>
+
+        <!-- ============ SECTION 6: Routing ============ -->
+        <div class="section">
+            <h2>6. Routing Relationship</h2>
+            <p>ทั้ง Dashboard feature และ Layouts ผูกกันผ่าน <code>app-routing.module.ts</code>:</p>
+            <div class="evidence">// Top-level route: AppLayoutComponent เป็น parent
+{
+  path: '',
+  component: AppLayoutComponent,      ← Layout Shell
+  canActivate: [AuthGuard],
+  children: [
+    { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
+    { path: 'dashboard',    loadComponent: () => MainDashboardComponent },
+    { path: 'analytics',    loadComponent: () => AnalyticsComponent },
+    { path: 'reports',      /* ❌ ไม่มี route — ReportsComponent ไม่ได้ถูก map! */ },
+    { path: 'jobs/**',      loadChildren: () => JobCardModule },
+    { path: 'customers',    loadComponent: () => CustomerListComponent },
+    ... (15+ routes)
+  ]
+}
+
+// Feature page renders ภายใน &lt;router-outlet&gt; ของ AppLayoutComponent
+// Page header ถูก projected ผ่าน &lt;ng-content select="[page-header]"&gt;</div>
+            <table>
+                <tr>
+                    <th>Route</th>
+                    <th>Component</th>
+                    <th>Loading</th>
+                    <th>Parent Layout</th>
+                    <th>Guard</th>
+                </tr>
+                <tr>
+                    <td><code>/</code></td>
+                    <td>Redirect → <code>/dashboard</code></td>
+                    <td>—</td>
+                    <td>—</td>
+                    <td>—</td>
+                </tr>
+                <tr>
+                    <td><code>/dashboard</code></td>
+                    <td>MainDashboardComponent</td>
+                    <td>Lazy (loadComponent)</td>
+                    <td>AppLayoutComponent</td>
+                    <td>AuthGuard</td>
+                </tr>
+                <tr>
+                    <td><code>/analytics</code></td>
+                    <td>AnalyticsComponent</td>
+                    <td>Lazy (loadComponent)</td>
+                    <td>AppLayoutComponent</td>
+                    <td>AuthGuard</td>
+                </tr>
+                <tr>
+                    <td style="color:#e74c3c;"><code>/reports</code></td>
+                    <td style="color:#e74c3c;">❌ ไม่มี route</td>
+                    <td style="color:#e74c3c;">—</td>
+                    <td style="color:#e74c3c;">—</td>
+                    <td style="color:#e74c3c;">—</td>
+                </tr>
+            </table>
+        </div>
+
+        <!-- ============ SECTION 7: DI Wiring ============ -->
+        <div class="section">
+            <h2>7. Dependency Injection Wiring</h2>
+            <h3>Dashboard — DI Token Chain</h3>
+            <div class="evidence">// core/di/tokens.ts
+export const DASHBOARD_REPOSITORY = new InjectionToken&lt;IDashboardRepository&gt;('DASHBOARD_REPOSITORY');
+
+// core/di/providers.ts
+export const REPOSITORY_PROVIDERS = [
+  { provide: DASHBOARD_REPOSITORY, useClass: DashboardRepositoryImpl }
+];
+
+// domain/use-cases/*.use-case.ts (ทั้ง 3 ตัว)
+@Injectable({ providedIn: 'root' })
+export class GetDashboardStatsUseCase {
+  constructor(@Inject(DASHBOARD_REPOSITORY) private repo: IDashboardRepository) {}
+}
+
+// data/repositories/dashboard.repository.impl.ts
+@Injectable({ providedIn: 'root' })
+export class DashboardRepositoryImpl implements IDashboardRepository {
+  constructor(private ds: DashboardApiDataSource) {}  ← inject concrete class
+}
+
+// data/datasources/dashboard.api.datasource.ts
+@Injectable({ providedIn: 'root' })
+export class DashboardApiDataSource {
+  constructor(private http: HttpClient) {}
+}</div>
+
+            <h3>Layouts — Module Registration (AppModule)</h3>
+            <div class="evidence">// app.module.ts
+declarations: [                    ← ใช้ standalone: false
+  HeaderComponent,
+  SidebarComponent,
+  FooterComponent,
+  AppLayoutComponent,
+  PageHeaderComponent,
+],
+imports: [                         ← ใช้ standalone: true
+  LayoutSettingsComponent,        ← ตัวเดียวที่เป็น standalone
+]</div>
+        </div>
+
+        <!-- ============ SECTION 8: External Dependencies ============ -->
+        <div class="section">
+            <h2>8. ความเชื่อมโยงระหว่าง Dashboard ↔ Layouts</h2>
+            <table>
+                <tr>
+                    <th>จุดเชื่อมต่อ</th>
+                    <th>ฝั่ง Dashboard</th>
+                    <th>ฝั่ง Layouts</th>
+                    <th>กลไก</th>
+                </tr>
+                <tr>
+                    <td>Routing (Parent-Child)</td>
+                    <td>MainDashboardComponent, AnalyticsComponent</td>
+                    <td>AppLayoutComponent</td>
+                    <td>Angular Router: Layout เป็น parent, Dashboard เป็น child ใน <code>&lt;router-outlet&gt;</code></td>
+                </tr>
+                <tr>
+                    <td>Content Projection</td>
+                    <td>Feature pages ใช้ <code>&lt;app-page-header&gt;</code></td>
+                    <td>AppLayoutComponent มี <code>&lt;ng-content select="[page-header]"&gt;</code></td>
+                    <td>Angular Content Projection</td>
+                </tr>
+                <tr>
+                    <td>Authentication Guard</td>
+                    <td>Dashboard pages (ทั้งหมดต้อง login)</td>
+                    <td>AppLayout route มี <code>canActivate: [AuthGuard]</code></td>
+                    <td>Route Guard ป้องกันหน้าทั้งหมดภายใต้ AppLayout</td>
+                </tr>
+                <tr>
+                    <td>Sidebar Navigation</td>
+                    <td> routes: <code>/dashboard</code>, <code>/analytics</code>, <code>/reports</code></td>
+                    <td>SidebarComponent มี <code>menuItems</code> array</td>
+                    <td>Sidebar menu items map ไปยัง routes ที่ตรงกัน</td>
+                </tr>
+                <tr>
+                    <td>i18n / Translate</td>
+                    <td>ทุก template ใช้ <code>{{ '...' | translate }}</code></td>
+                    <td>Header, Sidebar, Footer ใช้ <code>translate</code> pipe</td>
+                    <td>Shared TranslatePipe จาก <code>shared/pipes/</code></td>
+                </tr>
+                <tr>
+                    <td>Language Selector</td>
+                    <td>—</td>
+                    <td>Header + Sidebar ฝัง <code>&lt;app-language-selector&gt;</code></td>
+                    <td>Shared component</td>
+                </tr>
+            </table>
+        </div>
+
+        <!-- ============ SECTION 9: Findings ============ -->
+        <div class="section">
+            <h2>9. ผลการวิเคราะห์ (Findings)</h2>
+
+            <div class="finding ok">
+                <div class="finding-title finding-title-ok">✅ OK #1: Domain Layer ออกแบบถูกต้อง</div>
+                <div class="finding-detail">
+                    <strong>สิ่งที่เจอ:</strong> Domain layer มี Entity, Repository Interface (Port), และ Use Case ครบทั้ง 3 ตัว
+                </div>
+                <div class="finding-detail">
+                    <strong>หลักฐาน:</strong>
+                    <div class="evidence">domain/entities/dashboard-stats.entity.ts    → DashboardStats, RevenueData, Activity
+domain/repositories/dashboard.repository.ts → IDashboardRepository (interface)
+domain/use-cases/get-dashboard-stats.use-case.ts   → GetDashboardStatsUseCase
+domain/use-cases/get-revenue-chart.use-case.ts     → GetRevenueChartUseCase
+domain/use-cases/generate-report.use-case.ts       → GenerateReportUseCase</div>
+                </div>
+                <div class="finding-detail">
+                    <strong>ทำไมดี:</strong> ใช้ Dependency Inversion ผ่าน InjectionToken (<code>DASHBOARD_REPOSITORY</code>) ทำให้ domain ไม่ depend on data layer
+                </div>
+            </div>
+
+            <div class="finding ok">
+                <div class="finding-title finding-title-ok">✅ OK #2: Layouts Composition ทำงานถูกต้อง</div>
+                <div class="finding-detail">
+                    <strong>สิ่งที่เจอ:</strong> AppLayoutComponent ทำหน้าที่เป็น composition root ได้ดี — ประกอบ Header+Sidebar+Footer+LayoutSettings+router-outlet เข้าด้วยกัน
+                </div>
+                <div class="finding-detail">
+                    <strong>หลักฐาน:</strong> Header ส่ง <code>(toggleSidebar)</code> event ขึ้นไปที่ AppLayout, Sidebar รับ <code>[isCollapsed]</code> input ลงมา — two-way binding ทำงานถูกต้อง
+                </div>
+            </div>
+
+            <div class="finding ok">
+                <div class="finding-title finding-title-ok">✅ OK #3: Routing ทำงานถูกต้อง (ส่วนใหญ่)</div>
+                <div class="finding-detail">
+                    <strong>สิ่งที่เจอ:</strong> Dashboard และ Analytics route ถูก map ไปยัง AppLayoutComponent 作为 parent อย่างถูกต้อง, lazy loading ผ่าน <code>loadComponent()</code>
+                </div>
+            </div>
+
+            <hr style="margin: 20px 0; border: 1px solid #eee;">
+
+            <div class="finding gap">
+                <div class="finding-title finding-title-gap">⚠️ GAP #1: Presentation Layer ไม่ได้ inject Use Case ใดๆ (Critical)</div>
+                <div class="finding-detail">
+                    <strong>สิ่งที่เจอ:</strong> ทั้ง 3 components (MainDashboardComponent, ReportsComponent, AnalyticsComponent) ใช้ <strong>hard-coded mock data</strong> ทั้งหมด — ไม่มีตัวไหน inject GetDashboardStatsUseCase, GetRevenueChartUseCase, หรือ GenerateReportUseCase
+                </div>
+                <div class="finding-detail">
+                    <strong>ทำไมถึงสำคัญ:</strong> Domain layer และ Data layer สร้างไว้สมบูรณ์แล้ว แต่ไม่ได้ถูกใช้งานจริง — ทั้ง Use Cases, Repository, DataSource ล้วนเป็น dead code ในปัจจุบัน
+                </div>
+                <div class="finding-detail">
+                    <strong>หลักฐาน:</strong>
+                    <div class="evidence">main-dashboard.component.ts:
+  // ❌ ไม่มี import ใดๆ จาก domain/ หรือ data/
+  // ❌ ไม่มี constructor ที่ inject Use Case
+  // ✅ มีแค่ BehaviorSubject + setTimeout(1000ms) + hard-coded data
+
+reports.component.ts:
+  // ❌ ไม่มี import Use Case
+  // ✅ hard-coded reports array (3 items)
+
+analytics.component.ts:
+  // ❌ ไม่มี import Use Case
+  // ✅ hard-coded stats array (4 items)</div>
+                </div>
+                <div class="fix">
+                    <strong>แนวทางแก้ไข (MainDashboardComponent):</strong>
+                    <ul>
+                        <li>Inject <code>GetDashboardStatsUseCase</code> ใน constructor</li>
+                        <li>Inject <code>GetRevenueChartUseCase</code> ใน constructor</li>
+                        <li>เรียก <code>this.statsUseCase.execute()</code> ใน <code>ngOnInit()</code> แล้ว subscribe ลง <code>statsSubject</code></li>
+                        <li>ลบ hard-coded mock data ออก</li>
+                        <li>ทำเช่นเดียวกันกับ ReportsComponent (inject GenerateReportUseCase) และ AnalyticsComponent</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="finding gap">
+                <div class="finding-title finding-title-gap">⚠️ GAP #2: ReportsComponent ไม่มี Route</div>
+                <div class="finding-detail">
+                    <strong>สิ่งที่เจอ:</strong> ReportsComponent สร้างเป็น standalone component แล้ว แต่ไม่มี route entry ใน <code>app-routing.module.ts</code>
+                </div>
+                <div class="finding-detail">
+                    <strong>ทำไมถึงสำคัญ:</strong> ผู้ใช้ไม่สามารถ navigate ไปที่ <code>/reports</code> ได้ — Sidebar มี "Reports" menu item แต่ link จะ 404
+                </div>
+                <div class="finding-detail">
+                    <strong>หลักฐาน:</strong>
+                    <div class="evidence">// app-routing.module.ts — ไม่มี:
+{ path: 'reports', loadComponent: () => ReportsComponent }
+
+// sidebar.component.ts — มี:
+{ label: 'Reports', icon: 'report-analytics', route: '/reports' }</div>
+                </div>
+                <div class="fix">
+                    <strong>แนวทางแก้ไข:</strong> เพิ่ม route entry ใน <code>app-routing.module.ts</code>:
+                    <div class="evidence">{ path: 'reports', loadComponent: () =>
+  import('./features/dashboard/presentation/pages/reports/reports.component')
+    .then(m => m.ReportsComponent) },</div>
+                </div>
+            </div>
+
+            <div class="finding warn">
+                <div class="finding-title finding-title-warn">⚠️ WARN #1: MainDashboardComponent นิยาม DashboardStats ซ้ำ</div>
+                <div class="finding-detail">
+                    <strong>สิ่งที่เจอ:</strong> <code>main-dashboard.component.ts</code> นิยาม interface <code>DashboardStats</code> ขึ้นมาเองในไฟล์ (มี field <code>revenue</code>) ซึ่ง different จาก domain entity (มี <code>totalRevenue</code>, <code>monthlyRevenue</code>) — ทำให้สับสนและไม่สอดคล้องกัน
+                </div>
+                <div class="finding-detail">
+                    <strong>หลักฐาน:</strong>
+                    <div class="evidence">// main-dashboard.component.ts (local)
+interface DashboardStats {
+  totalJobs: number; activeJobs: number;
+  totalCustomers: number; revenue: number;  ← ชื่อ "revenue"
+  conversionRate: number;
+}
+
+// domain/entities/dashboard-stats.entity.ts
+export interface DashboardStats {
+  totalJobs: number; activeJobs: number;
+  totalCustomers: number; totalRevenue: number;  ← ชื่อ "totalRevenue"
+  monthlyRevenue: number;                        ← เพิ่มmonthlyRevenue
+  conversionRate: number;
+  pendingApprovals: number; lowStockItems: number;
+}</div>
+                </div>
+                <div class="fix">
+                    <strong>แนวทางแก้ไข:</strong> ลบ local interface ออก แล้ว import <code>DashboardStats</code> จาก <code>domain/entities/dashboard-stats.entity.ts</code> โดยตรง
+                </div>
+            </div>
+
+            <div class="finding warn">
+                <div class="finding-title finding-title-warn">⚠️ WARN #2: DashboardStatsResponseDto ไม่ได้ใช้งาน</div>
+                <div class="finding-detail">
+                    <strong>สิ่งที่เจอ:</strong> <code>data/dtos/dashboard-stats-response.dto.ts</code> ถูกนิยามไว้แต่ไม่มีไฟล์ไหน import หรือใช้งาน
+                </div>
+                <div class="finding-detail">
+                    <strong>ทำไมถึงสำคัญ:</strong> DTO ควรถูกใช้ใน DataSource หรือ Repository Impl เพื่อ map จาก API response → Domain entity
+                </div>
+                <div class="fix">
+                    <strong>แนวทางแก้ไข:</strong> ใช้ <code>DashboardStatsResponseDto</code> ใน <code>DashboardApiDataSource.getStats()</code> return type แทน <code>Observable&lt;any&gt;</code>
+                </div>
+            </div>
+
+            <div class="finding warn">
+                <div class="finding-title finding-title-warn">⚠️ WARN #3: DashboardApiDataSource ใช้ Observable&lt;any&gt;</div>
+                <div class="finding-detail">
+                    <strong>สิ่งที่เจอ:</strong> <code>DashboardApiDataSource</code> return <code>Observable&lt;any&gt;</code> ทุก method — ไม่มี type safety
+                </div>
+                <div class="finding-detail">
+                    <strong>ทำไมถึงสำคัญ:</strong> ถ้า API response shape เปลี่ยน จะไม่มี compile error เตือน
+                </div>
+                <div class="fix">
+                    <strong>แนวทางแก้ไข:</strong> Return <code>Observable&lt;DashboardStatsResponseDto&gt;</code> แทน <code>Observable&lt;any&gt;</code>
+                </div>
+            </div>
+
+            <div class="finding warn">
+                <div class="finding-title finding-title-warn">⚠️ WARN #4: Layout Components ใช้ standalone: false ต่างจาก Dashboard</div>
+                <div class="finding-detail">
+                    <strong>สิ่งที่เจอ:</strong> Layout components 5 ตัวใช้ <code>standalone: false</code> (ต้อง declaration ในNgModule) แต่ Dashboard components ทุกตัวใช้ <code>standalone: true</code> — ทำให้ต้อง register layout ไว้ใน <code>AppModule.declarations</code> ซึ่งไม่สอดคล้องกับ Angular modern pattern
+                </div>
+                <div class="finding-detail">
+                    <strong>หลักฐาน:</strong>
+                    <div class="evidence">// Layout: standalone: false → ต้อง declarations ใน AppModule
+AppLayoutComponent   → standalone: false
+HeaderComponent      → standalone: false
+SidebarComponent     → standalone: false
+FooterComponent      → standalone: false
+PageHeaderComponent  → standalone: false
+LayoutSettingsComponent → standalone: true  ← มีตัวเดียวที่ต่าง
+
+// Dashboard: ทุกตัว standalone: true
+MainDashboardComponent → standalone: true
+ReportsComponent      → standalone: true
+AnalyticsComponent    → standalone: true</div>
+                </div>
+                <div class="fix">
+                    <strong>แนวทางแก้ไข (ถ้าต้องการ consistency):</strong> เปลี่ยน layout components ให้เป็น <code>standalone: true</code> ทั้งหมด แล้ว import เข้า <code>AppRoutingModule</code> แทนการ declarations ใน <code>AppModule</code>
+                </div>
+            </div>
+
+            <div class="finding info">
+                <div class="finding-title finding-title-info">ℹ️ INFO #1: LayoutSettingsComponent ใช้ Translate Pipe ต่างจากที่อื่น</div>
+                <div class="finding-detail">
+                    <strong>สิ่งที่เจอ:</strong> LayoutSettingsComponent ใช้ <code>AppTranslatePipe</code> จาก <code>shared/i18n/presentation/pipes/translate.pipe</code> แต่ component อื่นๆ ทั้งหมดใช้ <code>TranslatePipe</code> จาก <code>shared/pipes/translate.pipe</code> — มี 2 implementations ต่างกัน
+                </div>
+                <div class="finding-detail">
+                    <strong>ทำไมถึงสำคัญ:</strong> อาจทำให้ i18n behavior ไม่ consistent ระหว่าง layout settings กับส่วนอื่น
+                </div>
+                <div class="fix">
+                    <strong>แนวทางแก้ไข:</strong> ตรวจสอบว่า <code>AppTranslatePipe</code> ต่างจาก <code>TranslatePipe</code> อย่างไร แล้ว unify ให้ใช้ pipe ตัวเดียวกัน
+                </div>
+            </div>
+
+            <div class="finding info">
+                <div class="finding-title finding-title-info">ℹ️ INFO #2: Sidebar มี Reports menu item แต่ไม่มี route ที่ตรง</div>
+                <div class="finding-detail">
+                    <strong>สิ่งที่เจอ:</strong> Sidebar มี <code>{ label: 'Reports', icon: 'report-analytics', route: '/reports' }</code> แต่ไม่มี route registration สำหรับ <code>/reports</code> ใน routing module — จะเกิด navigation error
+                </div>
+                <div class="fix">
+                    <strong>แนวทางแก้ไข:</strong> เพิ่ม route สำหรับ reports (ดู GAP #2)
+                </div>
+            </div>
+        </div>
+
+        <!-- ============ SECTION 10: Data Flow Summary ============ -->
+        <div class="section">
+            <h2>10. สรุป Data Flow (ปัจจุบัน vs ที่ควรจะเป็น)</h2>
+            
+            <h3>ปัจจุบัน (Current)</h3>
+            <div class="evidence">MainDashboardComponent
+    ├── (local) ──▶ BehaviorSubject&lt;DashboardStats&gt;  ← hard-coded mock
+    ├── (local) ──▶ chartData (bar chart values)     ← hard-coded
+    └── (local) ──▶ recentActivities array            ← hard-coded
+
+ReportsComponent
+    └── (local) ──▶ reports array                     ← hard-coded
+
+AnalyticsComponent
+    └── (local) ──▶ stats array                       ← hard-coded
+
+<span style="color:#e74c3c;">❌ ไม่มีไฟล์ไหนเรียก Use Case, Repository, หรือ DataSource จริง</span></div>
+
+            <h3>ที่ควรจะเป็น (Target)</h3>
+            <div class="evidence">MainDashboardComponent
+    │ inject GetDashboardStatsUseCase
+    │ inject GetRevenueChartUseCase
+    │
+    └──▶ GetDashboardStatsUseCase.execute()
+           │ inject DASHBOARD_REPOSITORY token
+           └──▶ DashboardRepositoryImpl.getStats()
+                  └──▶ DashboardApiDataSource.getStats()
+                         └──▶ HttpClient.get('/dashboard/stats')
+                                └──▶ REST API Response
+                                       └──▶ map to DashboardStats (DashboardRepositoryImpl)
+                                              └──▶ Observable&lt;DashboardStats&gt; (UseCase)
+                                                     └──▶ subscribe in Component
+                                                            └──▶ render in template</div>
+        </div>
+
+        <!-- ============ SECTION 11: Fix Plan ============ -->
+        <div class="section">
+            <h2>11. แผนการแก้ไข (Recommended Order)</h2>
+            <table>
+                <tr>
+                    <th>#</th>
+                    <th>งาน</th>
+                    <th>ไฟล์ที่แก้</th>
+                    <th>ความสำคัญ</th>
+                </tr>
+                <tr>
+                    <td>1</td>
+                    <td><strong>เชื่อม MainDashboardComponent กับ Use Cases</strong><br>ลบ mock data, inject GetDashboardStatsUseCase + GetRevenueChartUseCase</td>
+                    <td><code>main-dashboard.component.ts</code></td>
+                    <td><span class="badge badge-gap">Critical</span></td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td><strong>ลบ local DashboardStats interface</strong><br>Import จาก domain entity แทน</td>
+                    <td><code>main-dashboard.component.ts</code></td>
+                    <td><span class="badge badge-warn">High</span></td>
+                </tr>
+                <tr>
+                    <td>3</td>
+                    <td><strong>เพิ่ม route สำหรับ Reports</strong><br>แก้ <code>app-routing.module.ts</code></td>
+                    <td><code>app-routing.module.ts</code></td>
+                    <td><span class="badge badge-gap">Critical</span></td>
+                </tr>
+                <tr>
+                    <td>4</td>
+                    <td><strong>เชื่อม ReportsComponent กับ GenerateReportUseCase</strong></td>
+                    <td><code>reports.component.ts</code></td>
+                    <td><span class="badge badge-warn">High</span></td>
+                </tr>
+                <tr>
+                    <td>5</td>
+                    <td><strong>เชื่อม AnalyticsComponent กับ Use Cases</strong></td>
+                    <td><code>analytics.component.ts</code></td>
+                    <td><span class="badge badge-warn">High</span></td>
+                </tr>
+                <tr>
+                    <td>6</td>
+                    <td><strong>ใช้ DTO ใน DataSource</strong> — Return typed Observable แทน any</td>
+                    <td><code>dashboard.api.datasource.ts</code></td>
+                    <td><span class="badge badge-info">Medium</span></td>
+                </tr>
+                <tr>
+                    <td>7</td>
+                    <td><strong>Uni fied Translate Pipe</strong> — ใช้ pipe ตัวเดียวกันทั้ง project</td>
+                    <td><code>layout-settings.component.ts</code></td>
+                    <td><span class="badge badge-info">Low</span></td>
+                </tr>
+                <tr>
+                    <td>8</td>
+                    <td><strong>เปลี่ยน Layout components เป็น standalone: true</strong> (optional)</td>
+                    <td><code>app-layout, header, sidebar, footer, page-header</code></td>
+                    <td><span class="badge badge-info">Low</span></td>
+                </tr>
+            </table>
+        </div>
+
+        <!-- ============ SECTION 12: Summary ============ -->
+        <div class="section">
+            <h2>12. สรุป</h2>
+            <div class="finding gap">
+                <div class="finding-title finding-title-gap">สรุปภาพรวม: Architecture ออกแบบดี แต่ยังไม่ได้เชื่อมต่อ</div>
+                <div class="finding-detail">
+                    <strong>สิ่งที่ดี:</strong>
+                    <ul>
+                        <li>Clean Architecture 3 ชั้น (domain/data/presentation) ออกแบบถูกต้อง</li>
+                        <li>DI Token pattern (<code>DASHBOARD_REPOSITORY</code>) ทำให้ domain layer ไม่ depend on data layer</li>
+                        <li>Layout composition ทำงานถูกต้อง — AppLayout ประกอบ Header+Sidebar+Footer+Content เข้าด้วยกัน</li>
+                        <li>Routing ใช้ lazy loading ผ่าน <code>loadComponent()</code></li>
+                        <li>ทุก Dashboard components เป็น standalone: true ตาม Angular modern pattern</li>
+                    </ul>
+                </div>
+                <div class="finding-detail">
+                    <strong>สิ่งที่ต้องแก้:</strong>
+                    <ul>
+                        <li><strong>สิ่งสำคัญที่สุด:</strong> Presentation layer ไม่ได้ inject Use Cases ใดๆ ทำให้ Domain/Data layer ทั้งหมดเป็น dead code</li>
+                        <li>ReportsComponent ไม่มี route registration</li>
+                        <li>MainDashboardComponent นิยาม DashboardStats ซ้ำกับ domain entity</li>
+                        <li>DashboardStatsResponseDto ไม่ได้ใช้งาน</li>
+                        <li>DataSource return Observable&lt;any&gt; ไม่มี type safety</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

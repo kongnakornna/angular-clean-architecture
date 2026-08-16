@@ -19,8 +19,7 @@
                         "polyfills": [
                             "zone.js"
                         ],
-                        "tsConfig": "tsconfig.app.json",
-                        "assets": [
+                        "tsConfig": "tsconfig.app.json",                        "assets": [
                             "src/favicon.ico",
                             "src/assets",
                             {
@@ -30,12 +29,15 @@
                             }
                         ],
                         "styles": [
-                            "src/styles.scss"
+                            "src/styles.scss",
+                            "src/assets/css/tabler-flags.css",
+                            "src/assets/css/tabler-socials.css",
+                            "src/assets/css/tabler-payments.css",
+                            "src/assets/css/tabler-marketing.css"
                         ],
                         "scripts": [
-                            "src/assets/tabler/dist/js/tabler-theme.js",
-                            "node_modules/bootstrap/dist/js/bootstrap.bundle.min.js",
-                            "src/assets/tabler/dist/js/tabler.js"
+                            "node_modules/@tabler/core/dist/js/tabler-theme.js",
+                            "node_modules/@tabler/core/dist/js/tabler.js"
                         ],
                         "stylePreprocessorOptions": {
                             "includePaths": ["src"]
@@ -77,7 +79,8 @@
                 "serve": {
                     "builder": "@angular-devkit/build-angular:dev-server",
                     "options": {
-                        "buildTarget": "angular-clean-architecture-serverless:build:development"
+                        "buildTarget": "angular-clean-architecture-serverless:build:development",
+                        "proxyConfig": "proxy.conf.json"
                     },
                     "configurations": {
                         "production": {
@@ -103,17 +106,23 @@
                             "zone.js/testing"
                         ],
                         "tsConfig": "tsconfig.spec.json",
+                        "include": [
+                            "src/app/**/*.spec.ts"
+                        ],
                         "assets": [
                             "src/favicon.ico",
                             "src/assets"
                         ],
                         "styles": [
-                            "src/styles.scss"
+                            "src/styles.scss",
+                            "src/assets/css/tabler-flags.css",
+                            "src/assets/css/tabler-socials.css",
+                            "src/assets/css/tabler-payments.css",
+                            "src/assets/css/tabler-marketing.css"
                         ],
                         "scripts": [
-                            "src/assets/tabler/dist/js/tabler-theme.js",
-                            "node_modules/bootstrap/dist/js/bootstrap.bundle.min.js",
-                            "src/assets/tabler/dist/js/tabler.js"
+                            "node_modules/@tabler/core/dist/js/tabler-theme.js",
+                            "node_modules/@tabler/core/dist/js/tabler.js"
                         ],
                         "stylePreprocessorOptions": {
                             "includePaths": ["src"]

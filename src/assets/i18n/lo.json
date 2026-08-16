@@ -2,6 +2,19 @@
   "app": {
     "name": "iCmon"
   },
+  "errors": {
+    "400": "ຂໍ້ມູນບໍ່ຖືກຕ້ອງ",
+    "401": "ກະລຸນາເຂົ້າສູ່ລະບົບອີກຄັ້ງ",
+    "403": "ທ່ານບໍ່ມີສິດເຂົ້າເຖິງຂໍ້ມູນນີ້",
+    "404": "ບໍ່ພົບຂໍ້ມູນ",
+    "409": "ຂໍ້ມູນຊ້ຳກັນ",
+    "422": "ຂໍ້ມູນບໍ່ຖືກຕ້ອງ ກະລຸນາກວດສອບອີກຄັ້ງ",
+    "429": "ມີຄຳຮ້ອງຫຼາຍເກີນໄປ ກະລຸນາລໍຖ້າ",
+    "500": "ເກີດຂໍ້ຜິດພາດຂອງເຊີເວີ ກະລຸນາລອງໃໝ່ພາຍຫຼັງ",
+    "503": "ລະບົບກຳລັງບຳລຸງຮັກສາ ກະລຸນາລອງໃໝ່ພາຍຫຼັງ",
+    "unknown": "ເກີດຂໍ້ຜິດພາດທີ່ບໍ່ຮູ້",
+    "client": "ເກີດຂໍ້ຜິດພາດຝ່າຍຜູ້ໃຊ້"
+  },
   "nav": {
     "dashboard": "ໜ້າຫຼັກ",
     "jobs": "ຈັດການວຽກ",
@@ -163,6 +176,10 @@
     "settings": {
       "title": "ຕັ້ງຄ່າຜັງ",
       "layoutMode": "ຮູບແບບຈັດວາງ",
+      "lightmode": "ສະຫວ່າງ",
+      "darkmode": "ມືດ",
+      "completed": "ສຳເລັດ",
+      "closed": "ປິດ",
       "layoutVertical": "ແນວຕັ້ງ",
       "layoutFluid": "ເຕັມຄວາມກວ້າງ",
       "layoutBoxed": "ກັອບ",
@@ -208,7 +225,20 @@
     "recentActivity": "ກິດຈະກຳຫຼ້າສຸດ",
     "fromLastMonth": "ຈາກເດືອນແລ້ວ",
     "inProgress": "ກຳລັງດຳເນີນ",
-    "loading": "ກຳລັງໂຫຼດ..."
+    "loading": "ກຳລັງໂຫຼດ...",
+    "totalDevices": "Total Devices",
+    "onlineDevices": "Online Devices",
+    "todayCommands": "Today's Commands",
+    "activeAlerts": "Active Alerts",
+    "ofTotal": "of",
+    "allRegisteredDevices": "All registered devices",
+    "totalRevenuePeriod": "in the period",
+    "jobStatus": "Job Status",
+    "failed": "Failed",
+    "topParts": "Top Parts",
+    "partName": "Part Name",
+    "count": "Count",
+    "usage": "Usage"
   },
   "customer": {
     "title": "ລາຍການລູກຄ້າ",
@@ -361,7 +391,7 @@
   "document": {
     "title": "ເອກະສານ",
     "subtitle": "ຈັດການເອກະສານທັງ ໝົດ",
-    "upload": "ອັບໂຫຼດເອກະສານ",
+    "upload": "ອັບໂຫຼດ",
     "detail": "ລາຍລະອຽດເອກະສານ",
     "back": "ກັບ",
     "download": "ດາວໂຫຼດ",
@@ -381,7 +411,6 @@
     "supportedFormats": "ຮອງຮັບ PDF, JPG, PNG, DOC ສູງ 10MB",
     "category": "ໝວດໝູ່",
     "note": "ໝາຍເຫດ",
-    "upload": "ອັບໂຫຼດ",
     "categoryReport": "ລາຍງານ",
     "categoryInvoice": "ໃບເກັບເງິນ",
     "categoryContract": "ສັນຍາ",
@@ -527,6 +556,7 @@
     "workDistribution": "ການແຈກຢາຍວຽກ",
     "monthlySalesChart": "ແຜນພາບຍອດຂາຍປະຈຳເດືອນ",
     "pieChart": "ແຜນພາບວົງກົມ",
-    "comparedToLastMonth": "ທຽບກັບເດືອນແລ້ວ"
+    "comparedToLastMonth": "ທຽບກັບເດືອນແລ້ວ",
+    "summary": "Summary"
   }
 }

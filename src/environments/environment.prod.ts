@@ -1,5 +1,12 @@
 export const environment = {
   production: true,
   demo: false,
-  apiUrl: 'http://localhost:1080/api/v1',
+  useProxy: true,
+  apiTargetUrl: 'http://localhost:5000',
+  logger: {
+    enabled: true,
+    level: 'warn' as const,
+    format: 'json' as const,
+    prefix: '[iCmon-Prod]',
+  },
 };

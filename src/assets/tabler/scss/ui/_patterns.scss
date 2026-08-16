@@ -1,3 +1,5 @@
+@use '../config' as *;
+
 .bg-pattern-diagonal {
    --#{$prefix}pattern-color: var(--#{$prefix}body-color);
    --#{$prefix}pattern-size: .5rem;

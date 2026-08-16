@@ -2,6 +2,19 @@
   "app": {
     "name": "iCmon"
   },
+  "errors": {
+    "400": "数据无效",
+    "401": "请重新登录",
+    "403": "您没有权限访问此数据",
+    "404": "未找到数据",
+    "409": "数据重复",
+    "422": "数据无效，请重新检查",
+    "429": "请求过多，请稍候",
+    "500": "服务器错误，请稍后重试",
+    "503": "系统正在维护，请稍后重试",
+    "unknown": "发生未知错误",
+    "client": "客户端发生错误"
+  },
   "nav": {
     "dashboard": "仪表盘",
     "jobs": "工作管理",
@@ -163,6 +176,10 @@
     "settings": {
       "title": "布局设置",
       "layoutMode": "布局模式",
+      "lightmode": "浅色",
+      "darkmode": "深色",
+      "completed": "已完成",
+      "closed": "已关闭",
       "layoutVertical": "垂直",
       "layoutFluid": "全宽",
       "layoutBoxed": "盒状",
@@ -208,7 +225,20 @@
     "recentActivity": "最近活动",
     "fromLastMonth": "较上月",
     "inProgress": "进行中",
-    "loading": "加载中..."
+    "loading": "加载中...",
+    "totalDevices": "Total Devices",
+    "onlineDevices": "Online Devices",
+    "todayCommands": "Today's Commands",
+    "activeAlerts": "Active Alerts",
+    "ofTotal": "of",
+    "allRegisteredDevices": "All registered devices",
+    "totalRevenuePeriod": "in the period",
+    "jobStatus": "Job Status",
+    "failed": "Failed",
+    "topParts": "Top Parts",
+    "partName": "Part Name",
+    "count": "Count",
+    "usage": "Usage"
   },
   "customer": {
     "title": "客户列表",
@@ -361,7 +391,7 @@
   "document": {
     "title": "文档",
     "subtitle": "管理所有文档",
-    "upload": "上传文档",
+    "upload": "上传",
     "detail": "文档详情",
     "back": "返回",
     "download": "下载",
@@ -381,7 +411,6 @@
     "supportedFormats": "支持 PDF、JPG、PNG、DOC，最大 10MB",
     "category": "分类",
     "note": "备注",
-    "upload": "上传",
     "categoryReport": "报告",
     "categoryInvoice": "发票",
     "categoryContract": "合同",
@@ -527,6 +556,7 @@
     "workDistribution": "工作分布",
     "monthlySalesChart": "月销售图表",
     "pieChart": "饼图",
-    "comparedToLastMonth": "较上月"
+    "comparedToLastMonth": "较上月",
+    "summary": "Summary"
   }
 }

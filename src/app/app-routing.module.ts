@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+
 import { AppLayoutComponent } from './layouts/app-layout/app-layout.component';
 import { AuthGuard } from './shared/guards/auth.guard';
 import { PermissionGuard } from './shared/guards/permission.guard';
@@ -8,7 +9,7 @@ import { AuthLayoutComponent } from './features/auth/presentation/layouts/auth-l
 export const routes: Routes = [
   { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
 
-  
+
 
   {
     path: '',
@@ -91,6 +92,13 @@ export const routes: Routes = [
           ).then((m) => m.CustomerListComponent),
       },
       {
+        path: 'customers/create',
+        loadComponent: () =>
+          import(
+            './features/customer/presentation/pages/customer-create/customer-create.component'
+          ).then((m) => m.CustomerCreateComponent),
+      },
+      {
         path: 'quotations',
         loadComponent: () =>
           import(
@@ -161,6 +169,13 @@ export const routes: Routes = [
           ),
       },
       {
+        path: 'reports',
+        loadComponent: () =>
+          import('./features/dashboard/presentation/pages/reports/reports.component').then(
+            (m) => m.ReportsComponent
+          ),
+      },
+      {
         path: 'email/compose',
         loadComponent: () =>
           import('./features/email/presentation/pages/email-compose/email-compose.component').then(
@@ -214,6 +229,13 @@ export const routes: Routes = [
         loadComponent: () =>
           import('./features/auth/presentation/pages/user-create/user-create.component').then(
             (m) => m.UserCreateComponent
+          ),
+      },
+      {
+        path: 'users/:id/edit',
+        loadComponent: () =>
+          import('./features/auth/presentation/pages/user-edit/user-edit.component').then(
+            (m) => m.UserEditComponent
           ),
       },
       {

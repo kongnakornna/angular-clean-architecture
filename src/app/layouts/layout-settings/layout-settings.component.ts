@@ -1,10 +1,12 @@
 import { Component, inject } from '@angular/core';
 import { NgFor } from '@angular/common';
 import { LayoutService } from '../../core/services/layout.service';
+import { TranslatePipe } from '../../shared/pipes/translate.pipe';
 
 @Component({
   selector: 'app-layout-settings',
-  standalone: false,
+  standalone: true,
+  imports: [NgFor, TranslatePipe],
   templateUrl: './layout-settings.component.html',
   styleUrls: ['./layout-settings.component.scss'],
 })
@@ -12,20 +14,25 @@ export class LayoutSettingsComponent {
   protected layout = inject(LayoutService);
 
   themes = [
-    { key: 'blue', class: 'bg-blue' },
-    { key: 'azure', class: 'bg-azure' },
-    { key: 'indigo', class: 'bg-indigo' },
-    { key: 'purple', class: 'bg-purple' },
-    { key: 'pink', class: 'bg-pink' },
-    { key: 'red', class: 'bg-red' },
-    { key: 'orange', class: 'bg-orange' },
-    { key: 'yellow', class: 'bg-yellow' },
-    { key: 'lime', class: 'bg-lime' },
-    { key: 'green', class: 'bg-green' },
-    { key: 'teal', class: 'bg-teal' },
-    { key: 'cyan', class: 'bg-cyan' },
+    { key: 'blue', class: 'bg-blue', label: 'layout.settings.colorBlue' },
+    { key: 'azure', class: 'bg-azure', label: 'layout.settings.colorAzure' },
+    { key: 'indigo', class: 'bg-indigo', label: 'layout.settings.colorIndigo' },
+    { key: 'purple', class: 'bg-purple', label: 'layout.settings.colorPurple' },
+    { key: 'pink', class: 'bg-pink', label: 'layout.settings.colorPink' },
+    { key: 'red', class: 'bg-red', label: 'layout.settings.colorRed' },
+    { key: 'orange', class: 'bg-orange', label: 'layout.settings.colorOrange' },
+    { key: 'yellow', class: 'bg-yellow', label: 'layout.settings.colorYellow' },
+    { key: 'lime', class: 'bg-lime', label: 'layout.settings.colorLime' },
+    { key: 'green', class: 'bg-green', label: 'layout.settings.colorGreen' },
+    { key: 'teal', class: 'bg-teal', label: 'layout.settings.colorTeal' },
+    { key: 'cyan', class: 'bg-cyan', label: 'layout.settings.colorCyan' },
   ];
-  fonts = ['sans-serif', 'serif', 'monospace', 'comic'];
+  fonts = [
+    { key: 'sans-serif', label: 'layout.settings.fontSansSerif' },
+    { key: 'serif', label: 'layout.settings.fontSerif' },
+    { key: 'monospace', label: 'layout.settings.fontMonospace' },
+    { key: 'comic', label: 'layout.settings.fontComic' },
+  ];
   bases = ['slate', 'gray', 'zinc', 'neutral', 'stone'];
   radii = ['0', '0.5', '1', '1.5', '2'];
 

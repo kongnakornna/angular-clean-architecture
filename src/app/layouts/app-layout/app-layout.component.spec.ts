@@ -1,4 +1,4 @@
-import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
@@ -27,11 +27,5 @@ describe('AppLayoutComponent', () => {
 
   it('should create', () => {
     expect(component).toBeTruthy();
-  });
-
-  it('should toggle sidebar', () => {
-    expect(component.isSidebarCollapsed).toBeFalse();
-    component.toggleSidebar();
-    expect(component.isSidebarCollapsed).toBeTrue();
   });
 });

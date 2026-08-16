@@ -2,6 +2,19 @@
   "app": {
     "name": "iCmon"
   },
+  "errors": {
+    "400": "ဒေတာမမှန်ကန်ပါ",
+    "401": "ကျေးဇူးပြု၍ ပြန်လည်ဝင်ရောက်ပါ",
+    "403": "ဤဒေတာကို ဝင်ရောက်ခွင့်မရှိပါ",
+    "404": "ဒေတာ ရှာမတွေ့ပါ",
+    "409": "ဒေတာ ထပ်နေပါသည်",
+    "422": "ဒေတာမမှန်ကန်ပါ ကျေးဇူးပြု၍ ပြန်စစ်ဆေးပါ",
+    "429": "တောင်းဆိုမှုများနေပါသည် ကျေးဇူးပြု၍ စောင့်ဆိုင်းပါ",
+    "500": "ဆာဗာအမှား ကျေးဇူးပြု၍ ခဏနေမှ ပြန်ကြိုးစားပါ",
+    "503": "စနစ်ကို ပြုပြင်နေပါသည် ကျေးဇူးပြု၍ ခဏနေမှ ပြန်ကြိုးစားပါ",
+    "unknown": "အမှားတစ်ခု ဖြစ်ပွားခဲ့သည်",
+    "client": "ကလိုင်းယင့်ဘက်တွင် အမှားဖြစ်ပွားခဲ့သည်"
+  },
   "nav": {
     "dashboard": "ဒတ်ရှ်ဘုတ်",
     "jobs": "အလုပ်စီမံခန့်ခွဲမှု",
@@ -163,6 +176,10 @@
     "settings": {
       "title": "အပြင်အဆင်သတ်မှတ်ချက်များ",
       "layoutMode": "အပြင်အဆင်မုဒ်",
+      "lightmode": "အလင်း",
+      "darkmode": "အမှောင်",
+      "completed": "ပြီးစီး",
+      "closed": "ပိတ်ပြီး",
       "layoutVertical": "ဒေါင်လိုက်",
       "layoutFluid": "အပြည့်အနံ",
       "layoutBoxed": "ဘောက်စ်",
@@ -208,7 +225,20 @@
     "recentActivity": "မကြာသေးမီကလှုပ်ရှားမှုများ",
     "fromLastMonth": "ပြီးခဲ့သည့်လမှ",
     "inProgress": "ဆောင်ရွက်ဆဲ",
-    "loading": "ဝင်တင်နေသည်..."
+    "loading": "ဝင်တင်နေသည်...",
+    "totalDevices": "Total Devices",
+    "onlineDevices": "Online Devices",
+    "todayCommands": "Today's Commands",
+    "activeAlerts": "Active Alerts",
+    "ofTotal": "of",
+    "allRegisteredDevices": "All registered devices",
+    "totalRevenuePeriod": "in the period",
+    "jobStatus": "Job Status",
+    "failed": "Failed",
+    "topParts": "Top Parts",
+    "partName": "Part Name",
+    "count": "Count",
+    "usage": "Usage"
   },
   "customer": {
     "title": "ဖောက်သည်စာရင်း",
@@ -361,7 +391,7 @@
   "document": {
     "title": "စာရွက်စာတမ်းများ",
     "subtitle": "စာရွက်စာတမ်းအားလုံးကိုစီမံပါ",
-    "upload": "စာတမ်းတင်ရန်",
+    "upload": "တင်ရန်",
     "detail": "စာတမ်းအသေးစိတ်",
     "back": "နောက်သို့",
     "download": "ဒေါင်းလုဒ်",
@@ -381,7 +411,6 @@
     "supportedFormats": "PDF, JPG, PNG, DOC 10MB အထိအထောက်ပံ့သည်",
     "category": "အမျိုးအစား",
     "note": "မှတ်ချက်",
-    "upload": "တင်ရန်",
     "categoryReport": "အစီရင်ခံစာ",
     "categoryInvoice": "ငွေတောင်းခံလွှာ",
     "categoryContract": "စာချုပ်",
@@ -527,6 +556,7 @@
     "workDistribution": "အလုပ်ဖြန့်ဝေမှု",
     "monthlySalesChart": "လစဉ်အရောင်းဇယား",
     "pieChart": "အဝိုင်းဇယား",
-    "comparedToLastMonth": "ပြီးခဲ့သည့်လနှင့်နှိုင်းယှဉ်"
+    "comparedToLastMonth": "ပြီးခဲ့သည့်လနှင့်နှိုင်းယှဉ်",
+    "summary": "Summary"
   }
 }
