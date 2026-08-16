@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Observable, map } from 'rxjs';
 import { IDashboardRepository } from '../../domain/repositories/dashboard.repository';
 import { DashboardStats, RevenueData, Activity } from '../../domain/entities/dashboard-stats.entity';
+import { Report } from '../../domain/entities/report.entity';
 import { DashboardApiDataSource } from '../datasources/dashboard.api.datasource';
 
 @Injectable({ providedIn: 'root' })
@@ -25,6 +26,12 @@ export class DashboardRepositoryImpl implements IDashboardRepository {
   getRecentActivities(): Observable<Activity[]> {
     return this.ds.getRecentActivities().pipe(map((list) =>
       list.map((d: any) => ({ id: d.id, user: d.user, action: d.action, target: d.target, time: new Date(d.time), type: d.type }))
+    ));
+  }
+
+  getReports(): Observable<Report[]> {
+    return this.ds.getReports().pipe(map((list) =>
+      list.map((d: any) => ({ id: d.id, name: d.name, type: d.type, createdAt: d.createdAt, status: d.status, reportType: d.reportType }))
     ));
   }
 

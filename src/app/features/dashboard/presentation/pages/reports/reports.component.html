@@ -2,7 +2,12 @@
   <div class="card-header">
     <h3 class="card-title">{{ 'reports.recent' | translate }}</h3>
   </div>
-  <div class="table-responsive">
+  <div *ngIf="(loading$ | async)" class="text-center py-5">
+    <div class="spinner-border text-primary" role="status">
+      <span class="visually-hidden">{{ 'dashboard.loading' | translate }}</span>
+    </div>
+  </div>
+  <div *ngIf="!(loading$ | async)" class="table-responsive">
     <table class="table table-vcenter card-table">
       <thead>
         <tr>
@@ -14,22 +19,22 @@
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let r of reports">
+        <tr *ngFor="let r of (reports$ | async)">
           <td>{{ r.name }}</td>
           <td>{{ r.type }}</td>
           <td>{{ r.createdAt }}</td>
           <td>
-            <span class="badge" [class.bg-green]="r.status === 'พร้อม'" [class.bg-yellow]="r.status === 'กำลังสร้าง'">{{ r.status }}</span>
+            <span class="badge" [ngClass]="statusClass(r.status)">{{ statusLabel(r.status) | translate }}</span>
           </td>
           <td>
             <button class="btn btn-sm btn-primary"
-                    [disabled]="downloading || r.status !== 'พร้อม'"
+                    [disabled]="downloading || !canDownload(r.status)"
                     (click)="download(r.reportType)">
               {{ 'reports.download' | translate }}
             </button>
           </td>
         </tr>
-        <tr *ngIf="reports.length === 0">
+        <tr *ngIf="(reports$ | async)?.length === 0">
           <td colspan="5" class="text-center text-secondary py-4">{{ 'reports.noReports' | translate }}</td>
         </tr>
       </tbody>

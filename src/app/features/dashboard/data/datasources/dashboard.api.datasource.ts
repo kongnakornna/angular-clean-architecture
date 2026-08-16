@@ -15,6 +15,8 @@ export class DashboardApiDataSource {
 
   getRecentActivities(): Observable<any[]> { return this.http.get<any[]>(API_ENDPOINTS.dashboard.activities); }
 
+  getReports(): Observable<any[]> { return this.http.get<any[]>(API_ENDPOINTS.dashboard.reportsList); }
+
   generateReport(params: { type: string; startDate: string; endDate: string }): Observable<Blob> {
     let p = new HttpParams().set('type', params.type).set('startDate', params.startDate).set('endDate', params.endDate);
     return this.http.get(API_ENDPOINTS.dashboard.exportReport, { params: p, responseType: 'blob' });

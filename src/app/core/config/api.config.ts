@@ -92,6 +92,7 @@ export const API_ENDPOINTS = {
     revenue: '/dashboard/revenue',
     activities: '/dashboard/activities',
     reports: '/reports/generate',
+    reportsList: '/reports',
     exportReport: '/reports/export',
   },
   documents: {
