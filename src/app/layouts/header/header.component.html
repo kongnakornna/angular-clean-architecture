@@ -102,12 +102,15 @@
             <div class="mt-1 small text-secondary">{{ 'layout.header.userRole' | translate }}</div>
           </div>
         </a>
-        <!--####--->
+        <!--####---> 
         <div class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
-          <a *ngFor="let item of profileMenu" class="dropdown-item" [routerLink]="item.route" (click)="item.action === 'logout' && logout()">
-            <i-tabler [name]="item.icon" class="icon dropdown-item-icon"></i-tabler>
-            {{ item.label }}
-          </a>
+          <ng-container *ngFor="let item of profileMenu">
+            <div class="dropdown-divider" *ngIf="item.divider"></div>
+            <a *ngIf="!item.divider" class="dropdown-item" [routerLink]="item.route" (click)="item.action === 'logout' && logout()">
+              <i-tabler *ngIf="item.icon" [name]="item.icon" class="icon dropdown-item-icon"></i-tabler>
+              {{ item.label }}
+            </a>
+          </ng-container>
         </div>
         <!--####--->
       </div>

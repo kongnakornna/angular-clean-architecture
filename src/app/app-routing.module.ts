@@ -92,6 +92,13 @@ export const routes: Routes = [
           ).then((m) => m.CustomerListComponent),
       },
       {
+        path: 'customers/create',
+        loadComponent: () =>
+          import(
+            './features/customer/presentation/pages/customer-create/customer-create.component'
+          ).then((m) => m.CustomerCreateComponent),
+      },
+      {
         path: 'quotations',
         loadComponent: () =>
           import(

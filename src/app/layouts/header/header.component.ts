@@ -1,4 +1,5 @@
 import { Component, inject } from '@angular/core';
+
 import { LayoutService } from '../../core/services/layout.service';
 
 @Component({
@@ -24,8 +25,11 @@ export class HeaderComponent {
 
   profileMenu = [
     { label: 'Profile', icon: 'user', route: '/profile' },
-    { label: 'Settings', icon: 'settings', route: '/settings' },
-    { label: 'Logout', icon: 'logout', action: 'logout' },
+    { label: 'Analytics', icon: 'chart-pie', route: '/analytics' },
+    { divider: true },
+    { label: 'Settings & Privacy', route: '/settings' },
+    { label: 'Help' },
+    { label: 'Sign out', action: 'logout' },
   ];
 
   apps = [
@@ -33,7 +37,7 @@ export class HeaderComponent {
     { label: 'Jobs', icon: 'clipboard', route: '/jobs' },
     { label: 'Customers', icon: 'users', route: '/customers' },
     { label: 'IoT', icon: 'device-desktop', route: '/iot/devices' },
-    { label: 'Reports', icon: 'chart-bar', route: '/reports' },
+    { label: 'Reports', icon: 'scoreboard', route: '/reports' },
     { label: 'Analytics', icon: 'chart-line', route: '/analytics' },
   ];
 
@@ -53,7 +57,7 @@ export class HeaderComponent {
         { label: 'Customer Create', icon: 'plus', route: '/customers/create' },
       ],
     },
-    { label: 'Reports', icon: 'chart-bar', route: '/reports' },
+    { label: 'Reports', icon: 'clipboard', route: '/reports' },
   ];
 
   get isDarkMode(): boolean {

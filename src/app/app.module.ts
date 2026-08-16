@@ -32,7 +32,7 @@ import {
   IconReport, IconLicense, IconListCheck, IconCurrencyDollar, IconGridDots,
   IconApps, IconUserPlus, IconFileCheck, IconAlertTriangle, IconClipboardCheck,
   IconSend, IconMessageCircle, IconCheck, IconCircleCheck, IconClock, IconLayout,
-  IconSearch, IconChevronLeft, IconChevronRight, IconPencil, IconTrash,
+  IconSearch, IconChevronLeft, IconChevronRight, IconPencil, IconTrash, IconChartPie,
 } from 'angular-tabler-icons/icons';
 
 import { REPOSITORY_PROVIDERS } from './core/di/providers';
@@ -79,7 +79,7 @@ import { APP_CONFIG, DEFAULT_APP_CONFIG } from './core/config/app.config';
       IconReport, IconLicense, IconListCheck, IconCurrencyDollar, IconGridDots,
       IconApps, IconUserPlus, IconFileCheck, IconAlertTriangle, IconClipboardCheck,
       IconSend, IconMessageCircle, IconCheck, IconCircleCheck, IconClock, IconLayout,
-      IconSearch, IconChevronLeft, IconChevronRight, IconPencil, IconTrash,
+      IconSearch, IconChevronLeft, IconChevronRight, IconPencil, IconTrash, IconChartPie,
     }),
     provideTranslateService({ fallbackLang: 'en', lang: 'en' }),
     provideTranslateHttpLoader({ prefix: 'assets/i18n/', suffix: '.json' }),

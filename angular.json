@@ -37,7 +37,6 @@
                         ],
                         "scripts": [
                             "node_modules/@tabler/core/dist/js/tabler-theme.js",
-                            "node_modules/bootstrap/dist/js/bootstrap.bundle.min.js",
                             "node_modules/@tabler/core/dist/js/tabler.js"
                         ],
                         "stylePreprocessorOptions": {
@@ -123,7 +122,6 @@
                         ],
                         "scripts": [
                             "node_modules/@tabler/core/dist/js/tabler-theme.js",
-                            "node_modules/bootstrap/dist/js/bootstrap.bundle.min.js",
                             "node_modules/@tabler/core/dist/js/tabler.js"
                         ],
                         "stylePreprocessorOptions": {
