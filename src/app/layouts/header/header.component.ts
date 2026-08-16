@@ -24,6 +24,15 @@ export class HeaderComponent {
     { label: 'Logout', icon: 'logout', action: 'logout' },
   ];
 
+  apps = [
+    { label: 'Dashboard', icon: 'layout-dashboard', route: '/dashboard' },
+    { label: 'Jobs', icon: 'clipboard', route: '/jobs' },
+    { label: 'Customers', icon: 'users', route: '/customers' },
+    { label: 'IoT', icon: 'device-desktop', route: '/iot/devices' },
+    { label: 'Reports', icon: 'chart-bar', route: '/reports' },
+    { label: 'Analytics', icon: 'chart-line', route: '/analytics' },
+  ];
+
   horizontalMenu = [
     { label: 'Dashboard', icon: 'layout-dashboard', route: '/dashboard' },
     {

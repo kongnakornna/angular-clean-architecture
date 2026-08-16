@@ -169,7 +169,9 @@
   },
   "layout": {
     "header": {
-      "notifications": "การแจ้งเตือน"
+      "notifications": "การแจ้งเตือน",
+      "userName": "เจน เพียร์สัน",
+      "userRole": "ผู้ดูแลระบบ"
     },
     "footer": {
       "about": "เกี่ยวกับ",
