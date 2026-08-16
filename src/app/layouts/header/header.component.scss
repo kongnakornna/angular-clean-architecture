@@ -1,1 +1,21 @@
+.layout-toggle {
+  i-tabler.icon {
+    color: #fff;
+  }
+}
 
+.dropdown-menu-card {
+  .list-group-hoverable .list-group-item-actions {
+    opacity: 1;
+    color: var(--tblr-body-color);
+    text-decoration: none;
+
+    &:hover {
+      color: var(--tblr-primary);
+    }
+  }
+
+  .list-group-item.active .list-group-item-actions {
+    color: #fff;
+  }
+}
