@@ -39,19 +39,19 @@ export class ReportsComponent implements OnInit, OnDestroy {
   }
 
   statusLabel(status: string): string {
-    if (status === 'ready' || status === 'พร้อม') return 'reports.ready';
-    if (status === 'generating' || status === 'กำลังสร้าง') return 'reports.generating';
+    if (status === 'ready') return 'reports.ready';
+    if (status === 'generating') return 'reports.generating';
     return status;
   }
 
   statusClass(status: string): string {
-    if (status === 'ready' || status === 'พร้อม') return 'bg-green';
-    if (status === 'generating' || status === 'กำลังสร้าง') return 'bg-yellow';
+    if (status === 'ready') return 'bg-green';
+    if (status === 'generating') return 'bg-yellow';
     return 'bg-secondary';
   }
 
   canDownload(status: string): boolean {
-    return status === 'ready' || status === 'พร้อม';
+    return status === 'ready';
   }
 
   private loadReports(): void {

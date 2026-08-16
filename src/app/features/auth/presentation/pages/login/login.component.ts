@@ -39,7 +39,7 @@ export class LoginComponent {
       .subscribe({
         next: () => {
           this.loading = false;
-          this.router.navigate(['/iot/devices']);
+          this.router.navigate(['/dashboard']);
         },
         error: (err) => {
           this.loading = false;

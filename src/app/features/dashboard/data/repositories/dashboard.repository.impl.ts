@@ -31,8 +31,17 @@ export class DashboardRepositoryImpl implements IDashboardRepository {
 
   getReports(): Observable<Report[]> {
     return this.ds.getReports().pipe(map((list) =>
-      list.map((d: any) => ({ id: d.id, name: d.name, type: d.type, createdAt: d.createdAt, status: d.status, reportType: d.reportType }))
+      list.map((d: any) => ({
+        id: d.id, name: d.name, type: d.type, createdAt: d.createdAt,
+        status: this.normalizeStatus(d.status), reportType: d.reportType,
+      }))
     ));
+  }
+
+  private normalizeStatus(status: string): string {
+    if (status === 'พร้อม') return 'ready';
+    if (status === 'กำลังสร้าง') return 'generating';
+    return status;
   }
 
   generateReport(params: { type: string; startDate: string; endDate: string }): Observable<Blob> {
