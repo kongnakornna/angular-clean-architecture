@@ -14,7 +14,6 @@
       <div class="nav-item d-none d-md-flex me-3">
          <!---- TEXT---->
       </div>
-
       <div class="d-none d-md-flex me-3">
         <div class="nav-item">
           <a href="javascript:void(0)" class="nav-link px-0 hide-theme-dark" title="Enable dark mode" (click)="toggleTheme()">
@@ -99,7 +98,7 @@
         <a href="javascript:void(0)" class="nav-link d-flex lh-1 p-0 px-2" data-bs-toggle="dropdown" aria-label="Open user menu">
           <img src="assets/img/avatars/avatar1.png" class="avatar avatar-sm" alt="User avatar">
           <div class="d-none d-xl-block ps-2">
-            <div>{{ username }}</div>
+            <div>{{ username || ('layout.header.userName' | translate) }}</div>
             <div class="mt-1 small text-secondary">{{ 'layout.header.userRole' | translate }}</div>
           </div>
         </a>

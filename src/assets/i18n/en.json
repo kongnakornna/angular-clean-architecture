@@ -175,7 +175,9 @@
     "footer": {
       "about": "About",
       "help": "Help",
-      "privacy": "Privacy"
+      "privacy": "Privacy",
+      "copyright": "Kongnakorn Jantakun",
+      "allRightsReserved": "All Rights Reserved"
     },
     "settings": {
       "title": "Theme Settings",

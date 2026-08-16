@@ -176,7 +176,9 @@
     "footer": {
       "about": "เกี่ยวกับ",
       "help": "ช่วยเหลือ",
-      "privacy": "ความเป็นส่วนตัว"
+      "privacy": "ความเป็นส่วนตัว",
+      "copyright": "คงนคร จันทะคุณ",
+      "allRightsReserved": "สงวนลิขสิทธิ์"
     },
     "settings": {
       "title": "ตั้งค่าธีม",
