@@ -77,8 +77,6 @@ flowchart TD
 ## ข้อสังเกต / Dead Code
 
 - ธีมมีแค่ **light / dark** — ไม่มีโหมด auto (`prefers-color-scheme`)
-- `ThemeSwitcherService` (`src/app/core/services/theme-switcher.service.ts`) — legacy, ไม่ถูก inject ที่ไหน
-- `APP_CONSTANTS.THEME_KEY` (`core/constants/app.constants.ts:8`) — ประกาศไว้แต่ไม่ถูกใช้
 - `src/assets/tabler/scss/` มี Tabler SCSS ทั้งชุดที่ **ไม่ถูก import** (dead weight) — มีเฉพาะ `custom/_utilities.scss` ที่ใช้จริง
 - คีย์ i18n กลุ่ม layout (navbarDark, layoutMode, rtlMode ฯลฯ) ถูกนิยามไว้แต่ UI ยังไม่ใช้
 
