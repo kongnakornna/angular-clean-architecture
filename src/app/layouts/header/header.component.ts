@@ -12,6 +12,10 @@ export class HeaderComponent {
 
   unreadCount = 3;
 
+  get username(): string {
+    return localStorage.getItem('username') || 'User';
+  }
+
   notifications = [
     { id: 1, title: 'งานใหม่ถูกสร้าง', time: '5 นาทีที่แล้ว', read: false },
     { id: 2, title: 'Quotation ถูกอนุมัติ', time: '1 ชั่วโมงที่แล้ว', read: false },
