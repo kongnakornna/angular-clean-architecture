@@ -87,8 +87,6 @@ flowchart TD
 | Key | ใช้โดย | สถานะ |
 | --- | --- | --- |
 | `tabler-theme`, `tabler-theme-base`, `tabler-theme-font`, `tabler-theme-primary`, `tabler-theme-radius` | `LayoutService` + `tabler-theme.js` + static templates | ✅ ใช้งานจริง |
-| `THEME_PREF` | `ThemeSwitcherService` | 💀 dead code |
-| `app_theme` | `APP_CONSTANTS.THEME_KEY` | 💀 ประกาศแต่ไม่ใช้ |
 | `tablerMenuPosition/Behavior/ContainerLayout` | `preview/js/demo.js` (static templates) | เฉพาะ demo |
 
 ## Data Flow (ข้อความ)
