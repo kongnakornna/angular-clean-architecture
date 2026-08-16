@@ -10,10 +10,11 @@ describe('AnalyticsComponent', () => {
   let fixture: ComponentFixture<AnalyticsComponent>;
 
   const mockStats = {
-    totalJobs: 156, activeJobs: 42, totalCustomers: 89,
-    totalRevenue: 45230, monthlyRevenue: 7500,
-    conversionRate: 3.2, pendingApprovals: 5, lowStockItems: 12,
+    totalDevices: 120, onlineDevices: 90, todayCommands: 45, activeAlerts: 3,
   };
+  const mockRevenue = [
+    { period: 'Jan', amount: 6500 },
+  ];
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
@@ -21,7 +22,7 @@ describe('AnalyticsComponent', () => {
       providers: [
         { provide: TranslateService, useValue: { currentLang: 'en', getCurrentLang: () => 'en', getBrowserLang: () => 'en', instant: (k: string) => k, use: () => of({}), onLangChange: of({}) } },
         { provide: GetDashboardStatsUseCase, useValue: { execute: () => of(mockStats) } },
-        { provide: GetRevenueChartUseCase, useValue: { execute: () => of([]) } },
+        { provide: GetRevenueChartUseCase, useValue: { execute: () => of(mockRevenue) } },
       ],
     }).compileComponents();
 
@@ -34,13 +35,27 @@ describe('AnalyticsComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should load stats from use case', (done) => {
-    component.stats$.subscribe((stats) => {
-      if (stats) {
-        expect(stats.totalJobs).toBe(156);
-        expect(stats.totalRevenue).toBe(45230);
+  it('should finish loading after use cases resolve', (done) => {
+    component.loading$.subscribe((loading) => {
+      if (!loading) {
+        expect(loading).toBeFalse();
         done();
       }
     });
+  });
+
+  it('should render device stats', () => {
+    fixture.detectChanges();
+    const el: HTMLElement = fixture.nativeElement;
+    expect(el.textContent).toContain('120');
+    expect(el.textContent).toContain('90');
+    expect(el.textContent).toContain('45');
+    expect(el.textContent).toContain('3');
+  });
+
+  it('should render revenue period label', () => {
+    fixture.detectChanges();
+    const el: HTMLElement = fixture.nativeElement;
+    expect(el.textContent).toContain('Jan');
   });
 });

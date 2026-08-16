@@ -8,7 +8,7 @@ describe('DashboardRepositoryImpl', () => {
   let ds: jasmine.SpyObj<DashboardApiDataSource>;
 
   beforeEach(() => {
-    ds = jasmine.createSpyObj('DashboardApiDataSource', ['getStats', 'getRevenueChart', 'getRecentActivities', 'getReports', 'generateReport']);
+    ds = jasmine.createSpyObj('DashboardApiDataSource', ['getStats', 'getRevenueChart', 'getJobStatus', 'getTopParts', 'getReports', 'generateReport']);
     TestBed.configureTestingModule({
       providers: [
         DashboardRepositoryImpl,
@@ -35,5 +35,31 @@ describe('DashboardRepositoryImpl', () => {
     expect(result[0].status).toBe('ready');
     expect(result[1].status).toBe('generating');
     expect(result[2].status).toBe('draft');
+  });
+
+  it('should map job status to canonical shape', () => {
+    ds.getJobStatus.and.returnValue(of([
+      { status: 'pending', count: 5 },
+      { status: 'failed', count: 1 },
+    ]));
+
+    let result: any[] = [];
+    repository.getJobStatus().subscribe((statuses) => (result = statuses));
+
+    expect(result[0].status).toBe('pending');
+    expect(result[0].count).toBe(5);
+    expect(result[1].status).toBe('failed');
+  });
+
+  it('should map top parts to canonical shape', () => {
+    ds.getTopParts.and.returnValue(of([
+      { partName: 'Sensor A', count: 30 },
+    ]));
+
+    let result: any[] = [];
+    repository.getTopParts(5).subscribe((parts) => (result = parts));
+
+    expect(result[0].partName).toBe('Sensor A');
+    expect(result[0].count).toBe(30);
   });
 });

@@ -3,8 +3,6 @@
     "name": "iCmon"
   },
   "errors": {
-    "unknown": "An unknown error occurred",
-    "client": "A client-side error occurred",
     "400": "Invalid data",
     "401": "Please login again",
     "403": "You do not have permission to access this data",
@@ -13,7 +11,9 @@
     "422": "Invalid data, please check again",
     "429": "Too many requests, please wait",
     "500": "Server error, please try again later",
-    "503": "System is under maintenance, please try again later"
+    "503": "System is under maintenance, please try again later",
+    "unknown": "An unknown error occurred",
+    "client": "A client-side error occurred"
   },
   "nav": {
     "dashboard": "Dashboard",
@@ -272,7 +272,20 @@
     "noData": "No data available",
     "fromLastMonth": "from last month",
     "inProgress": "In progress",
-    "loading": "Loading..."
+    "loading": "Loading...",
+    "totalDevices": "Total Devices",
+    "onlineDevices": "Online Devices",
+    "todayCommands": "Today's Commands",
+    "activeAlerts": "Active Alerts",
+    "ofTotal": "of",
+    "allRegisteredDevices": "All registered devices",
+    "totalRevenuePeriod": "in the period",
+    "jobStatus": "Job Status",
+    "failed": "Failed",
+    "topParts": "Top Parts",
+    "partName": "Part Name",
+    "count": "Count",
+    "usage": "Usage"
   },
   "customer": {
     "title": "Customer List",
@@ -425,7 +438,7 @@
   "document": {
     "title": "Documents",
     "subtitle": "Manage all documents",
-    "upload": "Upload Document",
+    "upload": "Upload",
     "detail": "Document Details",
     "back": "Back",
     "download": "Download",
@@ -445,7 +458,6 @@
     "supportedFormats": "Supports PDF, JPG, PNG, DOC up to 10MB",
     "category": "Category",
     "note": "Note",
-    "upload": "Upload",
     "categoryReport": "Report",
     "categoryInvoice": "Invoice",
     "categoryContract": "Contract",
@@ -622,6 +634,7 @@
     "workDistribution": "Work Distribution",
     "monthlySalesChart": "Monthly sales chart",
     "pieChart": "Pie chart",
-    "comparedToLastMonth": "compared to last month"
+    "comparedToLastMonth": "compared to last month",
+    "summary": "Summary"
   }
 }

@@ -3,8 +3,6 @@
     "name": "iCmon"
   },
   "errors": {
-    "unknown": "不明なエラーが発生しました",
-    "client": "クライアント側でエラーが発生しました",
     "400": "データが無効です",
     "401": "再度ログインしてください",
     "403": "このデータにアクセスする権限がありません",
@@ -13,7 +11,9 @@
     "422": "データが無効です。もう一度確認してください",
     "429": "リクエストが多すぎます。しばらくお待ちください",
     "500": "サーバーエラーです。しばらくしてから再度お試しください",
-    "503": "システムメンテナンス中です。しばらくしてから再度お試しください"
+    "503": "システムメンテナンス中です。しばらくしてから再度お試しください",
+    "unknown": "不明なエラーが発生しました",
+    "client": "クライアント側でエラーが発生しました"
   },
   "nav": {
     "dashboard": "ダッシュボード",
@@ -225,7 +225,20 @@
     "recentActivity": "最近のアクティビティ",
     "fromLastMonth": "先月比",
     "inProgress": "進行中",
-    "loading": "読み込み中..."
+    "loading": "読み込み中...",
+    "totalDevices": "Total Devices",
+    "onlineDevices": "Online Devices",
+    "todayCommands": "Today's Commands",
+    "activeAlerts": "Active Alerts",
+    "ofTotal": "of",
+    "allRegisteredDevices": "All registered devices",
+    "totalRevenuePeriod": "in the period",
+    "jobStatus": "Job Status",
+    "failed": "Failed",
+    "topParts": "Top Parts",
+    "partName": "Part Name",
+    "count": "Count",
+    "usage": "Usage"
   },
   "customer": {
     "title": "顧客一覧",
@@ -378,7 +391,7 @@
   "document": {
     "title": "書類",
     "subtitle": "すべての書類を管理",
-    "upload": "書類アップロード",
+    "upload": "アップロード",
     "detail": "書類詳細",
     "back": "戻る",
     "download": "ダウンロード",
@@ -398,7 +411,6 @@
     "supportedFormats": "PDF、JPG、PNG、DOC（最大10MB）に対応",
     "category": "カテゴリ",
     "note": "備考",
-    "upload": "アップロード",
     "categoryReport": "レポート",
     "categoryInvoice": "請求書",
     "categoryContract": "契約書",
@@ -544,6 +556,7 @@
     "workDistribution": "作業分布",
     "monthlySalesChart": "月次売上チャート",
     "pieChart": "円グラフ",
-    "comparedToLastMonth": "前月比"
+    "comparedToLastMonth": "前月比",
+    "summary": "Summary"
   }
 }

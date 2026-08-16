@@ -3,8 +3,6 @@
     "name": "iCmon"
   },
   "errors": {
-    "unknown": "알 수 없는 오류가 발생했습니다",
-    "client": "클라이언트 오류가 발생했습니다",
     "400": "잘못된 데이터입니다",
     "401": "다시 로그인해 주세요",
     "403": "이 데이터에 접근할 권한이 없습니다",
@@ -13,7 +11,9 @@
     "422": "잘못된 데이터입니다. 다시 확인해 주세요",
     "429": "요청이 너무 많습니다. 잠시 기다려 주세요",
     "500": "서버 오류입니다. 잠시 후 다시 시도해 주세요",
-    "503": "시스템 점검 중입니다. 잠시 후 다시 시도해 주세요"
+    "503": "시스템 점검 중입니다. 잠시 후 다시 시도해 주세요",
+    "unknown": "알 수 없는 오류가 발생했습니다",
+    "client": "클라이언트 오류가 발생했습니다"
   },
   "nav": {
     "dashboard": "대시보드",
@@ -225,7 +225,20 @@
     "recentActivity": "최근 활동",
     "fromLastMonth": "전월 대비",
     "inProgress": "진행 중",
-    "loading": "로딩 중..."
+    "loading": "로딩 중...",
+    "totalDevices": "Total Devices",
+    "onlineDevices": "Online Devices",
+    "todayCommands": "Today's Commands",
+    "activeAlerts": "Active Alerts",
+    "ofTotal": "of",
+    "allRegisteredDevices": "All registered devices",
+    "totalRevenuePeriod": "in the period",
+    "jobStatus": "Job Status",
+    "failed": "Failed",
+    "topParts": "Top Parts",
+    "partName": "Part Name",
+    "count": "Count",
+    "usage": "Usage"
   },
   "customer": {
     "title": "고객 목록",
@@ -378,7 +391,7 @@
   "document": {
     "title": "문서",
     "subtitle": "모든 문서 관리",
-    "upload": "문서 업로드",
+    "upload": "업로드",
     "detail": "문서 상세",
     "back": "뒤로",
     "download": "다운로드",
@@ -398,7 +411,6 @@
     "supportedFormats": "PDF, JPG, PNG, DOC 지원 (최대 10MB)",
     "category": "카테고리",
     "note": "비고",
-    "upload": "업로드",
     "categoryReport": "보고서",
     "categoryInvoice": "송장",
     "categoryContract": "계약서",
@@ -544,6 +556,7 @@
     "workDistribution": "업무 분포",
     "monthlySalesChart": "월별 매출 차트",
     "pieChart": "원형 차트",
-    "comparedToLastMonth": "전월 대비"
+    "comparedToLastMonth": "전월 대비",
+    "summary": "Summary"
   }
 }

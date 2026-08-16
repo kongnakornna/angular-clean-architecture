@@ -3,8 +3,6 @@
     "name": "iCmon"
   },
   "errors": {
-    "unknown": "មានកំហុសមិនស្គាល់កើតឡើង",
-    "client": "មានកំហុសនៅខាងម៉ាស៊ីនភ្ញៀវ",
     "400": "ទិន្នន័យមិនត្រឹមត្រូវ",
     "401": "សូមចូលគណនីម្តងទៀត",
     "403": "អ្នកមិនមានសិទ្ធិចូលប្រើទិន្នន័យនេះ",
@@ -13,7 +11,9 @@
     "422": "ទិន្នន័យមិនត្រឹមត្រូវ សូមពិនិត្យម្តងទៀត",
     "429": "មានសំណើច្រើនពេក សូមរង់ចាំ",
     "500": "កំហុសម៉ាស៊ីនមេ សូមព្យាយាមម្តងទៀតនៅពេលក្រោយ",
-    "503": "ប្រព័ន្ធកំពុងថែទាំ សូមព្យាយាមម្តងទៀតនៅពេលក្រោយ"
+    "503": "ប្រព័ន្ធកំពុងថែទាំ សូមព្យាយាមម្តងទៀតនៅពេលក្រោយ",
+    "unknown": "មានកំហុសមិនស្គាល់កើតឡើង",
+    "client": "មានកំហុសនៅខាងម៉ាស៊ីនភ្ញៀវ"
   },
   "nav": {
     "dashboard": "ផ្ទាំងគ្រប់គ្រង",
@@ -225,7 +225,20 @@
     "recentActivity": "សកម្មភាពថ្មីៗ",
     "fromLastMonth": "ពីខែមុន",
     "inProgress": "កំពុងដំណើរការ",
-    "loading": "កំពុងផ្ទុក..."
+    "loading": "កំពុងផ្ទុក...",
+    "totalDevices": "Total Devices",
+    "onlineDevices": "Online Devices",
+    "todayCommands": "Today's Commands",
+    "activeAlerts": "Active Alerts",
+    "ofTotal": "of",
+    "allRegisteredDevices": "All registered devices",
+    "totalRevenuePeriod": "in the period",
+    "jobStatus": "Job Status",
+    "failed": "Failed",
+    "topParts": "Top Parts",
+    "partName": "Part Name",
+    "count": "Count",
+    "usage": "Usage"
   },
   "customer": {
     "title": "បញ្ជីអតិថិជន",
@@ -378,7 +391,7 @@
   "document": {
     "title": "ឯកសារ",
     "subtitle": "គ្រប់គ្រងឯកសារទាំងអស់",
-    "upload": "ផ្ទុកឡើងឯកសារ",
+    "upload": "ផ្ទុកឡើង",
     "detail": "ព័ត៌មានលម្អិតឯកសារ",
     "back": "ត្រឡប់",
     "download": "ទាញយក",
@@ -398,7 +411,6 @@
     "supportedFormats": "គាំទ្រ PDF, JPG, PNG, DOC រហូតដល់ 10MB",
     "category": "ប្រភេទ",
     "note": "ចំណាំ",
-    "upload": "ផ្ទុកឡើង",
     "categoryReport": "របាយការណ៍",
     "categoryInvoice": "វិក្ករបត្រ",
     "categoryContract": "កិច្ចសន្យា",
@@ -544,6 +556,7 @@
     "workDistribution": "ការចែកចាយការងារ",
     "monthlySalesChart": "តារាងការលក់ប្រចាំខែ",
     "pieChart": "តារាងរង្វង់",
-    "comparedToLastMonth": "ប្រៀបធៀបនឹងខែមុន"
+    "comparedToLastMonth": "ប្រៀបធៀបនឹងខែមុន",
+    "summary": "Summary"
   }
 }

@@ -9,32 +9,32 @@
     <div class="col-md-3">
       <div class="card">
         <div class="card-body">
-          <div class="subheader">{{ 'analytics.totalRevenue' | translate }}</div>
-          <div class="h1 mb-0">{{ s.totalRevenue | currency:'THB':'symbol':'1.0-0' }}</div>
+          <div class="subheader">{{ 'dashboard.totalDevices' | translate }}</div>
+          <div class="h1 mb-0">{{ s.totalDevices | number }}</div>
         </div>
       </div>
     </div>
     <div class="col-md-3">
       <div class="card">
         <div class="card-body">
-          <div class="subheader">{{ 'analytics.totalJobs' | translate }}</div>
-          <div class="h1 mb-0">{{ s.totalJobs }}</div>
+          <div class="subheader">{{ 'dashboard.onlineDevices' | translate }}</div>
+          <div class="h1 mb-0">{{ s.onlineDevices | number }}</div>
         </div>
       </div>
     </div>
     <div class="col-md-3">
       <div class="card">
         <div class="card-body">
-          <div class="subheader">{{ 'analytics.totalCustomers' | translate }}</div>
-          <div class="h1 mb-0">{{ s.totalCustomers }}</div>
+          <div class="subheader">{{ 'dashboard.todayCommands' | translate }}</div>
+          <div class="h1 mb-0">{{ s.todayCommands | number }}</div>
         </div>
       </div>
     </div>
     <div class="col-md-3">
       <div class="card">
         <div class="card-body">
-          <div class="subheader">{{ 'analytics.conversionRate' | translate }}</div>
-          <div class="h1 mb-0">{{ s.conversionRate }}%</div>
+          <div class="subheader">{{ 'dashboard.activeAlerts' | translate }}</div>
+          <div class="h1 mb-0">{{ s.activeAlerts | number }}</div>
         </div>
       </div>
     </div>
@@ -44,14 +44,14 @@
     <div class="col-md-8">
       <div class="card">
         <div class="card-header">
-          <h3 class="card-title">{{ 'analytics.monthlyRevenue' | translate }}</h3>
+          <h3 class="card-title">{{ 'dashboard.revenueMonthly' | translate }}</h3>
         </div>
         <div class="card-body">
-          <div *ngIf="(revenue$ | async) as revenueData; else noRevenueData"
+          <div *ngIf="(revenue$ | async)?.length; else noRevenueData"
                class="d-flex align-items-end" style="height: 250px; gap: 8px;">
-            <div *ngFor="let d of revenueData" class="flex-fill text-center">
-              <div class="bg-primary rounded-top" [style.height.px]="d.revenue / 100" style="min-height: 10px;"></div>
-              <small class="text-secondary mt-1 d-block">{{ d.month }}</small>
+            <div *ngFor="let d of (revenue$ | async)" class="flex-fill text-center">
+              <div class="bg-primary rounded-top" [style.height.%]="revenueBarHeight(d.amount, revenue$ | async)" style="min-height: 10px;"></div>
+              <small class="text-secondary mt-1 d-block">{{ d.period }}</small>
             </div>
           </div>
           <ng-template #noRevenueData>
@@ -70,26 +70,26 @@
         <div class="list-group list-group-flush">
           <div class="list-group-item">
             <div class="d-flex justify-content-between">
-              <span>{{ 'analytics.activeJobs' | translate }}</span>
-              <strong>{{ s.activeJobs }}</strong>
+              <span>{{ 'dashboard.totalDevices' | translate }}</span>
+              <strong>{{ s.totalDevices | number }}</strong>
             </div>
           </div>
           <div class="list-group-item">
             <div class="d-flex justify-content-between">
-              <span>{{ 'analytics.pendingApprovals' | translate }}</span>
-              <strong>{{ s.pendingApprovals }}</strong>
+              <span>{{ 'dashboard.onlineDevices' | translate }}</span>
+              <strong>{{ s.onlineDevices | number }}</strong>
             </div>
           </div>
           <div class="list-group-item">
             <div class="d-flex justify-content-between">
-              <span>{{ 'analytics.lowStockItems' | translate }}</span>
-              <strong>{{ s.lowStockItems }}</strong>
+              <span>{{ 'dashboard.todayCommands' | translate }}</span>
+              <strong>{{ s.todayCommands | number }}</strong>
             </div>
           </div>
           <div class="list-group-item">
             <div class="d-flex justify-content-between">
-              <span>{{ 'analytics.monthlyRevenue' | translate }}</span>
-              <strong>{{ s.monthlyRevenue | currency:'THB':'symbol':'1.0-0' }}</strong>
+              <span>{{ 'dashboard.activeAlerts' | translate }}</span>
+              <strong>{{ s.activeAlerts | number }}</strong>
             </div>
           </div>
         </div>

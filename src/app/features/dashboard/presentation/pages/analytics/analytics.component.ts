@@ -39,6 +39,15 @@ export class AnalyticsComponent implements OnInit, OnDestroy {
     this.destroy$.complete();
   }
 
+  revenueBarHeight(amount: number, data: RevenueData[] | null): number {
+    const max = Math.max(...(data ?? []).map((d) => d.amount), 1);
+    return (amount / max) * 100;
+  }
+
+  totalRevenue(data: RevenueData[] | null): number {
+    return (data ?? []).reduce((sum, d) => sum + d.amount, 0);
+  }
+
   private loadData(): void {
     this.loadingSubject.next(true);
 
@@ -49,13 +58,17 @@ export class AnalyticsComponent implements OnInit, OnDestroy {
           this.statsSubject.next(stats);
           this.loadingSubject.next(false);
         },
-        error: () => this.loadingSubject.next(false),
+        error: () => {
+          this.statsSubject.next(null);
+          this.loadingSubject.next(false);
+        },
       });
 
-    this.getRevenueChart.execute('12m')
+    this.getRevenueChart.execute('monthly')
       .pipe(takeUntil(this.destroy$))
       .subscribe({
         next: (data) => this.revenueSubject.next(data),
+        error: () => this.revenueSubject.next([]),
       });
   }
 }

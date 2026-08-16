@@ -4,10 +4,11 @@ import { RouterLink } from '@angular/router';
 import { BehaviorSubject, Subject, takeUntil } from 'rxjs';
 import { TranslatePipe } from '../../../../../shared/pipes/translate.pipe';
 import { WelcomeIllustrationComponent } from '../../../../../shared/components/welcome-illustration/welcome-illustration.component';
-import { DashboardStats, RevenueData, Activity } from '../../../domain/entities/dashboard-stats.entity';
+import { DashboardStats, RevenueData, JobStatusSummary, TopPartData } from '../../../domain/entities/dashboard-stats.entity';
 import { GetDashboardStatsUseCase } from '../../../domain/use-cases/get-dashboard-stats.use-case';
 import { GetRevenueChartUseCase } from '../../../domain/use-cases/get-revenue-chart.use-case';
-import { GetRecentActivitiesUseCase } from '../../../domain/use-cases/get-recent-activities.use-case';
+import { GetJobStatusUseCase } from '../../../domain/use-cases/get-job-status.use-case';
+import { GetTopPartsUseCase } from '../../../domain/use-cases/get-top-parts.use-case';
 
 @Component({
   selector: 'app-main-dashboard',
@@ -23,8 +24,11 @@ export class MainDashboardComponent implements OnInit, OnDestroy {
   private revenueSubject = new BehaviorSubject<RevenueData[]>([]);
   revenue$ = this.revenueSubject.asObservable();
 
-  private activitiesSubject = new BehaviorSubject<Activity[]>([]);
-  activities$ = this.activitiesSubject.asObservable();
+  private jobStatusSubject = new BehaviorSubject<JobStatusSummary[]>([]);
+  jobStatus$ = this.jobStatusSubject.asObservable();
+
+  private topPartsSubject = new BehaviorSubject<TopPartData[]>([]);
+  topParts$ = this.topPartsSubject.asObservable();
 
   private loadingSubject = new BehaviorSubject<boolean>(true);
   loading$ = this.loadingSubject.asObservable();
@@ -34,7 +38,8 @@ export class MainDashboardComponent implements OnInit, OnDestroy {
   constructor(
     private getDashboardStats: GetDashboardStatsUseCase,
     private getRevenueChart: GetRevenueChartUseCase,
-    private getRecentActivities: GetRecentActivitiesUseCase,
+    private getJobStatus: GetJobStatusUseCase,
+    private getTopParts: GetTopPartsUseCase,
   ) {}
 
   ngOnInit(): void {
@@ -46,9 +51,46 @@ export class MainDashboardComponent implements OnInit, OnDestroy {
     this.destroy$.complete();
   }
 
-  revenueBarHeight(revenue: number, data: RevenueData[]): number {
-    const max = Math.max(...data.map((d) => d.revenue), 1);
-    return (revenue / max) * 40;
+  onlineRate(stats: DashboardStats): number {
+    if (!stats.totalDevices) return 0;
+    return Math.round((stats.onlineDevices / stats.totalDevices) * 100);
+  }
+
+  revenueBarHeight(amount: number, data: RevenueData[] | null): number {
+    const list = data ?? [];
+    const max = Math.max(...list.map((d) => d.amount), 1);
+    return (amount / max) * 100;
+  }
+
+  totalRevenue(data: RevenueData[] | null): number {
+    return (data ?? []).reduce((sum, d) => sum + d.amount, 0);
+  }
+
+  statusLabel(status: string): string {
+    if (status === 'pending') return 'jobCard.pending';
+    if (status === 'running' || status === 'in_progress') return 'jobCard.inProgress';
+    if (status === 'completed') return 'jobCard.completed';
+    if (status === 'failed') return 'dashboard.failed';
+    return status;
+  }
+
+  statusBadge(status: string): string {
+    if (status === 'pending') return 'bg-yellow';
+    if (status === 'running' || status === 'in_progress') return 'bg-blue';
+    if (status === 'completed') return 'bg-green';
+    if (status === 'failed') return 'bg-red';
+    return 'bg-secondary';
+  }
+
+  statusPercent(count: number, data: JobStatusSummary[] | null): number {
+    const total = (data ?? []).reduce((sum, d) => sum + d.count, 0);
+    if (!total) return 0;
+    return Math.round((count / total) * 100);
+  }
+
+  partPercent(count: number, data: TopPartData[] | null): number {
+    const max = Math.max(...(data ?? []).map((d) => d.count), 1);
+    return Math.round((count / max) * 100);
   }
 
   private loadDashboard(): void {
@@ -62,20 +104,30 @@ export class MainDashboardComponent implements OnInit, OnDestroy {
           this.loadingSubject.next(false);
         },
         error: () => {
+          this.statsSubject.next(null);
           this.loadingSubject.next(false);
         },
       });
 
-    this.getRevenueChart.execute('6m')
+    this.getRevenueChart.execute('monthly')
       .pipe(takeUntil(this.destroy$))
       .subscribe({
         next: (data) => this.revenueSubject.next(data),
+        error: () => this.revenueSubject.next([]),
       });
 
-    this.getRecentActivities.execute()
+    this.getJobStatus.execute()
       .pipe(takeUntil(this.destroy$))
       .subscribe({
-        next: (activities) => this.activitiesSubject.next(activities),
+        next: (statuses) => this.jobStatusSubject.next(statuses),
+        error: () => this.jobStatusSubject.next([]),
+      });
+
+    this.getTopParts.execute(5)
+      .pipe(takeUntil(this.destroy$))
+      .subscribe({
+        next: (parts) => this.topPartsSubject.next(parts),
+        error: () => this.topPartsSubject.next([]),
       });
   }
 }

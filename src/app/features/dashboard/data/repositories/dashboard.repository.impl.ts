@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Observable, map } from 'rxjs';
 import { IDashboardRepository } from '../../domain/repositories/dashboard.repository';
-import { DashboardStats, RevenueData, Activity } from '../../domain/entities/dashboard-stats.entity';
+import { DashboardStats, RevenueData, JobStatusSummary, TopPartData } from '../../domain/entities/dashboard-stats.entity';
 import { Report } from '../../domain/entities/report.entity';
 import { DashboardApiDataSource } from '../datasources/dashboard.api.datasource';
 
@@ -11,21 +11,28 @@ export class DashboardRepositoryImpl implements IDashboardRepository {
 
   getStats(): Observable<DashboardStats> {
     return this.ds.getStats().pipe(map((d) => ({
-      totalJobs: d.totalJobs, activeJobs: d.activeJobs, totalCustomers: d.totalCustomers,
-      totalRevenue: d.totalRevenue, monthlyRevenue: d.monthlyRevenue, conversionRate: d.conversionRate,
-      pendingApprovals: d.pendingApprovals, lowStockItems: d.lowStockItems,
+      totalDevices: d.totalDevices,
+      onlineDevices: d.onlineDevices,
+      activeAlerts: d.activeAlerts,
+      todayCommands: d.todayCommands,
     })));
   }
 
   getRevenueChart(period: string): Observable<RevenueData[]> {
     return this.ds.getRevenueChart(period).pipe(map((list) =>
-      list.map((d: any) => ({ month: d.month, revenue: d.revenue, expenses: d.expenses, profit: d.profit }))
+      list.map((d: any) => ({ period: d.period, amount: d.amount }))
     ));
   }
 
-  getRecentActivities(): Observable<Activity[]> {
-    return this.ds.getRecentActivities().pipe(map((list) =>
-      list.map((d: any) => ({ id: d.id, user: d.user, action: d.action, target: d.target, time: new Date(d.time), type: d.type }))
+  getJobStatus(): Observable<JobStatusSummary[]> {
+    return this.ds.getJobStatus().pipe(map((list) =>
+      list.map((d: any) => ({ status: d.status, count: d.count }))
+    ));
+  }
+
+  getTopParts(limit?: number): Observable<TopPartData[]> {
+    return this.ds.getTopParts(limit).pipe(map((list) =>
+      list.map((d: any) => ({ partName: d.partName, count: d.count }))
     ));
   }
 

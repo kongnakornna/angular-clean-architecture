@@ -90,7 +90,8 @@ export const API_ENDPOINTS = {
   dashboard: {
     stats: '/dashboard/stats',
     revenue: '/dashboard/revenue',
-    activities: '/dashboard/activities',
+    jobStatus: '/dashboard/job-status',
+    topParts: '/dashboard/top-parts',
     reports: '/reports/generate',
     reportsList: '/reports',
     exportReport: '/reports/export',
