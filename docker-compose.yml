@@ -1,0 +1,9 @@
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: icmonweb
+    ports:
+      - "3010:4200"
+    restart: unless-stopped
