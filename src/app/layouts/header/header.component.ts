@@ -1,4 +1,5 @@
 import { Component, inject } from '@angular/core';
+import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 
 import { LayoutService } from '../../core/services/layout.service';
 
@@ -10,8 +11,13 @@ import { LayoutService } from '../../core/services/layout.service';
 })
 export class HeaderComponent {
   private layout = inject(LayoutService);
+  private sanitizer = inject(DomSanitizer);
 
   unreadCount = 3;
+
+  trustHtml(html: string): SafeHtml {
+    return this.sanitizer.bypassSecurityTrustHtml(html);
+  }
 
   get username(): string {
     return localStorage.getItem('username') || 'User';
