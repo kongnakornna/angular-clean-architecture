@@ -4,7 +4,7 @@ import { Injectable, computed, signal } from '@angular/core';
 export class LayoutService {
   private _state = signal<Record<string, string>>({});
 
-  readonly theme = computed(() => this._state()['theme'] || 'light');
+  readonly theme = computed(() => this._state()['theme'] || 'dark');
   readonly themeBase = computed(() => this._state()['theme-base'] || 'gray');
   readonly themeFont = computed(() => this._state()['theme-font'] || 'sans-serif');
   readonly themePrimary = computed(() => this._state()['theme-primary'] || 'blue');
@@ -32,7 +32,7 @@ export class LayoutService {
     const s = this._state();
     const el = document.documentElement;
     // theme (light/dark)
-    el.setAttribute('data-bs-theme', s['theme'] || 'light');
+    el.setAttribute('data-bs-theme', s['theme'] || 'dark');
 
     // theme-base
     el.setAttribute('data-bs-theme-base', s['theme-base'] || 'gray');
@@ -67,7 +67,7 @@ export class LayoutService {
   private loadSettings(): void {
     const keys = ['theme', 'theme-base', 'theme-font', 'theme-primary', 'theme-radius', 'layout'];
     const defaults: Record<string, string> = {
-      theme: 'light',
+      theme: 'dark',
       'theme-base': 'gray',
       'theme-font': 'sans-serif',
       'theme-primary': 'blue',
