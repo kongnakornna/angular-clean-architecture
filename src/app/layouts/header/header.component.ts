@@ -3,6 +3,15 @@ import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 
 import { LayoutService } from '../../core/services/layout.service';
 
+interface MenuItem {
+  label?: string;
+  icon?: string;
+  route?: string;
+  action?: string;
+  divider?: boolean;
+  children?: MenuItem[];
+}
+
 @Component({
   selector: 'app-header',
   standalone: false,
@@ -13,10 +22,20 @@ export class HeaderComponent {
   private layout = inject(LayoutService);
   private sanitizer = inject(DomSanitizer);
 
+  private invoiceIcon = `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-book"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M3 19a9 9 0 0 1 9 0a9 9 0 0 1 9 0" /><path d="M3 6a9 9 0 0 1 9 0a9 9 0 0 1 9 0" /><path d="M3 6l0 13" /><path d="M12 6l0 13" /><path d="M21 6l0 13" /></svg>`;
+
   unreadCount = 3;
 
   trustHtml(html: string): SafeHtml {
     return this.sanitizer.bypassSecurityTrustHtml(html);
+  }
+
+  isSvgIcon(icon?: string): boolean {
+    return !!icon && icon.startsWith('<svg');
+  }
+
+  getIconName(icon?: string): string {
+    return icon?.startsWith('<svg') ? '' : (icon || '');
   }
 
   get username(): string {
@@ -29,7 +48,7 @@ export class HeaderComponent {
     { id: 3, title: 'สต็อกสินค้าต่ำ', time: '2 ชั่วโมงที่แล้ว', read: true },
   ];
 
-  profileMenu = [
+  profileMenu: MenuItem[] = [
     { label: 'Profile', icon: 'user', route: '/profile' },
     { label: 'Analytics', icon: 'chart-pie', route: '/analytics' },
     { divider: true },
@@ -40,7 +59,7 @@ export class HeaderComponent {
   ];
 
 
-  apps = [
+  apps: MenuItem[] = [
     { label: 'Dashboard', icon: 'layout-dashboard', route: '/dashboard' },
     { label: 'Customers', icon: 'users', route: '/customers' },
     { label: 'Quotations', icon: 'file-text', route: '/quotations' },
@@ -59,15 +78,11 @@ export class HeaderComponent {
     { label: 'Users', icon: 'user', route: '/users' },
   ];
 
-  horizontalMenu = [
+  horizontalMenu: MenuItem[] = [
     { label: 'Dashboard', icon: 'layout-dashboard', route: '/dashboard' },
-    { label: 'IoT Devices', icon: 'package', route: '/iot/devices' },
-    { label: 'Documents', icon: 'folder', route: '/documents' },
     {
-      label: 'Users', icon: 'users', route: '/customers',
+      label: 'Customers', icon: 'users', route: '/customers',
       children: [
-        { label: 'Users', icon: 'user', route: '/users' },
-        { label: 'Roles', icon: 'shield', route: '/roles' },
         { label: 'Customer List', icon: 'list', route: '/customers' },
         { label: 'Customer Create', icon: 'plus', route: '/customers/create' },
       ],
@@ -76,7 +91,7 @@ export class HeaderComponent {
       label: 'Service', icon: 'list', route: '/payments',
       children: [
         { label: 'Payments', icon: 'credit-card', route: '/payments' },
-        { label: 'Invoices', icon: 'clipboard', route: '/invoices' },
+        { label: 'Invoices', icon: this.invoiceIcon, route: '/invoices' },
         { label: 'Job Cards', icon: 'clipboard', route: '/jobs' },
         { label: 'Work Orders', icon: 'clipboard', route: '/wos/orders' },
         { label: 'Batch Jobs', icon: 'clipboard', route: '/batch/jobs' },
@@ -96,6 +111,8 @@ export class HeaderComponent {
       children: [
         { label: 'Theme', icon: 'palette', route: '/settings/theme' },
         { label: 'Language', icon: 'language', route: '/settings/language' },
+        { label: 'Users', icon: 'user', route: '/users' },
+        { label: 'Roles', icon: 'shield', route: '/roles' },
       ],
     },
   ];
