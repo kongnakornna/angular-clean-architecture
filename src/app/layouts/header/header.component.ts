@@ -34,30 +34,62 @@ export class HeaderComponent {
 
   apps = [
     { label: 'Dashboard', icon: 'layout-dashboard', route: '/dashboard' },
-    { label: 'Jobs', icon: 'clipboard', route: '/jobs' },
     { label: 'Customers', icon: 'users', route: '/customers' },
-    { label: 'IoT', icon: 'device-desktop', route: '/iot/devices' },
-    { label: 'Reports', icon: 'scoreboard', route: '/reports' },
+    { label: 'Quotations', icon: 'file-text', route: '/quotations' },
+    { label: 'Purchase Orders', icon: 'shopping-cart', route: '/purchase-orders' },
+    { label: 'Products', icon: 'package', route: '/products' },
+    { label: 'Payments', icon: 'credit-card', route: '/payments' },
+    { label: 'Documents', icon: 'folder', route: '/documents' },
+    { label: 'Job Cards', icon: 'briefcase', route: '/jobs' },
+    { label: 'Work Orders', icon: 'clipboard', route: '/wos/orders' },
+    { label: 'Batch Jobs', icon: 'layers', route: '/batch/jobs' },
+    { label: 'IoT Devices', icon: 'cpu', route: '/iot/devices' },
     { label: 'Analytics', icon: 'chart-line', route: '/analytics' },
+    { label: 'Reports', icon: 'scoreboard', route: '/reports' },
+    { label: 'Email', icon: 'mail', route: '/email/templates' },
+    { label: 'Languages', icon: 'globe', route: '/i18n/languages' },
+    { label: 'Users', icon: 'user', route: '/users' },
   ];
 
   horizontalMenu = [
     { label: 'Dashboard', icon: 'layout-dashboard', route: '/dashboard' },
-    {
-      label: 'Jobs', icon: 'clipboard', route: '/jobs',
-      children: [
-        { label: 'Job List', icon: 'list', route: '/jobs' },
-        { label: 'Job Board', icon: 'layout-kanban', route: '/jobs/board' },
-      ],
-    },
+    { label: 'IoT Devices', icon: 'package', route: '/iot/devices' },
+    { label: 'Documents', icon: 'folder', route: '/documents' },
     {
       label: 'Customers', icon: 'users', route: '/customers',
       children: [
+        { label: 'Users', icon: 'user', route: '/users' },
+        { label: 'Roles', icon: 'shield', route: '/roles' },
         { label: 'Customer List', icon: 'list', route: '/customers' },
         { label: 'Customer Create', icon: 'plus', route: '/customers/create' },
       ],
     },
-    { label: 'Reports', icon: 'clipboard', route: '/reports' },
+    {
+      label: 'Service', icon: 'list', route: '/payments',
+      children: [
+        { label: 'Payments', icon: 'credit-card', route: '/payments' },
+        { label: 'Invoices', icon: 'receipt', route: '/invoices' },
+        { label: 'Job Cards', icon: 'briefcase', route: '/jobs' },
+        { label: 'Work Orders', icon: 'clipboard', route: '/wos/orders' },
+        { label: 'Batch Jobs', icon: 'layers', route: '/batch/jobs' },
+        { label: 'Analytics', icon: 'chart-line', route: '/analytics' },
+        { label: 'Reports', icon: 'scoreboard', route: '/reports' },
+        { label: 'Languages', icon: 'globe', route: '/i18n/languages' },
+        { label: 'Quotations', icon: 'file-text', route: '/quotations' },
+        { label: 'Purchase Orders', icon: 'shopping-cart', route: '/purchase-orders' },
+        { label: 'Products', icon: 'package', route: '/products' },
+        { label: 'Email Templates', icon: 'mail', route: '/email/templates' },
+        { label: 'Email Compose', icon: 'pencil', route: '/email/compose' },
+        { label: 'Email Logs', icon: 'history', route: '/email/logs' },
+      ],
+    },
+    {
+      label: 'Settings', icon: 'settings', route: '/settings/theme',
+      children: [
+        { label: 'Theme', icon: 'palette', route: '/settings/theme' },
+        { label: 'Language', icon: 'language', route: '/settings/language' },
+      ],
+    },
   ];
 
   get isDarkMode(): boolean {
