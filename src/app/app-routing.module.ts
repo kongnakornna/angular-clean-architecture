@@ -8,9 +8,6 @@ import { AuthLayoutComponent } from './features/auth/presentation/layouts/auth-l
 
 export const routes: Routes = [
   { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
-
-
-
   {
     path: '',
     component: AuthLayoutComponent,

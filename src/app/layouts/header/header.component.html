@@ -15,11 +15,109 @@
          <!---- TEXT---->
       </div>
       <div class="d-none d-md-flex me-3">
+        <div class="nav-item dropdown d-none d-md-flex">
+          <a href="javascript:void(0)" class="nav-link px-0" data-bs-toggle="dropdown" tabindex="-1" aria-label="Show notifications" data-bs-auto-close="outside" aria-expanded="false">
+            <i-tabler name="bell" class="icon icon-sm"></i-tabler>
+            <span class="badge bg-red" *ngIf="unreadCount > 0">{{ unreadCount }}</span>
+          </a>
+          <div class="dropdown-menu dropdown-menu-arrow dropdown-menu-end dropdown-menu-card">
+            <div class="card">
+              <div class="card-header d-flex">
+                <h3 class="card-title">{{ 'layout.header.notifications' | translate }}</h3>
+                <div class="btn-close ms-auto" data-bs-dismiss="dropdown"></div>
+              </div>
+              <div class="list-group list-group-flush list-group-hoverable">
+                <div class="list-group-item" *ngFor="let n of notifications">
+                  <div class="row align-items-center">
+                    <div class="col-auto">
+                      <span class="status-dot d-block" [class.status-dot-animated]="!n.read" [class.bg-red]="!n.read"></span>
+                    </div>
+                    <div class="col text-truncate">
+                      <a href="javascript:void(0)" class="text-body d-block">{{ n.title }}</a>
+                      <div class="d-block text-secondary text-truncate mt-n1">{{ n.time }}</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="card-body">
+                <div class="row">
+                  <div class="col">
+                    <a href="javascript:void(0)" class="btn btn-outline-secondary w-100" (click)="unreadCount = 0">Archive all</a>
+                  </div>
+                  <div class="col">
+                    <a href="javascript:void(0)" class="btn btn-outline-secondary w-100" (click)="unreadCount = 0">Mark all as read</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+      </div>
 
         <div class="nav-item dropdown d-none d-md-flex">
-          <a href="javascript:void(0)" class="nav-link px-0 layout-toggle" data-bs-toggle="dropdown" tabindex="-1" [attr.aria-label]="'layout.header.layoutTitle' | translate" data-bs-auto-close="outside" aria-expanded="false">
-            <i-tabler name="adjustments-alt" class="icon icon-sm"></i-tabler>
+          <a href="javascript:void(0)" class="nav-link px-0" data-bs-toggle="dropdown" tabindex="-1" aria-label="Show app menu" data-bs-auto-close="outside" aria-expanded="false">
+            <i-tabler name="apps" class="icon icon-sm"></i-tabler>
           </a>
+          <div class="dropdown-menu dropdown-menu-arrow dropdown-menu-end dropdown-menu-card">
+            <div class="card">
+              <div class="card-header">
+                <div class="card-title">My Apps</div>
+              </div>
+              <div class="card-body scroll-y p-2" style="max-height: 50vh">
+                <div class="row g-0">
+                  <div class="col-4" *ngFor="let app of apps">
+                    <a [routerLink]="app.route" class="d-flex flex-column align-items-center justify-content-center text-center text-secondary py-2 px-2 link-hoverable">
+                      <i-tabler [name]="app.icon" class="icon icon-md mx-auto mb-2"></i-tabler>
+                      <span class="h5">{{ app.label }}</span>
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!--## mode ##--->
+        <div class="nav-item">
+          <a href="javascript:void(0)" class="nav-link px-0 hide-theme-dark" title="Enable dark mode" (click)="toggleTheme()">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-moon">
+                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                <path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454l0 .008" />
+            </svg>
+          </a>
+          <!--## mode ##--->
+          <a href="javascript:void(0)" class="nav-link px-0 hide-theme-light" title="Enable light mode" (click)="toggleTheme()">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" class="icon icon-tabler icons-tabler-filled icon-tabler-sun">
+                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                <path d="M12 19a1 1 0 0 1 .993 .883l.007 .117v1a1 1 0 0 1 -1.993 .117l-.007 -.117v-1a1 1 0 0 1 1 -1z" />
+                <path d="M18.313 16.91l.094 .083l.7 .7a1 1 0 0 1 -1.32 1.497l-.094 -.083l-.7 -.7a1 1 0 0 1 1.218 -1.567l.102 .07z" />
+                <path d="M7.007 16.993a1 1 0 0 1 .083 1.32l-.083 .094l-.7 .7a1 1 0 0 1 -1.497 -1.32l.083 -.094l.7 -.7a1 1 0 0 1 1.414 0z" />
+                <path d="M4 11a1 1 0 0 1 .117 1.993l-.117 .007h-1a1 1 0 0 1 -.117 -1.993l.117 -.007h1z" />
+                <path d="M21 11a1 1 0 0 1 .117 1.993l-.117 .007h-1a1 1 0 0 1 -.117 -1.993l.117 -.007h1z" />
+                <path d="M6.213 4.81l.094 .083l.7 .7a1 1 0 0 1 -1.32 1.497l-.094 -.083l-.7 -.7a1 1 0 0 1 1.217 -1.567l.102 .07z" />
+                <path d="M19.107 4.893a1 1 0 0 1 .083 1.32l-.083 .094l-.7 .7a1 1 0 0 1 -1.497 -1.32l.083 -.094l.7 -.7a1 1 0 0 1 1.414 0z" />
+                <path d="M12 2a1 1 0 0 1 .993 .883l.007 .117v1a1 1 0 0 1 -1.993 .117l-.007 -.117v-1a1 1 0 0 1 1 -1z" />
+                <path d="M12 7a5 5 0 1 1 -4.995 5.217l-.005 -.217l.005 -.217a5 5 0 0 1 4.995 -4.783z" />
+            </svg>
+          </a>
+        </div>
+        <!--## mode ##--->
+ <div class="nav-item dropdown d-none d-md-flex">
+          <a href="javascript:void(0)" class="nav-link px-0 layout-toggle" data-bs-toggle="dropdown" tabindex="-1" [attr.aria-label]="'layout.header.layoutTitle' | translate" data-bs-auto-close="outside" aria-expanded="false">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-adjustments-alt">
+                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                <path d="M4 8h4v4h-4l0 -4" />
+                <path d="M6 4l0 4" />
+                <path d="M6 12l0 8" />
+                <path d="M10 14h4v4h-4l0 -4" />
+                <path d="M12 4l0 10" />
+                <path d="M12 18l0 2" />
+                <path d="M16 5h4v4h-4l0 -4" />
+                <path d="M18 4l0 1" />
+                <path d="M18 9l0 11" />
+            </svg>
+          </a>  
           <div class="dropdown-menu dropdown-menu-arrow dropdown-menu-end dropdown-menu-card">
             <div class="card">
               <div class="list-group list-group-flush list-group-hoverable">
@@ -67,95 +165,7 @@
             </div>
           </div>
         </div>
-
-        <div class="nav-item dropdown d-none d-md-flex">
-          <a href="javascript:void(0)" class="nav-link px-0" data-bs-toggle="dropdown" tabindex="-1" aria-label="Show notifications" data-bs-auto-close="outside" aria-expanded="false">
-            <i-tabler name="bell" class="icon icon-sm"></i-tabler>
-            <span class="badge bg-red" *ngIf="unreadCount > 0">{{ unreadCount }}</span>
-          </a>
-          <div class="dropdown-menu dropdown-menu-arrow dropdown-menu-end dropdown-menu-card">
-            <div class="card">
-              <div class="card-header d-flex">
-                <h3 class="card-title">{{ 'layout.header.notifications' | translate }}</h3>
-                <div class="btn-close ms-auto" data-bs-dismiss="dropdown"></div>
-              </div>
-              <div class="list-group list-group-flush list-group-hoverable">
-                <div class="list-group-item" *ngFor="let n of notifications">
-                  <div class="row align-items-center">
-                    <div class="col-auto">
-                      <span class="status-dot d-block" [class.status-dot-animated]="!n.read" [class.bg-red]="!n.read"></span>
-                    </div>
-                    <div class="col text-truncate">
-                      <a href="javascript:void(0)" class="text-body d-block">{{ n.title }}</a>
-                      <div class="d-block text-secondary text-truncate mt-n1">{{ n.time }}</div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="card-body">
-                <div class="row">
-                  <div class="col">
-                    <a href="javascript:void(0)" class="btn btn-outline-secondary w-100" (click)="unreadCount = 0">Archive all</a>
-                  </div>
-                  <div class="col">
-                    <a href="javascript:void(0)" class="btn btn-outline-secondary w-100" (click)="unreadCount = 0">Mark all as read</a>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="nav-item dropdown d-none d-md-flex">
-          <a href="javascript:void(0)" class="nav-link px-0" data-bs-toggle="dropdown" tabindex="-1" aria-label="Show app menu" data-bs-auto-close="outside" aria-expanded="false">
-            <i-tabler name="apps" class="icon icon-sm"></i-tabler>
-          </a>
-          <div class="dropdown-menu dropdown-menu-arrow dropdown-menu-end dropdown-menu-card">
-            <div class="card">
-              <div class="card-header">
-                <div class="card-title">My Apps</div>
-              </div>
-              <div class="card-body scroll-y p-2" style="max-height: 50vh">
-                <div class="row g-0">
-                  <div class="col-4" *ngFor="let app of apps">
-                    <a [routerLink]="app.route" class="d-flex flex-column align-items-center justify-content-center text-center text-secondary py-2 px-2 link-hoverable">
-                      <i-tabler [name]="app.icon" class="icon icon-md mx-auto mb-2"></i-tabler>
-                      <span class="h5">{{ app.label }}</span>
-                    </a>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-
-      </div>
-        <!--## mode ##--->
-        <div class="nav-item">
-          <a href="javascript:void(0)" class="nav-link px-0 hide-theme-dark" title="Enable dark mode" (click)="toggleTheme()">
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-moon">
-                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                <path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454l0 .008" />
-            </svg>
-          </a>
-          <!--## mode ##--->
-          <a href="javascript:void(0)" class="nav-link px-0 hide-theme-light" title="Enable light mode" (click)="toggleTheme()">
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" class="icon icon-tabler icons-tabler-filled icon-tabler-sun">
-                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                <path d="M12 19a1 1 0 0 1 .993 .883l.007 .117v1a1 1 0 0 1 -1.993 .117l-.007 -.117v-1a1 1 0 0 1 1 -1z" />
-                <path d="M18.313 16.91l.094 .083l.7 .7a1 1 0 0 1 -1.32 1.497l-.094 -.083l-.7 -.7a1 1 0 0 1 1.218 -1.567l.102 .07z" />
-                <path d="M7.007 16.993a1 1 0 0 1 .083 1.32l-.083 .094l-.7 .7a1 1 0 0 1 -1.497 -1.32l.083 -.094l.7 -.7a1 1 0 0 1 1.414 0z" />
-                <path d="M4 11a1 1 0 0 1 .117 1.993l-.117 .007h-1a1 1 0 0 1 -.117 -1.993l.117 -.007h1z" />
-                <path d="M21 11a1 1 0 0 1 .117 1.993l-.117 .007h-1a1 1 0 0 1 -.117 -1.993l.117 -.007h1z" />
-                <path d="M6.213 4.81l.094 .083l.7 .7a1 1 0 0 1 -1.32 1.497l-.094 -.083l-.7 -.7a1 1 0 0 1 1.217 -1.567l.102 .07z" />
-                <path d="M19.107 4.893a1 1 0 0 1 .083 1.32l-.083 .094l-.7 .7a1 1 0 0 1 -1.497 -1.32l.083 -.094l.7 -.7a1 1 0 0 1 1.414 0z" />
-                <path d="M12 2a1 1 0 0 1 .993 .883l.007 .117v1a1 1 0 0 1 -1.993 .117l-.007 -.117v-1a1 1 0 0 1 1 -1z" />
-                <path d="M12 7a5 5 0 1 1 -4.995 5.217l-.005 -.217l.005 -.217a5 5 0 0 1 4.995 -4.783z" />
-            </svg>
-          </a>
-        </div>
-        <!--## mode ##--->
+        <!----####---->
       <div class="nav-item d-flex me-2 me-md-3">
         <a href="javascript:void(0)" class="nav-link px-0" data-bs-toggle="offcanvas" data-bs-target="#offcanvas-settings" [title]="'layout.settings.title' | translate" aria-label="Theme Settings">
           <i-tabler name="settings" class="icon icon-sm"></i-tabler>

@@ -29,8 +29,10 @@ export class HeaderComponent {
     { divider: true },
     { label: 'Settings & Privacy', route: '/settings' },
     { label: 'Help' },
+    { label: 'Lock Screen', route: 'lock-screen' },
     { label: 'Sign out', action: 'logout' },
   ];
+
 
   apps = [
     { label: 'Dashboard', icon: 'layout-dashboard', route: '/dashboard' },
