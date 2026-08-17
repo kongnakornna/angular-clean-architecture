@@ -60,8 +60,6 @@ export class HeaderComponent {
     { label: 'Reports', icon: 'clipboard', route: '/reports' },
   ];
 
-  readonly theme = this.layout.theme;
-
   get isDarkMode(): boolean {
     return this.layout.theme() === 'dark';
   }

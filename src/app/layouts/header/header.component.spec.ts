@@ -160,23 +160,19 @@ describe('HeaderComponent dropdown close behavior', () => {
     expect(exitSpy).toHaveBeenCalled();
   });
 
-  it('sets data-bs-theme to dark when theme is dark', () => {
-    layout.update('theme', 'dark');
-    fixture.detectChanges();
+  it('should not have data-bs-theme attribute on header element', () => {
     const header = fixture.nativeElement.querySelector('header');
-    expect(header.getAttribute('data-bs-theme')).toBe('dark');
+    expect(header.hasAttribute('data-bs-theme')).toBeFalse();
   });
 
-  it('sets data-bs-theme to light when theme is light', () => {
+  it('should toggle theme via LayoutService', () => {
     layout.update('theme', 'light');
-    fixture.detectChanges();
-    const header = fixture.nativeElement.querySelector('header');
-    expect(header.getAttribute('data-bs-theme')).toBe('light');
-  });
+    expect(component.isDarkMode).toBeFalse();
 
-  it('toggleTheme switches from light to dark', () => {
-    layout.update('theme', 'light');
     component.toggleTheme();
     expect(component.isDarkMode).toBeTrue();
+
+    component.toggleTheme();
+    expect(component.isDarkMode).toBeFalse();
   });
 });
