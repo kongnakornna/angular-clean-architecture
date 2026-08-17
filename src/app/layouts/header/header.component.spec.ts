@@ -12,12 +12,14 @@ import {
 import { HeaderComponent } from './header.component';
 import { TranslatePipe } from '../../shared/pipes/translate.pipe';
 import { LanguageSelectorComponent } from '../../shared/i18n/presentation/pages/language-selector/language-selector.component';
+import { LayoutService } from '../../core/services/layout.service';
 
 declare const window: any;
 
 describe('HeaderComponent dropdown close behavior', () => {
   let fixture: ComponentFixture<HeaderComponent>;
   let component: HeaderComponent;
+  let layout: LayoutService;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
@@ -41,6 +43,7 @@ describe('HeaderComponent dropdown close behavior', () => {
 
     fixture = TestBed.createComponent(HeaderComponent);
     component = fixture.componentInstance;
+    layout = TestBed.inject(LayoutService);
     fixture.detectChanges();
   });
 
@@ -155,5 +158,25 @@ describe('HeaderComponent dropdown close behavior', () => {
     Object.defineProperty(document, 'fullscreenElement', { value: el, configurable: true });
     click(layoutItems()[3]);
     expect(exitSpy).toHaveBeenCalled();
+  });
+
+  it('sets data-bs-theme to dark when theme is dark', () => {
+    layout.update('theme', 'dark');
+    fixture.detectChanges();
+    const header = fixture.nativeElement.querySelector('header');
+    expect(header.getAttribute('data-bs-theme')).toBe('dark');
+  });
+
+  it('sets data-bs-theme to light when theme is light', () => {
+    layout.update('theme', 'light');
+    fixture.detectChanges();
+    const header = fixture.nativeElement.querySelector('header');
+    expect(header.getAttribute('data-bs-theme')).toBe('light');
+  });
+
+  it('toggleTheme switches from light to dark', () => {
+    layout.update('theme', 'light');
+    component.toggleTheme();
+    expect(component.isDarkMode).toBeTrue();
   });
 });

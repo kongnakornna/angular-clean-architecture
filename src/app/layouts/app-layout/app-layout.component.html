@@ -1,17 +1,18 @@
 <a href="#content" class="visually-hidden skip-link">{{ 'layout.skipLink' | translate }}</a>
 
-<app-header></app-header>
+<div class="page">
+  <app-header></app-header>
+  <div class="page-wrapper">
+    <ng-content select="[page-header]"></ng-content>
 
-<div class="page-wrapper">
-  <ng-content select="[page-header]"></ng-content>
+    <main class="page-body" id="content">
+      <div class="container-xl">
+        <router-outlet></router-outlet>
+      </div>
+    </main>
 
-  <main class="page-body" id="content">
-    <div class="container-xl">
-      <router-outlet></router-outlet>
-    </div>
-  </main>
-
-  <app-footer></app-footer>
+    <app-footer></app-footer>
+  </div>
 </div>
 
 <app-layout-settings></app-layout-settings>
