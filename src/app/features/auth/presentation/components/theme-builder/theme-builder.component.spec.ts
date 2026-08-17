@@ -1,9 +1,13 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { signal } from '@angular/core';
+
 import { TranslateService } from '@ngx-translate/core';
+
 import { of } from 'rxjs';
-import { ThemeBuilderComponent } from './theme-builder.component';
+
 import { LayoutService } from '../../../../../core/services/layout.service';
+
+import { ThemeBuilderComponent } from './theme-builder.component';
 
 describe('ThemeBuilderComponent', () => {
   let component: ThemeBuilderComponent;
@@ -16,7 +20,7 @@ describe('ThemeBuilderComponent', () => {
         {
           provide: LayoutService,
           useValue: {
-            theme: signal('light'),
+            theme: signal('dark'),
             themePrimary: signal('blue'),
             themeFont: signal('sans-serif'),
             themeBase: signal('slate'),
