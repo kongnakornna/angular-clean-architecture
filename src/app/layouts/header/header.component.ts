@@ -83,6 +83,8 @@ export class HeaderComponent {
     {
       label: 'Customers', icon: 'users', route: '/customers',
       children: [
+        { label: 'Users', icon: 'user', route: '/users' },
+        { label: 'Roles', icon: 'shield', route: '/roles' },
         { label: 'Customer List', icon: 'list', route: '/customers' },
         { label: 'Customer Create', icon: 'plus', route: '/customers/create' },
       ],
@@ -103,16 +105,14 @@ export class HeaderComponent {
         { label: 'Email Templates', icon: 'clipboard', route: '/email/templates' },
         { label: 'Email Compose', icon: 'pencil', route: '/email/compose' },
         { label: 'Email Logs', icon: 'clipboard', route: '/email/logs' },
-        { label: 'Languages', icon: 'globe', route: '/i18n/languages' },
+        { label: 'Languages', icon: this.invoiceIcon, route: '/i18n/languages' },
       ],
     },
     {
       label: 'Settings', icon: 'settings', route: '/settings/theme',
       children: [
-        { label: 'Theme', icon: 'palette', route: '/settings/theme' },
-        { label: 'Language', icon: 'language', route: '/settings/language' },
-        { label: 'Users', icon: 'user', route: '/users' },
-        { label: 'Roles', icon: 'shield', route: '/roles' },
+        { label: 'Theme', icon: this.invoiceIcon, route: '/settings/theme' },
+        { label: 'Language', icon: this.invoiceIcon, route: '/settings/language' },
       ],
     },
   ];
