@@ -1,5 +1,7 @@
 import { Observable } from 'rxjs';
 import { User, LoginCredentials, SignInCredentials, AuthResponse } from '../entities/user.entity';
+import { Role, CreateRoleRequest, UpdateRoleRequest, AssignRolePermissionsRequest } from '../entities/role.entity';
+import { Permission } from '../entities/permission.entity';
 
 export interface RegisterCredentials {
   username: string;
@@ -71,4 +73,15 @@ export interface IAuthRepository {
   updateUserRole(id: string, roleId: number): Observable<void>;
   updateUserPassword(id: string, oldPassword: string, newPassword: string, confirmPassword: string): Observable<void>;
   forceLogoutUser(id: string): Observable<void>;
+  
+  // Role CRUD
+  getRoles(): Observable<Role[]>;
+  getRole(id: number): Observable<Role>;
+  createRole(request: CreateRoleRequest): Observable<Role>;
+  updateRole(id: number, request: UpdateRoleRequest): Observable<Role>;
+  deleteRole(id: number): Observable<void>;
+  assignRolePermissions(id: number, request: AssignRolePermissionsRequest): Observable<Role>;
+  
+  // Permissions
+  getAllPermissions(): Observable<Permission[]>;
 }

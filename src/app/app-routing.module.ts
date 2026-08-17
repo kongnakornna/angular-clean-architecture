@@ -90,6 +90,8 @@ export const routes: Routes = [
           import(
             './features/customer/presentation/pages/customer-list/customer-list.component'
           ).then((m) => m.CustomerListComponent),
+        canActivate: [PermissionGuard],
+        data: { permission: 'customer.view' },
       },
       {
         path: 'customers/create',
@@ -97,6 +99,8 @@ export const routes: Routes = [
           import(
             './features/customer/presentation/pages/customer-create/customer-create.component'
           ).then((m) => m.CustomerCreateComponent),
+        canActivate: [PermissionGuard],
+        data: { permission: 'customer.create' },
       },
       {
         path: 'quotations',
@@ -104,6 +108,8 @@ export const routes: Routes = [
           import(
             './features/quotation/presentation/pages/quotation-list/quotation-list.component'
           ).then((m) => m.QuotationListComponent),
+        canActivate: [PermissionGuard],
+        data: { permission: 'quotation.view' },
       },
       {
         path: 'purchase-orders',
@@ -111,6 +117,8 @@ export const routes: Routes = [
           import(
             './features/purchase-order/presentation/pages/po-list/po-list.component'
           ).then((m) => m.POListComponent),
+        canActivate: [PermissionGuard],
+        data: { permission: 'purchase_order.view' },
       },
       {
         path: 'products',
@@ -118,6 +126,8 @@ export const routes: Routes = [
           import(
             './features/inventory/presentation/pages/product-list/product-list.component'
           ).then((m) => m.ProductListComponent),
+        canActivate: [PermissionGuard],
+        data: { permission: 'inventory.view' },
       },
       {
         path: 'payments',
@@ -125,6 +135,8 @@ export const routes: Routes = [
           import(
             './features/payment/presentation/pages/payment-list/payment-list.component'
           ).then((m) => m.PaymentListComponent),
+        canActivate: [PermissionGuard],
+        data: { permission: 'payment.view' },
       },
       {
         path: 'documents',
@@ -132,6 +144,8 @@ export const routes: Routes = [
           import(
             './features/document/presentation/pages/document-list/document-list.component'
           ).then((m) => m.DocumentListComponent),
+        canActivate: [PermissionGuard],
+        data: { permission: 'document.view' },
       },
       {
         path: 'email/templates',
@@ -139,6 +153,8 @@ export const routes: Routes = [
           import(
             './features/email/presentation/pages/email-templates/email-templates.component'
           ).then((m) => m.EmailTemplatesComponent),
+        canActivate: [PermissionGuard],
+        data: { permission: 'email.view' },
       },
       {
         path: 'batch/jobs',
@@ -146,6 +162,8 @@ export const routes: Routes = [
           import('./features/batch/presentation/pages/batch-list/batch-list.component').then(
             (m) => m.BatchListComponent
           ),
+        canActivate: [PermissionGuard],
+        data: { permission: 'batch.view' },
       },
       {
         path: 'iot/devices',
@@ -153,6 +171,8 @@ export const routes: Routes = [
           import('./features/iot/presentation/pages/device-list/device-list.component').then(
             (m) => m.DeviceListComponent
           ),
+        canActivate: [PermissionGuard],
+        data: { permission: 'iot.view' },
       },
       {
         path: 'wos/orders',
@@ -160,6 +180,8 @@ export const routes: Routes = [
           import('./features/wos/presentation/pages/order-list/order-list.component').then(
             (m) => m.OrderListComponent
           ),
+        canActivate: [PermissionGuard],
+        data: { permission: 'wos.view' },
       },
       {
         path: 'analytics',
@@ -181,6 +203,8 @@ export const routes: Routes = [
           import('./features/email/presentation/pages/email-compose/email-compose.component').then(
             (m) => m.EmailComposeComponent
           ),
+        canActivate: [PermissionGuard],
+        data: { permission: 'email.create' },
       },
       {
         path: 'email/logs',
@@ -223,6 +247,8 @@ export const routes: Routes = [
           import('./features/auth/presentation/pages/user-list/user-list.component').then(
             (m) => m.UserListComponent
           ),
+        canActivate: [PermissionGuard],
+        data: { permission: 'user.view' },
       },
       {
         path: 'users/create',
@@ -230,6 +256,8 @@ export const routes: Routes = [
           import('./features/auth/presentation/pages/user-create/user-create.component').then(
             (m) => m.UserCreateComponent
           ),
+        canActivate: [PermissionGuard],
+        data: { permission: 'user.create' },
       },
       {
         path: 'users/:id/edit',
@@ -244,6 +272,8 @@ export const routes: Routes = [
           import('./features/auth/presentation/pages/role-list/role-list.component').then(
             (m) => m.RoleListComponent
           ),
+        canActivate: [PermissionGuard],
+        data: { permission: 'role.view' },
       },
     ],
   },

@@ -4,3 +4,10 @@ export interface Permission {
   description: string;
   module: string;
 }
+
+export type PermissionAction = 'view' | 'create' | 'edit' | 'delete' | 'approve';
+
+export interface PermissionGroup {
+  module: string;
+  actions: PermissionAction[];
+}

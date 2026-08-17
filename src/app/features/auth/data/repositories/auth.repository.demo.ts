@@ -11,6 +11,7 @@ import {
 } from '../../domain/repositories/auth.repository';
 import { User, LoginCredentials, SignInCredentials, AuthResponse } from '../../domain/entities/user.entity';
 import { Permission } from '../../domain/entities/permission.entity';
+import { Role, CreateRoleRequest, UpdateRoleRequest, AssignRolePermissionsRequest } from '../../domain/entities/role.entity';
 
 @Injectable()
 export class DemoAuthRepositoryImpl implements IAuthRepository {
@@ -30,7 +31,7 @@ export class DemoAuthRepositoryImpl implements IAuthRepository {
     profileImageUrl: null,
     role: 'USER',
     roleId: 2,
-    permissions: this.getAllPermissions(),
+    permissions: this.generatePermissions(),
     isSuperuser: true,
     verified: true,
     lineId: 'kongnakorn_line',
@@ -176,7 +177,59 @@ export class DemoAuthRepositoryImpl implements IAuthRepository {
     return of(void 0);
   }
 
-  private getAllPermissions(): Permission[] {
+  // Role CRUD
+  private demoRoles: Role[] = [
+    { id: 1, name: 'Admin', description: 'Full access', permissions: ['*'], isDefault: false, createdAt: new Date(), updatedAt: new Date() },
+    { id: 2, name: 'Staff', description: 'Limited access', permissions: ['customer.view', 'payment.view'], isDefault: true, createdAt: new Date(), updatedAt: new Date() },
+  ];
+
+  getRoles(): Observable<Role[]> {
+    return of(this.demoRoles);
+  }
+
+  getRole(id: number): Observable<Role> {
+    const role = this.demoRoles.find((r) => r.id === id);
+    return role ? of(role) : throwError(() => new Error('Role not found'));
+  }
+
+  createRole(data: CreateRoleRequest): Observable<Role> {
+    const newRole: Role = {
+      id: Math.max(...this.demoRoles.map((r) => r.id)) + 1,
+      name: data.name,
+      description: data.description,
+      permissions: data.permissions,
+      isDefault: data.isDefault ?? false,
+      createdAt: new Date(),
+      updatedAt: new Date(),
+    };
+    this.demoRoles.push(newRole);
+    return of(newRole);
+  }
+
+  updateRole(id: number, data: UpdateRoleRequest): Observable<Role> {
+    const idx = this.demoRoles.findIndex((r) => r.id === id);
+    if (idx === -1) return throwError(() => new Error('Role not found'));
+    this.demoRoles[idx] = { ...this.demoRoles[idx], ...data, updatedAt: new Date() };
+    return of(this.demoRoles[idx]);
+  }
+
+  deleteRole(id: number): Observable<void> {
+    this.demoRoles = this.demoRoles.filter((r) => r.id !== id);
+    return of(void 0);
+  }
+
+  assignRolePermissions(id: number, data: AssignRolePermissionsRequest): Observable<Role> {
+    const idx = this.demoRoles.findIndex((r) => r.id === id);
+    if (idx === -1) return throwError(() => new Error('Role not found'));
+    this.demoRoles[idx] = { ...this.demoRoles[idx], permissions: data.permissions, updatedAt: new Date() };
+    return of(this.demoRoles[idx]);
+  }
+
+  getAllPermissions(): Observable<Permission[]> {
+    return of(this.generatePermissions());
+  }
+
+  private generatePermissions(): Permission[] {
     const modules = [
       'dashboard', 'job_card', 'customer', 'quotation', 'purchase_order',
       'inventory', 'payment', 'document', 'email', 'batch', 'iot', 'wos',

@@ -2,6 +2,9 @@ import { Injectable } from '@angular/core';
 import { Observable, map, switchMap, of } from 'rxjs';
 import { IAuthRepository, RegisterCredentials, ChangeMyPasswordCredentials, ResetPasswordCredentials, VerifyEmailCredentials, UserListParams, PublicKeyResponse } from '../../domain/repositories/auth.repository';
 import { User, LoginCredentials, SignInCredentials, AuthResponse } from '../../domain/entities/user.entity';
+import { Role, CreateRoleRequest, UpdateRoleRequest, AssignRolePermissionsRequest } from '../../domain/entities/role.entity';
+import { Permission } from '../../domain/entities/permission.entity';
+import { RoleResponseDto, CreateRoleRequestDto, UpdateRoleRequestDto } from '../dtos/role.dto';
 import { AuthApiDataSource } from '../datasources/auth.api.datasource';
 import { LoginResponseDto } from '../dtos/login-response.dto';
 import { UserResponseDto } from '../dtos/user-response.dto';
@@ -151,6 +154,80 @@ export class AuthRepositoryImpl implements IAuthRepository {
 
   forceLogoutUser(id: string): Observable<void> {
     return this.dataSource.forceLogoutUser(id);
+  }
+
+  // Role CRUD
+  getRoles(): Observable<Role[]> {
+    return this.dataSource.getRoles().pipe(
+      map((response) => response.roles.map((dto) => this.mapRoleDtoToEntity(dto)))
+    );
+  }
+
+  getRole(id: number): Observable<Role> {
+    return this.dataSource.getRole(id).pipe(
+      map((dto) => this.mapRoleDtoToEntity(dto))
+    );
+  }
+
+  createRole(request: CreateRoleRequest): Observable<Role> {
+    const dto: CreateRoleRequestDto = {
+      name: request.name,
+      description: request.description,
+      permissions: request.permissions,
+      is_default: request.isDefault,
+    };
+    return this.dataSource.createRole(dto).pipe(
+      map((response) => this.mapRoleDtoToEntity(response))
+    );
+  }
+
+  updateRole(id: number, request: UpdateRoleRequest): Observable<Role> {
+    const dto: UpdateRoleRequestDto = {
+      name: request.name,
+      description: request.description,
+      permissions: request.permissions,
+      is_default: request.isDefault,
+    };
+    return this.dataSource.updateRole(id, dto).pipe(
+      map((response) => this.mapRoleDtoToEntity(response))
+    );
+  }
+
+  deleteRole(id: number): Observable<void> {
+    return this.dataSource.deleteRole(id);
+  }
+
+  assignRolePermissions(id: number, request: AssignRolePermissionsRequest): Observable<Role> {
+    return this.dataSource.assignRolePermissions(id, { permissions: request.permissions }).pipe(
+      map((response) => this.mapRoleDtoToEntity(response))
+    );
+  }
+
+  getAllPermissions(): Observable<Permission[]> {
+    return this.dataSource.getAllPermissions().pipe(
+      map((response) => response.permissions.map((dto) => this.mapPermissionDtoToEntity(dto)))
+    );
+  }
+
+  private mapRoleDtoToEntity(dto: RoleResponseDto): Role {
+    return {
+      id: dto.id,
+      name: dto.name,
+      description: dto.description,
+      permissions: dto.permissions,
+      isDefault: dto.is_default,
+      createdAt: new Date(dto.created_at),
+      updatedAt: new Date(dto.updated_at),
+    };
+  }
+
+  private mapPermissionDtoToEntity(dto: { id: number; name: string; description: string; module: string }): Permission {
+    return {
+      id: dto.id.toString(),
+      name: dto.name,
+      description: dto.description,
+      module: dto.module,
+    };
   }
 
   private mapToTokens(dto: LoginResponseDto): Pick<AuthResponse, 'accessToken' | 'refreshToken' | 'tokenType' | 'expiresIn'> {

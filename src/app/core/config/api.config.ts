@@ -181,4 +181,15 @@ export const API_ENDPOINTS = {
     status: (id: string) => `/wos/orders/${id}/status`,
     cancel: (id: string) => `/wos/orders/${id}/cancel`,
   },
+  roles: {
+    list: '/roles',
+    detail: (id: number) => `/roles/${id}`,
+    create: '/roles',
+    update: (id: number) => `/roles/${id}`,
+    delete: (id: number) => `/roles/${id}`,
+    permissions: (id: number) => `/roles/${id}/permissions`,
+  },
+  permissions: {
+    list: '/permissions',
+  },
 };

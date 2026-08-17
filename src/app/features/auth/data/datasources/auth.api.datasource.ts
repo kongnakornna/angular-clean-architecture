@@ -21,6 +21,8 @@ import { ResetPasswordRequestDto } from '../dtos/reset-password-request.dto';
 import { PublicKeyResponseDto } from '../dtos/public-key-response.dto';
 import { UserResponseDto } from '../dtos/user-response.dto';
 import { SignInRequestDto } from '../dtos/signin-request.dto';
+import { RoleResponseDto, RoleListResponseDto, CreateRoleRequestDto, UpdateRoleRequestDto, AssignRolePermissionsRequestDto } from '../dtos/role.dto';
+import { PermissionListResponseDto } from '../dtos/permission.dto';
 
 @Injectable({
   providedIn: 'root',
@@ -325,5 +327,66 @@ export class AuthApiDataSource {
     return this.http
       .get<void>(`${this.baseUrl}${API_ENDPOINTS.users.logoutall(id)}`, this.getOptions())
       .pipe(catchError(this.handleError));
+  }
+
+  // Role CRUD
+  getRoles(): Observable<RoleListResponseDto> {
+    return this.http
+      .get<any>(`${this.baseUrl}${API_ENDPOINTS.roles.list}`, this.getOptions())
+      .pipe(
+        map((raw) => raw?.data ?? raw),
+        catchError(this.handleError)
+      );
+  }
+
+  getRole(id: number): Observable<RoleResponseDto> {
+    return this.http
+      .get<any>(`${this.baseUrl}${API_ENDPOINTS.roles.detail(id)}`, this.getOptions())
+      .pipe(
+        map((raw) => raw?.data ?? raw),
+        catchError(this.handleError)
+      );
+  }
+
+  createRole(data: CreateRoleRequestDto): Observable<RoleResponseDto> {
+    return this.http
+      .post<any>(`${this.baseUrl}${API_ENDPOINTS.roles.create}`, data, this.getOptions())
+      .pipe(
+        map((raw) => raw?.data ?? raw),
+        catchError(this.handleError)
+      );
+  }
+
+  updateRole(id: number, data: UpdateRoleRequestDto): Observable<RoleResponseDto> {
+    return this.http
+      .patch<any>(`${this.baseUrl}${API_ENDPOINTS.roles.update(id)}`, data, this.getOptions())
+      .pipe(
+        map((raw) => raw?.data ?? raw),
+        catchError(this.handleError)
+      );
+  }
+
+  deleteRole(id: number): Observable<void> {
+    return this.http
+      .delete<void>(`${this.baseUrl}${API_ENDPOINTS.roles.delete(id)}`, this.getOptions())
+      .pipe(catchError(this.handleError));
+  }
+
+  assignRolePermissions(id: number, data: AssignRolePermissionsRequestDto): Observable<RoleResponseDto> {
+    return this.http
+      .patch<any>(`${this.baseUrl}${API_ENDPOINTS.roles.permissions(id)}`, data, this.getOptions())
+      .pipe(
+        map((raw) => raw?.data ?? raw),
+        catchError(this.handleError)
+      );
+  }
+
+  getAllPermissions(): Observable<PermissionListResponseDto> {
+    return this.http
+      .get<any>(`${this.baseUrl}${API_ENDPOINTS.permissions.list}`, this.getOptions())
+      .pipe(
+        map((raw) => raw?.data ?? raw),
+        catchError(this.handleError)
+      );
   }
 }
