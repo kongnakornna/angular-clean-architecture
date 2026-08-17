@@ -43,7 +43,9 @@
     "roles": "តួនាទី",
     "language": "ភាសា",
     "themeSettings": "ការកំណត់ស្បែក",
-    "system": "ប្រព័ន្ធ"
+    "system": "ប្រព័ន្ធ",
+    "new": "ថ្មី",
+    "viewAll": "មើលទាំងអស់"
   },
   "common": {
     "save": "រក្សាទុក",

@@ -43,7 +43,9 @@
     "roles": "ロール",
     "language": "言語",
     "themeSettings": "テーマ設定",
-    "system": "システム"
+    "system": "システム",
+    "new": "新規",
+    "viewAll": "すべて表示"
   },
   "common": {
     "save": "保存",

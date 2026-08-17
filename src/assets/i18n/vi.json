@@ -43,7 +43,9 @@
     "roles": "Vai trò",
     "language": "Ngôn ngữ",
     "themeSettings": "Cài đặt giao diện",
-    "system": "Hệ thống"
+    "system": "Hệ thống",
+    "new": "Mới",
+    "viewAll": "Xem tất cả"
   },
   "common": {
     "save": "Lưu",

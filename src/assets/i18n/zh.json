@@ -43,7 +43,9 @@
     "roles": "角色",
     "language": "语言",
     "themeSettings": "主题设置",
-    "system": "系统"
+    "system": "系统",
+    "new": "新建",
+    "viewAll": "查看全部"
   },
   "common": {
     "save": "保存",

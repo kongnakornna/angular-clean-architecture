@@ -43,7 +43,9 @@
     "roles": "역할",
     "language": "언어",
     "themeSettings": "테마 설정",
-    "system": "시스템"
+    "system": "시스템",
+    "new": "새로 만들기",
+    "viewAll": "모두 보기"
   },
   "common": {
     "save": "저장",

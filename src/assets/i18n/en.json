@@ -43,7 +43,9 @@
     "roles": "Roles",
     "language": "Language",
     "themeSettings": "Theme Settings",
-    "system": "System"
+    "system": "System",
+    "new": "New",
+    "viewAll": "View All"
   },
   "common": {
     "save": "Save",

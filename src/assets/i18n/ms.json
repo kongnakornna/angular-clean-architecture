@@ -43,7 +43,9 @@
     "roles": "Peranan",
     "language": "Bahasa",
     "themeSettings": "Tetapan Tema",
-    "system": "Sistem"
+    "system": "Sistem",
+    "new": "Baru",
+    "viewAll": "Lihat Semua"
   },
   "common": {
     "save": "Simpan",

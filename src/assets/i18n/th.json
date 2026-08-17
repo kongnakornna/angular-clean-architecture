@@ -43,7 +43,9 @@
     "roles": "บทบาท",
     "language": "ภาษา",
     "themeSettings": "ตั้งค่าธีม",
-    "system": "ระบบ"
+    "system": "ระบบ",
+    "new": "ใหม่",
+    "viewAll": "ดูทั้งหมด"
   },
   "common": {
     "save": "บันทึก",
