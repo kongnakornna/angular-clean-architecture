@@ -2,6 +2,7 @@ import { Component, inject } from "@angular/core";
 import { DomSanitizer, SafeHtml } from "@angular/platform-browser";
 
 import { LayoutService } from "../../core/services/layout.service";
+
 import {
   EXP_ICON,
   IOT_ICON,
