@@ -2642,7 +2642,76 @@ curl -X POST http://localhost:5000/api/auth/login -H "Content-Type: application/
 
 
 # Development
-docker compose up dev
+docker-compose up dev
 
 # Production
 docker compose --profile production up production
+
+
+ The commands you've written have a few issues with syntax and workflow. Here's the corrected version:
+
+## Corrected Commands
+
+```bash
+# 1. Stop and remove containers, networks, and volumes
+docker-compose down -v
+
+# 2. Build without cache (correct syntax)
+docker-compose build --no-cache dev
+
+# 3. Start watch mode (two options)
+# Option A: Watch in the background, then start services
+docker-compose watch dev
+docker-compose up -d dev
+
+# Option B: Combine watch with up (if your compose version supports it)
+docker-compose up --watch dev
+```
+
+## Explanation of Issues
+
+1. **`docker-compose watch dev`** - This command starts the watch process but doesn't start containers. You need to run `docker-compose up` separately or use `--watch` flag with up.
+
+2. **`docker-compose up watch dev`** - This is incorrect syntax. The `watch` argument isn't valid here. The correct flags are:
+   - `--watch` (for watching file changes)
+   - `-d` (for detached mode)
+
+## Recommended Workflow
+
+For development with hot-reload/watch mode:
+
+```bash
+# Clean up everything
+docker-compose down -v
+
+# Rebuild without cache
+docker-compose build --no-cache dev
+
+# Start with watch mode in detached mode
+docker-compose up --watch -d dev
+
+# Or if you want to see logs
+docker-compose up --watch dev
+```
+
+## Alternative: Two-Step Approach
+
+If you prefer separate commands for better control:
+
+```bash
+# Terminal 1 - Start services
+docker-compose up -d dev
+
+# Terminal 2 - Start watch mode
+docker-compose watch dev
+```
+
+## Check Docker Compose Version
+
+Make sure your Docker Compose version supports `--watch`:
+
+```bash
+docker-compose version
+```
+
+ 

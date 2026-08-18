@@ -1,0 +1,66 @@
+<div class="page-header d-print-none">
+  <div class="row g-2 align-items-center">
+    <div class="col">
+      <div class="page-pretitle">{{ 'iot.subtitle' | translate }}</div>
+      <h1 class="page-title">{{ 'iot.settings' | translate }}</h1>
+    </div>
+  </div>
+</div>
+
+<div *ngIf="loading$ | async" class="text-center py-5">
+  <div class="spinner-border text-primary" role="status">
+    <span class="visually-hidden">{{ 'iot.loading' | translate }}</span>
+  </div>
+</div>
+
+<div *ngIf="message$ | async as msg" class="alert" [class.alert-success]="msg.type === 'success'" [class.alert-danger]="msg.type === 'error'">
+  {{ msg.text }}
+</div>
+
+<div *ngIf="!(loading$ | async)">
+  <div *ngFor="let group of groups" class="card mb-3">
+    <div class="card-header">
+      <h3 class="card-title">{{ group }}</h3>
+    </div>
+    <div class="card-body">
+      <div class="row g-3">
+        <div *ngFor="let setting of getSettingsByGroup(group)" class="col-md-6">
+          <div class="mb-3">
+            <label class="form-label">{{ setting.label }}</label>
+
+            <input *ngIf="setting.type === 'text'"
+                   class="form-control"
+                   [value]="editedSettings[setting.key]"
+                   (input)="editedSettings[setting.key] = $any($event.target).value">
+
+            <input *ngIf="setting.type === 'number'"
+                   class="form-control"
+                   type="number"
+                   [value]="editedSettings[setting.key]"
+                   (input)="editedSettings[setting.key] = $any($event.target).value">
+
+            <div *ngIf="setting.type === 'toggle'" class="form-check form-switch">
+              <input class="form-check-input"
+                     type="checkbox"
+                     [checked]="editedSettings[setting.key] === 'true'"
+                     (change)="editedSettings[setting.key] = $any($event.target).checked ? 'true' : 'false'">
+              <label class="form-check-label">
+                {{ editedSettings[setting.key] === 'true' ? 'Enabled' : 'Disabled' }}
+              </label>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="d-flex gap-2">
+    <button class="btn btn-primary" (click)="save()" [disabled]="saving$ | async">
+      <span *ngIf="saving$ | async" class="spinner-border spinner-border-sm me-1"></span>
+      {{ 'iot.save' | translate }}
+    </button>
+    <button class="btn btn-outline-secondary" (click)="reset()" [disabled]="saving$ | async">
+      {{ 'iot.reset' | translate }}
+    </button>
+  </div>
+</div>

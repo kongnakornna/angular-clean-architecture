@@ -172,6 +172,24 @@ export const routes: Routes = [
         data: { permission: 'iot.view' },
       },
       {
+        path: 'iot/settings',
+        loadComponent: () =>
+          import('./features/iot/presentation/pages/iot-settings/iot-settings.component').then(
+            (m) => m.IoTSettingsComponent
+          ),
+        canActivate: [PermissionGuard],
+        data: { permission: 'iot.view' },
+      },
+      {
+        path: 'iot/reports',
+        loadComponent: () =>
+          import('./features/iot/presentation/pages/iot-reports/iot-reports.component').then(
+            (m) => m.IoTReportsComponent
+          ),
+        canActivate: [PermissionGuard],
+        data: { permission: 'iot.view' },
+      },
+      {
         path: 'wos/orders',
         loadComponent: () =>
           import('./features/wos/presentation/pages/order-list/order-list.component').then(

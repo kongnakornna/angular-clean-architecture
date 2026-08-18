@@ -1,0 +1,17 @@
+:host {
+  display: block;
+}
+
+.card {
+  border: 1px solid var(--tblr-border-color);
+}
+
+.form-label {
+  font-weight: 500;
+  color: var(--tblr-text-muted);
+  font-size: 0.875rem;
+}
+
+.alert {
+  margin-bottom: 1rem;
+}

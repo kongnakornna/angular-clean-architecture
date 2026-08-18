@@ -30,4 +30,4 @@ EOF
 echo "[Docker] Proxy config: ${TARGET}"
 echo "[Docker] Starting Angular dev server..."
 
-exec npx ng serve --host 0.0.0.0 --port 4200 --poll 2000
+exec npx ng serve --host 0.0.0.0 --port 4200 --poll 2000 --proxy-config proxy.conf.json
