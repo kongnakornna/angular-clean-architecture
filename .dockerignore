@@ -7,3 +7,9 @@ tmp
 *.md
 *.jpg
 *.png
+.env
+.env.*
+docker-compose.yml
+docker-entrypoint.sh
+netlify.toml
+netlify

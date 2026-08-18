@@ -7,3 +7,8 @@ premision access by role
 4.role access to funtion  and action exsample  insert update delete viewdata access 
 
 C:\github\angular-clean-architecture\docs\design\design_part_1_premision_access_by_role.md
+
+
+Approach A:
+
+Approach A:

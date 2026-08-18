@@ -2639,3 +2639,10 @@ ng serve
 Ensure CORS response header values are valid
 
 curl -X POST http://localhost:5000/api/auth/login -H "Content-Type: application/json" -d '{"username":"kongnakornna","password":"password"}'
+
+
+# Development
+docker compose up dev
+
+# Production
+docker compose --profile production up production

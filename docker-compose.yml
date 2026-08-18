@@ -1,13 +1,16 @@
 services:
-  app:
+  dev:
     build:
       context: .
       dockerfile: Dockerfile
-    container_name: icmonweb
+      target: development
+    container_name: icmonweb-dev
     env_file:
       - .env
     ports:
       - "3010:4200"
+    volumes:
+      - ./src:/app/src
     develop:
       watch:
         - action: sync
@@ -21,3 +24,12 @@ services:
           path: ./tailwind.config.js
         - action: rebuild
           path: ./tsconfig.json
+
+  production:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: production
+    container_name: icmonweb
+    ports:
+      - "3010:80"
