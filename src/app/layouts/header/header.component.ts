@@ -65,6 +65,10 @@ export class HeaderComponent {
     	<path d="M12 2l.117 .007a1 1 0 0 1 .876 .876l.007 .117v4l.005 .15a2 2 0 0 0 1.838 1.844l.157 .006h4l.117 .007a1 1 0 0 1 .876 .876l.007 .117v9a3 3 0 0 1 -2.824 2.995l-.176 .005h-10a3 3 0 0 1 -2.995 -2.824l-.005 -.176v-14a3 3 0 0 1 2.824 -2.995l.176 -.005zm0 8a5 5 0 0 0 -4.995 4.783l-.005 .217a5 5 0 1 0 5 -5m0 2a3 3 0 1 1 0 6a3 3 0 0 1 0 -6m0 .496a1 1 0 0 0 -1 1v1.504a1 1 0 0 0 .293 .707l1 1a1 1 0 0 0 1.414 0l.083 -.094a1 1 0 0 0 -.083 -1.32l-.707 -.708v-1.089a1 1 0 0 0 -1 -1" />
     	<path d="M19 7h-4l-.001 -4.001z" />
     </svg>`;
+  private iotIcon = `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" class="icon icon-tabler icons-tabler-filled icon-tabler-satellite">
+        	<path stroke="none" d="M0 0h24v24H0z" fill="none" />
+        	<path d="M21 14a1 1 0 0 1 1 1a7 7 0 0 1 -7 7a1 1 0 0 1 0 -2a5 5 0 0 0 5 -5a1 1 0 0 1 1 -1m-4 -.5a1 1 0 0 1 1 1a3.5 3.5 0 0 1 -3.5 3.5a1 1 0 0 1 -.117 -1.993l.117 -.007a1.5 1.5 0 0 0 1.493 -1.356l.007 -.144a1 1 0 0 1 1 -1m-13.829 -2.087l4 4.001q .212 .212 .445 .384l-.909 .91a1 1 0 0 1 -1.414 0l-3 -3a1 1 0 0 1 0 -1.415zm5.243 -8.413l5.586 5.586a2 2 0 0 1 0 2.828l-.586 .585l.793 .794a1 1 0 0 1 -1.414 1.414l-.793 -.794l-.586 .587a2 2 0 0 1 -2.828 0l-5.586 -5.586a2 2 0 0 1 -.18 -2.618l.127 -.152l.053 -.058l2.586 -2.586a2 2 0 0 1 2.828 0m5.293 -.707l3 3a1 1 0 0 1 0 1.414l-.908 .91a4 4 0 0 0 -.384 -.445l-4.001 -4l.879 -.88a1 1 0 0 1 1.414 0" />
+        </svg>`;
 
   unreadCount = 3;
 
@@ -130,6 +134,20 @@ export class HeaderComponent {
 
   horizontalMenu: MenuItem[] = [
     { label: "Dashboard", icon: "layout-dashboard", route: "/dashboard" },
+    {
+      label: "IoT",
+      icon: this.iotIcon,
+      route: "/iot/devices",
+      children: [
+        { label: "Devices", icon: this.AnalyticsIcon, route: "/iot/devices" },
+        { label: "IoT Settings", icon: this.themeIcon, route: "/iot/settings" },
+        {
+          label: "IoT Reports",
+          icon: this.languageIcon,
+          route: "/iot/reports",
+        },
+      ],
+    },
     {
       label: "Customers",
       icon: "users",
