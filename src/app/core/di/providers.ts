@@ -5,7 +5,7 @@ import {
   QUOTATION_REPOSITORY, PURCHASE_ORDER_REPOSITORY, INVENTORY_REPOSITORY,
   PAYMENT_REPOSITORY, DASHBOARD_REPOSITORY, DOCUMENT_REPOSITORY,
   EMAIL_REPOSITORY, BATCH_JOB_REPOSITORY, TRANSLATION_REPOSITORY,
-  IOT_REPOSITORY, WEB_ORDER_REPOSITORY, ORDER_REPOSITORY, SYSTEM_REPOSITORY,
+  IOT_REPOSITORY,   WEB_ORDER_REPOSITORY, ORDER_REPOSITORY, SYSTEM_REPOSITORY, MQTT_REPOSITORY,
   LIST_ROLES_USE_CASE, GET_ROLE_USE_CASE, CREATE_ROLE_USE_CASE,
   UPDATE_ROLE_USE_CASE, DELETE_ROLE_USE_CASE, ASSIGN_ROLE_PERMISSIONS_USE_CASE,
 } from './tokens';
@@ -25,6 +25,7 @@ import { IoTRepositoryImpl } from '../../features/iot/data/repositories/iot.repo
 import { WebOrderRepositoryImpl } from '../../features/wos/data/repositories/web-order.repository.impl';
 import { OrderRepositoryImpl } from '../../features/orders/data/repositories/order.repository.impl';
 import { SystemRepositoryImpl } from '../../features/system/data/repositories/system.repository.impl';
+import { MqttRepositoryImpl } from '../../features/mqtt/data/repositories/mqtt.repository.impl';
 import { ListRolesUseCase } from '../../features/auth/domain/use-cases/list-roles.use-case';
 import { GetRoleUseCase } from '../../features/auth/domain/use-cases/get-role.use-case';
 import { CreateRoleUseCase } from '../../features/auth/domain/use-cases/create-role.use-case';
@@ -54,6 +55,7 @@ export const REPOSITORY_PROVIDERS: Provider[] = [
   { provide: WEB_ORDER_REPOSITORY, useClass: WebOrderRepositoryImpl },
   { provide: ORDER_REPOSITORY, useClass: OrderRepositoryImpl },
   { provide: SYSTEM_REPOSITORY, useClass: SystemRepositoryImpl },
+  { provide: MQTT_REPOSITORY, useClass: MqttRepositoryImpl },
 ];
 
 export const USE_CASE_PROVIDERS: Provider[] = [
