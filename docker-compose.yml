@@ -4,6 +4,8 @@ services:
       context: .
       dockerfile: Dockerfile
     container_name: icmonweb
+    env_file:
+      - .env
     ports:
       - "3010:4200"
     develop:
