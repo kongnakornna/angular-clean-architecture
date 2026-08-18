@@ -7,6 +7,7 @@ import {
   EMAIL_REPOSITORY, BATCH_JOB_REPOSITORY, TRANSLATION_REPOSITORY,
   IOT_REPOSITORY,   WEB_ORDER_REPOSITORY, ORDER_REPOSITORY, SYSTEM_REPOSITORY, MQTT_REPOSITORY,
   AI_ANALYTICS_REPOSITORY,
+  CHATBOT_REPOSITORY,
   LIST_ROLES_USE_CASE, GET_ROLE_USE_CASE, CREATE_ROLE_USE_CASE,
   UPDATE_ROLE_USE_CASE, DELETE_ROLE_USE_CASE, ASSIGN_ROLE_PERMISSIONS_USE_CASE,
 } from './tokens';
@@ -28,6 +29,7 @@ import { OrderRepositoryImpl } from '../../features/orders/data/repositories/ord
 import { SystemRepositoryImpl } from '../../features/system/data/repositories/system.repository.impl';
 import { MqttRepositoryImpl } from '../../features/mqtt/data/repositories/mqtt.repository.impl';
 import { AIAnalyticsRepositoryImpl } from '../../features/ai-analytics/data/repositories/ai-analytics.repository.impl';
+import { ChatbotRepositoryImpl } from '../../features/ai-chatbot/data/repositories/chatbot.repository.impl';
 import { ListRolesUseCase } from '../../features/auth/domain/use-cases/list-roles.use-case';
 import { GetRoleUseCase } from '../../features/auth/domain/use-cases/get-role.use-case';
 import { CreateRoleUseCase } from '../../features/auth/domain/use-cases/create-role.use-case';
@@ -59,6 +61,7 @@ export const REPOSITORY_PROVIDERS: Provider[] = [
   { provide: SYSTEM_REPOSITORY, useClass: SystemRepositoryImpl },
   { provide: MQTT_REPOSITORY, useClass: MqttRepositoryImpl },
   { provide: AI_ANALYTICS_REPOSITORY, useClass: AIAnalyticsRepositoryImpl },
+  { provide: CHATBOT_REPOSITORY, useClass: ChatbotRepositoryImpl },
 ];
 
 export const USE_CASE_PROVIDERS: Provider[] = [

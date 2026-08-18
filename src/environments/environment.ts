@@ -9,4 +9,7 @@ export const environment = {
     format: 'pretty' as const,
     prefix: '[iCmon-Dev]',
   },
+  ollamaUrl: 'http://localhost:11434',
+  ollamaModel: 'llama3',
+  chatbotEnabled: true,
 };

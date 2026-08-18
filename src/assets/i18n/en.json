@@ -750,5 +750,27 @@
   },
   "logTimeline": {
     "noLogsAvailable": "No logs available"
+  },
+  "aiChat": {
+    "title": "AI Assistant",
+    "placeholder": "Ask me anything...",
+    "send": "Send",
+    "loading": "Thinking...",
+    "modelSelect": "Model",
+    "noModels": "No models available",
+    "confirmAction": "Confirm",
+    "rejectAction": "Cancel",
+    "actionSuccess": "Action completed successfully",
+    "actionFailed": "Action failed",
+    "errorConnection": "Cannot connect to Ollama. Please check if Ollama is running.",
+    "welcomeMessage": "Hi! I'm your AI assistant. I can help you with jobs, customers, reports, and more.",
+    "toolCreateJob": "Create Job",
+    "toolSendEmail": "Send Email",
+    "toolGenerateReport": "Generate Report",
+    "toolCreateQuotation": "Create Quotation",
+    "toolCreatePO": "Create Purchase Order",
+    "toolSearchRecords": "Search Records",
+    "getDashboardData": "Get Dashboard Data",
+    "clearHistory": "Clear History"
   }
 }

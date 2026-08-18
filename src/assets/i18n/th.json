@@ -753,5 +753,27 @@
   },
   "logTimeline": {
     "noLogsAvailable": "ไม่มีบันทึก"
+  },
+  "aiChat": {
+    "title": "AI ผู้ช่วย",
+    "placeholder": "พิมพ์คำถามได้เลย...",
+    "send": "ส่ง",
+    "loading": "กำลังคิด...",
+    "modelSelect": "โมเดล",
+    "noModels": "ไม่มีโมเดลที่ใช้ได้",
+    "confirmAction": "ยืนยัน",
+    "rejectAction": "ยกเลิก",
+    "actionSuccess": "ทำรายการสำเร็จ",
+    "actionFailed": "ทำรายการไม่สำเร็จ",
+    "errorConnection": "เชื่อมต่อ Ollama ไม่ได้ กรุณาตรวจสอบว่า Ollama กำลังทำงานอยู่",
+    "welcomeMessage": "สวัสดีค่ะ! ฉันเป็น AI ผู้ช่วยของคุณ สามารถช่วยเรื่องงาน ลูกค้า รายงาน และอื่นๆ ได้ค่ะ",
+    "toolCreateJob": "สร้างงาน",
+    "toolSendEmail": "ส่งอีเมล",
+    "toolGenerateReport": "สร้างรายงาน",
+    "toolCreateQuotation": "สร้างใบเสนอราคา",
+    "toolCreatePO": "สร้างใบสั่งซื้อ",
+    "toolSearchRecords": "ค้นหาข้อมูล",
+    "getDashboardData": "ดึงข้อมูลแดชบอร์ด",
+    "clearHistory": "ล้างประวัติ"
   }
 }

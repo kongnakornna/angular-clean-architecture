@@ -27,6 +27,9 @@ export interface AppConfig {
   defaultLanguage: string;
   pageSize: number;
   logger: LoggerConfig;
+  ollamaUrl: string;
+  ollamaModel: string;
+  chatbotEnabled: boolean;
 }
 
 export const APP_CONFIG = new InjectionToken<AppConfig>('app.config');
@@ -57,4 +60,7 @@ export const DEFAULT_APP_CONFIG: AppConfig = {
     ...DEFAULT_LOGGER_CONFIG,
     ...environment.logger,
   },
+  ollamaUrl: environment.ollamaUrl || 'http://localhost:11434',
+  ollamaModel: environment.ollamaModel || 'llama3',
+  chatbotEnabled: environment.chatbotEnabled ?? true,
 };
