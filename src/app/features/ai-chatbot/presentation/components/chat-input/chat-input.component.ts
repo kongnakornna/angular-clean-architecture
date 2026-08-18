@@ -1,19 +1,19 @@
 import { Component, Output, EventEmitter, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { TranslateModule } from '@ngx-translate/core';
+import { AppTranslatePipe } from '../../../../../shared/i18n/presentation/pipes/translate.pipe';
 
 @Component({
   selector: 'app-chat-input',
   standalone: true,
-  imports: [CommonModule, FormsModule, TranslateModule],
+  imports: [CommonModule, FormsModule, AppTranslatePipe],
   template: `
     <div class="chat-input-area">
       <textarea
         class="form-control"
         [(ngModel)]="input"
         (keydown.enter)="onEnter($event)"
-        [placeholder]="'aiChat.placeholder' | translate"
+        [placeholder]="'aiChat.placeholder' | appTranslate"
         rows="1"
         [disabled]="loading">
       </textarea>

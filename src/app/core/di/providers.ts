@@ -30,6 +30,10 @@ import { SystemRepositoryImpl } from '../../features/system/data/repositories/sy
 import { MqttRepositoryImpl } from '../../features/mqtt/data/repositories/mqtt.repository.impl';
 import { AIAnalyticsRepositoryImpl } from '../../features/ai-analytics/data/repositories/ai-analytics.repository.impl';
 import { ChatbotRepositoryImpl } from '../../features/ai-chatbot/data/repositories/chatbot.repository.impl';
+import { OllamaApiDataSource } from '../../features/ai-chatbot/data/datasources/ollama-api.datasource';
+import { ContextProviderService } from '../../features/ai-chatbot/data/services/context-provider.service';
+import { ActionExecutorService } from '../../features/ai-chatbot/data/services/action-executor.service';
+import { ChatHistoryService } from '../../features/ai-chatbot/data/services/chat-history.service';
 import { ListRolesUseCase } from '../../features/auth/domain/use-cases/list-roles.use-case';
 import { GetRoleUseCase } from '../../features/auth/domain/use-cases/get-role.use-case';
 import { CreateRoleUseCase } from '../../features/auth/domain/use-cases/create-role.use-case';
@@ -62,6 +66,10 @@ export const REPOSITORY_PROVIDERS: Provider[] = [
   { provide: MQTT_REPOSITORY, useClass: MqttRepositoryImpl },
   { provide: AI_ANALYTICS_REPOSITORY, useClass: AIAnalyticsRepositoryImpl },
   { provide: CHATBOT_REPOSITORY, useClass: ChatbotRepositoryImpl },
+  OllamaApiDataSource,
+  ContextProviderService,
+  ActionExecutorService,
+  ChatHistoryService,
 ];
 
 export const USE_CASE_PROVIDERS: Provider[] = [

@@ -39,7 +39,7 @@ describe('ActionExecutorService', () => {
         done();
       });
 
-      const req = httpMock.expectOne('/api/jobs');
+      const req = httpMock.expectOne((r) => r.url.endsWith('/jobs'));
       expect(req.request.method).toBe('POST');
       expect(req.request.body).toEqual({
         title: 'Test Job',
@@ -57,7 +57,7 @@ describe('ActionExecutorService', () => {
         done();
       });
 
-      const req = httpMock.expectOne('/api/email/send');
+      const req = httpMock.expectOne((r) => r.url.endsWith('/email/send'));
       expect(req.request.method).toBe('POST');
       req.flush({ sent: true });
     });
@@ -68,7 +68,7 @@ describe('ActionExecutorService', () => {
         done();
       });
 
-      const req = httpMock.expectOne('/api/dashboard/summary');
+      const req = httpMock.expectOne((r) => r.url.endsWith('/dashboard/summary'));
       expect(req.request.method).toBe('GET');
       req.flush({ revenue: 1000 });
     });
@@ -81,7 +81,7 @@ describe('ActionExecutorService', () => {
         done();
       });
 
-      const req = httpMock.expectOne('/api/jobs');
+      const req = httpMock.expectOne((r) => r.url.endsWith('/jobs'));
       req.flush('Server Error', { status: 500, statusText: 'Internal Server Error' });
     });
   });

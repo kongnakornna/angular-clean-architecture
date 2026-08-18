@@ -1,7 +1,7 @@
 import { Component, OnInit, OnDestroy, Inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Subject, takeUntil } from 'rxjs';
-import { CHATBOT_REPOSITORY } from '../../../../core/di/tokens';
+import { CHATBOT_REPOSITORY } from '../../../../../core/di/tokens';
 import { IChatbotRepository } from '../../../domain/repositories/chatbot.repository';
 import { ChatMessage } from '../../../domain/entities/chat-message.entity';
 import { BUILT_IN_TOOLS } from '../../../domain/entities/tool-definition.entity';

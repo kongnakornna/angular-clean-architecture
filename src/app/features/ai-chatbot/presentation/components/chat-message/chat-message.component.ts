@@ -1,13 +1,12 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { TranslateModule } from '@ngx-translate/core';
 import { ChatMessage, ToolCall } from '../../../domain/entities/chat-message.entity';
 import { ToolExecutionCardComponent } from '../tool-execution-card/tool-execution-card.component';
 
 @Component({
   selector: 'app-chat-message',
   standalone: true,
-  imports: [CommonModule, TranslateModule, ToolExecutionCardComponent],
+  imports: [CommonModule, ToolExecutionCardComponent],
   template: `
     <div *ngIf="message.role === 'user'" class="chat-msg chat-msg-user">
       <div class="chat-bubble chat-bubble-user">{{ message.content }}</div>
@@ -28,7 +27,7 @@ import { ToolExecutionCardComponent } from '../tool-execution-card/tool-executio
     <div *ngIf="message.role === 'tool'" class="chat-msg chat-msg-tool">
       <app-tool-execution-card
         [toolCall]="message.toolCall!"
-        [result]="message.toolResult"
+        [result]="message.toolResult ?? null"
         (confirm)="onConfirm.emit($event)"
         (reject)="onReject.emit($event)">
       </app-tool-execution-card>

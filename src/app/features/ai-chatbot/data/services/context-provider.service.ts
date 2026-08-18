@@ -6,7 +6,7 @@ import { environment } from '../../../../../environments/environment';
 
 @Injectable()
 export class ContextProviderService {
-  private baseUrl = environment.apiUrl || '/api';
+  private baseUrl = environment.apiTargetUrl || '/api';
 
   constructor(private http: HttpClient) {}
 

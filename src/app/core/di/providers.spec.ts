@@ -23,8 +23,8 @@ describe('REPOSITORY_PROVIDERS', () => {
     expect(Array.isArray(REPOSITORY_PROVIDERS)).toBeTrue();
   });
 
-  it('should have 16 providers', () => {
-    expect(REPOSITORY_PROVIDERS.length).toBe(16);
+  it('should have 23 providers', () => {
+    expect(REPOSITORY_PROVIDERS.length).toBe(23);
   });
 
   it('should include AUTH_REPOSITORY provider', () => {

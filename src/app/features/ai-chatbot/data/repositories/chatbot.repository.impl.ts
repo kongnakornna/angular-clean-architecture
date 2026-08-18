@@ -6,9 +6,9 @@ import { ChatMessage } from '../../domain/entities/chat-message.entity';
 import { ToolDefinition } from '../../domain/entities/tool-definition.entity';
 import { ToolResult } from '../../domain/entities/chat-message.entity';
 import { OllamaApiDataSource } from '../datasources/ollama-api.datasource';
-import { ActionExecutorService } from './action-executor.service';
-import { ContextProviderService } from './context-provider.service';
-import { ChatHistoryService } from './chat-history.service';
+import { ActionExecutorService } from '../services/action-executor.service';
+import { ContextProviderService } from '../services/context-provider.service';
+import { ChatHistoryService } from '../services/chat-history.service';
 
 @Injectable()
 export class ChatbotRepositoryImpl implements IChatbotRepository {

@@ -1,12 +1,12 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { TranslateModule } from '@ngx-translate/core';
 import { ToolCall, ToolResult } from '../../../domain/entities/chat-message.entity';
+import { AppTranslatePipe } from '../../../../../shared/i18n/presentation/pipes/translate.pipe';
 
 @Component({
   selector: 'app-tool-execution-card',
   standalone: true,
-  imports: [CommonModule, TranslateModule],
+  imports: [CommonModule, AppTranslatePipe],
   template: `
     <div class="tool-card" [class.tool-card-success]="result?.success"
          [class.tool-card-pending]="!result">
@@ -17,22 +17,22 @@ import { ToolCall, ToolResult } from '../../../domain/entities/chat-message.enti
           <path d="M12 5m-4 0a4 4 0 1 0 8 0a4 4 0 1 0 -8 0" />
           <path d="M6 20l-1 -4c-1 -2.5 -1 -5 0 -7c1 -2 3 -3 5 -3c4 0 7 2 8 5l1 4" />
         </svg>
-        <span class="tool-name">{{ getToolLabel(toolCall.name) }}</span>
+        <span class="tool-name">{{ getToolLabel(toolCall.name) | appTranslate }}</span>
       </div>
       <div class="tool-card-body">
         <pre class="tool-args">{{ toolCall.arguments | json }}</pre>
       </div>
       <div class="tool-card-actions" *ngIf="!result">
         <button class="btn btn-success btn-sm" (click)="confirm.emit(toolCall.id)">
-          {{ 'aiChat.confirmAction' | translate }}
+          {{ 'aiChat.confirmAction' | appTranslate }}
         </button>
         <button class="btn btn-outline-danger btn-sm" (click)="reject.emit(toolCall.id)">
-          {{ 'aiChat.rejectAction' | translate }}
+          {{ 'aiChat.rejectAction' | appTranslate }}
         </button>
       </div>
       <div class="tool-card-result" *ngIf="result">
         <span *ngIf="result.success" class="text-success">
-          {{ 'aiChat.actionSuccess' | translate }}
+          {{ 'aiChat.actionSuccess' | appTranslate }}
         </span>
         <span *ngIf="!result.success" class="text-danger">
           {{ result.content }}

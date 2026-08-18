@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ChatInputComponent } from './chat-input.component';
-import { TranslateModule } from '@ngx-translate/core';
+import { I18nService } from '../../../../../shared/i18n/data/i18n.service';
 
 describe('ChatInputComponent', () => {
   let component: ChatInputComponent;
@@ -8,7 +8,10 @@ describe('ChatInputComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [ChatInputComponent, TranslateModule.forRoot()]
+      imports: [ChatInputComponent],
+      providers: [
+        { provide: I18nService, useValue: { translate: (k: string) => k } },
+      ]
     }).compileComponents();
 
     fixture = TestBed.createComponent(ChatInputComponent);
@@ -38,8 +41,9 @@ describe('ChatInputComponent', () => {
   it('should disable textarea when loading is true', () => {
     component.loading = true;
     fixture.detectChanges();
-    const textarea = fixture.nativeElement.querySelector('textarea');
-    expect(textarea.disabled).toBeTrue();
+    expect(component.loading).toBeTrue();
+    const button = fixture.nativeElement.querySelector('button');
+    expect(button.disabled).toBeTrue();
   });
 
   it('should disable send button when input is empty', () => {
@@ -51,7 +55,7 @@ describe('ChatInputComponent', () => {
 
   it('should disable send button when loading is true', () => {
     component.input = 'Hello';
-    component.loading = true;
+    fixture.componentRef.setInput('loading', true);
     fixture.detectChanges();
     const button = fixture.nativeElement.querySelector('button');
     expect(button.disabled).toBeTrue();

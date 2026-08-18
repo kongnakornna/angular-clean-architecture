@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ToolExecutionCardComponent } from './tool-execution-card.component';
-import { TranslateModule } from '@ngx-translate/core';
+import { I18nService } from '../../../../../shared/i18n/data/i18n.service';
 import { ToolCall, ToolResult } from '../../../domain/entities/chat-message.entity';
 
 describe('ToolExecutionCardComponent', () => {
@@ -15,7 +15,10 @@ describe('ToolExecutionCardComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [ToolExecutionCardComponent, TranslateModule.forRoot()]
+      imports: [ToolExecutionCardComponent],
+      providers: [
+        { provide: I18nService, useValue: { translate: (k: string) => k } },
+      ]
     }).compileComponents();
 
     fixture = TestBed.createComponent(ToolExecutionCardComponent);

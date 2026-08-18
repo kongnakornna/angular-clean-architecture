@@ -20,6 +20,7 @@ import { AppLayoutComponent } from './layouts/app-layout/app-layout.component';
 import { LayoutSettingsComponent } from './layouts/layout-settings/layout-settings.component';
 import { PageHeaderComponent } from './layouts/page-header/page-header.component';
 import { TranslatePipe } from './shared/pipes/translate.pipe';
+import { ChatbotComponent } from './features/ai-chatbot/presentation/components/chatbot/chatbot.component';
 import { LanguageSelectorComponent } from './shared/i18n/presentation/pages/language-selector/language-selector.component';
 import { TablerIconsModule, provideTablerIcons } from 'angular-tabler-icons';
 import {
@@ -65,6 +66,7 @@ import { APP_CONFIG, DEFAULT_APP_CONFIG } from './core/config/app.config';
     LanguageSelectorComponent,
     TranslatePipe,
     LayoutSettingsComponent,
+    ChatbotComponent,
   ],
   providers: [
     ...REPOSITORY_PROVIDERS,

@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { ChatMessage, ChatSession } from '../../../domain/entities/chat-message.entity';
+import { ChatMessage, ChatSession } from '../../domain/entities/chat-message.entity';
 
 @Injectable()
 export class ChatHistoryService {

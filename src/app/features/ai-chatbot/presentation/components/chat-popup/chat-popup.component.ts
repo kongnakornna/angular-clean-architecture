@@ -1,15 +1,15 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { TranslateModule } from '@ngx-translate/core';
 import { ChatMessage } from '../../../domain/entities/chat-message.entity';
 import { ChatMessageComponent } from '../chat-message/chat-message.component';
 import { ChatInputComponent } from '../chat-input/chat-input.component';
+import { AppTranslatePipe } from '../../../../../shared/i18n/presentation/pipes/translate.pipe';
 
 @Component({
   selector: 'app-chat-popup',
   standalone: true,
-  imports: [CommonModule, FormsModule, TranslateModule, ChatMessageComponent, ChatInputComponent],
+  imports: [CommonModule, FormsModule, AppTranslatePipe, ChatMessageComponent, ChatInputComponent],
   template: `
     <div class="chat-window" [class.chat-hidden]="!isOpen">
       <div class="chat-header">
@@ -20,12 +20,12 @@ import { ChatInputComponent } from '../chat-input/chat-input.component';
             <path d="M12 5m-4 0a4 4 0 1 0 8 0a4 4 0 1 0 -8 0" />
             <path d="M6 20l-1 -4c-1 -2.5 -1 -5 0 -7c1 -2 3 -3 5 -3c4 0 7 2 8 5l1 4" />
           </svg>
-          <span>{{ 'aiChat.title' | translate }}</span>
+          <span>{{ 'aiChat.title' | appTranslate }}</span>
         </div>
         <div class="chat-header-actions">
           <select class="form-select form-select-sm" [(ngModel)]="selectedModel"
                   (change)="modelChange.emit(selectedModel)">
-            <option value="" disabled>{{ 'aiChat.modelSelect' | translate }}</option>
+            <option value="" disabled>{{ 'aiChat.modelSelect' | appTranslate }}</option>
             <option *ngFor="let m of models" [value]="m">{{ m }}</option>
           </select>
           <button class="btn btn-sm btn-ghost" (click)="close.emit()">
@@ -40,7 +40,7 @@ import { ChatInputComponent } from '../chat-input/chat-input.component';
 
       <div class="chat-messages" #messagesContainer>
         <div *ngIf="messages.length === 0" class="chat-welcome">
-          {{ 'aiChat.welcomeMessage' | translate }}
+          {{ 'aiChat.welcomeMessage' | appTranslate }}
         </div>
         <app-chat-message
           *ngFor="let msg of messages"
