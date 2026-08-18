@@ -559,6 +559,96 @@
     "monthlySalesChart": "月次売上チャート",
     "pieChart": "円グラフ",
     "comparedToLastMonth": "前月比",
-    "summary": "Summary"
+    "summary": "概要"
+  },
+  "aiAnalytics": {
+    "reports": "レポート",
+    "reportsTitle": "AI分析レポート",
+    "commandCenter": "コマンドセンター",
+    "commandCenterTitle": "コマンドセンター",
+    "alertManagement": "アラート管理",
+    "alertManagementTitle": "アラート管理",
+    "scheduler": "スケジューラー",
+    "schedulerTitle": "スケジューラー",
+    "workflowAI": "ワークフローAI",
+    "workflowAITitle": "ワークフローAI",
+    "activityLog": "アクティビティログ",
+    "activityLogTitle": "アクティビティログ",
+    "dataAnalyst": "データアナリスト",
+    "dataAnalystTitle": "データアナリスト",
+    "dashboard": "AIダッシュボード",
+    "dashboardTitle": "AIダッシュボード"
+  },
+  "commandCenter": {
+    "completed": "完了",
+    "pending": "保留中",
+    "failed": "失敗",
+    "successRate": "成功率",
+    "quickActions": "クイックアクション",
+    "activeTasks": "アクティブタスク",
+    "noTasks": "タスクがありません"
+  },
+  "alertManagement": {
+    "activeAlerts": "アクティブアラート",
+    "noAlerts": "アクティブなアラートはありません",
+    "alertRules": "アラートルール",
+    "condition": "条件",
+    "actions": "アクション",
+    "enabled": "有効",
+    "noRules": "アラートルールが設定されていません"
+  },
+  "scheduler": {
+    "newSchedule": "新規スケジュール",
+    "schedules": "スケジュール",
+    "noSchedules": "スケジュールが設定されていません",
+    "upcomingRuns": "今後の実行",
+    "noUpcomingRuns": "今後の実行はありません"
+  },
+  "workflow": {
+    "newWorkflow": "新規ワークフロー",
+    "workflows": "ワークフロー",
+    "selectWorkflow": "ワークフローを選択してください"
+  },
+  "activityLog": {
+    "filters": "フィルター",
+    "searchPlaceholder": "ログを検索...",
+    "allTypes": "すべてのタイプ",
+    "typeSuccess": "成功",
+    "typeAiQuery": "AIクエリ",
+    "typeWarning": "警告",
+    "typeError": "エラー",
+    "typeReport": "レポート",
+    "typeWorkflow": "ワークフロー",
+    "applyFilter": "フィルターを適用",
+    "timeline": "タイムライン"
+  },
+  "dataAnalyst": {
+    "revenue": "収益",
+    "users": "ユーザー",
+    "orders": "注文",
+    "avgRating": "平均評価",
+    "chartTitle": "分析チャート",
+    "aiInsights": "AIインサイト"
+  },
+  "scheduleCard": {
+    "active": "アクティブ",
+    "paused": "一時停止",
+    "edit": "編集",
+    "pause": "一時停止",
+    "resume": "再開",
+    "delete": "削除"
+  },
+  "aiInsightPanel": {
+    "aiInsights": "AIインサイト",
+    "explore": "探索",
+    "generateReport": "レポート作成",
+    "pin": "ピン留め",
+    "noInsights": "インサイトがありません"
+  },
+  "dataTable": {
+    "noDataAvailable": "データがありません"
+  },
+  "logTimeline": {
+    "noLogsAvailable": "ログがありません"
   }
 }

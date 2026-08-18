@@ -559,6 +559,96 @@
     "monthlySalesChart": "Carta jualan bulanan",
     "pieChart": "Carta pai",
     "comparedToLastMonth": "berbanding bulan lalu",
-    "summary": "Summary"
+    "summary": "Ringkasan"
+  },
+  "aiAnalytics": {
+    "reports": "Laporan",
+    "reportsTitle": "Laporan Analitik AI",
+    "commandCenter": "Pusat Arahan",
+    "commandCenterTitle": "Pusat Arahan",
+    "alertManagement": "Pengurusan Amaran",
+    "alertManagementTitle": "Pengurusan Amaran",
+    "scheduler": "Penjadual",
+    "schedulerTitle": "Penjadual",
+    "workflowAI": "Aliran Kerja AI",
+    "workflowAITitle": "Aliran Kerja AI",
+    "activityLog": "Log Aktiviti",
+    "activityLogTitle": "Log Aktiviti",
+    "dataAnalyst": "Penganalisis Data",
+    "dataAnalystTitle": "Penganalisis Data",
+    "dashboard": "Papan Pemuka AI",
+    "dashboardTitle": "Papan Pemuka AI"
+  },
+  "commandCenter": {
+    "completed": "Selesai",
+    "pending": "Menunggu",
+    "failed": "Gagal",
+    "successRate": "Kadar Kejayaan",
+    "quickActions": "Tindakan Pantas",
+    "activeTasks": "Tugas Aktif",
+    "noTasks": "Tiada tugas"
+  },
+  "alertManagement": {
+    "activeAlerts": "Amaran Aktif",
+    "noAlerts": "Tiada amaran aktif",
+    "alertRules": "Peraturan Amaran",
+    "condition": "Syarat",
+    "actions": "Tindakan",
+    "enabled": "Diaktifkan",
+    "noRules": "Tiada peraturan amaran dikonfigurasi"
+  },
+  "scheduler": {
+    "newSchedule": "Jadual Baru",
+    "schedules": "Jadual",
+    "noSchedules": "Tiada jadual dikonfigurasi",
+    "upcomingRuns": "Pelaksanaan Akan Datang",
+    "noUpcomingRuns": "Tiada pelaksanaan akan datang"
+  },
+  "workflow": {
+    "newWorkflow": "Aliran Kerja Baru",
+    "workflows": "Aliran Kerja",
+    "selectWorkflow": "Pilih aliran kerja untuk bermula"
+  },
+  "activityLog": {
+    "filters": "Penapis",
+    "searchPlaceholder": "Cari log...",
+    "allTypes": "Semua Jenis",
+    "typeSuccess": "Berjaya",
+    "typeAiQuery": "Pertanyaan AI",
+    "typeWarning": "Amaran",
+    "typeError": "Ralat",
+    "typeReport": "Laporan",
+    "typeWorkflow": "Aliran Kerja",
+    "applyFilter": "Guna Penapis",
+    "timeline": "Garis Masa"
+  },
+  "dataAnalyst": {
+    "revenue": "Hasil",
+    "users": "Pengguna",
+    "orders": "Pesanan",
+    "avgRating": "Penilaian Purata",
+    "chartTitle": "Carta Analitik",
+    "aiInsights": "AI Insights"
+  },
+  "scheduleCard": {
+    "active": "Aktif",
+    "paused": "Dijeda",
+    "edit": "Edit",
+    "pause": "Jeda",
+    "resume": "Sambung",
+    "delete": "Padam"
+  },
+  "aiInsightPanel": {
+    "aiInsights": "AI Insights",
+    "explore": "Jelajah",
+    "generateReport": "Jana Laporan",
+    "pin": "Semat",
+    "noInsights": "Tiada insights"
+  },
+  "dataTable": {
+    "noDataAvailable": "Tiada data"
+  },
+  "logTimeline": {
+    "noLogsAvailable": "Tiada log"
   }
 }

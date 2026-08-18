@@ -2,6 +2,43 @@ import { Component, inject } from "@angular/core";
 import { DomSanitizer, SafeHtml } from "@angular/platform-browser";
 
 import { LayoutService } from "../../core/services/layout.service";
+import {
+  EXP_ICON,
+  IOT_ICON,
+  AI_ICON,
+  LAYOUT_DASHBOARD_ICON,
+  USERS_ICON,
+  USER_ICON,
+  FILE_TEXT_ICON,
+  SHOPPING_CART_ICON,
+  PACKAGE_ICON,
+  CREDIT_CARD_ICON,
+  FOLDER_ICON,
+  BRIEFCASE_ICON,
+  CLIPBOARD_ICON,
+  LAYERS_ICON,
+  CPU_ICON,
+  RADIO_ICON,
+  CHART_AREA_ICON,
+  FILE_INVOICE_ICON,
+  MAIL_ICON,
+  LANGUAGE_ICON,
+  ROBOT_ICON,
+  CHART_PIE_ICON,
+  DEVICE_DESKTOP_ICON,
+  SETTINGS_ICON,
+  CHART_BAR_ICON,
+  SHIELD_ICON,
+  LIST_ICON,
+  PLUS_ICON,
+  PENCIL_ICON,
+  LIST_DETAILS_ICON,
+  PALETTE_ICON,
+  CHART_DOTS_2_ICON,
+  WAVE_SQUARE_ICON,
+  CALENDAR_EVENT_ICON,
+  BELL_ICON,
+} from "./header.icons";
 
 interface MenuItem {
   label?: string;
@@ -21,69 +58,6 @@ interface MenuItem {
 export class HeaderComponent {
   private layout = inject(LayoutService);
   private sanitizer = inject(DomSanitizer);
-  private expIcon = ``;
-  private invoiceIcon = `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" class="icon icon-tabler icons-tabler-filled icon-tabler-file-invoice">
-	<path stroke="none" d="M0 0h24v24H0z" fill="none" />
-	<path d="M12 2l.117 .007a1 1 0 0 1 .876 .876l.007 .117v4l.005 .15a2 2 0 0 0 1.838 1.844l.157 .006h4l.117 .007a1 1 0 0 1 .876 .876l.007 .117v9a3 3 0 0 1 -2.824 2.995l-.176 .005h-10a3 3 0 0 1 -2.995 -2.824l-.005 -.176v-14a3 3 0 0 1 2.824 -2.995l.176 -.005zm4 15h-2a1 1 0 0 0 0 2h2a1 1 0 0 0 0 -2m0 -4h-8a1 1 0 0 0 0 2h8a1 1 0 0 0 0 -2m-7 -7h-1a1 1 0 1 0 0 2h1a1 1 0 1 0 0 -2" />
-	<path d="M19 7h-4l-.001 -4.001z" />
-</svg>`;
-  private themeIcon = `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-adjustments-pause">
-    	<path stroke="none" d="M0 0h24v24H0z" fill="none" />
-    	<path d="M4 10a2 2 0 1 0 4 0a2 2 0 0 0 -4 0" />
-    	<path d="M6 4v4" />
-    	<path d="M6 12v8" />
-    	<path d="M13.627 14.836a2 2 0 1 0 -.62 2.892" />
-    	<path d="M12 4v10" />
-    	<path d="M12 18v2" />
-    	<path d="M16 7a2 2 0 1 0 4 0a2 2 0 0 0 -4 0" />
-    	<path d="M18 4v1" />
-    	<path d="M17 17v5" />
-    	<path d="M21 17v5" />
-    	<path d="M18 9v4.5" />
-    </svg>`;
-  private languageIcon = `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-language">
-    	<path stroke="none" d="M0 0h24v24H0z" fill="none" />
-    	<path d="M9 6.371c0 4.418 -2.239 6.629 -5 6.629" />
-    	<path d="M4 6.371h7" />
-    	<path d="M5 9c0 2.144 2.252 3.908 6 4" />
-    	<path d="M12 20l4 -9l4 9" />
-    	<path d="M19.1 18h-6.2" />
-    	<path d="M6.694 3l.793 .582" />
-    </svg>`;
-  private AnalyticsIcon = `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" class="icon icon-tabler icons-tabler-filled icon-tabler-chart-area">
-    	<path stroke="none" d="M0 0h24v24H0z" fill="none" />
-    	<path d="M20 18a1 1 0 0 1 .117 1.993l-.117 .007h-16a1 1 0 0 1 -.117 -1.993l.117 -.007h16z" />
-    	<path d="M15.22 5.375a1 1 0 0 1 1.393 -.165l.094 .083l4 4a1 1 0 0 1 .284 .576l.009 .131v5a1 1 0 0 1 -.883 .993l-.117 .007h-16.022l-.11 -.009l-.11 -.02l-.107 -.034l-.105 -.046l-.1 -.059l-.094 -.07l-.06 -.055l-.072 -.082l-.064 -.089l-.054 -.096l-.016 -.035l-.04 -.103l-.027 -.106l-.015 -.108l-.004 -.11l.009 -.11l.019 -.105c.01 -.04 .022 -.077 .035 -.112l.046 -.105l.059 -.1l4 -6a1 1 0 0 1 1.165 -.39l.114 .05l3.277 1.638l3.495 -4.369z" />
-    </svg>`;
-  private invoicesIcon = `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" class="icon icon-tabler icons-tabler-filled icon-tabler-file-invoice">
-        	<path stroke="none" d="M0 0h24v24H0z" fill="none" />
-        	<path d="M12 2l.117 .007a1 1 0 0 1 .876 .876l.007 .117v4l.005 .15a2 2 0 0 0 1.838 1.844l.157 .006h4l.117 .007a1 1 0 0 1 .876 .876l.007 .117v9a3 3 0 0 1 -2.824 2.995l-.176 .005h-10a3 3 0 0 1 -2.995 -2.824l-.005 -.176v-14a3 3 0 0 1 2.824 -2.995l.176 -.005zm4 15h-2a1 1 0 0 0 0 2h2a1 1 0 0 0 0 -2m0 -4h-8a1 1 0 0 0 0 2h8a1 1 0 0 0 0 -2m-7 -7h-1a1 1 0 1 0 0 2h1a1 1 0 1 0 0 -2" />
-        	<path d="M19 7h-4l-.001 -4.001z" />
-        </svg>`;
-  private batchIcon = `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" class="icon icon-tabler icons-tabler-filled icon-tabler-file-time">
-    	<path stroke="none" d="M0 0h24v24H0z" fill="none" />
-    	<path d="M12 2l.117 .007a1 1 0 0 1 .876 .876l.007 .117v4l.005 .15a2 2 0 0 0 1.838 1.844l.157 .006h4l.117 .007a1 1 0 0 1 .876 .876l.007 .117v9a3 3 0 0 1 -2.824 2.995l-.176 .005h-10a3 3 0 0 1 -2.995 -2.824l-.005 -.176v-14a3 3 0 0 1 2.824 -2.995l.176 -.005zm0 8a5 5 0 0 0 -4.995 4.783l-.005 .217a5 5 0 1 0 5 -5m0 2a3 3 0 1 1 0 6a3 3 0 0 1 0 -6m0 .496a1 1 0 0 0 -1 1v1.504a1 1 0 0 0 .293 .707l1 1a1 1 0 0 0 1.414 0l.083 -.094a1 1 0 0 0 -.083 -1.32l-.707 -.708v-1.089a1 1 0 0 0 -1 -1" />
-    	<path d="M19 7h-4l-.001 -4.001z" />
-    </svg>`;
-  private iotIcon = `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" class="icon icon-tabler icons-tabler-filled icon-tabler-satellite">
-        	<path stroke="none" d="M0 0h24v24H0z" fill="none" />
-        	<path d="M21 14a1 1 0 0 1 1 1a7 7 0 0 1 -7 7a1 1 0 0 1 0 -2a5 5 0 0 0 5 -5a1 1 0 0 1 1 -1m-4 -.5a1 1 0 0 1 1 1a3.5 3.5 0 0 1 -3.5 3.5a1 1 0 0 1 -.117 -1.993l.117 -.007a1.5 1.5 0 0 0 1.493 -1.356l.007 -.144a1 1 0 0 1 1 -1m-13.829 -2.087l4 4.001q .212 .212 .445 .384l-.909 .91a1 1 0 0 1 -1.414 0l-3 -3a1 1 0 0 1 0 -1.415zm5.243 -8.413l5.586 5.586a2 2 0 0 1 0 2.828l-.586 .585l.793 .794a1 1 0 0 1 -1.414 1.414l-.793 -.794l-.586 .587a2 2 0 0 1 -2.828 0l-5.586 -5.586a2 2 0 0 1 -.18 -2.618l.127 -.152l.053 -.058l2.586 -2.586a2 2 0 0 1 2.828 0m5.293 -.707l3 3a1 1 0 0 1 0 1.414l-.908 .91a4 4 0 0 0 -.384 -.445l-4.001 -4l.879 -.88a1 1 0 0 1 1.414 0" />
-        </svg>`;
-  private mqttIcon = `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" class="icon icon-tabler icons-tabler-filled icon-tabler-radio">
-        	<path stroke="none" d="M0 0h24v24H0z" fill="none" />
-        	<path d="M12 9a3 3 0 1 0 0 6a3 3 0 0 0 0 -6z" />
-        	<path d="M15.077 5.692a9 9 0 0 0 -6.154 0l.761 2.079a5 5 0 0 1 4.632 4.632l2.079 .761a9 9 0 0 0 0 -6.154l-2.079 .761a5 5 0 0 1 -4.632 -4.632l-.761 2.079z" />
-        </svg>`;
-  private aiIcon = `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" class="icon icon-tabler icons-tabler-filled icon-tabler-robot">
-    	<path stroke="none" d="M0 0h24v24H0z" fill="none" />
-    	<path d="M17.473 18.508a8.975 8.975 0 0 1 -12.946 0c-1.867 -1.757 -1.867 -4.612 0 -6.369a8.975 8.975 0 0 1 12.946 0c1.867 1.757 1.867 4.612 0 6.369" />
-    	<path d="M8 11.857a4 4 0 1 0 8 0" />
-    	<circle cx="10" cy="10.5" r="1" />
-    	<circle cx="14" cy="10.5" r="1" />
-    	<path d="M12 17.5v2.5" />
-    	<path d="M8 21h8" />
-    	<path d="M10 17.5h4" />
-    </svg>`;
 
   unreadCount = 3;
 
@@ -115,8 +89,8 @@ export class HeaderComponent {
   ];
 
   profileMenu: MenuItem[] = [
-    { label: "Profile", icon: "user", route: "/profile" },
-    { label: "Analytics", icon: "chart-pie", route: "/analytics" },
+    { label: "Profile", icon: USER_ICON, route: "/profile" },
+    { label: "Analytics", icon: CHART_PIE_ICON, route: "/analytics" },
     { divider: true },
     { label: "Settings & Privacy", route: "/settings" },
     { label: "Help" },
@@ -125,155 +99,99 @@ export class HeaderComponent {
   ];
 
   apps: MenuItem[] = [
-    { label: "Dashboard", icon: "layout-dashboard", route: "/dashboard" },
-    { label: "Customers", icon: "users", route: "/customers" },
-    { label: "Quotations", icon: "file-text", route: "/quotations" },
-    {
-      label: "Purchase Orders",
-      icon: "shopping-cart",
-      route: "/purchase-orders",
-    },
-    { label: "Products", icon: "package", route: "/products" },
-    { label: "Payments", icon: "credit-card", route: "/payments" },
-    { label: "Documents", icon: "folder", route: "/documents" },
-    { label: "Job Cards", icon: this.invoiceIcon, route: "/jobs" },
-    { label: "Work Orders", icon: "clipboard", route: "/wos/orders" },
-    { label: "Batch Jobs", icon: this.batchIcon, route: "/batch/jobs" },
-    { label: "IoT Devices", icon: this.iotIcon, route: "/iot/devices" },
-    { label: "MQTT Flows", icon: this.mqttIcon, route: "/mqtt/flows" },
-    { label: "Analytics", icon: this.invoiceIcon, route: "/analytics" },
-    { label: "Reports", icon: this.invoiceIcon, route: "/reports" },
-    { label: "Email", icon: this.invoiceIcon, route: "/email/templates" },
-    { label: "Languages", icon: this.invoiceIcon, route: "/i18n/languages" },
-    { label: "Users", icon: "user", route: "/users" },
-    { label: "AI", icon: this.aiIcon, route: "/ai-analytics" },
+    { label: "Dashboard", icon: LAYOUT_DASHBOARD_ICON, route: "/dashboard" },
+    { label: "Customers", icon: USERS_ICON, route: "/customers" },
+    { label: "Quotations", icon: FILE_TEXT_ICON, route: "/quotations" },
+    { label: "Purchase Orders", icon: SHOPPING_CART_ICON, route: "/purchase-orders" },
+    { label: "Products", icon: PACKAGE_ICON, route: "/products" },
+    { label: "Payments", icon: CREDIT_CARD_ICON, route: "/payments" },
+    { label: "Documents", icon: FOLDER_ICON, route: "/documents" },
+    { label: "Job Cards", icon: BRIEFCASE_ICON, route: "/jobs" },
+    { label: "Work Orders", icon: CLIPBOARD_ICON, route: "/wos/orders" },
+    { label: "Batch Jobs", icon: LAYERS_ICON, route: "/batch/jobs" },
+    { label: "IoT Devices", icon: CPU_ICON, route: "/iot/devices" },
+    { label: "MQTT Flows", icon: RADIO_ICON, route: "/mqtt/flows" },
+    { label: "Analytics", icon: CHART_AREA_ICON, route: "/analytics" },
+    { label: "Reports", icon: FILE_INVOICE_ICON, route: "/reports" },
+    { label: "Email", icon: MAIL_ICON, route: "/email/templates" },
+    { label: "Languages", icon: LANGUAGE_ICON, route: "/i18n/languages" },
+    { label: "Users", icon: USER_ICON, route: "/users" },
+    { label: "AI", icon: ROBOT_ICON, route: "/ai-analytics" },
   ];
 
   horizontalMenu: MenuItem[] = [
-    { label: "Dashboard", icon: "layout-dashboard", route: "/dashboard" },
+    { label: "Dashboard", icon: LAYOUT_DASHBOARD_ICON, route: "/dashboard" },
     {
       label: "IoT",
-      icon: this.iotIcon,
+      icon: IOT_ICON,
       route: "/iot/devices",
       children: [
-        { label: "Devices", icon: this.iotIcon, route: "/iot/devices" },
-        { label: "IoT Settings", icon: this.themeIcon, route: "/iot/settings" },
-        {
-          label: "IoT Reports",
-          icon: this.AnalyticsIcon,
-          route: "/iot/reports",
-        },
-        { label: "MQTT Flows", icon: this.mqttIcon, route: "/mqtt/flows" },
+        { label: "Devices", icon: DEVICE_DESKTOP_ICON, route: "/iot/devices" },
+        { label: "IoT Settings", icon: SETTINGS_ICON, route: "/iot/settings" },
+        { label: "IoT Reports", icon: CHART_BAR_ICON, route: "/iot/reports" },
+        { label: "MQTT Flows", icon: RADIO_ICON, route: "/mqtt/flows" },
       ],
     },
     {
       label: "Users",
-      icon: "users",
+      icon: USERS_ICON,
       route: "/users",
       children: [
-        { label: "Users", icon: "user", route: "/users" },
-        { label: "Roles", icon: "shield", route: "/roles" },
-        { label: "User List", icon: "list", route: "/users" },
-        { label: "User Create", icon: "plus", route: "/users/create" },
+        { label: "Users", icon: USER_ICON, route: "/users" },
+        { label: "Roles", icon: SHIELD_ICON, route: "/roles" },
+        { label: "User List", icon: LIST_ICON, route: "/users" },
+        { label: "User Create", icon: PLUS_ICON, route: "/users/create" },
       ],
     },
     {
       label: "Service",
-      icon: "list",
+      icon: LIST_ICON,
       route: "/payments",
       children: [
-        { label: "Payments", icon: "credit-card", route: "/payments" },
-        { label: "Invoices", icon: this.invoicesIcon, route: "/invoices" },
-        { label: "Job Cards", icon: this.invoiceIcon, route: "/jobs" },
-        { label: "Work Orders", icon: "clipboard", route: "/wos/orders" },
-        { label: "Batch Jobs", icon: this.invoiceIcon, route: "/batch/jobs" },
-        { label: "Quotations", icon: "file-text", route: "/quotations" },
-        {
-          label: "Purchase Orders",
-          icon: "shopping-cart",
-          route: "/purchase-orders",
-        },
-        { label: "Products", icon: "package", route: "/products" },
-        {
-          label: "Email Templates",
-          icon: "clipboard",
-          route: "/email/templates",
-        },
-        { label: "Email Compose", icon: "pencil", route: "/email/compose" },
-        { label: "Email Logs", icon: "clipboard", route: "/email/logs" },
+        { label: "Payments", icon: CREDIT_CARD_ICON, route: "/payments" },
+        { label: "Invoices", icon: FILE_INVOICE_ICON, route: "/invoices" },
+        { label: "Job Cards", icon: BRIEFCASE_ICON, route: "/jobs" },
+        { label: "Work Orders", icon: CLIPBOARD_ICON, route: "/wos/orders" },
+        { label: "Batch Jobs", icon: LAYERS_ICON, route: "/batch/jobs" },
+        { label: "Quotations", icon: FILE_TEXT_ICON, route: "/quotations" },
+        { label: "Purchase Orders", icon: SHOPPING_CART_ICON, route: "/purchase-orders" },
+        { label: "Products", icon: PACKAGE_ICON, route: "/products" },
+        { label: "Email Templates", icon: MAIL_ICON, route: "/email/templates" },
+        { label: "Email Compose", icon: PENCIL_ICON, route: "/email/compose" },
+        { label: "Email Logs", icon: LIST_DETAILS_ICON, route: "/email/logs" },
       ],
     },
     {
       label: "Settings",
-      icon: "settings",
+      icon: SETTINGS_ICON,
       route: "/settings/theme",
       children: [
-        {
-          label: "Languages",
-          icon: this.languageIcon,
-          route: "/i18n/languages",
-        },
+        { label: "Languages", icon: LANGUAGE_ICON, route: "/i18n/languages" },
       ],
     },
     {
       label: "Reports",
-      icon: "clipboard",
+      icon: CLIPBOARD_ICON,
       route: "/reports",
       children: [
-        { label: "Analytics", icon: this.AnalyticsIcon, route: "/analytics" },
-        { label: "Theme", icon: this.themeIcon, route: "/settings/theme" },
-        {
-          label: "Language",
-          icon: this.languageIcon,
-          route: "/settings/language",
-        },
+        { label: "Analytics", icon: CHART_AREA_ICON, route: "/analytics" },
+        { label: "Theme", icon: PALETTE_ICON, route: "/settings/theme" },
+        { label: "Language", icon: LANGUAGE_ICON, route: "/settings/language" },
       ],
     },
     {
       label: "AI",
-      icon: this.aiIcon,
+      icon: AI_ICON,
       route: "/ai-analytics",
       children: [
-        {
-          label: "Command Center",
-          icon: this.aiIcon,
-          route: "/ai-analytics/command-center",
-        },
-        {
-          label: "Dashboard",
-          icon: this.AnalyticsIcon,
-          route: "/ai-analytics/dashboard",
-        },
-        {
-          label: "Reports",
-          icon: this.invoicesIcon,
-          route: "/ai-analytics/reports",
-        },
-        {
-          label: "Activity Log",
-          icon: this.batchIcon,
-          route: "/ai-analytics/logs",
-        },
-        {
-          label: "Workflow AI",
-          icon: this.iotIcon,
-          route: "/ai-analytics/workflow",
-        },
-        {
-          label: "Schedule",
-          icon: this.batchIcon,
-          route: "/ai-analytics/schedule",
-        },
-        {
-          label: "Alert Management",
-          icon: this.themeIcon,
-          route: "/ai-analytics/alerts",
-        },
-        {
-          label: "Data Analyst",
-          icon: this.AnalyticsIcon,
-          route: "/ai-analytics/analyst",
-        },
+        { label: "Command Center", icon: ROBOT_ICON, route: "/ai-analytics/command-center" },
+        { label: "Dashboard", icon: CHART_AREA_ICON, route: "/ai-analytics/dashboard" },
+        { label: "Reports", icon: FILE_INVOICE_ICON, route: "/ai-analytics/reports" },
+        { label: "Activity Log", icon: LIST_DETAILS_ICON, route: "/ai-analytics/logs" },
+        { label: "Workflow AI", icon: WAVE_SQUARE_ICON, route: "/ai-analytics/workflow" },
+        { label: "Schedule", icon: CALENDAR_EVENT_ICON, route: "/ai-analytics/schedule" },
+        { label: "Alert Management", icon: BELL_ICON, route: "/ai-analytics/alerts" },
+        { label: "Data Analyst", icon: CHART_DOTS_2_ICON, route: "/ai-analytics/analyst" },
       ],
     },
   ];

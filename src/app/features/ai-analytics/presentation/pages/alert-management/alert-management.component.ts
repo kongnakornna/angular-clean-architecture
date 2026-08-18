@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, Inject, OnInit, OnDestroy } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { BehaviorSubject, Subject, takeUntil } from 'rxjs';
 import { TranslatePipe } from '../../../../../shared/pipes/translate.pipe';
@@ -6,6 +6,7 @@ import { AlertBadgeComponent } from '../../components/alert-badge/alert-badge.co
 import { Alert, AlertRule } from '../../../domain/entities/alert.entity';
 import { GetAlertsUseCase } from '../../../domain/use-cases/get-alerts.usecase';
 import { IAIAnalyticsRepository } from '../../../domain/repositories/ai-analytics.repository';
+import { AI_ANALYTICS_REPOSITORY } from '../../../../../core/di/tokens';
 
 @Component({
   selector: 'app-alert-management',
@@ -28,7 +29,7 @@ export class AlertManagementComponent implements OnInit, OnDestroy {
 
   constructor(
     private getAlerts: GetAlertsUseCase,
-    private repository: IAIAnalyticsRepository,
+    @Inject(AI_ANALYTICS_REPOSITORY) private repository: IAIAnalyticsRepository,
   ) {}
 
   ngOnInit(): void {

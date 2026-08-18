@@ -559,6 +559,96 @@
     "monthlySalesChart": "ແຜນພາບຍອດຂາຍປະຈຳເດືອນ",
     "pieChart": "ແຜນພາບວົງກົມ",
     "comparedToLastMonth": "ທຽບກັບເດືອນແລ້ວ",
-    "summary": "Summary"
+    "summary": "ສະຫຼຸບ"
+  },
+  "aiAnalytics": {
+    "reports": "ລາຍງານ",
+    "reportsTitle": "ລາຍງານວິເຄາະ AI",
+    "commandCenter": "ສູນບັນຊາ",
+    "commandCenterTitle": "ສູນບັນຊາ",
+    "alertManagement": "ຈັດການການແຈ້ງເຕືອນ",
+    "alertManagementTitle": "ຈັດການການແຈ້ງເຕືອນ",
+    "scheduler": "ຕາຕະລາງເວລາ",
+    "schedulerTitle": "ຕາຕະລາງເວລາ",
+    "workflowAI": "Workflow AI",
+    "workflowAITitle": "Workflow AI",
+    "activityLog": "ບັນທຶກກິດຈະກຳ",
+    "activityLogTitle": "ບັນທຶກກິດຈະກຳ",
+    "dataAnalyst": "ນັກວິເຄາະຂໍ້ມູນ",
+    "dataAnalystTitle": "ນັກວິເຄາະຂໍ້ມູນ",
+    "dashboard": "ແຜນພາບ AI",
+    "dashboardTitle": "ແຜນພາບ AI"
+  },
+  "commandCenter": {
+    "completed": "ສຳເລັດ",
+    "pending": "ກຳລັງລໍຖ້າ",
+    "failed": "ລົ້ມເຫຼວ",
+    "successRate": "ອັດຕາສຳເລັດ",
+    "quickActions": "ການດຳເນີນງານໄວ",
+    "activeTasks": "ວຽກທີ່ກຳລັງດຳເນີນການ",
+    "noTasks": "ບໍ່ມີວຽກ"
+  },
+  "alertManagement": {
+    "activeAlerts": "ການແຈ້ງເຕືອນທີ່ກຳລັງໃຊ້ງານ",
+    "noAlerts": "ບໍ່ມີການແຈ້ງເຕືອນ",
+    "alertRules": "ກົດລະບຽບການແຈ້ງເຕືອນ",
+    "condition": "ເງື່ອນໄຂ",
+    "actions": "ການດຳເນີນງານ",
+    "enabled": "ເປີດໃຊ້ງານ",
+    "noRules": "ຍັງບໍ່ມີກົດລະບຽບການແຈ້ງເຕືອນ"
+  },
+  "scheduler": {
+    "newSchedule": "ສ້າງຕາຕະລາງໃໝ່",
+    "schedules": "ຕາຕະລາງ",
+    "noSchedules": "ຍັງບໍ່ມີຕາຕະລາງ",
+    "upcomingRuns": "ການດຳເນີນງານທີ່ຈະມາເຖິງ",
+    "noUpcomingRuns": "ບໍ່ມີການດຳເນີນງານທີ່ຈະມາເຖິງ"
+  },
+  "workflow": {
+    "newWorkflow": "ສ້າງ Workflow ໃໝ່",
+    "workflows": "Workflows",
+    "selectWorkflow": "ເລືອກ Workflow ເພື່ອເລີ່ມຕົ້ນ"
+  },
+  "activityLog": {
+    "filters": "ຕົວກັ່ນຕອງ",
+    "searchPlaceholder": "ຄົ້ນຫາບັນທຶກ...",
+    "allTypes": "ທຸກປະເພດ",
+    "typeSuccess": "ສຳເລັດ",
+    "typeAiQuery": "ການສອບຖາມ AI",
+    "typeWarning": "ຄວາມເຕືອນ",
+    "typeError": "ຂໍ້ຜິດພາດ",
+    "typeReport": "ລາຍງານ",
+    "typeWorkflow": "Workflow",
+    "applyFilter": "ນຳໃຊ້ຕົວກັ່ນຕອງ",
+    "timeline": "ເສັ້ນເວລາ"
+  },
+  "dataAnalyst": {
+    "revenue": "ລາຍຮັບ",
+    "users": "ຜູ້ໃຊ້",
+    "orders": "ຄຳສັ່ງຊື້",
+    "avgRating": "ການໃຫ້ຄະແນນສະເລ່ຍ",
+    "chartTitle": "ແຜນພາບວິເຄາະ",
+    "aiInsights": "AI Insights"
+  },
+  "scheduleCard": {
+    "active": "ກຳລັງໃຊ້ງານ",
+    "paused": "ຢຸດຊົ່ວຄາວ",
+    "edit": "ແກ້ໄຂ",
+    "pause": "ຢຸດຊົ່ວຄາວ",
+    "resume": "ດຳເນີນການຕໍ່",
+    "delete": "ລຶບ"
+  },
+  "aiInsightPanel": {
+    "aiInsights": "AI Insights",
+    "explore": "ສຳຫຼວດ",
+    "generateReport": "ສ້າງລາຍງານ",
+    "pin": "ຕິດໝຸກ",
+    "noInsights": "ບໍ່ມີ insights"
+  },
+  "dataTable": {
+    "noDataAvailable": "ບໍ່ມີຂໍ້ມູນ"
+  },
+  "logTimeline": {
+    "noLogsAvailable": "ບໍ່ມີບັນທຶກ"
   }
 }

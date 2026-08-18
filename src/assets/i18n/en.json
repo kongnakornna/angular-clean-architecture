@@ -660,5 +660,95 @@
     "pieChart": "Pie chart",
     "comparedToLastMonth": "compared to last month",
     "summary": "Summary"
+  },
+  "aiAnalytics": {
+    "reports": "Reports",
+    "reportsTitle": "AI Analytics Reports",
+    "commandCenter": "Command Center",
+    "commandCenterTitle": "Command Center",
+    "alertManagement": "Alert Management",
+    "alertManagementTitle": "Alert Management",
+    "scheduler": "Scheduler",
+    "schedulerTitle": "Scheduler",
+    "workflowAI": "Workflow AI",
+    "workflowAITitle": "Workflow AI",
+    "activityLog": "Activity Log",
+    "activityLogTitle": "Activity Log",
+    "dataAnalyst": "Data Analyst",
+    "dataAnalystTitle": "Data Analyst",
+    "dashboard": "AI Dashboard",
+    "dashboardTitle": "AI Dashboard"
+  },
+  "commandCenter": {
+    "completed": "Completed",
+    "pending": "Pending",
+    "failed": "Failed",
+    "successRate": "Success Rate",
+    "quickActions": "Quick Actions",
+    "activeTasks": "Active Tasks",
+    "noTasks": "No tasks available"
+  },
+  "alertManagement": {
+    "activeAlerts": "Active Alerts",
+    "noAlerts": "No active alerts",
+    "alertRules": "Alert Rules",
+    "condition": "Condition",
+    "actions": "Actions",
+    "enabled": "Enabled",
+    "noRules": "No alert rules configured"
+  },
+  "scheduler": {
+    "newSchedule": "New Schedule",
+    "schedules": "Schedules",
+    "noSchedules": "No schedules configured",
+    "upcomingRuns": "Upcoming Runs",
+    "noUpcomingRuns": "No upcoming runs"
+  },
+  "workflow": {
+    "newWorkflow": "New Workflow",
+    "workflows": "Workflows",
+    "selectWorkflow": "Select a workflow to get started"
+  },
+  "activityLog": {
+    "filters": "Filters",
+    "searchPlaceholder": "Search logs...",
+    "allTypes": "All Types",
+    "typeSuccess": "Success",
+    "typeAiQuery": "AI Query",
+    "typeWarning": "Warning",
+    "typeError": "Error",
+    "typeReport": "Report",
+    "typeWorkflow": "Workflow",
+    "applyFilter": "Apply Filter",
+    "timeline": "Timeline"
+  },
+  "dataAnalyst": {
+    "revenue": "Revenue",
+    "users": "Users",
+    "orders": "Orders",
+    "avgRating": "Avg Rating",
+    "chartTitle": "Analytics Chart",
+    "aiInsights": "AI Insights"
+  },
+  "scheduleCard": {
+    "active": "Active",
+    "paused": "Paused",
+    "edit": "Edit",
+    "pause": "Pause",
+    "resume": "Resume",
+    "delete": "Delete"
+  },
+  "aiInsightPanel": {
+    "aiInsights": "AI Insights",
+    "explore": "Explore",
+    "generateReport": "Generate Report",
+    "pin": "Pin",
+    "noInsights": "No insights available"
+  },
+  "dataTable": {
+    "noDataAvailable": "No data available"
+  },
+  "logTimeline": {
+    "noLogsAvailable": "No logs available"
   }
 }

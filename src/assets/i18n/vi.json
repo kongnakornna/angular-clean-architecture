@@ -559,6 +559,96 @@
     "monthlySalesChart": "Biểu đồ doanh số hàng tháng",
     "pieChart": "Biểu đồ tròn",
     "comparedToLastMonth": "so với tháng trước",
-    "summary": "Summary"
+    "summary": "Tóm tắt"
+  },
+  "aiAnalytics": {
+    "reports": "Báo cáo",
+    "reportsTitle": "Báo cáo Phân tích AI",
+    "commandCenter": "Trung tâm Điều khiển",
+    "commandCenterTitle": "Trung tâm Điều khiển",
+    "alertManagement": "Quản lý Cảnh báo",
+    "alertManagementTitle": "Quản lý Cảnh báo",
+    "scheduler": "Lịch trình",
+    "schedulerTitle": "Lịch trình",
+    "workflowAI": "Quy trình AI",
+    "workflowAITitle": "Quy trình AI",
+    "activityLog": "Nhật ký Hoạt động",
+    "activityLogTitle": "Nhật ký Hoạt động",
+    "dataAnalyst": "Phân tích Dữ liệu",
+    "dataAnalystTitle": "Phân tích Dữ liệu",
+    "dashboard": "Bảng điều khiển AI",
+    "dashboardTitle": "Bảng điều khiển AI"
+  },
+  "commandCenter": {
+    "completed": "Hoàn thành",
+    "pending": "Chờ xử lý",
+    "failed": "Thất bại",
+    "successRate": "Tỷ lệ thành công",
+    "quickActions": "Thao tác nhanh",
+    "activeTasks": "Tác vụ đang chạy",
+    "noTasks": "Không có tác vụ"
+  },
+  "alertManagement": {
+    "activeAlerts": "Cảnh báo đang hoạt động",
+    "noAlerts": "Không có cảnh báo nào",
+    "alertRules": "Quy tắc Cảnh báo",
+    "condition": "Điều kiện",
+    "actions": "Thao tác",
+    "enabled": "Đã bật",
+    "noRules": "Chưa có quy tắc cảnh báo"
+  },
+  "scheduler": {
+    "newSchedule": "Tạo lịch mới",
+    "schedules": "Lịch trình",
+    "noSchedules": "Chưa có lịch trình",
+    "upcomingRuns": "Sắp chạy",
+    "noUpcomingRuns": "Không có lịch sắp chạy"
+  },
+  "workflow": {
+    "newWorkflow": "Tạo Quy trình mới",
+    "workflows": "Quy trình",
+    "selectWorkflow": "Chọn một quy trình để bắt đầu"
+  },
+  "activityLog": {
+    "filters": "Bộ lọc",
+    "searchPlaceholder": "Tìm kiếm nhật ký...",
+    "allTypes": "Tất cả loại",
+    "typeSuccess": "Thành công",
+    "typeAiQuery": "Truy vấn AI",
+    "typeWarning": "Cảnh báo",
+    "typeError": "Lỗi",
+    "typeReport": "Báo cáo",
+    "typeWorkflow": "Quy trình",
+    "applyFilter": "Áp dụng bộ lọc",
+    "timeline": "Dòng thời gian"
+  },
+  "dataAnalyst": {
+    "revenue": "Doanh thu",
+    "users": "Người dùng",
+    "orders": "Đơn hàng",
+    "avgRating": "Đánh giá TB",
+    "chartTitle": "Biểu đồ Phân tích",
+    "aiInsights": "AI Insights"
+  },
+  "scheduleCard": {
+    "active": "Đang hoạt động",
+    "paused": "Tạm dừng",
+    "edit": "Sửa",
+    "pause": "Tạm dừng",
+    "resume": "Tiếp tục",
+    "delete": "Xóa"
+  },
+  "aiInsightPanel": {
+    "aiInsights": "AI Insights",
+    "explore": "Khám phá",
+    "generateReport": "Tạo Báo cáo",
+    "pin": "Ghim",
+    "noInsights": "Không có insights"
+  },
+  "dataTable": {
+    "noDataAvailable": "Không có dữ liệu"
+  },
+  "logTimeline": {
+    "noLogsAvailable": "Không có nhật ký"
   }
 }

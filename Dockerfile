@@ -14,7 +14,7 @@ RUN npx ng build --configuration production
 # ---- Stage 2: Production (nginx) ----
 FROM nginx:alpine AS production
 
-COPY --from=build /app/dist/angular-clean-architecture-serverless/browser /usr/share/nginx/html
+COPY --from=build /app/dist/angular-clean-architecture-serverless /usr/share/nginx/html
 COPY nginx.conf /etc/nginx/conf.d/default.conf
 
 EXPOSE 80

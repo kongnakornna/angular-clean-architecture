@@ -559,6 +559,96 @@
     "monthlySalesChart": "តារាងការលក់ប្រចាំខែ",
     "pieChart": "តារាងរង្វង់",
     "comparedToLastMonth": "ប្រៀបធៀបនឹងខែមុន",
-    "summary": "Summary"
+    "summary": "សរុប"
+  },
+  "aiAnalytics": {
+    "reports": "របាយការណ៍",
+    "reportsTitle": "របាយការណ៍វិភាគ AI",
+    "commandCenter": "មជ្ឈមណ្ឌលបញ្ជា",
+    "commandCenterTitle": "មជ្ឈមណ្ឌលបញ្ជា",
+    "alertManagement": "គ្រប់គ្រងការជូនដំណឹង",
+    "alertManagementTitle": "គ្រប់គ្រងការជូនដំណឹង",
+    "scheduler": "កាលវិភាគ",
+    "schedulerTitle": "កាលវិភាគ",
+    "workflowAI": "Workflow AI",
+    "workflowAITitle": "Workflow AI",
+    "activityLog": "កំណត់ត្រាសកម្មភាព",
+    "activityLogTitle": "កំណត់ត្រាសកម្មភាព",
+    "dataAnalyst": "អ្នកវិភាគទិន្នន័យ",
+    "dataAnalystTitle": "អ្នកវិភាគទិន្នន័យ",
+    "dashboard": "ផ្ទាំង AI",
+    "dashboardTitle": "ផ្ទាំង AI"
+  },
+  "commandCenter": {
+    "completed": "រួចរាល់",
+    "pending": "កំពុងរង់ចាំ",
+    "failed": "បរាជ័យ",
+    "successRate": "អត្រាជោគជ័យ",
+    "quickActions": "សកម្មភាពរហ័ស",
+    "activeTasks": "ការងារសកម្ម",
+    "noTasks": "គ្មានការងារ"
+  },
+  "alertManagement": {
+    "activeAlerts": "ការជូនដំណឹងសកម្ម",
+    "noAlerts": "គ្មានការជូនដំណឹងសកម្ម",
+    "alertRules": "ក្បួនការជូនដំណឹង",
+    "condition": "លក្ខខណ្ឌ",
+    "actions": "សកម្មភាព",
+    "enabled": "បានបើក",
+    "noRules": "មិនទាន់មានក្បួនការជូនដំណឹង"
+  },
+  "scheduler": {
+    "newSchedule": "កាលវិភាគថ្មី",
+    "schedules": "កាលវិភាគ",
+    "noSchedules": "មិនទាន់មានកាលវិភាគ",
+    "upcomingRuns": "ការដំណើរការខាងមុខ",
+    "noUpcomingRuns": "គ្មានការដំណើរការខាងមុខ"
+  },
+  "workflow": {
+    "newWorkflow": "Workflow ថ្មី",
+    "workflows": "Workflows",
+    "selectWorkflow": "ជ្រើសរើស Workflow ដើម្បីចាប់ផ្តើម"
+  },
+  "activityLog": {
+    "filters": "តម្រង",
+    "searchPlaceholder": "ស្វែងរកកំណត់ត្រា...",
+    "allTypes": "ប្រភេទទាំងអស់",
+    "typeSuccess": "ជោគជ័យ",
+    "typeAiQuery": "សំណួរ AI",
+    "typeWarning": "ការព្រមាន",
+    "typeError": "កំហុស",
+    "typeReport": "របាយការណ៍",
+    "typeWorkflow": "Workflow",
+    "applyFilter": "អនុវត្តតម្រង",
+    "timeline": "បន្ទរពេលវេលា"
+  },
+  "dataAnalyst": {
+    "revenue": "ចំណូល",
+    "users": "អ្នកប្រើប្រាស់",
+    "orders": "ការបញ្ជាទិញ",
+    "avgRating": "ការវាយតម្លៃជាមធ្យម",
+    "chartTitle": "តារាងវិភាគ",
+    "aiInsights": "AI Insights"
+  },
+  "scheduleCard": {
+    "active": "សកម្ម",
+    "paused": "ផ្អាក",
+    "edit": "កែសម្រួល",
+    "pause": "ផ្អាក",
+    "resume": "បន្ត",
+    "delete": "លុប"
+  },
+  "aiInsightPanel": {
+    "aiInsights": "AI Insights",
+    "explore": "រុករក",
+    "generateReport": "បង្កើតរបាយការណ៍",
+    "pin": "ខ្ទាស់",
+    "noInsights": "គ្មាន insights"
+  },
+  "dataTable": {
+    "noDataAvailable": "គ្មានទិន្នន័យ"
+  },
+  "logTimeline": {
+    "noLogsAvailable": "គ្មានកំណត់ត្រា"
   }
 }

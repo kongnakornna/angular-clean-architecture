@@ -32,4 +32,20 @@ export const MENU_CONFIG: MenuItem[] = [
   { label: 'Job Cards', route: '/jobs', icon: 'briefcase', permission: 'job_card.view' },
   { label: 'Users', route: '/users', icon: 'user', permission: 'user.view' },
   { label: 'Roles', route: '/roles', icon: 'shield', permission: 'role.view' },
+  {
+    label: 'AI',
+    route: '/ai-analytics',
+    icon: 'robot',
+    permission: 'ai_analytics.view',
+    children: [
+      { label: 'Command Center', route: '/ai-analytics/command-center', icon: 'robot', permission: 'ai_analytics.view' },
+      { label: 'Dashboard', route: '/ai-analytics/dashboard', icon: 'chart-area', permission: 'ai_analytics.view' },
+      { label: 'Reports', route: '/ai-analytics/reports', icon: 'file-invoice', permission: 'ai_analytics.view' },
+      { label: 'Activity Log', route: '/ai-analytics/logs', icon: 'list-details', permission: 'ai_analytics.view' },
+      { label: 'Workflow AI', route: '/ai-analytics/workflow', icon: 'wave-square', permission: 'ai_analytics.view' },
+      { label: 'Schedule', route: '/ai-analytics/schedule', icon: 'calendar-event', permission: 'ai_analytics.view' },
+      { label: 'Alert Management', route: '/ai-analytics/alerts', icon: 'bell', permission: 'ai_analytics.view' },
+      { label: 'Data Analyst', route: '/ai-analytics/analyst', icon: 'chart-dots-2', permission: 'ai_analytics.view' },
+    ],
+  },
 ];

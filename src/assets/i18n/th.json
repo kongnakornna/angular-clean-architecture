@@ -283,19 +283,19 @@
     "fromLastMonth": "จากเดือนที่แล้ว",
     "inProgress": "กำลังดำเนินการ",
     "loading": "กำลังโหลด...",
-    "totalDevices": "??????????????",
-    "onlineDevices": "??????????????",
-    "todayCommands": "????????????",
-    "activeAlerts": "?????????????????????",
-    "ofTotal": "??????????",
-    "allRegisteredDevices": "??????????????????????????",
-    "totalRevenuePeriod": "?????????????",
-    "jobStatus": "????????",
-    "failed": "???????",
-    "topParts": "?????????????",
-    "partName": "??????????",
-    "count": "?????",
-    "usage": "?????????"
+    "totalDevices": "อุปกรณ์ทั้งหมด",
+    "onlineDevices": "อุปกรณ์ออนไลน์",
+    "todayCommands": "คำสั่งวันนี้",
+    "activeAlerts": "การแจ้งเตือนที่ใช้งานอยู่",
+    "ofTotal": "จากทั้งหมด",
+    "allRegisteredDevices": "อุปกรณ์ที่ลงทะเบียนทั้งหมด",
+    "totalRevenuePeriod": "ในช่วงเวลานี้",
+    "jobStatus": "สถานะงาน",
+    "failed": "ล้มเหลว",
+    "topParts": "ชิ้นส่วนยอดนิยม",
+    "partName": "ชื่อชิ้นส่วน",
+    "count": "จำนวน",
+    "usage": "การใช้งาน"
   },
   "customer": {
     "title": "รายการลูกค้า",
@@ -662,6 +662,96 @@
     "monthlySalesChart": "แผนภูมิแสดงยอดขายรายเดือน",
     "pieChart": "แผนภูมิวงกลม",
     "comparedToLastMonth": "เทียบกับเดือนก่อน",
-    "summary": "????"
+    "summary": "สรุป"
+  },
+  "aiAnalytics": {
+    "reports": "รายงาน",
+    "reportsTitle": "รายงาน AI Analytics",
+    "commandCenter": "ศูนย์บัญชาการ",
+    "commandCenterTitle": "ศูนย์บัญชาการ",
+    "alertManagement": "จัดการการแจ้งเตือน",
+    "alertManagementTitle": "จัดการการแจ้งเตือน",
+    "scheduler": "ตัวกำหนดเวลา",
+    "schedulerTitle": "ตัวกำหนดเวลา",
+    "workflowAI": "Workflow AI",
+    "workflowAITitle": "Workflow AI",
+    "activityLog": "บันทึกกิจกรรม",
+    "activityLogTitle": "บันทึกกิจกรรม",
+    "dataAnalyst": "นักวิเคราะห์ข้อมูล",
+    "dataAnalystTitle": "นักวิเคราะห์ข้อมูล",
+    "dashboard": "แดชบอร์ด AI",
+    "dashboardTitle": "แดชบอร์ด AI"
+  },
+  "commandCenter": {
+    "completed": "เสร็จสิ้น",
+    "pending": "รอดำเนินการ",
+    "failed": "ล้มเหลว",
+    "successRate": "อัตราสำเร็จ",
+    "quickActions": "การกระทำด่วน",
+    "activeTasks": "งานที่กำลังดำเนินการ",
+    "noTasks": "ไม่มีงานในขณะนี้"
+  },
+  "alertManagement": {
+    "activeAlerts": "การแจ้งเตือนที่ใช้งานอยู่",
+    "noAlerts": "ไม่มีการแจ้งเตือนที่ใช้งานอยู่",
+    "alertRules": "กฎการแจ้งเตือน",
+    "condition": "เงื่อนไข",
+    "actions": "การกระทำ",
+    "enabled": "เปิดใช้งาน",
+    "noRules": "ยังไม่มีกฎการแจ้งเตือนที่กำหนดไว้"
+  },
+  "scheduler": {
+    "newSchedule": "สร้างตารางใหม่",
+    "schedules": "ตาราง",
+    "noSchedules": "ยังไม่มีตารางที่กำหนดไว้",
+    "upcomingRuns": "การรันที่กำลังจะมาถึง",
+    "noUpcomingRuns": "ไม่มีการรันที่กำลังจะมาถึง"
+  },
+  "workflow": {
+    "newWorkflow": "สร้าง Workflow ใหม่",
+    "workflows": "Workflows",
+    "selectWorkflow": "เลือก Workflow เพื่อเริ่มต้น"
+  },
+  "activityLog": {
+    "filters": "ตัวกรอง",
+    "searchPlaceholder": "ค้นหาบันทึก...",
+    "allTypes": "ทุกประเภท",
+    "typeSuccess": "สำเร็จ",
+    "typeAiQuery": "คำถาม AI",
+    "typeWarning": "คำเตือน",
+    "typeError": "ข้อผิดพลาด",
+    "typeReport": "รายงาน",
+    "typeWorkflow": "Workflow",
+    "applyFilter": "ใช้ตัวกรอง",
+    "timeline": "ไทม์ไลน์"
+  },
+  "dataAnalyst": {
+    "revenue": "รายได้",
+    "users": "ผู้ใช้",
+    "orders": "คำสั่งซื้อ",
+    "avgRating": "คะแนนเฉลี่ย",
+    "chartTitle": "แผนภูมิวิเคราะห์",
+    "aiInsights": "AI ข้อมูลเชิงลึก"
+  },
+  "scheduleCard": {
+    "active": "ใช้งานอยู่",
+    "paused": "หยุดชั่วคราว",
+    "edit": "แก้ไข",
+    "pause": "หยุด",
+    "resume": "กลับมาทำงาน",
+    "delete": "ลบ"
+  },
+  "aiInsightPanel": {
+    "aiInsights": "AI ข้อมูลเชิงลึก",
+    "explore": "สำรวจ",
+    "generateReport": "สร้างรายงาน",
+    "pin": "ปักหมุด",
+    "noInsights": "ไม่มีข้อมูลเชิงลึก"
+  },
+  "dataTable": {
+    "noDataAvailable": "ไม่มีข้อมูล"
+  },
+  "logTimeline": {
+    "noLogsAvailable": "ไม่มีบันทึก"
   }
 }

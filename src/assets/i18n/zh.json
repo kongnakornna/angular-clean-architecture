@@ -559,6 +559,96 @@
     "monthlySalesChart": "月销售图表",
     "pieChart": "饼图",
     "comparedToLastMonth": "较上月",
-    "summary": "Summary"
+    "summary": "概要"
+  },
+  "aiAnalytics": {
+    "reports": "报告",
+    "reportsTitle": "AI分析报告",
+    "commandCenter": "指挥中心",
+    "commandCenterTitle": "指挥中心",
+    "alertManagement": "告警管理",
+    "alertManagementTitle": "告警管理",
+    "scheduler": "调度器",
+    "schedulerTitle": "调度器",
+    "workflowAI": "工作流AI",
+    "workflowAITitle": "工作流AI",
+    "activityLog": "活动日志",
+    "activityLogTitle": "活动日志",
+    "dataAnalyst": "数据分析师",
+    "dataAnalystTitle": "数据分析师",
+    "dashboard": "AI仪表盘",
+    "dashboardTitle": "AI仪表盘"
+  },
+  "commandCenter": {
+    "completed": "已完成",
+    "pending": "待处理",
+    "failed": "失败",
+    "successRate": "成功率",
+    "quickActions": "快捷操作",
+    "activeTasks": "活跃任务",
+    "noTasks": "暂无任务"
+  },
+  "alertManagement": {
+    "activeAlerts": "活跃告警",
+    "noAlerts": "暂无活跃告警",
+    "alertRules": "告警规则",
+    "condition": "条件",
+    "actions": "操作",
+    "enabled": "已启用",
+    "noRules": "暂未配置告警规则"
+  },
+  "scheduler": {
+    "newSchedule": "新建调度",
+    "schedules": "调度列表",
+    "noSchedules": "暂未配置调度",
+    "upcomingRuns": "即将执行",
+    "noUpcomingRuns": "暂无即将执行的任务"
+  },
+  "workflow": {
+    "newWorkflow": "新建工作流",
+    "workflows": "工作流",
+    "selectWorkflow": "选择一个工作流开始"
+  },
+  "activityLog": {
+    "filters": "筛选",
+    "searchPlaceholder": "搜索日志...",
+    "allTypes": "所有类型",
+    "typeSuccess": "成功",
+    "typeAiQuery": "AI查询",
+    "typeWarning": "警告",
+    "typeError": "错误",
+    "typeReport": "报告",
+    "typeWorkflow": "工作流",
+    "applyFilter": "应用筛选",
+    "timeline": "时间线"
+  },
+  "dataAnalyst": {
+    "revenue": "收入",
+    "users": "用户",
+    "orders": "订单",
+    "avgRating": "平均评分",
+    "chartTitle": "分析图表",
+    "aiInsights": "AI洞察"
+  },
+  "scheduleCard": {
+    "active": "活跃",
+    "paused": "已暂停",
+    "edit": "编辑",
+    "pause": "暂停",
+    "resume": "恢复",
+    "delete": "删除"
+  },
+  "aiInsightPanel": {
+    "aiInsights": "AI洞察",
+    "explore": "探索",
+    "generateReport": "生成报告",
+    "pin": "置顶",
+    "noInsights": "暂无洞察"
+  },
+  "dataTable": {
+    "noDataAvailable": "暂无数据"
+  },
+  "logTimeline": {
+    "noLogsAvailable": "暂无日志"
   }
 }

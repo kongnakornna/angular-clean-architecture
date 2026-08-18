@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, Inject, OnInit, OnDestroy } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { BehaviorSubject, Subject, takeUntil } from 'rxjs';
 import { TranslatePipe } from '../../../../../shared/pipes/translate.pipe';
@@ -6,6 +6,7 @@ import { ScheduleCardComponent } from '../../components/schedule-card/schedule-c
 import { ScheduledJob, UpcomingRun } from '../../../domain/entities/schedule.entity';
 import { GetSchedulesUseCase } from '../../../domain/use-cases/get-schedules.usecase';
 import { IAIAnalyticsRepository } from '../../../domain/repositories/ai-analytics.repository';
+import { AI_ANALYTICS_REPOSITORY } from '../../../../../core/di/tokens';
 
 @Component({
   selector: 'app-scheduler',
@@ -28,7 +29,7 @@ export class SchedulerComponent implements OnInit, OnDestroy {
 
   constructor(
     private getSchedules: GetSchedulesUseCase,
-    private repository: IAIAnalyticsRepository,
+    @Inject(AI_ANALYTICS_REPOSITORY) private repository: IAIAnalyticsRepository,
   ) {}
 
   ngOnInit(): void {

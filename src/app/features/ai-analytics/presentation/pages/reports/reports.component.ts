@@ -1,10 +1,11 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, Inject, OnInit, OnDestroy } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { BehaviorSubject, Subject, takeUntil } from 'rxjs';
 import { TranslatePipe } from '../../../../../shared/pipes/translate.pipe';
 import { Report, ReportFolder } from '../../../domain/entities/report.entity';
 import { GetReportsUseCase } from '../../../domain/use-cases/get-reports.usecase';
 import { IAIAnalyticsRepository } from '../../../domain/repositories/ai-analytics.repository';
+import { AI_ANALYTICS_REPOSITORY } from '../../../../../core/di/tokens';
 
 @Component({
   selector: 'app-reports',
@@ -30,7 +31,7 @@ export class ReportsComponent implements OnInit, OnDestroy {
 
   constructor(
     private getReports: GetReportsUseCase,
-    private repository: IAIAnalyticsRepository,
+    @Inject(AI_ANALYTICS_REPOSITORY) private repository: IAIAnalyticsRepository,
   ) {}
 
   ngOnInit(): void {

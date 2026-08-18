@@ -50,7 +50,7 @@
           <h3 class="card-title">{{ 'activityLog.timeline' | translate }}</h3>
         </div>
         <div class="card-body">
-          <app-log-timeline [logs]="logs$ | async"></app-log-timeline>
+          <app-log-timeline [logs]="(logs$ | async) || []"></app-log-timeline>
         </div>
       </div>
     </div>

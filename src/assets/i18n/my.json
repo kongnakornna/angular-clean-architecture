@@ -559,6 +559,96 @@
     "monthlySalesChart": "လစဉ်အရောင်းဇယား",
     "pieChart": "အဝိုင်းဇယား",
     "comparedToLastMonth": "ပြီးခဲ့သည့်လနှင့်နှိုင်းယှဉ်",
-    "summary": "Summary"
+    "summary": "အကျဉ်းချုပ်"
+  },
+  "aiAnalytics": {
+    "reports": "အစီရင်ခံစာ",
+    "reportsTitle": "AI ခွဲခြမ်းစိတ်ဖြာမှု အစီရင်ခံစာ",
+    "commandCenter": "ညွှန်ကြားရေး ဗဟိုဌာန",
+    "commandCenterTitle": "ညွှန်ကြားရေး ဗဟိုဌာန",
+    "alertManagement": "သတိပေးချက် စီမံခန့်ခွဲမှု",
+    "alertManagementTitle": "သတိပေးချက် စီမံခန့်ခွဲမှု",
+    "scheduler": "အချိန်ဇယား",
+    "schedulerTitle": "အချိန်ဇယား",
+    "workflowAI": "Workflow AI",
+    "workflowAITitle": "Workflow AI",
+    "activityLog": "လုပ်ဆောင်ချက် မှတ်တမ်း",
+    "activityLogTitle": "လုပ်ဆောင်ချက် မှတ်တမ်း",
+    "dataAnalyst": "ဒေတာ ခွဲခြမ်းစိတ်ဖြာသူ",
+    "dataAnalystTitle": "ဒေတာ ခွဲခြမ်းစိတ်ဖြာသူ",
+    "dashboard": "AI Dashboard",
+    "dashboardTitle": "AI Dashboard"
+  },
+  "commandCenter": {
+    "completed": "ပြီးဆုံး",
+    "pending": "စောင့်ဆိုင်း",
+    "failed": "မအောင်မြင်",
+    "successRate": "အောင်မြင်မှုနှုန်း",
+    "quickActions": "အမြန်လုပ်ဆောင်ချက်များ",
+    "activeTasks": "Active အလုပ်များ",
+    "noTasks": "အလုပ် မရှိပါ"
+  },
+  "alertManagement": {
+    "activeAlerts": "Active သတိပေးချက်များ",
+    "noAlerts": "Active သတိပေးချက် မရှိပါ",
+    "alertRules": "သတိပေးချက် စည်းမျဉ်းများ",
+    "condition": "အခြေအနေ",
+    "actions": "လုပ်ဆောင်ချက်များ",
+    "enabled": "ဖွင့်ထား",
+    "noRules": "သတိပေးချက် စည်းမျဉ်း မရှိသေးပါ"
+  },
+  "scheduler": {
+    "newSchedule": "အချိန်ဇယား အသစ်",
+    "schedules": "အချိန်ဇယားများ",
+    "noSchedules": "အချိန်ဇယား မရှိသေးပါ",
+    "upcomingRuns": "လာမည့်အလုပ်ဆောင်ရွက်မှုများ",
+    "noUpcomingRuns": "လာမည့်အလုပ်ဆောင်ရွက်မှု မရှိပါ"
+  },
+  "workflow": {
+    "newWorkflow": "Workflow အသစ်",
+    "workflows": "Workflows",
+    "selectWorkflow": "စတင်ရန် Workflow တစ်ခု ရွေးပါ"
+  },
+  "activityLog": {
+    "filters": "စစ်ထုတ်ချက်",
+    "searchPlaceholder": "မှတ်တမ်း ရှာဖွေ...",
+    "allTypes": "အမျိုးအစား အားလုံး",
+    "typeSuccess": "အောင်မြင်",
+    "typeAiQuery": "AI မေးခွန်း",
+    "typeWarning": "သတိပေးချက်",
+    "typeError": "အမှား",
+    "typeReport": "အစီရင်ခံစာ",
+    "typeWorkflow": "Workflow",
+    "applyFilter": "စစ်ထုတ်ချက် အသုံးပြု",
+    "timeline": "အချိန်ကြော"
+  },
+  "dataAnalyst": {
+    "revenue": "ဝင်ငွေ",
+    "users": "သုံးစွဲသူများ",
+    "orders": "အော်ဒါများ",
+    "avgRating": "ပျမ်းမျှ အဆင့်သတ်မှတ်ချက်",
+    "chartTitle": "ခွဲခြမ်းစိတ်ဖြာမှု ဇယား",
+    "aiInsights": "AI Insights"
+  },
+  "scheduleCard": {
+    "active": "Active",
+    "paused": "ရပ်နား",
+    "edit": "ပြင်ဆင်",
+    "pause": "ရပ်နား",
+    "resume": "ဆက်လက်",
+    "delete": "ဖျက်"
+  },
+  "aiInsightPanel": {
+    "aiInsights": "AI Insights",
+    "explore": "စူးစမ်း",
+    "generateReport": "အစီရင်ခံစာ ဖန်တီး",
+    "pin": "ညှပ်",
+    "noInsights": "Insights မရှိပါ"
+  },
+  "dataTable": {
+    "noDataAvailable": "ဒေတာ မရှိပါ"
+  },
+  "logTimeline": {
+    "noLogsAvailable": "မှတ်တမ်း မရှိပါ"
   }
 }

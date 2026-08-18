@@ -6,7 +6,7 @@
         class="badge"
         [class.bg-green-lt]="job?.enabled"
         [class.bg-secondary-lt]="!job?.enabled">
-        {{ job?.enabled ? 'Active' : 'Paused' }}
+        {{ (job?.enabled ? 'scheduleCard.active' : 'scheduleCard.paused') | translate }}
       </span>
     </div>
   </div>
@@ -35,7 +35,7 @@
         <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-sm">
           <path d="M17 3a2.85 2.83 0 1 1 4 4l-14.5 14.5l-4 1l1 -14.5z" />
         </svg>
-        Edit
+        {{ 'scheduleCard.edit' | translate }}
       </button>
       <button class="btn btn-sm btn-outline-yellow" (click)="togglePause.emit()">
         <svg *ngIf="job?.enabled" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-sm">
@@ -44,13 +44,13 @@
         <svg *ngIf="!job?.enabled" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-sm">
           <path d="M6 5l0 14" /><path d="M18 5l0 14" />
         </svg>
-        {{ job?.enabled ? 'Pause' : 'Resume' }}
+        {{ (job?.enabled ? 'scheduleCard.pause' : 'scheduleCard.resume') | translate }}
       </button>
       <button class="btn btn-sm btn-outline-danger" (click)="delete.emit()">
         <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-sm">
           <path d="M4 7l16 0" /><path d="M10 11l0 6" /><path d="M14 11l0 6" /><path d="M5 7l1 12a2 2 0 0 0 2 2h8a2 2 0 0 0 2 -2l1 -12" /><path d="M9 7l0 -3a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1l0 3" />
         </svg>
-        Delete
+        {{ 'scheduleCard.delete' | translate }}
       </button>
     </div>
   </div>

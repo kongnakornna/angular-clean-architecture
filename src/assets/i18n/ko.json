@@ -559,6 +559,96 @@
     "monthlySalesChart": "월별 매출 차트",
     "pieChart": "원형 차트",
     "comparedToLastMonth": "전월 대비",
-    "summary": "Summary"
+    "summary": "요약"
+  },
+  "aiAnalytics": {
+    "reports": "보고서",
+    "reportsTitle": "AI 분석 보고서",
+    "commandCenter": "명령 센터",
+    "commandCenterTitle": "명령 센터",
+    "alertManagement": "알림 관리",
+    "alertManagementTitle": "알림 관리",
+    "scheduler": "스케줄러",
+    "schedulerTitle": "스케줄러",
+    "workflowAI": "워크플로우 AI",
+    "workflowAITitle": "워크플로우 AI",
+    "activityLog": "활동 로그",
+    "activityLogTitle": "활동 로그",
+    "dataAnalyst": "데이터 분석가",
+    "dataAnalystTitle": "데이터 분석가",
+    "dashboard": "AI 대시보드",
+    "dashboardTitle": "AI 대시보드"
+  },
+  "commandCenter": {
+    "completed": "완료",
+    "pending": "대기 중",
+    "failed": "실패",
+    "successRate": "성공률",
+    "quickActions": "빠른 작업",
+    "activeTasks": "활성 작업",
+    "noTasks": "작업이 없습니다"
+  },
+  "alertManagement": {
+    "activeAlerts": "활성 알림",
+    "noAlerts": "활성 알림이 없습니다",
+    "alertRules": "알림 규칙",
+    "condition": "조건",
+    "actions": "작업",
+    "enabled": "활성화됨",
+    "noRules": "알림 규칙이 설정되지 않았습니다"
+  },
+  "scheduler": {
+    "newSchedule": "새 스케줄",
+    "schedules": "스케줄",
+    "noSchedules": "스케줄이 설정되지 않았습니다",
+    "upcomingRuns": "예정된 실행",
+    "noUpcomingRuns": "예정된 실행이 없습니다"
+  },
+  "workflow": {
+    "newWorkflow": "새 워크플로우",
+    "workflows": "워크플로우",
+    "selectWorkflow": "워크플로우를 선택하세요"
+  },
+  "activityLog": {
+    "filters": "필터",
+    "searchPlaceholder": "로그 검색...",
+    "allTypes": "모든 유형",
+    "typeSuccess": "성공",
+    "typeAiQuery": "AI 쿼리",
+    "typeWarning": "경고",
+    "typeError": "오류",
+    "typeReport": "보고서",
+    "typeWorkflow": "워크플로우",
+    "applyFilter": "필터 적용",
+    "timeline": "타임라인"
+  },
+  "dataAnalyst": {
+    "revenue": "수익",
+    "users": "사용자",
+    "orders": "주문",
+    "avgRating": "평균 평점",
+    "chartTitle": "분석 차트",
+    "aiInsights": "AI 인사이트"
+  },
+  "scheduleCard": {
+    "active": "활성",
+    "paused": "일시정지",
+    "edit": "편집",
+    "pause": "일시정지",
+    "resume": "재개",
+    "delete": "삭제"
+  },
+  "aiInsightPanel": {
+    "aiInsights": "AI 인사이트",
+    "explore": "탐색",
+    "generateReport": "보고서 생성",
+    "pin": "고정",
+    "noInsights": "인사이트가 없습니다"
+  },
+  "dataTable": {
+    "noDataAvailable": "데이터가 없습니다"
+  },
+  "logTimeline": {
+    "noLogsAvailable": "로그가 없습니다"
   }
 }
