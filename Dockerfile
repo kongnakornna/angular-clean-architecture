@@ -11,4 +11,5 @@ ENV SASS_SILENCE_DEPRECATIONS=import
 
 EXPOSE 4200
 
-CMD ["npx", "ng", "serve", "--host", "0.0.0.0", "--port", "4200"]
+RUN chmod +x docker-entrypoint.sh
+CMD ["sh", "docker-entrypoint.sh"]

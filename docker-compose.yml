@@ -6,4 +6,16 @@ services:
     container_name: icmonweb
     ports:
       - "3010:4200"
-    restart: unless-stopped
+    develop:
+      watch:
+        - action: sync
+          path: ./src
+          target: /app/src
+        - action: rebuild
+          path: ./package.json
+        - action: rebuild
+          path: ./angular.json
+        - action: rebuild
+          path: ./tailwind.config.js
+        - action: rebuild
+          path: ./tsconfig.json

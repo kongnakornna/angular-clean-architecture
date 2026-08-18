@@ -111,3 +111,11 @@ Layout components ถูกใช้งานร่วมกับ Angular Route
 ## สีและธีม
 
 Components ใช้ CSS variables จาก Tabler (`var(--tblr-*)`) เพื่อรองรับการเปลี่ยนธีม
+
+## docker Cli
+
+docker compose up 
+docker compose up --build
+docker compose down -v
+
+
