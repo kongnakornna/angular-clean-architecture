@@ -1,0 +1,40 @@
+<div class="card">
+  <div class="card-body">
+    <div class="timeline">
+      <div *ngFor="let log of logs" class="timeline-item">
+        <div class="timeline-indicator">
+          <span [class]="getIconClass(log.type)">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon">
+              <ng-container [ngSwitch]="getIcon(log.type)">
+                <ng-container *ngSwitchCase="'circle-check'">
+                  <path d="M12 12m-9 0a9 9 0 1 0 18 0a9 9 0 1 0 -18 0" /><path d="M9 12l2 2l4 -4" />
+                </ng-container>
+                <ng-container *ngSwitchCase="'circle-x'">
+                  <path d="M12 12m-9 0a9 9 0 1 0 18 0a9 9 0 1 0 -18 0" /><path d="M15 9l-6 6" /><path d="M9 9l6 6" />
+                </ng-container>
+                <ng-container *ngSwitchCase="'alert-triangle'">
+                  <path d="M12 9v4" /><path d="M10.363 3.591l-8.106 13.534a1.914 1.914 0 0 0 1.636 2.871h16.214a1.914 1.914 0 0 0 1.636 -2.87l-8.106 -13.536a1.914 1.914 0 0 0 -3.274 0z" /><path d="M12 16h.01" />
+                </ng-container>
+                <ng-container *ngSwitchDefault>
+                  <path d="M12 12m-9 0a9 9 0 1 0 18 0a9 9 0 1 0 -18 0" /><path d="M12 16l0 -4" /><path d="M12 8l.01 0" />
+                </ng-container>
+              </ng-container>
+            </svg>
+          </span>
+        </div>
+        <div class="timeline-content">
+          <div class="d-flex justify-content-between">
+            <div>
+              <strong *ngIf="log.title">{{ log.title }}</strong>
+              <p *ngIf="log.message" class="text-muted mb-0 mt-1">{{ log.message }}</p>
+            </div>
+            <small class="text-muted ms-3 text-nowrap">{{ log.timestamp }}</small>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div *ngIf="logs.length === 0" class="text-center text-muted py-4">
+      No logs available
+    </div>
+  </div>
+</div>

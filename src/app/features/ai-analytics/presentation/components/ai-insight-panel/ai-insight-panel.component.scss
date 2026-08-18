@@ -1,0 +1,10 @@
+:host {
+  display: block;
+}
+
+.insight-item {
+  &:not(:last-child) {
+    border-bottom: 1px solid var(--tblr-border);
+    padding-bottom: 0.75rem;
+  }
+}

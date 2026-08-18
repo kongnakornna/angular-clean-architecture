@@ -17,6 +17,7 @@ import { IWebOrderRepository } from '../../features/wos/domain/repositories/web-
 import { IOrderRepository } from '../../features/orders/domain/repositories/order.repository';
 import { ISystemRepository } from '../../features/system/domain/repositories/system.repository';
 import { IMqttRepository } from '../../features/mqtt/domain/repositories/mqtt.repository';
+import { IAIAnalyticsRepository } from '../../features/ai-analytics/domain/repositories/ai-analytics.repository';
 import { ListRolesUseCase } from '../../features/auth/domain/use-cases/list-roles.use-case';
 import { GetRoleUseCase } from '../../features/auth/domain/use-cases/get-role.use-case';
 import { CreateRoleUseCase } from '../../features/auth/domain/use-cases/create-role.use-case';
@@ -42,6 +43,7 @@ export const WEB_ORDER_REPOSITORY = new InjectionToken<IWebOrderRepository>('web
 export const ORDER_REPOSITORY = new InjectionToken<IOrderRepository>('order.repository');
 export const SYSTEM_REPOSITORY = new InjectionToken<ISystemRepository>('system.repository');
 export const MQTT_REPOSITORY = new InjectionToken<IMqttRepository>('mqtt.repository');
+export const AI_ANALYTICS_REPOSITORY = new InjectionToken<IAIAnalyticsRepository>('ai-analytics.repository');
 
 export const LIST_ROLES_USE_CASE = new InjectionToken<ListRolesUseCase>('ListRolesUseCase');
 export const GET_ROLE_USE_CASE = new InjectionToken<GetRoleUseCase>('GetRoleUseCase');

@@ -2719,3 +2719,6 @@ docker-compose version
  # Note 
  
  ทำระบบ UI Dashboard config sensor to mqtt use angularjs เหมือน +node-red  มา 1 modules  จำลองข้อมูลมาก่อน
+ 
+ ทำระบบ UI Dashboard config sensor to mqtt use angularjs เหมือน  Module  AI Catboot มา 1 modules  จำลองข้อมูลมาก่อน
+ 

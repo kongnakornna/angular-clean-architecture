@@ -1,0 +1,58 @@
+<div *ngIf="loading$ | async" class="text-center py-5">
+  <div class="spinner-border text-primary" role="status">
+    <span class="visually-hidden">{{ 'common.loading' | translate }}</span>
+  </div>
+</div>
+<div>
+  <div class="page-header d-print-none">
+    <div class="row g-2 align-items-center">
+      <div class="col">
+        <div class="page-pretitle">{{ 'aiAnalytics.activityLog' | translate }}</div>
+        <h1 class="page-title">{{ 'aiAnalytics.activityLogTitle' | translate }}</h1>
+      </div>
+    </div>
+  </div>
+  <br>
+
+  <div class="row row-deck row-cards">
+    <div class="col-12">
+      <div class="card">
+        <div class="card-header">
+          <h3 class="card-title">{{ 'activityLog.filters' | translate }}</h3>
+        </div>
+        <div class="card-body">
+          <div class="row g-3">
+            <div class="col-md-6">
+              <input type="text" class="form-control" placeholder="{{ 'activityLog.searchPlaceholder' | translate }}" [(ngModel)]="filterSearch" (keyup.enter)="applyFilter()">
+            </div>
+            <div class="col-md-4">
+              <select class="form-select" [(ngModel)]="filterType">
+                <option value="">{{ 'activityLog.allTypes' | translate }}</option>
+                <option value="success">{{ 'activityLog.typeSuccess' | translate }}</option>
+                <option value="ai_query">{{ 'activityLog.typeAiQuery' | translate }}</option>
+                <option value="warning">{{ 'activityLog.typeWarning' | translate }}</option>
+                <option value="error">{{ 'activityLog.typeError' | translate }}</option>
+                <option value="report">{{ 'activityLog.typeReport' | translate }}</option>
+                <option value="workflow">{{ 'activityLog.typeWorkflow' | translate }}</option>
+              </select>
+            </div>
+            <div class="col-md-2">
+              <button class="btn btn-primary w-100" (click)="applyFilter()">{{ 'activityLog.applyFilter' | translate }}</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-12">
+      <div class="card">
+        <div class="card-header">
+          <h3 class="card-title">{{ 'activityLog.timeline' | translate }}</h3>
+        </div>
+        <div class="card-body">
+          <app-log-timeline [logs]="logs$ | async"></app-log-timeline>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

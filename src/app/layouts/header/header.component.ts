@@ -74,6 +74,16 @@ export class HeaderComponent {
         	<path d="M12 9a3 3 0 1 0 0 6a3 3 0 0 0 0 -6z" />
         	<path d="M15.077 5.692a9 9 0 0 0 -6.154 0l.761 2.079a5 5 0 0 1 4.632 4.632l2.079 .761a9 9 0 0 0 0 -6.154l-2.079 .761a5 5 0 0 1 -4.632 -4.632l-.761 2.079z" />
         </svg>`;
+  private aiIcon = `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" class="icon icon-tabler icons-tabler-filled icon-tabler-robot">
+    	<path stroke="none" d="M0 0h24v24H0z" fill="none" />
+    	<path d="M17.473 18.508a8.975 8.975 0 0 1 -12.946 0c-1.867 -1.757 -1.867 -4.612 0 -6.369a8.975 8.975 0 0 1 12.946 0c1.867 1.757 1.867 4.612 0 6.369" />
+    	<path d="M8 11.857a4 4 0 1 0 8 0" />
+    	<circle cx="10" cy="10.5" r="1" />
+    	<circle cx="14" cy="10.5" r="1" />
+    	<path d="M12 17.5v2.5" />
+    	<path d="M8 21h8" />
+    	<path d="M10 17.5h4" />
+    </svg>`;
 
   unreadCount = 3;
 
@@ -136,6 +146,7 @@ export class HeaderComponent {
     { label: "Email", icon: this.invoiceIcon, route: "/email/templates" },
     { label: "Languages", icon: this.invoiceIcon, route: "/i18n/languages" },
     { label: "Users", icon: "user", route: "/users" },
+    { label: "AI", icon: this.aiIcon, route: "/ai-analytics" },
   ];
 
   horizontalMenu: MenuItem[] = [
@@ -156,14 +167,14 @@ export class HeaderComponent {
       ],
     },
     {
-      label: "Customers",
+      label: "Users",
       icon: "users",
-      route: "/customers",
+      route: "/users",
       children: [
         { label: "Users", icon: "user", route: "/users" },
         { label: "Roles", icon: "shield", route: "/roles" },
-        { label: "Customer List", icon: "list", route: "/customers" },
-        { label: "Customer Create", icon: "plus", route: "/customers/create" },
+        { label: "User List", icon: "list", route: "/users" },
+        { label: "User Create", icon: "plus", route: "/users/create" },
       ],
     },
     {
@@ -215,6 +226,53 @@ export class HeaderComponent {
           label: "Language",
           icon: this.languageIcon,
           route: "/settings/language",
+        },
+      ],
+    },
+    {
+      label: "AI",
+      icon: this.aiIcon,
+      route: "/ai-analytics",
+      children: [
+        {
+          label: "Command Center",
+          icon: this.aiIcon,
+          route: "/ai-analytics/command-center",
+        },
+        {
+          label: "Dashboard",
+          icon: this.AnalyticsIcon,
+          route: "/ai-analytics/dashboard",
+        },
+        {
+          label: "Reports",
+          icon: this.invoicesIcon,
+          route: "/ai-analytics/reports",
+        },
+        {
+          label: "Activity Log",
+          icon: this.batchIcon,
+          route: "/ai-analytics/logs",
+        },
+        {
+          label: "Workflow AI",
+          icon: this.iotIcon,
+          route: "/ai-analytics/workflow",
+        },
+        {
+          label: "Schedule",
+          icon: this.batchIcon,
+          route: "/ai-analytics/schedule",
+        },
+        {
+          label: "Alert Management",
+          icon: this.themeIcon,
+          route: "/ai-analytics/alerts",
+        },
+        {
+          label: "Data Analyst",
+          icon: this.AnalyticsIcon,
+          route: "/ai-analytics/analyst",
         },
       ],
     },

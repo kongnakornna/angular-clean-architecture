@@ -1,0 +1,21 @@
+<div class="card">
+  <div class="card-body">
+    <div class="d-flex align-items-center justify-content-between mb-1">
+      <span class="text-muted">{{ label }}</span>
+      <span
+        class="badge"
+        [class.bg-green-lt]="deltaDirection === 'up'"
+        [class.bg-red-lt]="deltaDirection === 'down'"
+        [class.bg-secondary-lt]="deltaDirection === 'neutral'">
+        <svg *ngIf="deltaDirection === 'up'" xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-sm">
+          <path d="M12 5l0 14" /><path d="M5 12l7 -7" /><path d="M19 12l-7 -7" />
+        </svg>
+        <svg *ngIf="deltaDirection === 'down'" xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-sm">
+          <path d="M12 5l0 14" /><path d="M5 12l7 7" /><path d="M19 12l-7 7" />
+        </svg>
+        {{ delta | number:'1.1-1' }}%
+      </span>
+    </div>
+    <div class="h2 mb-0">{{ value }}</div>
+  </div>
+</div>

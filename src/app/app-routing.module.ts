@@ -299,6 +299,13 @@ export const routes: Routes = [
         canActivate: [PermissionGuard],
         data: { permission: 'role.view' },
       },
+      {
+        path: 'ai-analytics',
+        loadChildren: () =>
+          import('./features/ai-analytics/ai-analytics.routes').then((m) => m.AI_ANALYTICS_ROUTES),
+        canActivate: [PermissionGuard],
+        data: { permission: 'ai_analytics.view' },
+      },
     ],
   },
 ];

@@ -1,0 +1,48 @@
+:host {
+  display: block;
+}
+
+.timeline {
+  position: relative;
+  padding-left: 2rem;
+}
+
+.timeline::before {
+  content: '';
+  position: absolute;
+  left: 7px;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: var(--tblr-border);
+}
+
+.timeline-item {
+  position: relative;
+  padding-bottom: 1.25rem;
+
+  &:last-child {
+    padding-bottom: 0;
+  }
+}
+
+.timeline-indicator {
+  position: absolute;
+  left: -2rem;
+  top: 2px;
+  width: 1rem;
+  height: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--tblr-bg-surface);
+
+  .icon {
+    width: 14px;
+    height: 14px;
+  }
+}
+
+.timeline-content {
+  padding-left: 0.25rem;
+}

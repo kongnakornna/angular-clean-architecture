@@ -1,0 +1,67 @@
+<div *ngIf="loading$ | async" class="text-center py-5">
+  <div class="spinner-border text-primary" role="status">
+    <span class="visually-hidden">{{ 'common.loading' | translate }}</span>
+  </div>
+</div>
+<div>
+  <div class="page-header d-print-none">
+    <div class="row g-2 align-items-center">
+      <div class="col">
+        <div class="page-pretitle">{{ 'aiAnalytics.reports' | translate }}</div>
+        <h1 class="page-title">{{ 'aiAnalytics.reportsTitle' | translate }}</h1>
+      </div>
+      <div class="col-auto ms-auto d-print-none">
+        <div class="btn-list">
+          <a href="#" class="btn btn-primary">{{ 'reports.newReport' | translate }}</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <br>
+
+  <div class="row row-deck row-cards">
+    <div class="col-12">
+      <div class="card">
+        <div class="card-header">
+          <ul class="nav nav-tabs card-header-tabs">
+            <li class="nav-item">
+              <a class="nav-link" [class.active]="(selectedFolder$ | async) === undefined" href="javascript:void(0)" (click)="selectFolder(undefined)">
+                {{ 'reports.allFolders' | translate }}
+              </a>
+            </li>
+            <li class="nav-item" *ngFor="let folder of folders$ | async">
+              <a class="nav-link" [class.active]="(selectedFolder$ | async) === folder.name" href="javascript:void(0)" (click)="selectFolder(folder.name)">
+                {{ folder.name }} <span class="badge bg-secondary ms-1">{{ folder.count }}</span>
+              </a>
+            </li>
+          </ul>
+        </div>
+        <div class="card-table table-responsive">
+          <table class="table table-vcenter">
+            <thead>
+              <tr>
+                <th>{{ 'reports.title' | translate }}</th>
+                <th>{{ 'reports.type' | translate }}</th>
+                <th>{{ 'reports.createdAt' | translate }}</th>
+                <th>{{ 'reports.formats' | translate }}</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let report of reports$ | async">
+                <td class="fw-bold">{{ report.title }}</td>
+                <td><span class="badge bg-secondary">{{ report.type }}</span></td>
+                <td class="text-secondary">{{ report.createdAt }}</td>
+                <td>
+                  <span *ngFor="let fmt of report.format" class="badge bg-light text-dark me-1">{{ fmt }}</span>
+                </td>
+              </tr>
+              <tr *ngIf="(reports$ | async)?.length === 0">
+                <td colspan="4" class="text-center text-secondary py-4">{{ 'reports.noReports' | translate }}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

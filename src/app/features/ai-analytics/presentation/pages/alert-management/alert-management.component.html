@@ -1,0 +1,80 @@
+<div *ngIf="loading$ | async" class="text-center py-5">
+  <div class="spinner-border text-primary" role="status">
+    <span class="visually-hidden">{{ 'common.loading' | translate }}</span>
+  </div>
+</div>
+<div>
+  <div class="page-header d-print-none">
+    <div class="row g-2 align-items-center">
+      <div class="col">
+        <div class="page-pretitle">{{ 'aiAnalytics.alertManagement' | translate }}</div>
+        <h1 class="page-title">{{ 'aiAnalytics.alertManagementTitle' | translate }}</h1>
+      </div>
+    </div>
+  </div>
+  <br>
+
+  <div class="row row-deck row-cards">
+    <div class="col-12">
+      <div class="card">
+        <div class="card-header">
+          <h3 class="card-title">{{ 'alertManagement.activeAlerts' | translate }}</h3>
+        </div>
+        <div class="card-body">
+          <div class="divide-y" *ngIf="alerts$ | async as alerts">
+            <div *ngFor="let alert of alerts" class="py-3 d-flex align-items-start">
+              <app-alert-badge [severity]="alert.severity"></app-alert-badge>
+              <div class="ms-3 flex-fill">
+                <div class="d-flex justify-content-between">
+                  <span class="fw-bold" [ngClass]="severityColor(alert.severity)">{{ alert.message }}</span>
+                  <span class="badge" [ngClass]="statusBadge(alert.status)">{{ alert.status }}</span>
+                </div>
+                <div class="text-secondary small">
+                  {{ alert.source }} &middot; {{ alert.triggeredAt }}
+                </div>
+              </div>
+            </div>
+            <div *ngIf="alerts.length === 0" class="text-center text-secondary py-4">
+              {{ 'alertManagement.noAlerts' | translate }}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-12">
+      <div class="card">
+        <div class="card-header">
+          <h3 class="card-title">{{ 'alertManagement.alertRules' | translate }}</h3>
+        </div>
+        <div class="card-table table-responsive">
+          <table class="table table-vcenter">
+            <thead>
+              <tr>
+                <th>{{ 'alertManagement.condition' | translate }}</th>
+                <th>{{ 'alertManagement.actions' | translate }}</th>
+                <th>{{ 'alertManagement.enabled' | translate }}</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let rule of alertRules$ | async">
+                <td class="fw-bold">{{ rule.condition }}</td>
+                <td>
+                  <span *ngFor="let action of rule.actions" class="badge bg-light text-dark me-1">{{ action }}</span>
+                </td>
+                <td>
+                  <span class="badge" [ngClass]="rule.enabled ? 'bg-green' : 'bg-secondary'">
+                    {{ rule.enabled ? ('common.yes' | translate) : ('common.no' | translate) }}
+                  </span>
+                </td>
+              </tr>
+              <tr *ngIf="(alertRules$ | async)?.length === 0">
+                <td colspan="3" class="text-center text-secondary py-4">{{ 'alertManagement.noRules' | translate }}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
