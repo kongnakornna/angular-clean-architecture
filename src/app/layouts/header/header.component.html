@@ -187,7 +187,8 @@
           <ng-container *ngFor="let item of profileMenu">
             <div class="dropdown-divider" *ngIf="item.divider"></div>
             <a *ngIf="!item.divider" class="dropdown-item" [routerLink]="item.route" (click)="item.action === 'logout' && logout()">
-              <i-tabler *ngIf="item.icon" [name]="getIconName(item.icon)" class="icon dropdown-item-icon"></i-tabler>
+              <span *ngIf="isSvgIcon(item.icon)" [innerHTML]="trustHtml(item.icon!)"></span>
+              <i-tabler *ngIf="!isSvgIcon(item.icon)" [name]="getIconName(item.icon)" class="icon dropdown-item-icon"></i-tabler>
               {{ item.label }}
             </a>
           </ng-container>
@@ -215,7 +216,8 @@
                   <ng-container *ngIf="!item.children; else hMenuHasChildren">
                     <a class="nav-link" [routerLink]="item.route" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
                       <span class="nav-link-icon d-md-none d-lg-inline-block">
-                        <i-tabler [name]="getIconName(item.icon)" class="icon icon-sm"></i-tabler>
+                        <span *ngIf="isSvgIcon(item.icon)" [innerHTML]="trustHtml(item.icon!)"></span>
+                        <i-tabler *ngIf="!isSvgIcon(item.icon)" [name]="getIconName(item.icon)" class="icon icon-sm"></i-tabler>
                       </span>
                       <span class="nav-link-title">{{ item.label }}</span>
                     </a>
