@@ -1,0 +1,175 @@
+<div *ngIf="loading$ | async" class="text-center py-5">
+  <div class="spinner-border text-primary" role="status">
+    <span class="visually-hidden">{{ 'mqttDashboard.loading' | translate }}</span>
+  </div>
+</div>
+
+<div *ngIf="!(loading$ | async)">
+  <div class="page-header d-print-none">
+    <div class="row g-2 align-items-center">
+      <div class="col">
+        <div class="page-pretitle">{{ 'mqttDashboard.subtitle' | translate }}</div>
+        <h1 class="page-title">{{ 'mqttDashboard.title' | translate }}</h1>
+      </div>
+      <div class="col-auto ms-auto d-print-none">
+        <a routerLink="/mqtt/flows" class="btn btn-primary">
+          {{ 'mqttDashboard.openEditor' | translate }}
+        </a>
+      </div>
+    </div>
+  </div>
+  <br>
+
+  <div class="row row-deck row-cards">
+    <div class="col-sm-6 col-lg-3">
+      <div class="card">
+        <div class="card-body">
+          <div class="subheader">{{ 'mqttDashboard.totalFlows' | translate }}</div>
+          <div class="h1 mb-0">{{ totalFlows$ | async }}</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-sm-6 col-lg-3">
+      <div class="card">
+        <div class="card-body">
+          <div class="subheader">{{ 'mqttDashboard.activeFlows' | translate }}</div>
+          <div class="h1 mb-0">{{ activeFlows$ | async }}</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-sm-6 col-lg-3">
+      <div class="card">
+        <div class="card-body">
+          <div class="subheader">{{ 'mqttDashboard.deployedFlows' | translate }}</div>
+          <div class="h1 mb-0">{{ deployedFlows$ | async }}</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-sm-6 col-lg-3">
+      <div class="card">
+        <div class="card-body">
+          <div class="subheader">{{ 'mqttDashboard.totalSensors' | translate }}</div>
+          <div class="h1 mb-0">{{ totalSensors$ | async }}</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-12">
+      <div class="card">
+        <div class="card-header">
+          <h3 class="card-title">{{ 'mqttDashboard.flowList' | translate }}</h3>
+        </div>
+        <div class="card-table table-responsive">
+          <table class="table table-vcenter card-table">
+            <thead>
+              <tr>
+                <th>{{ 'mqttDashboard.flowName' | translate }}</th>
+                <th>{{ 'mqttDashboard.description' | translate }}</th>
+                <th>{{ 'mqttDashboard.nodes' | translate }}</th>
+                <th>{{ 'mqttDashboard.connections' | translate }}</th>
+                <th>{{ 'mqttDashboard.status' | translate }}</th>
+                <th>{{ 'mqttDashboard.actions' | translate }}</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let flow of (flows$ | async)">
+                <td>{{ flow.name }}</td>
+                <td class="text-secondary">{{ flow.description }}</td>
+                <td>{{ nodeCount(flow) }}</td>
+                <td>{{ connectionCount(flow) }}</td>
+                <td>
+                  <span class="badge" [ngClass]="flowStatusBadge(flow)">{{ flowStatus(flow) | translate }}</span>
+                </td>
+                <td>
+                  <div class="btn-list">
+                    <a routerLink="/mqtt/flows" class="btn btn-sm btn-ghost-secondary">
+                      {{ 'mqttDashboard.edit' | translate }}
+                    </a>
+                    <button class="btn btn-sm btn-ghost-danger" (click)="deleteFlow(flow)">
+                      {{ 'mqttDashboard.delete' | translate }}
+                    </button>
+                  </div>
+                </td>
+              </tr>
+              <tr *ngIf="(flows$ | async)?.length === 0">
+                <td colspan="6" class="text-center text-secondary py-4">{{ 'mqttDashboard.noFlows' | translate }}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-lg-6">
+      <div class="card">
+        <div class="card-header">
+          <h3 class="card-title">{{ 'mqttDashboard.sensorOverview' | translate }}</h3>
+        </div>
+        <div class="card-table table-responsive">
+          <table class="table table-vcenter card-table">
+            <thead>
+              <tr>
+                <th>{{ 'mqttDashboard.sensorName' | translate }}</th>
+                <th>{{ 'mqttDashboard.sensorType' | translate }}</th>
+                <th>{{ 'mqttDashboard.sensorUnit' | translate }}</th>
+                <th>{{ 'mqttDashboard.sensorTopic' | translate }}</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let sensor of (sensors$ | async)">
+                <td>{{ sensor.name }}</td>
+                <td>{{ sensor.type }}</td>
+                <td>{{ sensor.unit }}</td>
+                <td class="text-secondary"><code>{{ sensor.topic }}</code></td>
+              </tr>
+              <tr *ngIf="(sensors$ | async)?.length === 0">
+                <td colspan="4" class="text-center text-secondary py-4">{{ 'mqttDashboard.noSensors' | translate }}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-lg-6">
+      <div class="card">
+        <div class="card-header">
+          <h3 class="card-title">{{ 'mqttDashboard.brokerStatus' | translate }}</h3>
+        </div>
+        <div class="card-body" *ngIf="(brokerConfig$ | async) as broker">
+          <div class="divide-y">
+            <div class="row py-2">
+              <div class="col-4 text-secondary">{{ 'mqttDashboard.host' | translate }}</div>
+              <div class="col"><strong>{{ broker.host }}</strong></div>
+            </div>
+            <div class="row py-2">
+              <div class="col-4 text-secondary">{{ 'mqttDashboard.port' | translate }}</div>
+              <div class="col"><strong>{{ broker.port }}</strong></div>
+            </div>
+            <div class="row py-2">
+              <div class="col-4 text-secondary">{{ 'mqttDashboard.tls' | translate }}</div>
+              <div class="col">
+                <span *ngIf="broker.useTls" class="badge bg-green">{{ 'mqttDashboard.enabled_label' | translate }}</span>
+                <span *ngIf="!broker.useTls" class="badge bg-secondary">{{ 'mqttDashboard.disabled_label' | translate }}</span>
+              </div>
+            </div>
+            <div class="row py-2">
+              <div class="col-4 text-secondary">Client ID</div>
+              <div class="col"><code>{{ broker.clientId }}</code></div>
+            </div>
+            <div class="row py-2">
+              <div class="col-4 text-secondary">{{ 'mqttDashboard.username' | translate }}</div>
+              <div class="col">{{ broker.username || '-' }}</div>
+            </div>
+          </div>
+        </div>
+        <div class="card-body text-center text-secondary py-4" *ngIf="!(brokerConfig$ | async)">
+          {{ 'mqttDashboard.noBrokerConfig' | translate }}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

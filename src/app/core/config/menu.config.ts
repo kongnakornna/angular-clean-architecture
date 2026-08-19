@@ -25,6 +25,7 @@ export const MENU_CONFIG: MenuItem[] = [
       { label: 'Devices', route: '/iot/devices', icon: 'device-desktop', permission: 'iot.view' },
       { label: 'Settings', route: '/iot/settings', icon: 'settings', permission: 'iot.view' },
       { label: 'Reports', route: '/iot/reports', icon: 'chart-bar', permission: 'iot.view' },
+      { label: 'MQTT Dashboard', route: '/mqtt/dashboard', icon: 'chart-bar', permission: 'iot.view' },
       { label: 'MQTT Flows', route: '/mqtt/flows', icon: 'radio', permission: 'iot.view' },
     ],
   },

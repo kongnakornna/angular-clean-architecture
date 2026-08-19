@@ -14,6 +14,7 @@ export const ROUTE_PERMISSIONS: Record<string, string> = {
   '/email/compose': 'email.create',
   '/batch/jobs': 'batch.view',
   '/iot/devices': 'iot.view',
+  '/mqtt/dashboard': 'iot.view',
   '/wos/orders': 'wos.view',
   '/jobs': 'job_card.view',
   '/users': 'user.view',

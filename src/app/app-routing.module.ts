@@ -190,6 +190,15 @@ export const routes: Routes = [
         data: { permission: 'iot.view' },
       },
       {
+        path: 'mqtt/dashboard',
+        loadComponent: () =>
+          import('./features/mqtt/presentation/pages/mqtt-dashboard/mqtt-dashboard.component').then(
+            (m) => m.MqttDashboardComponent
+          ),
+        canActivate: [PermissionGuard],
+        data: { permission: 'iot.view' },
+      },
+      {
         path: 'mqtt/flows',
         loadComponent: () =>
           import('./features/mqtt/presentation/pages/mqtt-flow-editor/mqtt-flow-editor.component').then(
