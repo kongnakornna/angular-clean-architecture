@@ -859,7 +859,16 @@
     "reportHistory": "Report History",
     "name": "Name",
     "date": "Date",
-    "noReports": "No reports generated yet"
+    "noReports": "No reports generated yet",
+    "search": "Search",
+    "searchPlaceholder": "Device name, keyword...",
+    "hardwareId": "Hardware ID",
+    "hardwareIdPlaceholder": "Enter hardware ID",
+    "typeId": "Type ID",
+    "typeIdPlaceholder": "Enter type ID",
+    "searchBtn": "Search",
+    "showing": "Showing",
+    "items": "items"
   },
   "wos": {
     "title": "Web Orders",

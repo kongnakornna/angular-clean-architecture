@@ -1,6 +1,7 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterLink } from '@angular/router';
+import { FormsModule } from '@angular/forms';
 import { BehaviorSubject, Subject, takeUntil, map } from 'rxjs';
 import { TranslatePipe } from '../../../../../shared/pipes/translate.pipe';
 import { DeviceGroup } from '../../../domain/entities/device.entity';
@@ -10,7 +11,7 @@ import { GetAlarmDeviceStatusUseCase } from '../../../domain/use-cases/get-alarm
 @Component({
   selector: 'app-device-list',
   standalone: true,
-  imports: [CommonModule, RouterLink, TranslatePipe],
+  imports: [CommonModule, RouterLink, FormsModule, TranslatePipe],
   templateUrl: './device-list.component.html',
   styleUrls: ['./device-list.component.scss'],
 })
@@ -35,6 +36,12 @@ export class DeviceListComponent implements OnInit, OnDestroy {
   );
   alarmCount$ = this.alarms$.pipe(map((alarms) => alarms.length));
 
+  currentPage = 1;
+  pageSize = 10;
+  searchTerm = '';
+  hardwareIdFilter = '';
+  typeIdFilter = '';
+
   private destroy$ = new Subject<void>();
 
   constructor(
@@ -43,7 +50,8 @@ export class DeviceListComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit(): void {
-    this.loadDashboard();
+    this.loadDevices();
+    this.loadAlarms();
   }
 
   ngOnDestroy(): void {
@@ -63,33 +71,78 @@ export class DeviceListComponent implements OnInit, OnDestroy {
     return 'iot.maintenance';
   }
 
-  private loadDashboard(): void {
+  loadDevices(): void {
     this.loadingSubject.next(true);
+    const params: any = { page: this.currentPage, pageSize: this.pageSize };
+    if (this.searchTerm) params.keyword = this.searchTerm;
+    if (this.hardwareIdFilter) params.hardwareId = this.hardwareIdFilter;
+    if (this.typeIdFilter) params.typeId = this.typeIdFilter;
 
-    this.listDevicesUseCase.execute({ page: 1, pageSize: 100 })
+    this.listDevicesUseCase.execute(params)
       .pipe(takeUntil(this.destroy$))
       .subscribe({
         next: (res) => {
           this.devicesSubject.next(res.data);
           this.totalSubject.next(res.total);
+          this.loadingSubject.next(false);
         },
         error: () => {
           this.devicesSubject.next([]);
           this.totalSubject.next(0);
+          this.loadingSubject.next(false);
         },
       });
+  }
 
+  private loadAlarms(): void {
     this.getAlarmStatusUseCase.execute({ page: 1, pageSize: 100 })
       .pipe(takeUntil(this.destroy$))
       .subscribe({
         next: (res) => {
           this.alarmsSubject.next(Array.isArray(res) ? res : res?.data ?? []);
-          this.loadingSubject.next(false);
         },
         error: () => {
           this.alarmsSubject.next([]);
-          this.loadingSubject.next(false);
         },
       });
+  }
+
+  search(): void {
+    this.currentPage = 1;
+    this.loadDevices();
+  }
+
+  resetFilters(): void {
+    this.searchTerm = '';
+    this.hardwareIdFilter = '';
+    this.typeIdFilter = '';
+    this.currentPage = 1;
+    this.loadDevices();
+  }
+
+  prevPage(): void {
+    if (this.currentPage > 1) { this.currentPage--; this.loadDevices(); }
+  }
+
+  nextPage(): void {
+    if (this.currentPage < this.totalPages()) { this.currentPage++; this.loadDevices(); }
+  }
+
+  goToPage(page: number): void {
+    this.currentPage = page;
+    this.loadDevices();
+  }
+
+  totalPages(): number {
+    return Math.ceil(this.totalSubject.getValue() / this.pageSize) || 1;
+  }
+
+  pageNumbers(): number[] {
+    const total = this.totalPages();
+    const pages: number[] = [];
+    for (let i = 1; i <= total; i++) {
+      pages.push(i);
+    }
+    return pages;
   }
 }

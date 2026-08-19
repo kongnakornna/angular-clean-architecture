@@ -778,7 +778,16 @@
     "reportHistory": "ประวัติรายงาน",
     "name": "ชื่อ",
     "date": "วันที่",
-    "noReports": "ยังไม่มีรายงานที่สร้างขึ้น"
+    "noReports": "ยังไม่มีรายงานที่สร้างขึ้น",
+    "search": "ค้นหา",
+    "searchPlaceholder": "ชื่อ device, คำค้นหา...",
+    "hardwareId": "Hardware ID",
+    "hardwareIdPlaceholder": "กรอก Hardware ID",
+    "typeId": "Type ID",
+    "typeIdPlaceholder": "กรอก Type ID",
+    "searchBtn": "ค้นหา",
+    "showing": "แสดง",
+    "items": "รายการ"
   },
   "wos": {
     "title": "คำสั่งซื้อออนไลน์",
