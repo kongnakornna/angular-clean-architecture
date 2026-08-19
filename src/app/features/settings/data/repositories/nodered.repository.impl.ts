@@ -19,11 +19,11 @@ export class NodeRedRepositoryImpl implements INodeRedRepository {
   }
 
   create(nodered: Partial<NodeRed>): Observable<NodeRed> {
-    return this.dataSource.create(nodered).pipe(map((dto) => this.mapToEntity(dto)));
+    return this.dataSource.create(nodered as any).pipe(map((dto) => this.mapToEntity(dto)));
   }
 
   update(id: string, nodered: Partial<NodeRed>): Observable<NodeRed> {
-    return this.dataSource.update(id, nodered).pipe(map((dto) => this.mapToEntity(dto)));
+    return this.dataSource.update(id, nodered as any).pipe(map((dto) => this.mapToEntity(dto)));
   }
 
   testConnection(id: string): Observable<{ success: boolean; message: string }> {

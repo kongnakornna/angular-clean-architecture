@@ -19,11 +19,11 @@ export class ScheduleRepositoryImpl implements IScheduleRepository {
   }
 
   create(schedule: Partial<Schedule>): Observable<Schedule> {
-    return this.dataSource.create(schedule).pipe(map((dto) => this.mapToEntity(dto)));
+    return this.dataSource.create(schedule as any).pipe(map((dto) => this.mapToEntity(dto)));
   }
 
   update(id: string, schedule: Partial<Schedule>): Observable<Schedule> {
-    return this.dataSource.update(id, schedule).pipe(map((dto) => this.mapToEntity(dto)));
+    return this.dataSource.update(id, schedule as any).pipe(map((dto) => this.mapToEntity(dto)));
   }
 
   delete(id: string): Observable<void> {

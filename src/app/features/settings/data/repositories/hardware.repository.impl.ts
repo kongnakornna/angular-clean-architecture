@@ -19,11 +19,11 @@ export class HardwareRepositoryImpl implements IHardwareRepository {
   }
 
   create(hardware: Partial<Hardware>): Observable<Hardware> {
-    return this.dataSource.create(hardware).pipe(map((dto) => this.mapToEntity(dto)));
+    return this.dataSource.create(hardware as any).pipe(map((dto) => this.mapToEntity(dto)));
   }
 
   update(id: string, hardware: Partial<Hardware>): Observable<Hardware> {
-    return this.dataSource.update(id, hardware).pipe(map((dto) => this.mapToEntity(dto)));
+    return this.dataSource.update(id, hardware as any).pipe(map((dto) => this.mapToEntity(dto)));
   }
 
   delete(id: string): Observable<void> {

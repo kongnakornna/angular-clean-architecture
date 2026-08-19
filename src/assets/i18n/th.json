@@ -47,6 +47,186 @@
     "new": "ใหม่",
     "viewAll": "ดูทั้งหมด"
   },
+  "settings": {
+    "title": "ตั้งค่า",
+    "menu": "เมนูตั้งค่า",
+    "menuItems": {
+      "schedule": "ตั้งค่าตารางเวลา",
+      "alarm": "ตั้งค่าการแจ้งเตือน",
+      "influxdb": "ตั้งค่า InfluxDB",
+      "devices": "ตั้งค่าอุปกรณ์",
+      "locations": "ตั้งค่าสถานที่",
+      "hardware": "ตั้งค่าฮาร์ดแวร์",
+      "sensors": "ตั้งค่าเซ็นเซอร์",
+      "nodered": "ตั้งค่า Node-RED",
+      "mqtt": "ตั้งค่า MQTT",
+      "email": "การแจ้งเตือนทางอีเมล",
+      "line": "การแจ้งเตือนทาง LINE",
+      "sms": "การแจ้งเตือนทาง SMS",
+      "hosts": "ตั้งค่าโฮสต์",
+      "api": "ตั้งค่า API",
+      "tokens": "ตั้งค่า Token"
+    },
+    "schedule": {
+      "title": "จัดการตารางเวลา",
+      "subtitle": "ตั้งค่าตารางเวลาของอุปกรณ์",
+      "name": "ชื่อตารางเวลา",
+      "startTime": "เวลาเริ่มต้น",
+      "event": "เหตุการณ์",
+      "status": "สถานะ",
+      "sunday": "อา",
+      "monday": "จ",
+      "tuesday": "อ",
+      "wednesday": "พ",
+      "thursday": "พฤ",
+      "friday": "ศ",
+      "saturday": "ส",
+      "create": "สร้างตารางเวลา",
+      "edit": "แก้ไขตารางเวลา",
+      "noData": "ไม่พบข้อมูลตารางเวลา",
+      "deleteConfirm": "คุณต้องการลบตารางเวลานี้หรือไม่?"
+    },
+    "alarm": {
+      "title": "ตั้งค่าการแจ้งเตือน",
+      "subtitle": "ตั้งค่ากฎการแจ้งเตือนและการแจ้งเตือน",
+      "redirectInfo": "การตั้งค่าการแจ้งเตือนจัดการในโมดูลการแจ้งเตือน",
+      "goToAlarm": "ไปที่โมดูลการแจ้งเตือน"
+    },
+    "influxdb": {
+      "title": "ตั้งค่า InfluxDB",
+      "subtitle": "ตั้งค่าการเชื่อมต่อฐานข้อมูล InfluxDB",
+      "url": "URL ของ InfluxDB",
+      "org": "Organization",
+      "bucket": "Bucket",
+      "token": "Token",
+      "save": "บันทึกการตั้งค่า"
+    },
+    "devices": {
+      "title": "ตั้งค่าอุปกรณ์",
+      "subtitle": "จัดการการตั้งค่าอุปกรณ์ IoT",
+      "redirectInfo": "การตั้งค่าอุปกรณ์จัดการในโมดูล IoT",
+      "goToDevices": "ไปที่อุปกรณ์ IoT"
+    },
+    "locations": {
+      "title": "จัดการสถานที่",
+      "subtitle": "จัดการสถานที่และพื้นที่",
+      "name": "ชื่อสถานที่",
+      "typeName": "ประเภท",
+      "bucket": "Bucket",
+      "deviceCount": "จำนวนอุปกรณ์",
+      "status": "สถานะ",
+      "create": "สร้างสถานที่",
+      "edit": "แก้ไขสถานที่",
+      "noData": "ไม่พบข้อมูลสถานที่",
+      "deleteConfirm": "คุณต้องการลบสถานที่นี้หรือไม่?"
+    },
+    "hardware": {
+      "title": "ตั้งค่าฮาร์ดแวร์",
+      "subtitle": "จัดการแคตตาล็อกฮาร์ดแวร์",
+      "title_": "ชื่อ",
+      "typeName": "ประเภท",
+      "description": "รายละเอียด",
+      "price": "ราคา",
+      "create": "สร้างฮาร์ดแวร์",
+      "edit": "แก้ไขฮาร์ดแวร์",
+      "noData": "ไม่พบข้อมูลฮาร์ดแวร์",
+      "deleteConfirm": "คุณต้องการลบฮาร์ดแวร์นี้หรือไม่?"
+    },
+    "sensors": {
+      "title": "ตั้งค่าเซ็นเซอร์",
+      "subtitle": "ตั้งค่าประเภทและค่าขีดจำกัดของเซ็นเซอร์",
+      "name": "ชื่อเซ็นเซอร์",
+      "type": "ประเภท",
+      "unit": "หน่วย",
+      "minThreshold": "ค่าต่ำสุด",
+      "maxThreshold": "ค่าสูงสุด",
+      "status": "สถานะ",
+      "create": "สร้างเซ็นเซอร์",
+      "edit": "แก้ไขเซ็นเซอร์",
+      "noData": "ไม่พบข้อมูลเซ็นเซอร์",
+      "deleteConfirm": "คุณต้องการลบเซ็นเซอร์นี้หรือไม่?"
+    },
+    "nodered": {
+      "title": "ตั้งค่า Node-RED",
+      "subtitle": "ตั้งค่าการเชื่อมต่อ Node-RED",
+      "name": "ชื่อ",
+      "url": "URL",
+      "adminUrl": "Admin URL",
+      "status": "สถานะ",
+      "testConnection": "ทดสอบการเชื่อมต่อ",
+      "save": "บันทึกการตั้งค่า"
+    },
+    "mqtt": {
+      "title": "ตั้งค่า MQTT",
+      "subtitle": "ตั้งค่า MQTT broker",
+      "redirectInfo": "MQTT flows จัดการในโมดูล MQTT",
+      "goToMqtt": "ไปที่ MQTT Flows"
+    },
+    "email": {
+      "title": "การแจ้งเตือนทางอีเมล",
+      "subtitle": "ตั้งค่าการแจ้งเตือนทางอีเมล",
+      "redirectInfo": "เทมเพลตอีเมลจัดการในโมดูลอีเมล",
+      "goToEmail": "ไปที่เทมเพลตอีเมล"
+    },
+    "line": {
+      "title": "การแจ้งเตือนทาง LINE",
+      "subtitle": "ตั้งค่าการแจ้งเตือนผ่าน LINE",
+      "name": "ชื่อการตั้งค่า",
+      "channelAccessToken": "Channel Access Token",
+      "userId": "User ID",
+      "status": "สถานะ",
+      "create": "สร้างการตั้งค่า LINE",
+      "noData": "ไม่พบข้อมูลการตั้งค่า LINE",
+      "deleteConfirm": "คุณต้องการลบการตั้งค่า LINE นี้หรือไม่?"
+    },
+    "sms": {
+      "title": "การแจ้งเตือนทาง SMS",
+      "subtitle": "ตั้งค่าการแจ้งเตือนผ่าน SMS",
+      "name": "ชื่อการตั้งค่า",
+      "gatewayUrl": "Gateway URL",
+      "apiKey": "API Key",
+      "phone": "เบอร์โทรศัพท์",
+      "status": "สถานะ",
+      "create": "สร้างการตั้งค่า SMS",
+      "noData": "ไม่พบข้อมูลการตั้งค่า SMS",
+      "deleteConfirm": "คุณต้องการลบการตั้งค่า SMS นี้หรือไม่?"
+    },
+    "hosts": {
+      "title": "ตั้งค่าโฮสต์",
+      "subtitle": "จัดการการตั้งค่าเซิร์ฟเวอร์และโฮสต์",
+      "name": "ชื่อโฮสต์",
+      "ipAddress": "IP Address",
+      "port": "พอร์ต",
+      "type": "ประเภท",
+      "status": "สถานะ",
+      "create": "สร้างโฮสต์",
+      "noData": "ไม่พบข้อมูลโฮสต์",
+      "deleteConfirm": "คุณต้องการลบโฮสต์นี้หรือไม่?"
+    },
+    "api": {
+      "title": "ตั้งค่า API",
+      "subtitle": "ตั้งค่า API endpoints",
+      "name": "ชื่อ API",
+      "endpoint": "Endpoint URL",
+      "method": "HTTP Method",
+      "headers": "Headers",
+      "status": "สถานะ",
+      "save": "บันทึกการตั้งค่า API"
+    },
+    "tokens": {
+      "title": "ตั้งค่า Token",
+      "subtitle": "จัดการ API access tokens",
+      "name": "ชื่อ Token",
+      "token": "Token",
+      "permissions": "สิทธิ์การเข้าถึง",
+      "expiresAt": "วันหมดอายุ",
+      "isActive": "ใช้งาน",
+      "create": "สร้าง Token",
+      "revoke": "เพิกถอน Token",
+      "noData": "ไม่พบข้อมูล Token",
+      "deleteConfirm": "คุณต้องการเพิกถอน Token นี้หรือไม่?"
+    }
+  },
   "common": {
     "save": "บันทึก",
     "cancel": "ยกเลิก",

@@ -19,11 +19,11 @@ export class HostRepositoryImpl implements IHostRepository {
   }
 
   create(host: Partial<Host>): Observable<Host> {
-    return this.dataSource.create(host).pipe(map((dto) => this.mapToEntity(dto)));
+    return this.dataSource.create(host as any).pipe(map((dto) => this.mapToEntity(dto)));
   }
 
   update(id: string, host: Partial<Host>): Observable<Host> {
-    return this.dataSource.update(id, host).pipe(map((dto) => this.mapToEntity(dto)));
+    return this.dataSource.update(id, host as any).pipe(map((dto) => this.mapToEntity(dto)));
   }
 
   delete(id: string): Observable<void> {

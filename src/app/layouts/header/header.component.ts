@@ -165,9 +165,15 @@ export class HeaderComponent {
     {
       label: "Settings",
       icon: SETTINGS_ICON,
-      route: "/settings/theme",
+      route: "/settings",
       children: [
-        { label: "Languages", icon: LANGUAGE_ICON, route: "/i18n/languages" },
+        { label: "Schedule", icon: CALENDAR_EVENT_ICON, route: "/settings/schedule" },
+        { label: "Devices", icon: DEVICE_DESKTOP_ICON, route: "/settings/devices" },
+        { label: "MQTT", icon: RADIO_ICON, route: "/settings/mqtt" },
+        { label: "Email", icon: MAIL_ICON, route: "/settings/email" },
+        { label: "LINE", icon: LANGUAGE_ICON, route: "/settings/line" },
+        { label: "SMS", icon: LIST_ICON, route: "/settings/sms" },
+        { label: "Token", icon: SHIELD_ICON, route: "/settings/tokens" },
       ],
     },
     {

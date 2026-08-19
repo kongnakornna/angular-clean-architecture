@@ -47,6 +47,186 @@
     "new": "New",
     "viewAll": "View All"
   },
+  "settings": {
+    "title": "Settings",
+    "menu": "Settings Menu",
+    "menuItems": {
+      "schedule": "Schedule",
+      "alarm": "Alarm Setting",
+      "influxdb": "InfluxDB Setting",
+      "devices": "Device Setting",
+      "locations": "Location Setting",
+      "hardware": "Hardware Configuration",
+      "sensors": "Sensor Configuration",
+      "nodered": "Node-RED Setting",
+      "mqtt": "MQTT Setting",
+      "email": "Email Notification",
+      "line": "LINE Notification",
+      "sms": "SMS Notification",
+      "hosts": "Host Setting",
+      "api": "API Setting",
+      "tokens": "Token Setting"
+    },
+    "schedule": {
+      "title": "Schedule Management",
+      "subtitle": "Configure device schedules",
+      "name": "Schedule Name",
+      "startTime": "Start Time",
+      "event": "Event",
+      "status": "Status",
+      "sunday": "Sun",
+      "monday": "Mon",
+      "tuesday": "Tue",
+      "wednesday": "Wed",
+      "thursday": "Thu",
+      "friday": "Fri",
+      "saturday": "Sat",
+      "create": "Create Schedule",
+      "edit": "Edit Schedule",
+      "noData": "No schedules found",
+      "deleteConfirm": "Are you sure you want to delete this schedule?"
+    },
+    "alarm": {
+      "title": "Alarm Setting",
+      "subtitle": "Configure alarm rules and notifications",
+      "redirectInfo": "Alarm settings are managed in the dedicated Alarm module.",
+      "goToAlarm": "Go to Alarm Module"
+    },
+    "influxdb": {
+      "title": "InfluxDB Setting",
+      "subtitle": "Configure InfluxDB time-series database connection",
+      "url": "InfluxDB URL",
+      "org": "Organization",
+      "bucket": "Bucket",
+      "token": "Token",
+      "save": "Save Configuration"
+    },
+    "devices": {
+      "title": "Device Setting",
+      "subtitle": "Manage IoT device configurations",
+      "redirectInfo": "Device settings are managed in the IoT module.",
+      "goToDevices": "Go to IoT Devices"
+    },
+    "locations": {
+      "title": "Location Management",
+      "subtitle": "Manage physical locations and sites",
+      "name": "Location Name",
+      "typeName": "Type",
+      "bucket": "Bucket",
+      "deviceCount": "Device Count",
+      "status": "Status",
+      "create": "Create Location",
+      "edit": "Edit Location",
+      "noData": "No locations found",
+      "deleteConfirm": "Are you sure you want to delete this location?"
+    },
+    "hardware": {
+      "title": "Hardware Configuration",
+      "subtitle": "Manage hardware product catalog",
+      "title_": "Title",
+      "typeName": "Type",
+      "description": "Description",
+      "price": "Price",
+      "create": "Create Hardware",
+      "edit": "Edit Hardware",
+      "noData": "No hardware found",
+      "deleteConfirm": "Are you sure you want to delete this hardware?"
+    },
+    "sensors": {
+      "title": "Sensor Configuration",
+      "subtitle": "Configure sensor types and thresholds",
+      "name": "Sensor Name",
+      "type": "Type",
+      "unit": "Unit",
+      "minThreshold": "Min Threshold",
+      "maxThreshold": "Max Threshold",
+      "status": "Status",
+      "create": "Create Sensor",
+      "edit": "Edit Sensor",
+      "noData": "No sensors found",
+      "deleteConfirm": "Are you sure you want to delete this sensor?"
+    },
+    "nodered": {
+      "title": "Node-RED Setting",
+      "subtitle": "Configure Node-RED flow integration",
+      "name": "Name",
+      "url": "URL",
+      "adminUrl": "Admin URL",
+      "status": "Status",
+      "testConnection": "Test Connection",
+      "save": "Save Configuration"
+    },
+    "mqtt": {
+      "title": "MQTT Setting",
+      "subtitle": "MQTT broker configuration",
+      "redirectInfo": "MQTT flows are managed in the MQTT module.",
+      "goToMqtt": "Go to MQTT Flows"
+    },
+    "email": {
+      "title": "Email Notification",
+      "subtitle": "Email notification configuration",
+      "redirectInfo": "Email templates are managed in the Email module.",
+      "goToEmail": "Go to Email Templates"
+    },
+    "line": {
+      "title": "LINE Notification",
+      "subtitle": "Configure LINE messaging notifications",
+      "name": "Configuration Name",
+      "channelAccessToken": "Channel Access Token",
+      "userId": "User ID",
+      "status": "Status",
+      "create": "Create LINE Configuration",
+      "noData": "No LINE configurations found",
+      "deleteConfirm": "Are you sure you want to delete this LINE configuration?"
+    },
+    "sms": {
+      "title": "SMS Notification",
+      "subtitle": "Configure SMS gateway notifications",
+      "name": "Configuration Name",
+      "gatewayUrl": "Gateway URL",
+      "apiKey": "API Key",
+      "phone": "Phone Number",
+      "status": "Status",
+      "create": "Create SMS Configuration",
+      "noData": "No SMS configurations found",
+      "deleteConfirm": "Are you sure you want to delete this SMS configuration?"
+    },
+    "hosts": {
+      "title": "Host Setting",
+      "subtitle": "Manage server and host configurations",
+      "name": "Host Name",
+      "ipAddress": "IP Address",
+      "port": "Port",
+      "type": "Type",
+      "status": "Status",
+      "create": "Create Host",
+      "noData": "No hosts found",
+      "deleteConfirm": "Are you sure you want to delete this host?"
+    },
+    "api": {
+      "title": "API Setting",
+      "subtitle": "Configure API endpoints and settings",
+      "name": "API Name",
+      "endpoint": "Endpoint URL",
+      "method": "HTTP Method",
+      "headers": "Headers",
+      "status": "Status",
+      "save": "Save API Settings"
+    },
+    "tokens": {
+      "title": "Token Setting",
+      "subtitle": "Manage API access tokens",
+      "name": "Token Name",
+      "token": "Token",
+      "permissions": "Permissions",
+      "expiresAt": "Expires At",
+      "isActive": "Active",
+      "create": "Create Token",
+      "revoke": "Revoke Token",
+      "noData": "No tokens found",
+      "deleteConfirm": "Are you sure you want to revoke this token?"
+    }
+  },
   "common": {
     "save": "Save",
     "cancel": "Cancel",

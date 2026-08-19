@@ -1394,7 +1394,7 @@ npx tsc --noEmit
 
 ---
 
-## 附録: Command Quick Reference
+## Command Quick Reference
 
 ```bash
 # สร้างโครงสร้างโฟลเดอร์ทั้งหมด

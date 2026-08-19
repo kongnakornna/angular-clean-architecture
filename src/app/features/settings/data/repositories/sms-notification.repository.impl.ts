@@ -19,11 +19,11 @@ export class SmsNotificationRepositoryImpl implements ISmsNotificationRepository
   }
 
   create(notification: Partial<SmsNotification>): Observable<SmsNotification> {
-    return this.dataSource.create(notification).pipe(map((dto) => this.mapToEntity(dto)));
+    return this.dataSource.create(notification as any).pipe(map((dto) => this.mapToEntity(dto)));
   }
 
   update(id: string, notification: Partial<SmsNotification>): Observable<SmsNotification> {
-    return this.dataSource.update(id, notification).pipe(map((dto) => this.mapToEntity(dto)));
+    return this.dataSource.update(id, notification as any).pipe(map((dto) => this.mapToEntity(dto)));
   }
 
   delete(id: string): Observable<void> {

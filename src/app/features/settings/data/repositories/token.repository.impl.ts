@@ -19,7 +19,7 @@ export class TokenRepositoryImpl implements ITokenRepository {
   }
 
   create(token: Partial<Token>): Observable<Token> {
-    return this.dataSource.create(token).pipe(map((dto) => this.mapToEntity(dto)));
+    return this.dataSource.create(token as any).pipe(map((dto) => this.mapToEntity(dto)));
   }
 
   revoke(id: string): Observable<void> {

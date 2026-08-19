@@ -19,11 +19,11 @@ export class ApiSettingRepositoryImpl implements IApiSettingRepository {
   }
 
   create(apiSetting: Partial<ApiSetting>): Observable<ApiSetting> {
-    return this.dataSource.create(apiSetting).pipe(map((dto) => this.mapToEntity(dto)));
+    return this.dataSource.create(apiSetting as any).pipe(map((dto) => this.mapToEntity(dto)));
   }
 
   update(id: string, apiSetting: Partial<ApiSetting>): Observable<ApiSetting> {
-    return this.dataSource.update(id, apiSetting).pipe(map((dto) => this.mapToEntity(dto)));
+    return this.dataSource.update(id, apiSetting as any).pipe(map((dto) => this.mapToEntity(dto)));
   }
 
   delete(id: string): Observable<void> {

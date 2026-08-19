@@ -19,11 +19,11 @@ export class LocationRepositoryImpl implements ILocationRepository {
   }
 
   create(location: Partial<Location>): Observable<Location> {
-    return this.dataSource.create(location).pipe(map((dto) => this.mapToEntity(dto)));
+    return this.dataSource.create(location as any).pipe(map((dto) => this.mapToEntity(dto)));
   }
 
   update(id: string, location: Partial<Location>): Observable<Location> {
-    return this.dataSource.update(id, location).pipe(map((dto) => this.mapToEntity(dto)));
+    return this.dataSource.update(id, location as any).pipe(map((dto) => this.mapToEntity(dto)));
   }
 
   delete(id: string): Observable<void> {

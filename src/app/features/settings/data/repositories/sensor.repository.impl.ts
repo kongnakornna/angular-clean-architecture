@@ -19,11 +19,11 @@ export class SensorRepositoryImpl implements ISensorRepository {
   }
 
   create(sensor: Partial<Sensor>): Observable<Sensor> {
-    return this.dataSource.create(sensor).pipe(map((dto) => this.mapToEntity(dto)));
+    return this.dataSource.create(sensor as any).pipe(map((dto) => this.mapToEntity(dto)));
   }
 
   update(id: string, sensor: Partial<Sensor>): Observable<Sensor> {
-    return this.dataSource.update(id, sensor).pipe(map((dto) => this.mapToEntity(dto)));
+    return this.dataSource.update(id, sensor as any).pipe(map((dto) => this.mapToEntity(dto)));
   }
 
   delete(id: string): Observable<void> {
