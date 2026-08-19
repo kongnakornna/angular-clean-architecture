@@ -135,9 +135,24 @@ export class HeaderComponent {
       icon: IOT_ICON,
       route: "/iot/devices",
       children: [
-        { label: "Devices", icon: DEVICE_DESKTOP_ICON, route: "/iot/devices" },
+        {
+          label: "Devices",
+          icon: DEVICE_DESKTOP_ICON,
+          children: [
+            { label: "All Devices", icon: DEVICE_DESKTOP_ICON, route: "/iot/devices" },
+            { label: "Device Groups", icon: LAYERS_ICON, route: "/iot/device-groups" },
+          ],
+        },
+        {
+          label: "Monitoring",
+          icon: CHART_AREA_ICON,
+          children: [
+            { label: "Live Dashboard", icon: CHART_AREA_ICON, route: "/iot/dashboard" },
+            { label: "Reports", icon: CHART_BAR_ICON, route: "/iot/reports" },
+            { label: "Alerts", icon: BELL_ICON, route: "/iot/alerts" },
+          ],
+        },
         { label: "IoT Settings", icon: SETTINGS_ICON, route: "/iot/settings" },
-        { label: "IoT Reports", icon: CHART_BAR_ICON, route: "/iot/reports" },
         { label: "MQTT Flows", icon: RADIO_ICON, route: "/mqtt/flows" },
       ],
     },
@@ -146,28 +161,51 @@ export class HeaderComponent {
       icon: USERS_ICON,
       route: "/users",
       children: [
-        { label: "Users", icon: USER_ICON, route: "/users" },
+        {
+          label: "User Management",
+          icon: USERS_ICON,
+          children: [
+            { label: "User List", icon: LIST_ICON, route: "/users" },
+            { label: "Create User", icon: PLUS_ICON, route: "/users/create" },
+          ],
+        },
         { label: "Roles", icon: SHIELD_ICON, route: "/roles" },
-        { label: "User List", icon: LIST_ICON, route: "/users" },
-        { label: "User Create", icon: PLUS_ICON, route: "/users/create" },
       ],
     },
     {
       label: "Service",
-      icon: LIST_ICON,
-      route: "/payments",
+      icon: BRIEFCASE_ICON,
+      route: "/quotations",
       children: [
-        { label: "Payments", icon: CREDIT_CARD_ICON, route: "/payments" },
-        { label: "Invoices", icon: FILE_INVOICE_ICON, route: "/invoices" },
-        { label: "Job Cards", icon: BRIEFCASE_ICON, route: "/jobs" },
-        { label: "Work Orders", icon: CLIPBOARD_ICON, route: "/wos/orders" },
-        { label: "Batch Jobs", icon: LAYERS_ICON, route: "/batch/jobs" },
-        { label: "Quotations", icon: FILE_TEXT_ICON, route: "/quotations" },
-        { label: "Purchase Orders", icon: SHOPPING_CART_ICON, route: "/purchase-orders" },
-        { label: "Products", icon: PACKAGE_ICON, route: "/products" },
-        { label: "Email Templates", icon: MAIL_ICON, route: "/email/templates" },
-        { label: "Email Compose", icon: PENCIL_ICON, route: "/email/compose" },
-        { label: "Email Logs", icon: LIST_DETAILS_ICON, route: "/email/logs" },
+        {
+          label: "Finance",
+          icon: CREDIT_CARD_ICON,
+          children: [
+            { label: "Payments", icon: CREDIT_CARD_ICON, route: "/payments" },
+            { label: "Invoices", icon: FILE_INVOICE_ICON, route: "/invoices" },
+            { label: "Quotations", icon: FILE_TEXT_ICON, route: "/quotations" },
+            { label: "Purchase Orders", icon: SHOPPING_CART_ICON, route: "/purchase-orders" },
+          ],
+        },
+        {
+          label: "Operations",
+          icon: BRIEFCASE_ICON,
+          children: [
+            { label: "Job Cards", icon: BRIEFCASE_ICON, route: "/jobs" },
+            { label: "Work Orders", icon: CLIPBOARD_ICON, route: "/wos/orders" },
+            { label: "Batch Jobs", icon: LAYERS_ICON, route: "/batch/jobs" },
+            { label: "Products", icon: PACKAGE_ICON, route: "/products" },
+          ],
+        },
+        {
+          label: "Email",
+          icon: MAIL_ICON,
+          children: [
+            { label: "Templates", icon: MAIL_ICON, route: "/email/templates" },
+            { label: "Compose", icon: PENCIL_ICON, route: "/email/compose" },
+            { label: "Logs", icon: LIST_DETAILS_ICON, route: "/email/logs" },
+          ],
+        },
       ],
     },
     {
@@ -175,28 +213,63 @@ export class HeaderComponent {
       icon: SETTINGS_ICON,
       route: "/settings",
       children: [
-        { label: "── Automation ──", divider: false },
-        { label: "Schedule", icon: CALENDAR_EVENT_ICON, route: "/settings/schedule" },
-        { label: "── Alerting ──", divider: false },
-        { label: "Alarm", icon: BELL_ICON, route: "/settings/alarm" },
-        { label: "── Storage ──", divider: false },
-        { label: "InfluxDB", icon: DATABASE_ICON, route: "/settings/influx" },
-        { label: "── Device ──", divider: false },
-        { label: "Devices", icon: DEVICE_DESKTOP_ICON, route: "/settings/device" },
-        { label: "Locations", icon: MAP_PIN_ICON, route: "/settings/location" },
-        { label: "Hardware", icon: CPU_ICON, route: "/settings/hardware" },
-        { label: "Sensors", icon: THERMOMETER_ICON, route: "/settings/sensor" },
-        { label: "── Connectivity ──", divider: false },
-        { label: "Node-RED", icon: SERVER_ICON, route: "/settings/nodered" },
-        { label: "MQTT", icon: RADIO_ICON, route: "/settings/mqtt" },
-        { label: "── Notification ──", divider: false },
-        { label: "Email", icon: MAIL_ICON, route: "/settings/email" },
-        { label: "LINE", icon: MESSAGE_CIRCLE_ICON, route: "/settings/line" },
-        { label: "SMS", icon: PHONE_ICON, route: "/settings/sms" },
-        { label: "── System ──", divider: false },
-        { label: "Hosts", icon: SERVER_ICON, route: "/settings/host" },
-        { label: "API", icon: API_ICON, route: "/settings/api" },
-        { label: "Tokens", icon: KEY_ICON, route: "/settings/token" },
+        {
+          label: "Automation",
+          icon: CALENDAR_EVENT_ICON,
+          children: [
+            { label: "Schedule", icon: CALENDAR_EVENT_ICON, route: "/settings/schedule" },
+          ],
+        },
+        {
+          label: "Alerting",
+          icon: BELL_ICON,
+          children: [
+            { label: "Alarm", icon: BELL_ICON, route: "/settings/alarm" },
+          ],
+        },
+        {
+          label: "Storage",
+          icon: DATABASE_ICON,
+          children: [
+            { label: "InfluxDB", icon: DATABASE_ICON, route: "/settings/influx" },
+          ],
+        },
+        {
+          label: "Device",
+          icon: DEVICE_DESKTOP_ICON,
+          children: [
+            { label: "Devices", icon: DEVICE_DESKTOP_ICON, route: "/settings/device" },
+            { label: "Locations", icon: MAP_PIN_ICON, route: "/settings/location" },
+            { label: "Hardware", icon: CPU_ICON, route: "/settings/hardware" },
+            { label: "Sensors", icon: THERMOMETER_ICON, route: "/settings/sensor" },
+          ],
+        },
+        {
+          label: "Connectivity",
+          icon: RADIO_ICON,
+          children: [
+            { label: "Node-RED", icon: SERVER_ICON, route: "/settings/nodered" },
+            { label: "MQTT", icon: RADIO_ICON, route: "/settings/mqtt" },
+          ],
+        },
+        {
+          label: "Notification",
+          icon: MAIL_ICON,
+          children: [
+            { label: "Email", icon: MAIL_ICON, route: "/settings/email" },
+            { label: "LINE", icon: MESSAGE_CIRCLE_ICON, route: "/settings/line" },
+            { label: "SMS", icon: PHONE_ICON, route: "/settings/sms" },
+          ],
+        },
+        {
+          label: "System",
+          icon: SERVER_ICON,
+          children: [
+            { label: "Hosts", icon: SERVER_ICON, route: "/settings/host" },
+            { label: "API", icon: API_ICON, route: "/settings/api" },
+            { label: "Tokens", icon: KEY_ICON, route: "/settings/token" },
+          ],
+        },
       ],
     },
     {
@@ -204,9 +277,22 @@ export class HeaderComponent {
       icon: CLIPBOARD_ICON,
       route: "/reports",
       children: [
-        { label: "Analytics", icon: CHART_AREA_ICON, route: "/analytics" },
-        { label: "Theme", icon: PALETTE_ICON, route: "/settings/theme" },
-        { label: "Language", icon: LANGUAGE_ICON, route: "/settings/language" },
+        {
+          label: "Analytics",
+          icon: CHART_AREA_ICON,
+          children: [
+            { label: "Overview", icon: CHART_AREA_ICON, route: "/analytics" },
+            { label: "Data Analyst", icon: CHART_DOTS_2_ICON, route: "/analytics/analyst" },
+          ],
+        },
+        {
+          label: "Appearance",
+          icon: PALETTE_ICON,
+          children: [
+            { label: "Theme", icon: PALETTE_ICON, route: "/settings/theme" },
+            { label: "Language", icon: LANGUAGE_ICON, route: "/settings/language" },
+          ],
+        },
       ],
     },
     {
@@ -214,13 +300,25 @@ export class HeaderComponent {
       icon: AI_ICON,
       route: "/ai-analytics",
       children: [
-        { label: "Command Center", icon: ROBOT_ICON, route: "/ai-analytics/command-center" },
-        { label: "Dashboard", icon: CHART_AREA_ICON, route: "/ai-analytics/dashboard" },
+        {
+          label: "Operations",
+          icon: ROBOT_ICON,
+          children: [
+            { label: "Command Center", icon: ROBOT_ICON, route: "/ai-analytics/command-center" },
+            { label: "Dashboard", icon: CHART_AREA_ICON, route: "/ai-analytics/dashboard" },
+            { label: "Activity Log", icon: LIST_DETAILS_ICON, route: "/ai-analytics/logs" },
+          ],
+        },
+        {
+          label: "Automation",
+          icon: WAVE_SQUARE_ICON,
+          children: [
+            { label: "Workflow AI", icon: WAVE_SQUARE_ICON, route: "/ai-analytics/workflow" },
+            { label: "Schedule", icon: CALENDAR_EVENT_ICON, route: "/ai-analytics/schedule" },
+            { label: "Alert Management", icon: BELL_ICON, route: "/ai-analytics/alerts" },
+          ],
+        },
         { label: "Reports", icon: FILE_INVOICE_ICON, route: "/ai-analytics/reports" },
-        { label: "Activity Log", icon: LIST_DETAILS_ICON, route: "/ai-analytics/logs" },
-        { label: "Workflow AI", icon: WAVE_SQUARE_ICON, route: "/ai-analytics/workflow" },
-        { label: "Schedule", icon: CALENDAR_EVENT_ICON, route: "/ai-analytics/schedule" },
-        { label: "Alert Management", icon: BELL_ICON, route: "/ai-analytics/alerts" },
         { label: "Data Analyst", icon: CHART_DOTS_2_ICON, route: "/ai-analytics/analyst" },
       ],
     },

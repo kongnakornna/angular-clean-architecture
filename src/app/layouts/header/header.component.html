@@ -232,14 +232,31 @@
                     </a>
                     <div class="dropdown-menu">
                       <ng-container *ngFor="let child of item.children">
-                        <div *ngIf="child.label?.startsWith('──')" class="dropdown-header text-uppercase text-secondary fw-bold small mt-2 mb-1 ps-2">
-                          {{ child.label?.replace('──', '') }}
-                        </div>
-                        <a *ngIf="!child.label?.startsWith('──')" class="dropdown-item" [routerLink]="child.route" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
-                          <span *ngIf="isSvgIcon(child.icon)" class="icon-inline me-1" [innerHTML]="trustHtml(child.icon!)"></span>
-                          <i-tabler *ngIf="!isSvgIcon(child.icon)" [name]="getIconName(child.icon)" class="icon-inline me-1"></i-tabler>
-                          {{ child.label }}
-                        </a>
+                        <ng-container *ngIf="child.children; else level2NoChildren">
+                          <li class="dropdown-submenu">
+                            <a class="dropdown-item dropdown-toggle" href="javascript:void(0)">
+                              <span *ngIf="isSvgIcon(child.icon)" class="icon-inline me-1" [innerHTML]="trustHtml(child.icon!)"></span>
+                              <i-tabler *ngIf="!isSvgIcon(child.icon)" [name]="getIconName(child.icon)" class="icon-inline me-1"></i-tabler>
+                              {{ child.label }}
+                            </a>
+                            <div class="dropdown-menu">
+                              <ng-container *ngFor="let child2 of child.children">
+                                <a class="dropdown-item" [routerLink]="child2.route" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+                                  <span *ngIf="isSvgIcon(child2.icon)" class="icon-inline me-1" [innerHTML]="trustHtml(child2.icon!)"></span>
+                                  <i-tabler *ngIf="!isSvgIcon(child2.icon)" [name]="getIconName(child2.icon)" class="icon-inline me-1"></i-tabler>
+                                  {{ child2.label }}
+                                </a>
+                              </ng-container>
+                            </div>
+                          </li>
+                        </ng-container>
+                        <ng-template #level2NoChildren>
+                          <a class="dropdown-item" [routerLink]="child.route" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+                            <span *ngIf="isSvgIcon(child.icon)" class="icon-inline me-1" [innerHTML]="trustHtml(child.icon!)"></span>
+                            <i-tabler *ngIf="!isSvgIcon(child.icon)" [name]="getIconName(child.icon)" class="icon-inline me-1"></i-tabler>
+                            {{ child.label }}
+                          </a>
+                        </ng-template>
                       </ng-container>
                     </div>
                   </ng-template>
