@@ -1,0 +1,61 @@
+<div class="page-header d-print-none">
+  <div class="row align-items-center">
+    <div class="col">
+      <h2 class="page-title">{{ 'sensor.title' | translate }}</h2>
+      <div class="text-secondary mt-1">{{ 'sensor.subtitle' | translate }}</div>
+    </div>
+    <div class="col-auto ms-auto d-print-none">
+      <a routerLink="/settings/sensors/create" class="btn btn-primary">{{ 'sensor.create' | translate }}</a>
+    </div>
+  </div>
+</div>
+<br>
+<div class="card mb-3">
+  <div class="card-body">
+    <div class="row g-3">
+      <div class="col-md-4">
+        <input type="text" class="form-control" [(ngModel)]="searchTerm" [placeholder]="'sensor.searchPlaceholder' | translate">
+      </div>
+      <div class="col-md-2">
+        <button class="btn btn-primary me-2" (click)="search()">{{ 'sensor.search' | translate }}</button>
+        <button class="btn btn-outline-secondary" (click)="searchTerm = ''; search()">{{ 'sensor.reset' | translate }}</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="card">
+  <div *ngIf="loading$ | async" class="text-center py-5"><div class="spinner-border text-primary"></div></div>
+  <div *ngIf="!(loading$ | async)" class="table-responsive">
+    <table class="table table-vcenter card-table">
+      <thead>
+        <tr>
+          <th>{{ 'sensor.name' | translate }}</th>
+          <th>{{ 'sensor.type' | translate }}</th>
+          <th>{{ 'sensor.unit' | translate }}</th>
+          <th>{{ 'sensor.minThreshold' | translate }}</th>
+          <th>{{ 'sensor.maxThreshold' | translate }}</th>
+          <th>{{ 'sensor.status' | translate }}</th>
+          <th class="w-1"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of (items$ | async)">
+          <td>{{ item.name }}</td>
+          <td>{{ item.type }}</td>
+          <td>{{ item.unit }}</td>
+          <td>{{ item.minThreshold }}</td>
+          <td>{{ item.maxThreshold }}</td>
+          <td><span class="badge" [ngClass]="item.status ? 'bg-green' : 'bg-secondary'">{{ item.status ? ('sensor.active' | translate) : ('sensor.inactive' | translate) }}</span></td>
+          <td>
+            <a [routerLink]="['/settings/sensors', item.id, 'edit']" class="btn btn-sm btn-primary me-1">{{ 'sensor.edit' | translate }}</a>
+            <button class="btn btn-sm btn-danger" (click)="deleteItem(item.id)">{{ 'sensor.delete' | translate }}</button>
+          </td>
+        </tr>
+        <tr *ngIf="(items$ | async)?.length === 0">
+          <td colspan="7" class="text-center text-secondary py-4">{{ 'sensor.noData' | translate }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

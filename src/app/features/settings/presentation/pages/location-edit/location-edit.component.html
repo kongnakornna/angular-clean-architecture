@@ -1,0 +1,55 @@
+<div class="page-header d-print-none">
+  <div class="row align-items-center">
+    <div class="col">
+      <h2 class="page-title">{{ 'location.editTitle' | translate }}</h2>
+    </div>
+    <div class="col-auto ms-auto d-print-none">
+      <a routerLink="/settings/locations" class="btn btn-outline-secondary">{{ 'location.back' | translate }}</a>
+    </div>
+  </div>
+</div>
+<br>
+<div class="card">
+  <div class="card-body">
+    <form (ngSubmit)="onSubmit()">
+      <div class="mb-3">
+        <label class="form-label">{{ 'location.name' | translate }}</label>
+        <input type="text" class="form-control" name="name" [(ngModel)]="name" required>
+      </div>
+      <div class="row g-3 mb-3">
+        <div class="col-md-6">
+          <label class="form-label">{{ 'location.typeName' | translate }}</label>
+          <input type="text" class="form-control" name="typeName" [(ngModel)]="typeName">
+        </div>
+        <div class="col-md-6">
+          <label class="form-label">{{ 'location.emailId' | translate }}</label>
+          <input type="email" class="form-control" name="emailId" [(ngModel)]="emailId">
+        </div>
+      </div>
+      <div class="row g-3 mb-3">
+        <div class="col-md-6">
+          <label class="form-label">{{ 'location.bucket' | translate }}</label>
+          <input type="text" class="form-control" name="bucket" [(ngModel)]="bucket">
+        </div>
+        <div class="col-md-6">
+          <label class="form-label">{{ 'location.org' | translate }}</label>
+          <input type="text" class="form-control" name="org" [(ngModel)]="org">
+        </div>
+      </div>
+      <div class="mb-3">
+        <label class="form-label">{{ 'location.deviceCount' | translate }}</label>
+        <input type="number" class="form-control" name="deviceCount" [(ngModel)]="deviceCount">
+      </div>
+      <div class="mb-3">
+        <label class="form-label">{{ 'location.status' | translate }}</label>
+        <div class="form-check form-switch">
+          <input class="form-check-input" type="checkbox" name="status" [(ngModel)]="status" id="status">
+          <label class="form-check-label" for="status">{{ status ? ('location.active' | translate) : ('location.inactive' | translate) }}</label>
+        </div>
+      </div>
+      <div class="form-footer">
+        <button type="submit" class="btn btn-primary">{{ 'location.update' | translate }}</button>
+      </div>
+    </form>
+  </div>
+</div>

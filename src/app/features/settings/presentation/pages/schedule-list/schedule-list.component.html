@@ -1,0 +1,71 @@
+<div class="page-header d-print-none">
+  <div class="row align-items-center">
+    <div class="col">
+      <h2 class="page-title">{{ 'schedule.title' | translate }}</h2>
+      <div class="text-secondary mt-1">{{ 'schedule.subtitle' | translate }}</div>
+    </div>
+    <div class="col-auto ms-auto d-print-none">
+      <a routerLink="/settings/schedule/create" class="btn btn-primary">{{ 'schedule.create' | translate }}</a>
+    </div>
+  </div>
+</div>
+<br>
+<div class="card mb-3">
+  <div class="card-body">
+    <div class="row g-3">
+      <div class="col-md-4">
+        <input type="text" class="form-control" [(ngModel)]="searchTerm" [placeholder]="'schedule.searchPlaceholder' | translate">
+      </div>
+      <div class="col-md-2">
+        <button class="btn btn-primary me-2" (click)="search()">{{ 'schedule.search' | translate }}</button>
+        <button class="btn btn-outline-secondary" (click)="searchTerm = ''; search()">{{ 'schedule.reset' | translate }}</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="card">
+  <div *ngIf="loading$ | async" class="text-center py-5"><div class="spinner-border text-primary"></div></div>
+  <div *ngIf="!(loading$ | async)" class="table-responsive">
+    <table class="table table-vcenter card-table">
+      <thead>
+        <tr>
+          <th>{{ 'schedule.name' | translate }}</th>
+          <th>{{ 'schedule.startTime' | translate }}</th>
+          <th>{{ 'schedule.event' | translate }}</th>
+          <th>{{ 'schedule.sunday' | translate }}</th>
+          <th>{{ 'schedule.monday' | translate }}</th>
+          <th>{{ 'schedule.tuesday' | translate }}</th>
+          <th>{{ 'schedule.wednesday' | translate }}</th>
+          <th>{{ 'schedule.thursday' | translate }}</th>
+          <th>{{ 'schedule.friday' | translate }}</th>
+          <th>{{ 'schedule.saturday' | translate }}</th>
+          <th>{{ 'schedule.status' | translate }}</th>
+          <th class="w-1"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of (items$ | async)">
+          <td>{{ item.name }}</td>
+          <td>{{ item.startTime }}</td>
+          <td>{{ item.event }}</td>
+          <td><span class="badge" [ngClass]="item.sunday ? 'bg-green' : 'bg-secondary'">{{ item.sunday ? 'Y' : 'N' }}</span></td>
+          <td><span class="badge" [ngClass]="item.monday ? 'bg-green' : 'bg-secondary'">{{ item.monday ? 'Y' : 'N' }}</span></td>
+          <td><span class="badge" [ngClass]="item.tuesday ? 'bg-green' : 'bg-secondary'">{{ item.tuesday ? 'Y' : 'N' }}</span></td>
+          <td><span class="badge" [ngClass]="item.wednesday ? 'bg-green' : 'bg-secondary'">{{ item.wednesday ? 'Y' : 'N' }}</span></td>
+          <td><span class="badge" [ngClass]="item.thursday ? 'bg-green' : 'bg-secondary'">{{ item.thursday ? 'Y' : 'N' }}</span></td>
+          <td><span class="badge" [ngClass]="item.friday ? 'bg-green' : 'bg-secondary'">{{ item.friday ? 'Y' : 'N' }}</span></td>
+          <td><span class="badge" [ngClass]="item.saturday ? 'bg-green' : 'bg-secondary'">{{ item.saturday ? 'Y' : 'N' }}</span></td>
+          <td><span class="badge" [ngClass]="item.status ? 'bg-green' : 'bg-secondary'">{{ item.status ? ('schedule.active' | translate) : ('schedule.inactive' | translate) }}</span></td>
+          <td>
+            <a [routerLink]="['/settings/schedule', item.id, 'edit']" class="btn btn-sm btn-primary me-1">{{ 'schedule.edit' | translate }}</a>
+            <button class="btn btn-sm btn-danger" (click)="deleteItem(item.id)">{{ 'schedule.delete' | translate }}</button>
+          </td>
+        </tr>
+        <tr *ngIf="(items$ | async)?.length === 0">
+          <td colspan="12" class="text-center text-secondary py-4">{{ 'schedule.noData' | translate }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

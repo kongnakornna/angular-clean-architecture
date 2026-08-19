@@ -10,6 +10,9 @@ import {
   CHATBOT_REPOSITORY,
   LIST_ROLES_USE_CASE, GET_ROLE_USE_CASE, CREATE_ROLE_USE_CASE,
   UPDATE_ROLE_USE_CASE, DELETE_ROLE_USE_CASE, ASSIGN_ROLE_PERMISSIONS_USE_CASE,
+  SCHEDULE_REPOSITORY, LOCATION_REPOSITORY, HARDWARE_REPOSITORY, SENSOR_REPOSITORY,
+  NODERED_REPOSITORY, LINE_NOTIFICATION_REPOSITORY, SMS_NOTIFICATION_REPOSITORY,
+  HOST_REPOSITORY, API_SETTING_REPOSITORY, TOKEN_REPOSITORY,
 } from './tokens';
 import { AuthRepositoryImpl } from '../../features/auth/data/repositories/auth.repository.impl';
 import { JobCardRepositoryImpl } from '../../features/job-card/data/repositories/job-card.repository.impl';
@@ -30,6 +33,16 @@ import { SystemRepositoryImpl } from '../../features/system/data/repositories/sy
 import { MqttRepositoryImpl } from '../../features/mqtt/data/repositories/mqtt.repository.impl';
 import { AIAnalyticsRepositoryImpl } from '../../features/ai-analytics/data/repositories/ai-analytics.repository.impl';
 import { ChatbotRepositoryImpl } from '../../features/ai-chatbot/data/repositories/chatbot.repository.impl';
+import { ScheduleRepositoryImpl } from '../../features/settings/data/repositories/schedule.repository.impl';
+import { LocationRepositoryImpl } from '../../features/settings/data/repositories/location.repository.impl';
+import { HardwareRepositoryImpl } from '../../features/settings/data/repositories/hardware.repository.impl';
+import { SensorRepositoryImpl } from '../../features/settings/data/repositories/sensor.repository.impl';
+import { NodeRedRepositoryImpl } from '../../features/settings/data/repositories/nodered.repository.impl';
+import { LineNotificationRepositoryImpl } from '../../features/settings/data/repositories/line-notification.repository.impl';
+import { SmsNotificationRepositoryImpl } from '../../features/settings/data/repositories/sms-notification.repository.impl';
+import { HostRepositoryImpl } from '../../features/settings/data/repositories/host.repository.impl';
+import { ApiSettingRepositoryImpl } from '../../features/settings/data/repositories/api-setting.repository.impl';
+import { TokenRepositoryImpl } from '../../features/settings/data/repositories/token.repository.impl';
 import { OllamaApiDataSource } from '../../features/ai-chatbot/data/datasources/ollama-api.datasource';
 import { ContextProviderService } from '../../features/ai-chatbot/data/services/context-provider.service';
 import { ActionExecutorService } from '../../features/ai-chatbot/data/services/action-executor.service';
@@ -66,6 +79,16 @@ export const REPOSITORY_PROVIDERS: Provider[] = [
   { provide: MQTT_REPOSITORY, useClass: MqttRepositoryImpl },
   { provide: AI_ANALYTICS_REPOSITORY, useClass: AIAnalyticsRepositoryImpl },
   { provide: CHATBOT_REPOSITORY, useClass: ChatbotRepositoryImpl },
+  { provide: SCHEDULE_REPOSITORY, useClass: ScheduleRepositoryImpl },
+  { provide: LOCATION_REPOSITORY, useClass: LocationRepositoryImpl },
+  { provide: HARDWARE_REPOSITORY, useClass: HardwareRepositoryImpl },
+  { provide: SENSOR_REPOSITORY, useClass: SensorRepositoryImpl },
+  { provide: NODERED_REPOSITORY, useClass: NodeRedRepositoryImpl },
+  { provide: LINE_NOTIFICATION_REPOSITORY, useClass: LineNotificationRepositoryImpl },
+  { provide: SMS_NOTIFICATION_REPOSITORY, useClass: SmsNotificationRepositoryImpl },
+  { provide: HOST_REPOSITORY, useClass: HostRepositoryImpl },
+  { provide: API_SETTING_REPOSITORY, useClass: ApiSettingRepositoryImpl },
+  { provide: TOKEN_REPOSITORY, useClass: TokenRepositoryImpl },
   OllamaApiDataSource,
   ContextProviderService,
   ActionExecutorService,

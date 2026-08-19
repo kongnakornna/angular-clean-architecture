@@ -1,0 +1,60 @@
+<div class="page-header d-print-none">
+  <div class="row align-items-center">
+    <div class="col">
+      <h2 class="page-title">{{ 'token.title' | translate }}</h2>
+      <div class="text-secondary mt-1">{{ 'token.subtitle' | translate }}</div>
+    </div>
+    <div class="col-auto ms-auto d-print-none">
+      <a routerLink="/settings/tokens/create" class="btn btn-primary">{{ 'token.create' | translate }}</a>
+    </div>
+  </div>
+</div>
+<br>
+<div class="card mb-3">
+  <div class="card-body">
+    <div class="row g-3">
+      <div class="col-md-4">
+        <input type="text" class="form-control" [(ngModel)]="searchTerm" [placeholder]="'token.searchPlaceholder' | translate">
+      </div>
+      <div class="col-md-2">
+        <button class="btn btn-primary me-2" (click)="search()">{{ 'token.search' | translate }}</button>
+        <button class="btn btn-outline-secondary" (click)="searchTerm = ''; search()">{{ 'token.reset' | translate }}</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="card">
+  <div *ngIf="loading$ | async" class="text-center py-5"><div class="spinner-border text-primary"></div></div>
+  <div *ngIf="!(loading$ | async)" class="table-responsive">
+    <table class="table table-vcenter card-table">
+      <thead>
+        <tr>
+          <th>{{ 'token.name' | translate }}</th>
+          <th>{{ 'token.token' | translate }}</th>
+          <th>{{ 'token.permissions' | translate }}</th>
+          <th>{{ 'token.expiresAt' | translate }}</th>
+          <th>{{ 'token.isActive' | translate }}</th>
+          <th class="w-1"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of (items$ | async)">
+          <td>{{ item.name }}</td>
+          <td><code>{{ item.token }}</code></td>
+          <td>
+            <span *ngFor="let perm of item.permissions" class="badge bg-blue me-1">{{ perm }}</span>
+          </td>
+          <td>{{ item.expiresAt | date:'short' }}</td>
+          <td><span class="badge" [ngClass]="item.isActive ? 'bg-green' : 'bg-secondary'">{{ item.isActive ? ('token.active' | translate) : ('token.inactive' | translate) }}</span></td>
+          <td>
+            <button *ngIf="item.isActive" class="btn btn-sm btn-danger" (click)="revokeToken(item.id)">{{ 'token.revoke' | translate }}</button>
+          </td>
+        </tr>
+        <tr *ngIf="(items$ | async)?.length === 0">
+          <td colspan="6" class="text-center text-secondary py-4">{{ 'token.noData' | translate }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

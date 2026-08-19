@@ -1,0 +1,73 @@
+<div class="page-header d-print-none">
+  <div class="row align-items-center">
+    <div class="col">
+      <h2 class="page-title">{{ 'nodered.title' | translate }}</h2>
+      <div class="text-secondary mt-1">{{ 'nodered.subtitle' | translate }}</div>
+    </div>
+  </div>
+</div>
+<br>
+
+<div class="card mb-3">
+  <div class="card-header">
+    <h3 class="card-title">{{ 'nodered.connectionConfig' | translate }}</h3>
+  </div>
+  <div class="card-body">
+    <div *ngIf="loading$ | async" class="text-center py-5"><div class="spinner-border text-primary"></div></div>
+    <div *ngIf="!(loading$ | async)">
+      <div class="table-responsive" *ngIf="(items$ | async)?.length">
+        <table class="table table-vcenter card-table">
+          <thead>
+            <tr>
+              <th>{{ 'nodered.name' | translate }}</th>
+              <th>{{ 'nodered.url' | translate }}</th>
+              <th>{{ 'nodered.adminUrl' | translate }}</th>
+              <th>{{ 'nodered.status' | translate }}</th>
+              <th class="w-1"></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let item of (items$ | async)">
+              <td>{{ item.name }}</td>
+              <td><code>{{ item.url }}</code></td>
+              <td><code>{{ item.adminUrl }}</code></td>
+              <td><span class="badge" [ngClass]="item.status === 'connected' ? 'bg-green' : 'bg-secondary'">{{ item.status }}</span></td>
+              <td>
+                <button class="btn btn-sm btn-primary" (click)="editItem(item)">{{ 'nodered.edit' | translate }}</button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div *ngIf="(items$ | async)?.length === 0" class="text-center text-secondary py-4">{{ 'nodered.noData' | translate }}</div>
+    </div>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-header">
+    <h3 class="card-title">{{ editingId ? ('nodered.editConfig' | translate) : ('nodered.addConfig' | translate) }}</h3>
+  </div>
+  <div class="card-body">
+    <form (ngSubmit)="onSubmit()">
+      <div class="mb-3">
+        <label class="form-label">{{ 'nodered.name' | translate }}</label>
+        <input type="text" class="form-control" name="name" [(ngModel)]="name" required>
+      </div>
+      <div class="row g-3 mb-3">
+        <div class="col-md-6">
+          <label class="form-label">{{ 'nodered.url' | translate }}</label>
+          <input type="url" class="form-control" name="url" [(ngModel)]="url" placeholder="http://localhost:1880" required>
+        </div>
+        <div class="col-md-6">
+          <label class="form-label">{{ 'nodered.adminUrl' | translate }}</label>
+          <input type="url" class="form-control" name="adminUrl" [(ngModel)]="adminUrl" placeholder="http://localhost:1880/admin">
+        </div>
+      </div>
+      <div class="form-footer">
+        <button type="submit" class="btn btn-primary">{{ editingId ? ('nodered.update' | translate) : ('nodered.save' | translate) }}</button>
+        <button *ngIf="editingId" type="button" class="btn btn-outline-secondary" (click)="cancelEdit()">{{ 'nodered.cancel' | translate }}</button>
+      </div>
+    </form>
+  </div>
+</div>

@@ -1,0 +1,37 @@
+<div class="page-header d-print-none">
+  <div class="row align-items-center">
+    <div class="col">
+      <h2 class="page-title">{{ 'token.createTitle' | translate }}</h2>
+    </div>
+    <div class="col-auto ms-auto d-print-none">
+      <a routerLink="/settings/tokens" class="btn btn-outline-secondary">{{ 'token.back' | translate }}</a>
+    </div>
+  </div>
+</div>
+<br>
+<div class="card">
+  <div class="card-body">
+    <form (ngSubmit)="onSubmit()">
+      <div class="mb-3">
+        <label class="form-label">{{ 'token.name' | translate }}</label>
+        <input type="text" class="form-control" name="name" [(ngModel)]="name" required>
+      </div>
+      <div class="mb-3">
+        <label class="form-label">{{ 'token.permissions' | translate }}</label>
+        <div class="d-flex gap-3">
+          <div class="form-check" *ngFor="let perm of availablePermissions">
+            <input class="form-check-input" type="checkbox" [checked]="isPermissionSelected(perm)" (change)="togglePermission(perm)" [id]="'perm_' + perm">
+            <label class="form-check-label" [for]="'perm_' + perm">{{ perm }}</label>
+          </div>
+        </div>
+      </div>
+      <div class="mb-3">
+        <label class="form-label">{{ 'token.expiresAt' | translate }}</label>
+        <input type="datetime-local" class="form-control" name="expiresAt" [(ngModel)]="expiresAt" required>
+      </div>
+      <div class="form-footer">
+        <button type="submit" class="btn btn-primary">{{ 'token.save' | translate }}</button>
+      </div>
+    </form>
+  </div>
+</div>

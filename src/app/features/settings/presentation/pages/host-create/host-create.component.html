@@ -1,0 +1,45 @@
+<div class="page-header d-print-none">
+  <div class="row align-items-center">
+    <div class="col">
+      <h2 class="page-title">{{ 'host.createTitle' | translate }}</h2>
+    </div>
+    <div class="col-auto ms-auto d-print-none">
+      <a routerLink="/settings/hosts" class="btn btn-outline-secondary">{{ 'host.back' | translate }}</a>
+    </div>
+  </div>
+</div>
+<br>
+<div class="card">
+  <div class="card-body">
+    <form (ngSubmit)="onSubmit()">
+      <div class="mb-3">
+        <label class="form-label">{{ 'host.name' | translate }}</label>
+        <input type="text" class="form-control" name="name" [(ngModel)]="name" required>
+      </div>
+      <div class="row g-3 mb-3">
+        <div class="col-md-8">
+          <label class="form-label">{{ 'host.ipAddress' | translate }}</label>
+          <input type="text" class="form-control" name="ipAddress" [(ngModel)]="ipAddress" placeholder="192.168.1.1" required>
+        </div>
+        <div class="col-md-4">
+          <label class="form-label">{{ 'host.port' | translate }}</label>
+          <input type="number" class="form-control" name="port" [(ngModel)]="port" required>
+        </div>
+      </div>
+      <div class="mb-3">
+        <label class="form-label">{{ 'host.type' | translate }}</label>
+        <input type="text" class="form-control" name="type" [(ngModel)]="type">
+      </div>
+      <div class="mb-3">
+        <label class="form-label">{{ 'host.status' | translate }}</label>
+        <div class="form-check form-switch">
+          <input class="form-check-input" type="checkbox" name="status" [(ngModel)]="status" id="status">
+          <label class="form-check-label" for="status">{{ status ? ('host.active' | translate) : ('host.inactive' | translate) }}</label>
+        </div>
+      </div>
+      <div class="form-footer">
+        <button type="submit" class="btn btn-primary">{{ 'host.save' | translate }}</button>
+      </div>
+    </form>
+  </div>
+</div>

@@ -1,0 +1,30 @@
+<div class="page-header d-print-none">
+  <div class="row align-items-center">
+    <div class="col">
+      <h2 class="page-title">{{ 'settings.title' | translate }}</h2>
+      <div class="text-secondary mt-1">{{ 'settings.subtitle' | translate }}</div>
+    </div>
+  </div>
+</div>
+<br>
+<div class="row row-cards">
+  <div class="col-md-3">
+    <div class="card">
+      <div class="card-body">
+        <h4 class="subheader">{{ 'settings.menu' | translate }}</h4>
+        <div class="list-group list-group-transparent">
+          <a *ngFor="let item of menuItems"
+             [routerLink]="item.route"
+             routerLinkActive="active"
+             class="list-group-item list-group-item-action d-flex align-items-center">
+            <i-tabler [name]="item.icon" class="me-2 icon-tabler"></i-tabler>
+            {{ item.labelKey | translate }}
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-9">
+    <router-outlet></router-outlet>
+  </div>
+</div>

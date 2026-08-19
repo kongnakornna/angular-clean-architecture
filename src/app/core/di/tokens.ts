@@ -19,6 +19,16 @@ import { ISystemRepository } from '../../features/system/domain/repositories/sys
 import { IMqttRepository } from '../../features/mqtt/domain/repositories/mqtt.repository';
 import { IAIAnalyticsRepository } from '../../features/ai-analytics/domain/repositories/ai-analytics.repository';
 import { IChatbotRepository } from '../../features/ai-chatbot/domain/repositories/chatbot.repository';
+import { IScheduleRepository } from '../../features/settings/domain/repositories/schedule.repository';
+import { ILocationRepository } from '../../features/settings/domain/repositories/location.repository';
+import { IHardwareRepository } from '../../features/settings/domain/repositories/hardware.repository';
+import { ISensorRepository } from '../../features/settings/domain/repositories/sensor.repository';
+import { INodeRedRepository } from '../../features/settings/domain/repositories/nodered.repository';
+import { ILineNotificationRepository } from '../../features/settings/domain/repositories/line-notification.repository';
+import { ISmsNotificationRepository } from '../../features/settings/domain/repositories/sms-notification.repository';
+import { IHostRepository } from '../../features/settings/domain/repositories/host.repository';
+import { IApiSettingRepository } from '../../features/settings/domain/repositories/api-setting.repository';
+import { ITokenRepository } from '../../features/settings/domain/repositories/token.repository';
 import { ListRolesUseCase } from '../../features/auth/domain/use-cases/list-roles.use-case';
 import { GetRoleUseCase } from '../../features/auth/domain/use-cases/get-role.use-case';
 import { CreateRoleUseCase } from '../../features/auth/domain/use-cases/create-role.use-case';
@@ -53,3 +63,14 @@ export const CREATE_ROLE_USE_CASE = new InjectionToken<CreateRoleUseCase>('Creat
 export const UPDATE_ROLE_USE_CASE = new InjectionToken<UpdateRoleUseCase>('UpdateRoleUseCase');
 export const DELETE_ROLE_USE_CASE = new InjectionToken<DeleteRoleUseCase>('DeleteRoleUseCase');
 export const ASSIGN_ROLE_PERMISSIONS_USE_CASE = new InjectionToken<AssignRolePermissionsUseCase>('AssignRolePermissionsUseCase');
+
+export const SCHEDULE_REPOSITORY = new InjectionToken<IScheduleRepository>('schedule.repository');
+export const LOCATION_REPOSITORY = new InjectionToken<ILocationRepository>('location.repository');
+export const HARDWARE_REPOSITORY = new InjectionToken<IHardwareRepository>('hardware.repository');
+export const SENSOR_REPOSITORY = new InjectionToken<ISensorRepository>('sensor.repository');
+export const NODERED_REPOSITORY = new InjectionToken<INodeRedRepository>('nodered.repository');
+export const LINE_NOTIFICATION_REPOSITORY = new InjectionToken<ILineNotificationRepository>('line-notification.repository');
+export const SMS_NOTIFICATION_REPOSITORY = new InjectionToken<ISmsNotificationRepository>('sms-notification.repository');
+export const HOST_REPOSITORY = new InjectionToken<IHostRepository>('host.repository');
+export const API_SETTING_REPOSITORY = new InjectionToken<IApiSettingRepository>('api-setting.repository');
+export const TOKEN_REPOSITORY = new InjectionToken<ITokenRepository>('token.repository');
