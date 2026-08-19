@@ -83,4 +83,20 @@ export class JobListComponent implements OnInit {
   totalPages(): number {
     return Math.ceil(this.totalSubject.getValue() / this.pageSize) || 1;
   }
+
+  pageNumbers(): (number | string)[] {
+    const total = this.totalPages();
+    if (total <= 7) {
+      return Array.from({ length: total }, (_, i) => i + 1);
+    }
+    const current = this.currentPage;
+    const pages: (number | string)[] = [1];
+    const rangeStart = Math.max(2, current - 1);
+    const rangeEnd = Math.min(total - 1, current + 1);
+    if (rangeStart > 2) pages.push('...');
+    for (let i = rangeStart; i <= rangeEnd; i++) pages.push(i);
+    if (rangeEnd < total - 1) pages.push('...');
+    pages.push(total);
+    return pages;
+  }
 }

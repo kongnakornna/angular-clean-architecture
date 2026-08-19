@@ -123,9 +123,14 @@
         <li class="page-item" [class.disabled]="currentPage === 1">
           <a class="page-link" (click)="prevPage()">&#8249;</a>
         </li>
-        <li class="page-item" *ngFor="let p of pageNumbers()" [class.active]="currentPage === p">
-          <a class="page-link" (click)="goToPage(p)">{{ p }}</a>
-        </li>
+        <ng-container *ngFor="let p of pageNumbers()">
+          <li class="page-item disabled" *ngIf="p === '...'">
+            <span class="page-link">...</span>
+          </li>
+          <li class="page-item" *ngIf="p !== '...'" [class.active]="currentPage === p">
+            <a class="page-link" (click)="goToPage($any(p))">{{ p }}</a>
+          </li>
+        </ng-container>
         <li class="page-item" [class.disabled]="currentPage === totalPages()">
           <a class="page-link" (click)="nextPage()">&#8250;</a>
         </li>

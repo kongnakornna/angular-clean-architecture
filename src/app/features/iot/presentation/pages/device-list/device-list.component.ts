@@ -2,11 +2,13 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterLink } from '@angular/router';
 import { FormsModule } from '@angular/forms';
+
 import { BehaviorSubject, Subject, takeUntil, map } from 'rxjs';
-import { TranslatePipe } from '../../../../../shared/pipes/translate.pipe';
+
 import { DeviceGroup } from '../../../domain/entities/device.entity';
-import { ListDevicesPaginatedUseCase } from '../../../domain/use-cases/list-devices-paginated.use-case';
 import { GetAlarmDeviceStatusUseCase } from '../../../domain/use-cases/get-alarm-device-status.use-case';
+import { ListDevicesPaginatedUseCase } from '../../../domain/use-cases/list-devices-paginated.use-case';
+import { TranslatePipe } from '../../../../../shared/pipes/translate.pipe';
 
 @Component({
   selector: 'app-device-list',
@@ -137,12 +139,19 @@ export class DeviceListComponent implements OnInit, OnDestroy {
     return Math.ceil(this.totalSubject.getValue() / this.pageSize) || 1;
   }
 
-  pageNumbers(): number[] {
+  pageNumbers(): (number | string)[] {
     const total = this.totalPages();
-    const pages: number[] = [];
-    for (let i = 1; i <= total; i++) {
-      pages.push(i);
+    if (total <= 7) {
+      return Array.from({ length: total }, (_, i) => i + 1);
     }
+    const current = this.currentPage;
+    const pages: (number | string)[] = [1];
+    const rangeStart = Math.max(2, current - 1);
+    const rangeEnd = Math.min(total - 1, current + 1);
+    if (rangeStart > 2) pages.push('...');
+    for (let i = rangeStart; i <= rangeEnd; i++) pages.push(i);
+    if (rangeEnd < total - 1) pages.push('...');
+    pages.push(total);
     return pages;
   }
 }
