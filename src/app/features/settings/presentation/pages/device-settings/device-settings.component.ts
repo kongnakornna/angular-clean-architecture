@@ -9,15 +9,6 @@ import { SettingsFormCardComponent } from '../../components/settings-form-card/s
   standalone: true,
   imports: [CommonModule, FormsModule, TranslatePipe, SettingsFormCardComponent],
   template: `
-    <div class="page-header d-print-none">
-      <div class="row align-items-center">
-        <div class="col">
-          <h2 class="page-title">{{ 'settings.device.title' | translate }}</h2>
-          <div class="text-secondary mt-1">{{ 'settings.device.subtitle' | translate }}</div>
-        </div>
-      </div>
-    </div>
-    <br>
     <app-settings-form-card [title]="'settings.device.defaultsConfig' | translate" [icon]="'device-desktop'">
       <form (ngSubmit)="onSubmit()">
         <div class="row g-3 mb-3">
@@ -72,8 +63,10 @@ import { SettingsFormCardComponent } from '../../components/settings-form-card/s
             <label class="form-check-label" for="geoLocation">{{ 'settings.device.enableGeolocation' | translate }}</label>
           </div>
         </div>
-        <div class="form-footer">
-          <button type="submit" class="btn btn-primary">{{ 'settings.common.save' | translate }}</button>
+        <div class="card-footer bg-transparent mt-auto">
+          <div class="btn-list justify-content-end">
+            <button type="submit" class="btn btn-primary">{{ 'settings.common.save' | translate }}</button>
+          </div>
         </div>
       </form>
     </app-settings-form-card>

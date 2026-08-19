@@ -1,14 +1,14 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { Router, RouterLink } from '@angular/router';
+import { Router } from '@angular/router';
 import { CreateHardwareUseCase } from '../../../domain/use-cases/create-hardware.use-case';
 import { TranslatePipe } from '../../../../../shared/pipes/translate.pipe';
 
 @Component({
   selector: 'app-hardware-create',
   standalone: true,
-  imports: [CommonModule, FormsModule, RouterLink, TranslatePipe],
+  imports: [CommonModule, FormsModule, TranslatePipe],
   templateUrl: './hardware-create.component.html',
 })
 export class HardwareCreateComponent {

@@ -9,15 +9,6 @@ import { SettingsFormCardComponent } from '../../components/settings-form-card/s
   standalone: true,
   imports: [CommonModule, FormsModule, TranslatePipe, SettingsFormCardComponent],
   template: `
-    <div class="page-header d-print-none">
-      <div class="row align-items-center">
-        <div class="col">
-          <h2 class="page-title">{{ 'settings.alarm.title' | translate }}</h2>
-          <div class="text-secondary mt-1">{{ 'settings.alarm.subtitle' | translate }}</div>
-        </div>
-      </div>
-    </div>
-    <br>
     <app-settings-form-card [title]="'settings.alarm.generalConfig' | translate" [icon]="'settings'">
       <form (ngSubmit)="onSubmit()">
         <div class="mb-3">
@@ -66,8 +57,10 @@ import { SettingsFormCardComponent } from '../../components/settings-form-card/s
             <label class="form-check-label" [for]="'ch-'+ch">{{ ch }}</label>
           </div>
         </div>
-        <div class="form-footer">
-          <button type="submit" class="btn btn-primary">{{ 'settings.common.save' | translate }}</button>
+        <div class="card-footer bg-transparent mt-auto">
+          <div class="btn-list justify-content-end">
+            <button type="submit" class="btn btn-primary">{{ 'settings.common.save' | translate }}</button>
+          </div>
         </div>
       </form>
     </app-settings-form-card>

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { ActivatedRoute, Router, RouterLink } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ListHardwareUseCase } from '../../../domain/use-cases/list-hardware.use-case';
 import { UpdateHardwareUseCase } from '../../../domain/use-cases/update-hardware.use-case';
 import { Hardware } from '../../../domain/entities/hardware.entity';
@@ -10,7 +10,7 @@ import { TranslatePipe } from '../../../../../shared/pipes/translate.pipe';
 @Component({
   selector: 'app-hardware-edit',
   standalone: true,
-  imports: [CommonModule, FormsModule, RouterLink, TranslatePipe],
+  imports: [CommonModule, FormsModule, TranslatePipe],
   templateUrl: './hardware-edit.component.html',
 })
 export class HardwareEditComponent implements OnInit {

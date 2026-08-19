@@ -1,24 +1,12 @@
-<div class="page-header d-print-none">
-  <div class="row align-items-center">
-    <div class="col">
-      <h2 class="page-title">{{ 'location.title' | translate }}</h2>
-      <div class="text-secondary mt-1">{{ 'location.subtitle' | translate }}</div>
-    </div>
-    <div class="col-auto ms-auto d-print-none">
-      <a routerLink="/settings/location/create" class="btn btn-primary">{{ 'location.create' | translate }}</a>
-    </div>
-  </div>
-</div>
-<br>
 <div class="card mb-3">
   <div class="card-body">
     <div class="row g-3">
       <div class="col-md-4">
-        <input type="text" class="form-control" [(ngModel)]="searchTerm" [placeholder]="'location.searchPlaceholder' | translate">
+        <input type="text" class="form-control" [(ngModel)]="searchTerm" [placeholder]="'settings.locations.searchPlaceholder' | translate">
       </div>
       <div class="col-md-2">
-        <button class="btn btn-primary me-2" (click)="search()">{{ 'location.search' | translate }}</button>
-        <button class="btn btn-outline-secondary" (click)="searchTerm = ''; search()">{{ 'location.reset' | translate }}</button>
+        <button class="btn btn-primary me-2" (click)="search()">{{ 'settings.locations.search' | translate }}</button>
+        <button class="btn btn-outline-secondary" (click)="searchTerm = ''; search()">{{ 'settings.locations.reset' | translate }}</button>
       </div>
     </div>
   </div>
@@ -30,13 +18,13 @@
     <table class="table table-vcenter card-table">
       <thead>
         <tr>
-          <th>{{ 'location.name' | translate }}</th>
-          <th>{{ 'location.typeName' | translate }}</th>
-          <th>{{ 'location.emailId' | translate }}</th>
-          <th>{{ 'location.bucket' | translate }}</th>
-          <th>{{ 'location.org' | translate }}</th>
-          <th>{{ 'location.deviceCount' | translate }}</th>
-          <th>{{ 'location.status' | translate }}</th>
+          <th>{{ 'settings.locations.name' | translate }}</th>
+          <th>{{ 'settings.locations.typeName' | translate }}</th>
+          <th>{{ 'settings.locations.emailId' | translate }}</th>
+          <th>{{ 'settings.locations.bucket' | translate }}</th>
+          <th>{{ 'settings.locations.org' | translate }}</th>
+          <th>{{ 'settings.locations.deviceCount' | translate }}</th>
+          <th>{{ 'settings.locations.status' | translate }}</th>
           <th class="w-1"></th>
         </tr>
       </thead>
@@ -48,14 +36,14 @@
           <td>{{ item.bucket }}</td>
           <td>{{ item.org }}</td>
           <td>{{ item.deviceCount }}</td>
-          <td><span class="badge" [ngClass]="item.status ? 'bg-green' : 'bg-secondary'">{{ item.status ? ('location.active' | translate) : ('location.inactive' | translate) }}</span></td>
+          <td><span class="badge" [ngClass]="item.status ? 'bg-green' : 'bg-secondary'">{{ item.status ? ('settings.locations.active' | translate) : ('settings.locations.inactive' | translate) }}</span></td>
           <td>
-            <a [routerLink]="['/settings/location', item.id, 'edit']" class="btn btn-sm btn-primary me-1">{{ 'location.edit' | translate }}</a>
-            <button class="btn btn-sm btn-danger" (click)="deleteItem(item.id)">{{ 'location.delete' | translate }}</button>
+            <a [routerLink]="['/settings/location', item.id, 'edit']" class="btn btn-sm btn-primary me-1">{{ 'settings.locations.edit' | translate }}</a>
+            <button class="btn btn-sm btn-danger" (click)="deleteItem(item.id)">{{ 'settings.locations.delete' | translate }}</button>
           </td>
         </tr>
         <tr *ngIf="(items$ | async)?.length === 0">
-          <td colspan="8" class="text-center text-secondary py-4">{{ 'location.noData' | translate }}</td>
+          <td colspan="8" class="text-center text-secondary py-4">{{ 'settings.locations.noData' | translate }}</td>
         </tr>
       </tbody>
     </table>

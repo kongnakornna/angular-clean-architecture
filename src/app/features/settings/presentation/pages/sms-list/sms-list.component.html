@@ -1,24 +1,12 @@
-<div class="page-header d-print-none">
-  <div class="row align-items-center">
-    <div class="col">
-      <h2 class="page-title">{{ 'sms.title' | translate }}</h2>
-      <div class="text-secondary mt-1">{{ 'sms.subtitle' | translate }}</div>
-    </div>
-    <div class="col-auto ms-auto d-print-none">
-      <a routerLink="/settings/sms/create" class="btn btn-primary">{{ 'sms.create' | translate }}</a>
-    </div>
-  </div>
-</div>
-<br>
 <div class="card mb-3">
   <div class="card-body">
     <div class="row g-3">
       <div class="col-md-4">
-        <input type="text" class="form-control" [(ngModel)]="searchTerm" [placeholder]="'sms.searchPlaceholder' | translate">
+        <input type="text" class="form-control" [(ngModel)]="searchTerm" [placeholder]="'settings.sms.searchPlaceholder' | translate">
       </div>
       <div class="col-md-2">
-        <button class="btn btn-primary me-2" (click)="search()">{{ 'sms.search' | translate }}</button>
-        <button class="btn btn-outline-secondary" (click)="searchTerm = ''; search()">{{ 'sms.reset' | translate }}</button>
+        <button class="btn btn-primary me-2" (click)="search()">{{ 'settings.sms.search' | translate }}</button>
+        <button class="btn btn-outline-secondary" (click)="searchTerm = ''; search()">{{ 'settings.sms.reset' | translate }}</button>
       </div>
     </div>
   </div>
@@ -30,10 +18,10 @@
     <table class="table table-vcenter card-table">
       <thead>
         <tr>
-          <th>{{ 'sms.name' | translate }}</th>
-          <th>{{ 'sms.gatewayUrl' | translate }}</th>
-          <th>{{ 'sms.phone' | translate }}</th>
-          <th>{{ 'sms.status' | translate }}</th>
+          <th>{{ 'settings.sms.name' | translate }}</th>
+          <th>{{ 'settings.sms.gatewayUrl' | translate }}</th>
+          <th>{{ 'settings.sms.phone' | translate }}</th>
+          <th>{{ 'settings.sms.status' | translate }}</th>
           <th class="w-1"></th>
         </tr>
       </thead>
@@ -42,11 +30,11 @@
           <td>{{ item.name }}</td>
           <td><code>{{ item.gatewayUrl }}</code></td>
           <td>{{ item.phone }}</td>
-          <td><span class="badge" [ngClass]="item.status ? 'bg-green' : 'bg-secondary'">{{ item.status ? ('sms.active' | translate) : ('sms.inactive' | translate) }}</span></td>
-          <td><a [routerLink]="['/settings/sms', item.id, 'edit']" class="btn btn-sm btn-primary">{{ 'sms.edit' | translate }}</a></td>
+          <td><span class="badge" [ngClass]="item.status ? 'bg-green' : 'bg-secondary'">{{ item.status ? ('settings.sms.active' | translate) : ('settings.sms.inactive' | translate) }}</span></td>
+          <td><a [routerLink]="['/settings/sms', item.id, 'edit']" class="btn btn-sm btn-primary">{{ 'settings.sms.edit' | translate }}</a></td>
         </tr>
         <tr *ngIf="(items$ | async)?.length === 0">
-          <td colspan="5" class="text-center text-secondary py-4">{{ 'sms.noData' | translate }}</td>
+          <td colspan="5" class="text-center text-secondary py-4">{{ 'settings.sms.noData' | translate }}</td>
         </tr>
       </tbody>
     </table>

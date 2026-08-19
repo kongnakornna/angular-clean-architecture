@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterLink } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { BehaviorSubject } from 'rxjs';
 import { ListTokensUseCase } from '../../../domain/use-cases/list-tokens.use-case';
@@ -11,7 +10,7 @@ import { TranslatePipe } from '../../../../../shared/pipes/translate.pipe';
 @Component({
   selector: 'app-token-list',
   standalone: true,
-  imports: [CommonModule, RouterLink, FormsModule, TranslatePipe],
+  imports: [CommonModule, FormsModule, TranslatePipe],
   templateUrl: './token-list.component.html',
   styleUrls: ['./token-list.component.scss'],
 })

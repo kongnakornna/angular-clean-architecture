@@ -1,76 +1,67 @@
-<div class="page-header d-print-none">
-  <div class="row align-items-center">
-    <div class="col">
-      <h2 class="page-title">{{ 'schedule.createTitle' | translate }}</h2>
-    </div>
-    <div class="col-auto ms-auto d-print-none">
-      <a routerLink="/settings/schedule" class="btn btn-outline-secondary">{{ 'schedule.back' | translate }}</a>
-    </div>
-  </div>
-</div>
-<br>
 <div class="card">
   <div class="card-body">
     <form (ngSubmit)="onSubmit()">
       <div class="mb-3">
-        <label class="form-label">{{ 'schedule.name' | translate }}</label>
+        <label class="form-label">{{ 'settings.schedule.name' | translate }}</label>
         <input type="text" class="form-control" name="name" [(ngModel)]="name" required>
       </div>
       <div class="row g-3 mb-3">
         <div class="col-md-6">
-          <label class="form-label">{{ 'schedule.startTime' | translate }}</label>
+          <label class="form-label">{{ 'settings.schedule.startTime' | translate }}</label>
           <input type="time" class="form-control" name="startTime" [(ngModel)]="startTime" required>
         </div>
         <div class="col-md-6">
-          <label class="form-label">{{ 'schedule.event' | translate }}</label>
+          <label class="form-label">{{ 'settings.schedule.event' | translate }}</label>
           <select class="form-select" name="event" [(ngModel)]="event">
-            <option value="on">{{ 'schedule.eventOn' | translate }}</option>
-            <option value="off">{{ 'schedule.eventOff' | translate }}</option>
+            <option value="on">{{ 'settings.schedule.eventOn' | translate }}</option>
+            <option value="off">{{ 'settings.schedule.eventOff' | translate }}</option>
           </select>
         </div>
       </div>
       <div class="mb-3">
-        <label class="form-label">{{ 'schedule.daysOfWeek' | translate }}</label>
+        <label class="form-label">{{ 'settings.schedule.daysOfWeek' | translate }}</label>
         <div class="d-flex gap-3">
           <div class="form-check">
             <input class="form-check-input" type="checkbox" name="sunday" [(ngModel)]="sunday" id="sunday">
-            <label class="form-check-label" for="sunday">{{ 'schedule.sunday' | translate }}</label>
+            <label class="form-check-label" for="sunday">{{ 'settings.schedule.sunday' | translate }}</label>
           </div>
           <div class="form-check">
             <input class="form-check-input" type="checkbox" name="monday" [(ngModel)]="monday" id="monday">
-            <label class="form-check-label" for="monday">{{ 'schedule.monday' | translate }}</label>
+            <label class="form-check-label" for="monday">{{ 'settings.schedule.monday' | translate }}</label>
           </div>
           <div class="form-check">
             <input class="form-check-input" type="checkbox" name="tuesday" [(ngModel)]="tuesday" id="tuesday">
-            <label class="form-check-label" for="tuesday">{{ 'schedule.tuesday' | translate }}</label>
+            <label class="form-check-label" for="tuesday">{{ 'settings.schedule.tuesday' | translate }}</label>
           </div>
           <div class="form-check">
             <input class="form-check-input" type="checkbox" name="wednesday" [(ngModel)]="wednesday" id="wednesday">
-            <label class="form-check-label" for="wednesday">{{ 'schedule.wednesday' | translate }}</label>
+            <label class="form-check-label" for="wednesday">{{ 'settings.schedule.wednesday' | translate }}</label>
           </div>
           <div class="form-check">
             <input class="form-check-input" type="checkbox" name="thursday" [(ngModel)]="thursday" id="thursday">
-            <label class="form-check-label" for="thursday">{{ 'schedule.thursday' | translate }}</label>
+            <label class="form-check-label" for="thursday">{{ 'settings.schedule.thursday' | translate }}</label>
           </div>
           <div class="form-check">
             <input class="form-check-input" type="checkbox" name="friday" [(ngModel)]="friday" id="friday">
-            <label class="form-check-label" for="friday">{{ 'schedule.friday' | translate }}</label>
+            <label class="form-check-label" for="friday">{{ 'settings.schedule.friday' | translate }}</label>
           </div>
           <div class="form-check">
             <input class="form-check-input" type="checkbox" name="saturday" [(ngModel)]="saturday" id="saturday">
-            <label class="form-check-label" for="saturday">{{ 'schedule.saturday' | translate }}</label>
+            <label class="form-check-label" for="saturday">{{ 'settings.schedule.saturday' | translate }}</label>
           </div>
         </div>
       </div>
       <div class="mb-3">
-        <label class="form-label">{{ 'schedule.status' | translate }}</label>
+        <label class="form-label">{{ 'settings.schedule.status' | translate }}</label>
         <div class="form-check form-switch">
           <input class="form-check-input" type="checkbox" name="status" [(ngModel)]="status" id="status">
-          <label class="form-check-label" for="status">{{ status ? ('schedule.active' | translate) : ('schedule.inactive' | translate) }}</label>
+          <label class="form-check-label" for="status">{{ status ? ('settings.schedule.active' | translate) : ('settings.schedule.inactive' | translate) }}</label>
         </div>
       </div>
-      <div class="form-footer">
-        <button type="submit" class="btn btn-primary">{{ 'schedule.save' | translate }}</button>
+      <div class="card-footer bg-transparent mt-auto">
+        <div class="btn-list justify-content-end">
+          <button type="submit" class="btn btn-primary">{{ 'settings.schedule.save' | translate }}</button>
+        </div>
       </div>
     </form>
   </div>

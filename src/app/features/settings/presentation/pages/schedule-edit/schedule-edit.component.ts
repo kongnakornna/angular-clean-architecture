@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { ActivatedRoute, Router, RouterLink } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ListSchedulesUseCase } from '../../../domain/use-cases/list-schedules.use-case';
 import { UpdateScheduleUseCase } from '../../../domain/use-cases/update-schedule.use-case';
 import { Schedule } from '../../../domain/entities/schedule.entity';
@@ -10,7 +10,7 @@ import { TranslatePipe } from '../../../../../shared/pipes/translate.pipe';
 @Component({
   selector: 'app-schedule-edit',
   standalone: true,
-  imports: [CommonModule, FormsModule, RouterLink, TranslatePipe],
+  imports: [CommonModule, FormsModule, TranslatePipe],
   templateUrl: './schedule-edit.component.html',
 })
 export class ScheduleEditComponent implements OnInit {

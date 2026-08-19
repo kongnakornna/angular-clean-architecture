@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { ActivatedRoute, Router, RouterLink } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ListLocationsUseCase } from '../../../domain/use-cases/list-locations.use-case';
 import { UpdateLocationUseCase } from '../../../domain/use-cases/update-location.use-case';
 import { Location } from '../../../domain/entities/location.entity';
@@ -10,7 +10,7 @@ import { TranslatePipe } from '../../../../../shared/pipes/translate.pipe';
 @Component({
   selector: 'app-location-edit',
   standalone: true,
-  imports: [CommonModule, FormsModule, RouterLink, TranslatePipe],
+  imports: [CommonModule, FormsModule, TranslatePipe],
   templateUrl: './location-edit.component.html',
 })
 export class LocationEditComponent implements OnInit {

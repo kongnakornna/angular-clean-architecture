@@ -1,24 +1,12 @@
-<div class="page-header d-print-none">
-  <div class="row align-items-center">
-    <div class="col">
-      <h2 class="page-title">{{ 'line.title' | translate }}</h2>
-      <div class="text-secondary mt-1">{{ 'line.subtitle' | translate }}</div>
-    </div>
-    <div class="col-auto ms-auto d-print-none">
-      <a routerLink="/settings/line/create" class="btn btn-primary">{{ 'line.create' | translate }}</a>
-    </div>
-  </div>
-</div>
-<br>
 <div class="card mb-3">
   <div class="card-body">
     <div class="row g-3">
       <div class="col-md-4">
-        <input type="text" class="form-control" [(ngModel)]="searchTerm" [placeholder]="'line.searchPlaceholder' | translate">
+        <input type="text" class="form-control" [(ngModel)]="searchTerm" [placeholder]="'settings.line.searchPlaceholder' | translate">
       </div>
       <div class="col-md-2">
-        <button class="btn btn-primary me-2" (click)="search()">{{ 'line.search' | translate }}</button>
-        <button class="btn btn-outline-secondary" (click)="searchTerm = ''; search()">{{ 'line.reset' | translate }}</button>
+        <button class="btn btn-primary me-2" (click)="search()">{{ 'settings.line.search' | translate }}</button>
+        <button class="btn btn-outline-secondary" (click)="searchTerm = ''; search()">{{ 'settings.line.reset' | translate }}</button>
       </div>
     </div>
   </div>
@@ -30,10 +18,10 @@
     <table class="table table-vcenter card-table">
       <thead>
         <tr>
-          <th>{{ 'line.name' | translate }}</th>
-          <th>{{ 'line.channelAccessToken' | translate }}</th>
-          <th>{{ 'line.userId' | translate }}</th>
-          <th>{{ 'line.status' | translate }}</th>
+          <th>{{ 'settings.line.name' | translate }}</th>
+          <th>{{ 'settings.line.channelAccessToken' | translate }}</th>
+          <th>{{ 'settings.line.userId' | translate }}</th>
+          <th>{{ 'settings.line.status' | translate }}</th>
           <th class="w-1"></th>
         </tr>
       </thead>
@@ -42,11 +30,11 @@
           <td>{{ item.name }}</td>
           <td><code>{{ item.channelAccessToken }}</code></td>
           <td>{{ item.userId }}</td>
-          <td><span class="badge" [ngClass]="item.status ? 'bg-green' : 'bg-secondary'">{{ item.status ? ('line.active' | translate) : ('line.inactive' | translate) }}</span></td>
-          <td><a [routerLink]="['/settings/line', item.id, 'edit']" class="btn btn-sm btn-primary">{{ 'line.edit' | translate }}</a></td>
+          <td><span class="badge" [ngClass]="item.status ? 'bg-green' : 'bg-secondary'">{{ item.status ? ('settings.line.active' | translate) : ('settings.line.inactive' | translate) }}</span></td>
+          <td><a [routerLink]="['/settings/line', item.id, 'edit']" class="btn btn-sm btn-primary">{{ 'settings.line.edit' | translate }}</a></td>
         </tr>
         <tr *ngIf="(items$ | async)?.length === 0">
-          <td colspan="5" class="text-center text-secondary py-4">{{ 'line.noData' | translate }}</td>
+          <td colspan="5" class="text-center text-secondary py-4">{{ 'settings.line.noData' | translate }}</td>
         </tr>
       </tbody>
     </table>

@@ -1,14 +1,14 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { Router, RouterLink } from '@angular/router';
+import { Router } from '@angular/router';
 import { CreateSmsNotificationUseCase } from '../../../domain/use-cases/create-sms-notification.use-case';
 import { TranslatePipe } from '../../../../../shared/pipes/translate.pipe';
 
 @Component({
   selector: 'app-sms-create',
   standalone: true,
-  imports: [CommonModule, FormsModule, RouterLink, TranslatePipe],
+  imports: [CommonModule, FormsModule, TranslatePipe],
   templateUrl: './sms-create.component.html',
 })
 export class SmsCreateComponent {

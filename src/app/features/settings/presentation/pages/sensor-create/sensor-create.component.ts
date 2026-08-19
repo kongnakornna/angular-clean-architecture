@@ -1,14 +1,14 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { Router, RouterLink } from '@angular/router';
+import { Router } from '@angular/router';
 import { CreateSensorUseCase } from '../../../domain/use-cases/create-sensor.use-case';
 import { TranslatePipe } from '../../../../../shared/pipes/translate.pipe';
 
 @Component({
   selector: 'app-sensor-create',
   standalone: true,
-  imports: [CommonModule, FormsModule, RouterLink, TranslatePipe],
+  imports: [CommonModule, FormsModule, TranslatePipe],
   templateUrl: './sensor-create.component.html',
 })
 export class SensorCreateComponent {

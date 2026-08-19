@@ -1,32 +1,49 @@
 <div class="page-header d-print-none">
-  <div class="row align-items-center">
-    <div class="col">
-      <h2 class="page-title">{{ 'settings.title' | translate }}</h2>
-      <div class="text-secondary mt-1">{{ 'settings.menu' | translate }}</div>
-    </div>
-  </div>
-</div>
-<br>
-<div class="row row-cards">
-  <div class="col-md-3">
-    <div class="card">
-      <div class="card-body">
-        <ng-container *ngFor="let group of menuGroups">
-          <div class="settings-menu-group">
-            <div class="settings-menu-group-label">{{ group.labelKey | translate }}</div>
-            <a *ngFor="let item of group.items"
-               [routerLink]="item.route"
-               routerLinkActive="active"
-               class="list-group-item list-group-item-action d-flex align-items-center">
-              <i-tabler [name]="item.icon" class="me-2 icon-tabler"></i-tabler>
-              {{ item.labelKey | translate }}
-            </a>
-          </div>
-        </ng-container>
+  <div class="container-xl">
+    <div class="row g-2 align-items-center">
+      <div class="col">
+        <h1 class="page-title">{{ 'settings.title' | translate }}</h1>
       </div>
     </div>
   </div>
-  <div class="col-md-9">
-    <router-outlet></router-outlet>
-  </div>
 </div>
+
+<main class="page-body" id="content">
+  <div class="container-xl">
+    <div class="card settings-card">
+      <div class="row g-0">
+        <div class="settings-sidebar-col" [class.collapsed]="sidebarCollapsed">
+          <div class="settings-sidebar-toggle">
+            <button class="btn btn-icon btn-sm" (click)="toggleSidebar()" [title]="sidebarCollapsed ? 'Expand sidebar' : 'Collapse sidebar'">
+              <i-tabler [name]="sidebarCollapsed ? 'menu-2' : 'panel-left-close'" class="icon"></i-tabler>
+            </button>
+          </div>
+          <div class="settings-sidebar-content">
+            <ng-container *ngFor="let group of menuGroups; let last = last">
+              <div class="settings-group" [class.expanded]="isGroupExpanded(group.key)">
+                <button class="settings-group-header"
+                        (click)="toggleGroup(group.key)"
+                        [attr.aria-expanded]="isGroupExpanded(group.key)">
+                  <i-tabler [name]="isGroupExpanded(group.key) ? 'chevron-down' : 'chevron-right'" class="settings-group-icon"></i-tabler>
+                  <span class="settings-group-label">{{ group.labelKey | translate }}</span>
+                </button>
+                <div class="settings-group-items" *ngIf="isGroupExpanded(group.key)">
+                  <a *ngFor="let item of group.items"
+                     [routerLink]="item.route"
+                     routerLinkActive="active"
+                     class="settings-group-item">
+                    <span class="settings-item-label">{{ item.labelKey | translate }}</span>
+                  </a>
+                </div>
+              </div>
+              <div class="settings-group-divider" *ngIf="!last"></div>
+            </ng-container>
+          </div>
+        </div>
+        <div class="col settings-content-col d-flex flex-column">
+          <router-outlet></router-outlet>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>

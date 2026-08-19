@@ -1,26 +1,16 @@
-<div class="page-header d-print-none">
-  <div class="row align-items-center">
-    <div class="col">
-      <h2 class="page-title">{{ 'api.title' | translate }}</h2>
-      <div class="text-secondary mt-1">{{ 'api.subtitle' | translate }}</div>
-    </div>
-  </div>
-</div>
-<br>
-
 <div class="card mb-3">
   <div class="card-header">
-    <h3 class="card-title">{{ 'api.settingsList' | translate }}</h3>
+    <h3 class="card-title">{{ 'settings.api.settingsList' | translate }}</h3>
   </div>
   <div *ngIf="loading$ | async" class="text-center py-5"><div class="spinner-border text-primary"></div></div>
   <div *ngIf="!(loading$ | async)" class="table-responsive">
     <table class="table table-vcenter card-table">
       <thead>
         <tr>
-          <th>{{ 'api.name' | translate }}</th>
-          <th>{{ 'api.endpoint' | translate }}</th>
-          <th>{{ 'api.method' | translate }}</th>
-          <th>{{ 'api.status' | translate }}</th>
+          <th>{{ 'settings.api.name' | translate }}</th>
+          <th>{{ 'settings.api.endpoint' | translate }}</th>
+          <th>{{ 'settings.api.method' | translate }}</th>
+          <th>{{ 'settings.api.status' | translate }}</th>
           <th class="w-1"></th>
         </tr>
       </thead>
@@ -34,11 +24,11 @@
             'bg-yellow': item.method === 'PUT',
             'bg-red': item.method === 'DELETE'
           }">{{ item.method }}</span></td>
-          <td><span class="badge" [ngClass]="item.status ? 'bg-green' : 'bg-secondary'">{{ item.status ? ('api.active' | translate) : ('api.inactive' | translate) }}</span></td>
-          <td><button class="btn btn-sm btn-primary" (click)="editItem(item)">{{ 'api.edit' | translate }}</button></td>
+          <td><span class="badge" [ngClass]="item.status ? 'bg-green' : 'bg-secondary'">{{ item.status ? ('settings.api.active' | translate) : ('settings.api.inactive' | translate) }}</span></td>
+          <td><button class="btn btn-sm btn-primary" (click)="editItem(item)">{{ 'settings.api.edit' | translate }}</button></td>
         </tr>
         <tr *ngIf="(items$ | async)?.length === 0">
-          <td colspan="5" class="text-center text-secondary py-4">{{ 'api.noData' | translate }}</td>
+          <td colspan="5" class="text-center text-secondary py-4">{{ 'settings.api.noData' | translate }}</td>
         </tr>
       </tbody>
     </table>
@@ -47,21 +37,21 @@
 
 <div *ngIf="editingId" class="card">
   <div class="card-header">
-    <h3 class="card-title">{{ 'api.editSetting' | translate }}</h3>
+    <h3 class="card-title">{{ 'settings.api.editSetting' | translate }}</h3>
   </div>
   <div class="card-body">
     <form (ngSubmit)="onSubmit()">
       <div class="mb-3">
-        <label class="form-label">{{ 'api.name' | translate }}</label>
+        <label class="form-label">{{ 'settings.api.name' | translate }}</label>
         <input type="text" class="form-control" name="name" [(ngModel)]="name" required>
       </div>
       <div class="mb-3">
-        <label class="form-label">{{ 'api.endpoint' | translate }}</label>
+        <label class="form-label">{{ 'settings.api.endpoint' | translate }}</label>
         <input type="url" class="form-control" name="endpoint" [(ngModel)]="endpoint" required>
       </div>
       <div class="row g-3 mb-3">
         <div class="col-md-6">
-          <label class="form-label">{{ 'api.method' | translate }}</label>
+          <label class="form-label">{{ 'settings.api.method' | translate }}</label>
           <select class="form-select" name="method" [(ngModel)]="method">
             <option value="GET">GET</option>
             <option value="POST">POST</option>
@@ -70,20 +60,22 @@
           </select>
         </div>
         <div class="col-md-6">
-          <label class="form-label">{{ 'api.status' | translate }}</label>
+          <label class="form-label">{{ 'settings.api.status' | translate }}</label>
           <div class="form-check form-switch mt-4">
             <input class="form-check-input" type="checkbox" name="status" [(ngModel)]="status" id="status">
-            <label class="form-check-label" for="status">{{ status ? ('api.active' | translate) : ('api.inactive' | translate) }}</label>
+            <label class="form-check-label" for="status">{{ status ? ('settings.api.active' | translate) : ('settings.api.inactive' | translate) }}</label>
           </div>
         </div>
       </div>
       <div class="mb-3">
-        <label class="form-label">{{ 'api.headers' | translate }}</label>
+        <label class="form-label">{{ 'settings.api.headers' | translate }}</label>
         <textarea class="form-control font-monospace" name="headersJson" [(ngModel)]="headersJson" rows="5" placeholder='{"Authorization": "Bearer token"}'></textarea>
       </div>
-      <div class="form-footer">
-        <button type="submit" class="btn btn-primary">{{ 'api.update' | translate }}</button>
-        <button type="button" class="btn btn-outline-secondary" (click)="cancelEdit()">{{ 'api.cancel' | translate }}</button>
+      <div class="card-footer bg-transparent mt-auto">
+        <div class="btn-list justify-content-end">
+          <button type="submit" class="btn btn-primary">{{ 'settings.api.update' | translate }}</button>
+          <button type="button" class="btn btn-outline-secondary" (click)="cancelEdit()">{{ 'settings.api.cancel' | translate }}</button>
+        </div>
       </div>
     </form>
   </div>

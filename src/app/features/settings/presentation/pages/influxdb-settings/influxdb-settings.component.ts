@@ -8,15 +8,6 @@ import { TranslatePipe } from '../../../../../shared/pipes/translate.pipe';
   standalone: true,
   imports: [CommonModule, FormsModule, TranslatePipe],
   template: `
-    <div class="page-header d-print-none">
-      <div class="row align-items-center">
-        <div class="col">
-          <h2 class="page-title">{{ 'settings.influxdb.title' | translate }}</h2>
-          <div class="text-secondary mt-1">{{ 'settings.influxdb.subtitle' | translate }}</div>
-        </div>
-      </div>
-    </div>
-    <br>
     <div class="card">
       <div class="card-body">
         <form>
@@ -38,8 +29,10 @@ import { TranslatePipe } from '../../../../../shared/pipes/translate.pipe';
             <label class="form-label">{{ 'settings.influxdb.token' | translate }}</label>
             <input type="password" class="form-control" [(ngModel)]="token" name="token">
           </div>
-          <div class="form-footer">
-            <button type="button" class="btn btn-primary">{{ 'settings.influxdb.save' | translate }}</button>
+          <div class="card-footer bg-transparent mt-auto">
+            <div class="btn-list justify-content-end">
+              <button type="button" class="btn btn-primary">{{ 'settings.influxdb.save' | translate }}</button>
+            </div>
           </div>
         </form>
       </div>

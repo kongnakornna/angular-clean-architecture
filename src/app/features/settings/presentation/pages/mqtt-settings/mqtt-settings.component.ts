@@ -11,15 +11,6 @@ import { ConnectionTestButtonComponent } from '../../components/connection-test-
   standalone: true,
   imports: [CommonModule, FormsModule, TranslatePipe, SettingsFormCardComponent, ConnectionTestButtonComponent],
   template: `
-    <div class="page-header d-print-none">
-      <div class="row align-items-center">
-        <div class="col">
-          <h2 class="page-title">{{ 'settings.mqtt.title' | translate }}</h2>
-          <div class="text-secondary mt-1">{{ 'settings.mqtt.subtitle' | translate }}</div>
-        </div>
-      </div>
-    </div>
-    <br>
     <app-settings-form-card [title]="'settings.mqtt.brokerConfig' | translate" [icon]="'radio'">
       <form (ngSubmit)="onSubmit()">
         <div class="row g-3 mb-3">
@@ -85,9 +76,11 @@ import { ConnectionTestButtonComponent } from '../../components/connection-test-
             <label class="form-check-label" for="mqttRetain">{{ 'settings.mqtt.retain' | translate }}</label>
           </div>
         </div>
-        <div class="form-footer d-flex gap-2">
-          <button type="submit" class="btn btn-primary">{{ 'settings.common.save' | translate }}</button>
-          <app-connection-test-button (test)="testConnection()" [testing]="(testing$ | async) ?? false" [result]="testResult$ | async"></app-connection-test-button>
+        <div class="card-footer bg-transparent mt-auto">
+          <div class="btn-list justify-content-end d-flex gap-2">
+            <button type="submit" class="btn btn-primary">{{ 'settings.common.save' | translate }}</button>
+            <app-connection-test-button (test)="testConnection()" [testing]="(testing$ | async) ?? false" [result]="testResult$ | async"></app-connection-test-button>
+          </div>
         </div>
       </form>
     </app-settings-form-card>

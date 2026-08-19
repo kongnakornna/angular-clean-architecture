@@ -1,35 +1,26 @@
-<div class="page-header d-print-none">
-  <div class="row align-items-center">
-    <div class="col">
-      <h2 class="page-title">{{ 'hardware.createTitle' | translate }}</h2>
-    </div>
-    <div class="col-auto ms-auto d-print-none">
-      <a routerLink="/settings/hardware" class="btn btn-outline-secondary">{{ 'hardware.back' | translate }}</a>
-    </div>
-  </div>
-</div>
-<br>
 <div class="card">
   <div class="card-body">
     <form (ngSubmit)="onSubmit()">
       <div class="mb-3">
-        <label class="form-label">{{ 'hardware.hardwareTitle' | translate }}</label>
+        <label class="form-label">{{ 'settings.hardware.hardwareTitle' | translate }}</label>
         <input type="text" class="form-control" name="title" [(ngModel)]="title" required>
       </div>
       <div class="mb-3">
-        <label class="form-label">{{ 'hardware.typeName' | translate }}</label>
+        <label class="form-label">{{ 'settings.hardware.typeName' | translate }}</label>
         <input type="text" class="form-control" name="typeName" [(ngModel)]="typeName">
       </div>
       <div class="mb-3">
-        <label class="form-label">{{ 'hardware.description' | translate }}</label>
+        <label class="form-label">{{ 'settings.hardware.description' | translate }}</label>
         <textarea class="form-control" name="description" [(ngModel)]="description" rows="3"></textarea>
       </div>
       <div class="mb-3">
-        <label class="form-label">{{ 'hardware.price' | translate }}</label>
+        <label class="form-label">{{ 'settings.hardware.price' | translate }}</label>
         <input type="number" class="form-control" name="price" [(ngModel)]="price" step="0.01">
       </div>
-      <div class="form-footer">
-        <button type="submit" class="btn btn-primary">{{ 'hardware.save' | translate }}</button>
+      <div class="card-footer bg-transparent mt-auto">
+        <div class="btn-list justify-content-end">
+          <button type="submit" class="btn btn-primary">{{ 'settings.hardware.save' | translate }}</button>
+        </div>
       </div>
     </form>
   </div>
