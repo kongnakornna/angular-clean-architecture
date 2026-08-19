@@ -35,7 +35,7 @@ export class LocationCreateComponent {
       deviceCount: this.deviceCount,
       status: this.status,
     }).subscribe({
-      next: () => this.router.navigate(['/settings/locations']),
+      next: () => this.router.navigate(['/settings/location']),
     });
   }
 }

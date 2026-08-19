@@ -275,3 +275,58 @@ export const BELL_ICON = `<svg ${svgAttrs} class="icon icon-tabler icons-tabler-
   <path d="M10 5a2 2 0 1 1 4 0a7 7 0 0 1 4 6v3a4 4 0 0 0 2 3h-16a4 4 0 0 0 2 -3v-3a7 7 0 0 1 4 -6" />
   <path d="M9 17v1a3 3 0 0 0 6 0v-1" />
 </svg>`;
+
+export const DATABASE_ICON = `<svg ${svgAttrs} class="icon icon-tabler icons-tabler-outline icon-tabler-database">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+  <path d="M12 6m-8 0a8 3 0 1 0 16 0a8 3 0 1 0 -16 0" />
+  <path d="M4 6l0 12" />
+  <path d="M20 6l0 12" />
+  <path d="M4 12l16 0" />
+</svg>`;
+
+export const MAP_PIN_ICON = `<svg ${svgAttrs} class="icon icon-tabler icons-tabler-outline icon-tabler-map-pin">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+  <path d="M12 21l-1 -1c-4.171 -2.171 -6 -5.171 -6 -8.5c0 -4.171 3.43 -7.5 7 -7.5c3.57 0 7 3.329 7 7.5c0 3.329 -1.829 6.329 -6 8.5l-1 1z" />
+  <path d="M12 7a3 3 0 1 0 0 6a3 3 0 0 0 0 -6z" />
+</svg>`;
+
+export const THERMOMETER_ICON = `<svg ${svgAttrs} class="icon icon-tabler icons-tabler-outline icon-tabler-thermometer">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+  <path d="M10 9.5a0.5 .5 0 1 0 1 0a0.5 .5 0 1 0 -1 0" />
+  <path d="M11 6.5a0.5 .5 0 1 0 1 0a0.5 .5 0 1 0 -1 0" />
+  <path d="M12 5v-2" />
+  <path d="M12 19a3 3 0 0 0 3 -3a3 3 0 0 0 -3 -3a3 3 0 0 0 -3 3a3 3 0 0 0 3 3" />
+  <path d="M12 5l0 12.5" />
+</svg>`;
+
+export const SERVER_ICON = `<svg ${svgAttrs} class="icon icon-tabler icons-tabler-outline icon-tabler-server">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+  <path d="M3 4m0 3a3 3 0 0 1 3 -3h12a3 3 0 0 1 3 3v2a3 3 0 0 1 -3 3h-12a3 3 0 0 1 -3 -3z" />
+  <path d="M3 14m0 3a3 3 0 0 1 3 -3h12a3 3 0 0 1 3 3v2a3 3 0 0 1 -3 3h-12a3 3 0 0 1 -3 -3z" />
+  <path d="M7 8l0 .01" />
+  <path d="M7 18l0 .01" />
+</svg>`;
+
+export const MESSAGE_CIRCLE_ICON = `<svg ${svgAttrs} class="icon icon-tabler icons-tabler-outline icon-tabler-message-circle">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+  <path d="M3 20l1.3 -3.9a9 9 0 1 1 3.4 2.9l-4.7 1.1" />
+</svg>`;
+
+export const PHONE_ICON = `<svg ${svgAttrs} class="icon icon-tabler icons-tabler-outline icon-tabler-phone">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+  <path d="M5 4h4l2 5l-2.5 1.5a11 11 0 0 0 5 5l1.5 -2.5l5 2v4a2 2 0 0 1 -2.5 2a17 17 0 0 1 -14.5 -16.5a2 2 0 0 1 2 -2.5" />
+</svg>`;
+
+export const KEY_ICON = `<svg ${svgAttrs} class="icon icon-tabler icons-tabler-outline icon-tabler-key">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+  <path d="M16.25 7.5a4.25 4.25 0 1 0 -8.5 0c0 2.126 2 4.25 4.25 4.25l.372 .372l.024 .03l.024 .042l.006 .016l.003 .012l.002 .016v.016l-.008 .043l-.02 .073l-.032 .086l-.04 .082l-.045 .066l-.04 .05l-.056 .05l-.06 .037l-.05 .025l-.065 .023l-.082 .018l-.085 .007l-3.414 1.707a1 1 0 0 1 -.707 .05l-.117 -.05l-3 -1.5a1 1 0 0 1 -.553 -.804l-.01 -.13l-.01 -.096l-.027 -.088l-.03 -.075l-.04 -.073l-.05 -.067l-.065 -.06l-.062 -.04l-.07 -.035l-.084 -.027l-.087 -.014l-.12 -.01l-.082 .015l-.087 .03l-.074 .036l-.073 .048l-.065 .05l-.06 .055l-.057 .06l-.055 .07l-.035 .065l-.023 .085l-.018 .082l-.007 .085l-.01 .12l.015 .087l.03 .074l.036 .073l.048 .065l.05 .06l.055 .057l.06 .055l.07 .035l.065 .023l.085 .018l.082 .007l.085 -.01l.07 -.02l.075 -.03l.073 -.04l.067 -.05l.06 -.056l.05 -.06l.037 -.06l.025 -.05l.023 -.065l.018 -.082l.007 -.085" />
+</svg>`;
+
+export const API_ICON = `<svg ${svgAttrs} class="icon icon-tabler icons-tabler-outline icon-tabler-api">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+  <path d="M4 13a1 1 0 0 1 1 -1h2a1 1 0 0 1 1 1v3a1 1 0 0 1 -1 1h-2a1 1 0 0 1 -1 -1v-3z" />
+  <path d="M15 13a1 1 0 0 1 1 -1h2a1 1 0 0 1 1 1v3a1 1 0 0 1 -1 1h-2a1 1 0 0 1 -1 -1v-3z" />
+  <path d="M11 16h2" />
+  <path d="M8 13h2" />
+  <path d="M11 10h2" />
+</svg>`;

@@ -1462,7 +1462,7 @@ src/assets/i18n/
 
 ---
 
-## 附録: แผนภาพรวม-flow การทำงานของ Settings Module
+##  แผนภาพรวม-flow การทำงานของ Settings Module
 
 ```
 User clicks "Settings" in main sidebar

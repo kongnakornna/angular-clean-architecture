@@ -31,7 +31,7 @@ export class HostCreateComponent {
       type: this.type,
       status: this.status,
     }).subscribe({
-      next: () => this.router.navigate(['/settings/hosts']),
+      next: () => this.router.navigate(['/settings/host']),
     });
   }
 }

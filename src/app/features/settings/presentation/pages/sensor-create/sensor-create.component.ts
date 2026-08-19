@@ -33,7 +33,7 @@ export class SensorCreateComponent {
       maxThreshold: this.maxThreshold,
       status: this.status,
     }).subscribe({
-      next: () => this.router.navigate(['/settings/sensors']),
+      next: () => this.router.navigate(['/settings/sensor']),
     });
   }
 }

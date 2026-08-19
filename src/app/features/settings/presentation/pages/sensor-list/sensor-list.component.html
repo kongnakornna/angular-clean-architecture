@@ -5,7 +5,7 @@
       <div class="text-secondary mt-1">{{ 'sensor.subtitle' | translate }}</div>
     </div>
     <div class="col-auto ms-auto d-print-none">
-      <a routerLink="/settings/sensors/create" class="btn btn-primary">{{ 'sensor.create' | translate }}</a>
+      <a routerLink="/settings/sensor/create" class="btn btn-primary">{{ 'sensor.create' | translate }}</a>
     </div>
   </div>
 </div>
@@ -48,7 +48,7 @@
           <td>{{ item.maxThreshold }}</td>
           <td><span class="badge" [ngClass]="item.status ? 'bg-green' : 'bg-secondary'">{{ item.status ? ('sensor.active' | translate) : ('sensor.inactive' | translate) }}</span></td>
           <td>
-            <a [routerLink]="['/settings/sensors', item.id, 'edit']" class="btn btn-sm btn-primary me-1">{{ 'sensor.edit' | translate }}</a>
+            <a [routerLink]="['/settings/sensor', item.id, 'edit']" class="btn btn-sm btn-primary me-1">{{ 'sensor.edit' | translate }}</a>
             <button class="btn btn-sm btn-danger" (click)="deleteItem(item.id)">{{ 'sensor.delete' | translate }}</button>
           </td>
         </tr>

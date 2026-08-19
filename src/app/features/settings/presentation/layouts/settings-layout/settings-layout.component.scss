@@ -1,3 +1,17 @@
+.settings-menu-group {
+  margin-bottom: 0.5rem;
+}
+
+.settings-menu-group-label {
+  font-size: 0.7rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--tblr-text-muted);
+  padding: 0.25rem 0.75rem;
+  margin-top: 0.5rem;
+}
+
 .list-group-item.active {
   background-color: var(--tblr-primary-lt);
   color: var(--tblr-primary);

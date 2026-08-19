@@ -5,7 +5,7 @@
       <div class="text-secondary mt-1">{{ 'host.subtitle' | translate }}</div>
     </div>
     <div class="col-auto ms-auto d-print-none">
-      <a routerLink="/settings/hosts/create" class="btn btn-primary">{{ 'host.create' | translate }}</a>
+      <a routerLink="/settings/host/create" class="btn btn-primary">{{ 'host.create' | translate }}</a>
     </div>
   </div>
 </div>
@@ -45,7 +45,7 @@
           <td>{{ item.port }}</td>
           <td>{{ item.type }}</td>
           <td><span class="badge" [ngClass]="item.status ? 'bg-green' : 'bg-secondary'">{{ item.status ? ('host.active' | translate) : ('host.inactive' | translate) }}</span></td>
-          <td><a [routerLink]="['/settings/hosts', item.id, 'edit']" class="btn btn-sm btn-primary">{{ 'host.edit' | translate }}</a></td>
+          <td><a [routerLink]="['/settings/host', item.id, 'edit']" class="btn btn-sm btn-primary">{{ 'host.edit' | translate }}</a></td>
         </tr>
         <tr *ngIf="(items$ | async)?.length === 0">
           <td colspan="6" class="text-center text-secondary py-4">{{ 'host.noData' | translate }}</td>

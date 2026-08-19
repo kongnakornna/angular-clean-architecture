@@ -5,7 +5,7 @@
       <div class="text-secondary mt-1">{{ 'location.subtitle' | translate }}</div>
     </div>
     <div class="col-auto ms-auto d-print-none">
-      <a routerLink="/settings/locations/create" class="btn btn-primary">{{ 'location.create' | translate }}</a>
+      <a routerLink="/settings/location/create" class="btn btn-primary">{{ 'location.create' | translate }}</a>
     </div>
   </div>
 </div>
@@ -50,7 +50,7 @@
           <td>{{ item.deviceCount }}</td>
           <td><span class="badge" [ngClass]="item.status ? 'bg-green' : 'bg-secondary'">{{ item.status ? ('location.active' | translate) : ('location.inactive' | translate) }}</span></td>
           <td>
-            <a [routerLink]="['/settings/locations', item.id, 'edit']" class="btn btn-sm btn-primary me-1">{{ 'location.edit' | translate }}</a>
+            <a [routerLink]="['/settings/location', item.id, 'edit']" class="btn btn-sm btn-primary me-1">{{ 'location.edit' | translate }}</a>
             <button class="btn btn-sm btn-danger" (click)="deleteItem(item.id)">{{ 'location.delete' | translate }}</button>
           </td>
         </tr>

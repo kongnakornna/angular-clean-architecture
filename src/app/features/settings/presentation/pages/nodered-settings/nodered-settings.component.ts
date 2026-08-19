@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { RouterLink } from '@angular/router';
 import { BehaviorSubject } from 'rxjs';
 import { ListNodeRedUseCase } from '../../../domain/use-cases/list-nodered.use-case';
 import { CreateNodeRedUseCase } from '../../../domain/use-cases/create-nodered.use-case';
@@ -12,7 +11,7 @@ import { TranslatePipe } from '../../../../../shared/pipes/translate.pipe';
 @Component({
   selector: 'app-nodered-settings',
   standalone: true,
-  imports: [CommonModule, FormsModule, RouterLink, TranslatePipe],
+  imports: [CommonModule, FormsModule, TranslatePipe],
   templateUrl: './nodered-settings.component.html',
 })
 export class NodeRedSettingsComponent implements OnInit {

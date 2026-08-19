@@ -231,11 +231,16 @@
                       <span class="nav-link-title">{{ item.label }}</span>
                     </a>
                     <div class="dropdown-menu">
-                      <a *ngFor="let child of item.children" class="dropdown-item" [routerLink]="child.route" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
-                        <span *ngIf="isSvgIcon(child.icon)" class="icon-inline me-1" [innerHTML]="trustHtml(child.icon!)"></span>
-                        <i-tabler *ngIf="!isSvgIcon(child.icon)" [name]="getIconName(child.icon)" class="icon-inline me-1"></i-tabler>
-                        {{ child.label }}
-                      </a>
+                      <ng-container *ngFor="let child of item.children">
+                        <div *ngIf="child.label?.startsWith('──')" class="dropdown-header text-uppercase text-secondary fw-bold small mt-2 mb-1 ps-2">
+                          {{ child.label?.replace('──', '') }}
+                        </div>
+                        <a *ngIf="!child.label?.startsWith('──')" class="dropdown-item" [routerLink]="child.route" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+                          <span *ngIf="isSvgIcon(child.icon)" class="icon-inline me-1" [innerHTML]="trustHtml(child.icon!)"></span>
+                          <i-tabler *ngIf="!isSvgIcon(child.icon)" [name]="getIconName(child.icon)" class="icon-inline me-1"></i-tabler>
+                          {{ child.label }}
+                        </a>
+                      </ng-container>
                     </div>
                   </ng-template>
                 </li>

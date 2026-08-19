@@ -41,7 +41,7 @@ export class TokenCreateComponent {
       permissions: this.permissions,
       expiresAt: new Date(this.expiresAt),
     }).subscribe({
-      next: () => this.router.navigate(['/settings/tokens']),
+      next: () => this.router.navigate(['/settings/token']),
     });
   }
 }

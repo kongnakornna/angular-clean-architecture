@@ -59,7 +59,7 @@ export class SensorEditComponent implements OnInit {
       maxThreshold: this.maxThreshold,
       status: this.status,
     }).subscribe({
-      next: () => this.router.navigate(['/settings/sensors']),
+      next: () => this.router.navigate(['/settings/sensor']),
     });
   }
 }

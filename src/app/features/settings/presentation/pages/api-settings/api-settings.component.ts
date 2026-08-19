@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { RouterLink } from '@angular/router';
 import { BehaviorSubject } from 'rxjs';
 import { ListApiSettingsUseCase } from '../../../domain/use-cases/list-api-settings.use-case';
 import { UpdateApiSettingUseCase } from '../../../domain/use-cases/update-api-setting.use-case';
@@ -11,7 +10,7 @@ import { TranslatePipe } from '../../../../../shared/pipes/translate.pipe';
 @Component({
   selector: 'app-api-settings',
   standalone: true,
-  imports: [CommonModule, FormsModule, RouterLink, TranslatePipe],
+  imports: [CommonModule, FormsModule, TranslatePipe],
   templateUrl: './api-settings.component.html',
 })
 export class ApiSettingsComponent implements OnInit {
