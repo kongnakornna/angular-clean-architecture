@@ -1,8 +1,9 @@
 import { Component, inject } from "@angular/core";
 import { DomSanitizer, SafeHtml } from "@angular/platform-browser";
 import { Router, NavigationEnd } from "@angular/router";
-import { map, filter } from "rxjs/operators";
 import { toSignal } from "@angular/core/rxjs-interop";
+
+import { map, filter } from "rxjs/operators";
 
 import { LayoutService } from "../../core/services/layout.service";
 
@@ -155,11 +156,11 @@ export class HeaderComponent {
       icon: MONITORING_ICON,
       route: "/monitoring",
       children: [
+        { label: "nav.smartmonitor", icon: SMART_MONITOR_ICON, route: "/monitoring/smartmonitor" },
         { label: "nav.smarthome", icon: SMART_HOME_ICON, route: "/monitoring/smarthome" },
         { label: "nav.smartcity", icon: SMART_CITY_ICON, route: "/monitoring/smartcity" },
-        { label: "nav.smartmonitor", icon: SMART_MONITOR_ICON, route: "/monitoring/smartmonitor" },
-        { label: "nav.industry", icon: INDUSTRY_ICON, route: "/monitoring/industry" },
         { label: "nav.smartsolarfarm", icon: SMART_SOLAR_ICON, route: "/monitoring/smartsolarfarm" },
+        { label: "nav.industry", icon: INDUSTRY_ICON, route: "/monitoring/industry" },
       ],
     },
     {
