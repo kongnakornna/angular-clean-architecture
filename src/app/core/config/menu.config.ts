@@ -34,6 +34,19 @@ export const MENU_CONFIG: MenuItem[] = [
   { label: 'Users', route: '/users', icon: 'user', permission: 'user.view' },
   { label: 'Roles', route: '/roles', icon: 'shield', permission: 'role.view' },
   {
+    label: 'Monitoring',
+    route: '/monitoring',
+    icon: 'eye',
+    permission: 'monitoring.view',
+    children: [
+      { label: 'SmartHome', route: '/monitoring/smarthome', icon: 'home', permission: 'monitoring.view' },
+      { label: 'SmartCity', route: '/monitoring/smartcity', icon: 'building-community', permission: 'monitoring.view' },
+      { label: 'SmartMonitor', route: '/monitoring/smartmonitor', icon: 'chart-monitor', permission: 'monitoring.view' },
+      { label: 'Industry', route: '/monitoring/industry', icon: 'factory', permission: 'monitoring.view' },
+      { label: 'SmartSolarFarm', route: '/monitoring/smartsolarfarm', icon: 'sun', permission: 'monitoring.view' },
+    ],
+  },
+  {
     label: 'Settings',
     route: '/settings',
     icon: 'settings',

@@ -47,6 +47,7 @@ import {
   PHONE_ICON,
   KEY_ICON,
   API_ICON,
+  MONITORING_ICON,
 } from "./header.icons";
 
 interface MenuItem {
@@ -272,6 +273,18 @@ export class HeaderComponent {
             { label: "Tokens", icon: KEY_ICON, route: "/settings/token" },
           ],
         },
+      ],
+    },
+    {
+      label: "Monitoring",
+      icon: MONITORING_ICON,
+      route: "/monitoring",
+      children: [
+        { label: "SmartHome", icon: MONITORING_ICON, route: "/monitoring/smarthome" },
+        { label: "SmartCity", icon: MONITORING_ICON, route: "/monitoring/smartcity" },
+        { label: "SmartMonitor", icon: MONITORING_ICON, route: "/monitoring/smartmonitor" },
+        { label: "Industry", icon: MONITORING_ICON, route: "/monitoring/industry" },
+        { label: "SmartSolarFarm", icon: MONITORING_ICON, route: "/monitoring/smartsolarfarm" },
       ],
     },
     {

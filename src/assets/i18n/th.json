@@ -1114,5 +1114,18 @@
     "toolSearchRecords": "ค้นหาข้อมูล",
     "getDashboardData": "ดึงข้อมูลแดชบอร์ด",
     "clearHistory": "ล้างประวัติ"
+  },
+  "monitoring": {
+    "title": "มอนิเตอริ่ง",
+    "modules": {
+      "smarthome": "SmartHome",
+      "smartcity": "SmartCity",
+      "smartmonitor": "SmartMonitor",
+      "industry": "Industry",
+      "smartsolarfarm": "SmartSolarFarm"
+    },
+    "menuGroup": {
+      "modules": "โมดูล"
+    }
   }
 }

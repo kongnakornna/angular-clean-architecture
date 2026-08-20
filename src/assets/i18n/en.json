@@ -1195,5 +1195,18 @@
     "toolSearchRecords": "Search Records",
     "getDashboardData": "Get Dashboard Data",
     "clearHistory": "Clear History"
+  },
+  "monitoring": {
+    "title": "Monitoring",
+    "modules": {
+      "smarthome": "SmartHome",
+      "smartcity": "SmartCity",
+      "smartmonitor": "SmartMonitor",
+      "industry": "Industry",
+      "smartsolarfarm": "SmartSolarFarm"
+    },
+    "menuGroup": {
+      "modules": "Modules"
+    }
   }
 }

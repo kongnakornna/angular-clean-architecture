@@ -316,6 +316,13 @@ export const routes: Routes = [
         data: { permission: 'ai_analytics.view' },
       },
       {
+        path: 'monitoring',
+        loadChildren: () =>
+          import('./features/monitoring/monitoring.routes').then((m) => m.MONITORING_ROUTES),
+        canActivate: [PermissionGuard],
+        data: { permission: 'monitoring.view' },
+      },
+      {
         path: 'settings',
         loadChildren: () =>
           import('./features/settings/settings.routes').then((m) => m.SETTINGS_ROUTES),
