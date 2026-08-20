@@ -1,5 +1,8 @@
 import { Component, inject } from "@angular/core";
 import { DomSanitizer, SafeHtml } from "@angular/platform-browser";
+import { Router, NavigationEnd } from "@angular/router";
+import { map, filter } from "rxjs/operators";
+import { toSignal } from "@angular/core/rxjs-interop";
 
 import { LayoutService } from "../../core/services/layout.service";
 
@@ -74,6 +77,15 @@ interface MenuItem {
 export class HeaderComponent {
   private layout = inject(LayoutService);
   private sanitizer = inject(DomSanitizer);
+  private router = inject(Router);
+
+  isSettingsPage = toSignal(
+    this.router.events.pipe(
+      filter((e): e is NavigationEnd => e instanceof NavigationEnd),
+      map((e) => e.urlAfterRedirects.startsWith("/settings")),
+    ),
+    { initialValue: this.router.url.startsWith("/settings") },
+  );
 
   unreadCount = 3;
 

@@ -15,6 +15,6 @@
   </div>
 </div>
 
-<app-layout-settings></app-layout-settings>
+<app-layout-settings *ngIf="isSettingsPage()"></app-layout-settings>
 
-<app-ai-chatbot></app-ai-chatbot>
+<app-ai-chatbot *ngIf="!isMonitoringPage()"></app-ai-chatbot>
