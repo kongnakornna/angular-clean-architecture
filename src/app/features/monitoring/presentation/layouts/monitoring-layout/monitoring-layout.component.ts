@@ -1,9 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Router, RouterLink, RouterLinkActive, RouterOutlet, NavigationEnd } from '@angular/router';
+
 import { TablerIconComponent } from 'angular-tabler-icons';
-import { TranslatePipe } from '../../../../../shared/pipes/translate.pipe';
+
 import { filter } from 'rxjs';
+
+import { TranslatePipe } from '../../../../../shared/pipes/translate.pipe';
 
 interface MonitoringMenuItem {
   key: string;
