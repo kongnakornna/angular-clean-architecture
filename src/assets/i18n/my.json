@@ -86,6 +86,20 @@
     "statusInProgress": "ဆောင်ရွက်ဆဲ",
     "statusCompleted": "ပြီးစီး",
     "statusClosed": "ပိတ်ပြီး",
+    "statusOnHold": "ရပ်ဆိုင်းထားသည်",
+    "statusDraft": "မူကြမ်း",
+    "statusSent": "ပို့ပြီး",
+    "statusUnderReview": "စစ်ဆေးနေသည်",
+    "statusApproved": "အတည်ပြုပြီး",
+    "statusRejected": "ငြင်းဆိုပြီး",
+    "statusConvertedToPo": "PO ပြောင်းပြီး",
+    "statusPaid": "ပေးချေပြီး",
+    "statusFailed": "မအောင်မြင်",
+    "statusRefunded": "ငွေပြန်ပေးပြီး",
+    "statusDelivered": "ပို့ဆောင်ပြီး",
+    "statusShipped": "တင်ပို့ပြီး",
+    "statusCancelled": "ပယ်ဖျက်ပြီး",
+    "confirmMessage": "ဆက်လက်လုပ်ဆောင်လိုပါသလား?",
     "priorityLow": "နိမ့်",
     "priorityMedium": "အလယ်အလတ်",
     "priorityHigh": "မြင့်",
@@ -208,12 +222,25 @@
       "appAI": "AI",
       "notifNewJob": "အလုပ်အသစ် ဖန်တီးပြီးပါပြီ",
       "notifQuotationApproved": "စျေးနှုန်းကမ်းလှမ်းချက် အတည်ပြုပြီးပါပြီ",
-      "notifLowStock": "ကုန်ပစ္စည်း နည်းနေသည်"
+      "notifLowStock": "ကုန်ပစ္စည်း နည်းနေသည်",
+      "notifTime5min": "မိနစ် ၅ ခုအတွင်း",
+      "notifTime1hour": "နာရီ ၁ ခုအတွင်း",
+      "notifTime2hours": "နာရီ ၂ ခုအတွင်း",
+      "toggleNav": "ပင်မ လမ်းညွှန် ပြောင်းရန်",
+      "toggleSidebar": "ဘေးဘား ပြောင်းရန်",
+      "home": "ပင်မစာမျက်နှာ",
+      "logo": "Logo",
+      "showNotifications": "အကြောင်းကြားချက် ပြရန်",
+      "showApps": "အက်ပ်မီနူး ပြရန်",
+      "openUserMenu": "အသုံးပြုသူမီနူး ဖွင့်ရန်",
+      "userAvatar": "အသုံးပြုသူ ပုံရေး",
+      "close": "ပိတ်ရန်"
     },
     "footer": {
       "about": "အကြောင်း",
       "help": "အကူး",
-      "privacy": "ကိုယ်ရေးလုံခြုံမှု"
+      "privacy": "ကိုယ်ရေးလုံခြုံမှု",
+      "version": "ဗားရှင်း"
     },
     "settings": {
       "title": "အပြင်အဆင်သတ်မှတ်ချက်များ",
@@ -690,5 +717,45 @@
   },
   "logTimeline": {
     "noLogsAvailable": "မှတ်တမ်း မရှိပါ"
+  },
+  "report": {
+    "common": {
+      "id": "ID",
+      "status": "အခြေအနေ",
+      "message": "မက်ဆေ့",
+      "timestamp": "အချိန်",
+      "refresh": "ပြန်လည်ဖွင့်",
+      "noData": "ဒေတာမရှိ"
+    },
+    "schedule": {
+      "title": "ဇယားအစီရင်ခံစာ",
+      "scheduleName": "ဇယားအမည်",
+      "deviceName": "စက်ပစ္စည်းအမည်",
+      "action": "လုပ်ဆောင်ချက်"
+    },
+    "alarm": {
+      "title": "သတိပေးအစီရင်ခံစာ",
+      "alarmName": "သတိပေးအမည်",
+      "deviceName": "စက်ပစ္စည်းအမည်",
+      "severity": "ပြင်းထန်မှု",
+      "triggeredAt": "ဖြစ်ပေါ်ချိန်",
+      "resolvedAt": "ဖြေရှင်းချိန်"
+    },
+    "logsControl": {
+      "title": "ထိန်းချုပ်မှုမှတ်တမ်းအစီရင်ခံစာ",
+      "deviceName": "စက်ပစ္စည်းအမည်",
+      "controlName": "ထိန်းချုပ်မှုအမည်",
+      "action": "လုပ်ဆောင်ချက်",
+      "value": "တန်ဖိုး"
+    },
+    "device": {
+      "title": "စက်ပစ္စည်းအစီရင်ခံစာ",
+      "deviceName": "စက်ပစ္စည်းအမည်",
+      "hardwareId": "Hardware ID",
+      "location": "နေရာ",
+      "lastSeen": "နောက်ဆုံးမြင်ရချိန်",
+      "sensorCount": "Sensor အရေအတွက်",
+      "alarmCount": "သတိပေးအရေအတွက်"
+    }
   }
 }

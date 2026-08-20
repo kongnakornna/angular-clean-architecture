@@ -1,12 +1,12 @@
 <header class="navbar navbar-expand-md d-print-none">
   <div class="container-xl">
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar-menu" aria-controls="navbar-menu" aria-expanded="false" aria-label="Toggle primary navigation">
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar-menu" aria-controls="navbar-menu" aria-expanded="false" [attr.aria-label]="'layout.header.toggleNav' | translate">
       <span class="navbar-toggler-icon"></span>
     </button>
 
     <div class="navbar-brand navbar-brand-autodark pe-0 pe-md-3">
-      <a href="/" aria-label="Home">
-        <img src="assets/img/logo/logo-light.png" class="navbar-brand-image" alt="Logo">
+      <a href="/" [attr.aria-label]="'layout.header.home' | translate">
+        <img src="assets/img/logo/logo-light.png" class="navbar-brand-image" [attr.alt]="'layout.header.logo' | translate">
       </a>
     </div>
 
@@ -16,7 +16,7 @@
       </div>
       <div class="d-none d-md-flex me-3">
         <div class="nav-item dropdown d-none d-md-flex">
-          <a href="javascript:void(0)" class="nav-link px-0" data-bs-toggle="dropdown" tabindex="-1" aria-label="Show notifications" data-bs-auto-close="outside" aria-expanded="false">
+          <a href="javascript:void(0)" class="nav-link px-0" data-bs-toggle="dropdown" tabindex="-1" [attr.aria-label]="'layout.header.showNotifications' | translate" data-bs-auto-close="outside" aria-expanded="false">
             <i-tabler name="bell" class="icon icon-sm"></i-tabler>
             <span class="badge bg-red" *ngIf="unreadCount > 0">{{ unreadCount }}</span>
           </a>
@@ -34,7 +34,7 @@
                     </div>
                     <div class="col text-truncate">
                       <a href="javascript:void(0)" class="text-body d-block">{{ n.title | translate }}</a>
-                      <div class="d-block text-secondary text-truncate mt-n1">{{ n.time }}</div>
+                      <div class="d-block text-secondary text-truncate mt-n1">{{ n.time | translate }}</div>
                     </div>
                   </div>
                 </div>
@@ -57,7 +57,7 @@
       </div>
 
         <div class="nav-item dropdown d-none d-md-flex">
-          <a href="javascript:void(0)" class="nav-link px-0" data-bs-toggle="dropdown" tabindex="-1" aria-label="Show app menu" data-bs-auto-close="outside" aria-expanded="false">
+          <a href="javascript:void(0)" class="nav-link px-0" data-bs-toggle="dropdown" tabindex="-1" [attr.aria-label]="'layout.header.showApps' | translate" data-bs-auto-close="outside" aria-expanded="false">
             <i-tabler name="apps" class="icon icon-sm"></i-tabler>
           </a>
           <div class="dropdown-menu dropdown-menu-arrow dropdown-menu-end dropdown-menu-card">
@@ -168,15 +168,15 @@
         </div>
         <!----####---->
       <div class="nav-item d-flex me-2 me-md-3">
-        <a href="javascript:void(0)" class="nav-link px-0" data-bs-toggle="offcanvas" data-bs-target="#offcanvas-settings" [title]="'layout.settings.title' | translate" aria-label="Theme Settings">
+        <a href="javascript:void(0)" class="nav-link px-0" data-bs-toggle="offcanvas" data-bs-target="#offcanvas-settings" [title]="'layout.settings.title' | translate" [attr.aria-label]="'layout.settings.title' | translate">
           <i-tabler name="settings" class="icon icon-sm"></i-tabler>
         </a>
       </div>
         <!--####--->
       <div class="nav-item dropdown">
         <!--####--->
-        <a href="javascript:void(0)" class="nav-link d-flex lh-1 p-0 px-2" data-bs-toggle="dropdown" aria-label="Open user menu">
-          <img src="assets/img/avatars/avatar1.png" class="avatar avatar-sm" alt="User avatar">
+        <a href="javascript:void(0)" class="nav-link d-flex lh-1 p-0 px-2" data-bs-toggle="dropdown" [attr.aria-label]="'layout.header.openUserMenu' | translate">
+          <img src="assets/img/avatars/avatar1.png" class="avatar avatar-sm" [attr.alt]="'layout.header.userAvatar' | translate">
           <div class="d-none d-xl-block ps-2">
             <div>{{ username || ('layout.header.userName' | translate) }}</div>
             <div class="mt-1 small text-secondary">{{ 'layout.header.userRole' | translate }}</div>

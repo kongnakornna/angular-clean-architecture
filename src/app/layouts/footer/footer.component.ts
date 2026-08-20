@@ -12,5 +12,5 @@ export class FooterComponent {
 
   currentYear = new Date().getFullYear();
   displayYear = computed(() => (this.i18nService.lang() === 'th' ? this.currentYear + 543 : this.currentYear));
-  appVersion = 'Version 1.0';
+  appVersion = '1.0';
 }

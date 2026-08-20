@@ -86,6 +86,20 @@
     "statusInProgress": "進行中",
     "statusCompleted": "完了",
     "statusClosed": "クローズ",
+    "statusOnHold": "保留中",
+    "statusDraft": "下書き",
+    "statusSent": "送信済み",
+    "statusUnderReview": "レビュー中",
+    "statusApproved": "承認済み",
+    "statusRejected": "却下",
+    "statusConvertedToPo": "POに変換済み",
+    "statusPaid": "支払い済み",
+    "statusFailed": "失敗",
+    "statusRefunded": "返金済み",
+    "statusDelivered": "配達済み",
+    "statusShipped": "発送済み",
+    "statusCancelled": "キャンセル",
+    "confirmMessage": "続行しますか？",
     "priorityLow": "低",
     "priorityMedium": "中",
     "priorityHigh": "高",
@@ -208,12 +222,25 @@
       "appAI": "AI",
       "notifNewJob": "新しいジョブが作成されました",
       "notifQuotationApproved": "見積書が承認されました",
-      "notifLowStock": "在庫が少ない"
+      "notifLowStock": "在庫が少ない",
+      "notifTime5min": "5分前",
+      "notifTime1hour": "1時間前",
+      "notifTime2hours": "2時間前",
+      "toggleNav": "プライマリナビゲーションの切り替え",
+      "toggleSidebar": "サイドバーの切り替え",
+      "home": "ホーム",
+      "logo": "ロゴ",
+      "showNotifications": "通知を表示",
+      "showApps": "アプリメニューを表示",
+      "openUserMenu": "ユーザーメニューを開く",
+      "userAvatar": "ユーザーアバター",
+      "close": "閉じる"
     },
     "footer": {
       "about": "概要",
       "help": "ヘルプ",
-      "privacy": "プライバシー"
+      "privacy": "プライバシー",
+      "version": "バージョン"
     },
     "settings": {
       "title": "レイアウト設定",
@@ -690,5 +717,45 @@
   },
   "logTimeline": {
     "noLogsAvailable": "ログがありません"
+  },
+  "report": {
+    "common": {
+      "id": "ID",
+      "status": "ステータス",
+      "message": "メッセージ",
+      "timestamp": "タイムスタンプ",
+      "refresh": "更新",
+      "noData": "データなし"
+    },
+    "schedule": {
+      "title": "スケジュールレポート",
+      "scheduleName": "スケジュール名",
+      "deviceName": "デバイス名",
+      "action": "アクション"
+    },
+    "alarm": {
+      "title": "アラームレポート",
+      "alarmName": "アラーム名",
+      "deviceName": "デバイス名",
+      "severity": "重要度",
+      "triggeredAt": "発生時刻",
+      "resolvedAt": "解決時刻"
+    },
+    "logsControl": {
+      "title": "制御ログレポート",
+      "deviceName": "デバイス名",
+      "controlName": "制御名",
+      "action": "アクション",
+      "value": "値"
+    },
+    "device": {
+      "title": "デバイスレポート",
+      "deviceName": "デバイス名",
+      "hardwareId": "ハードウェアID",
+      "location": "場所",
+      "lastSeen": "最終確認",
+      "sensorCount": "センサー数",
+      "alarmCount": "アラーム数"
+    }
   }
 }

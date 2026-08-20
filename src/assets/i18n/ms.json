@@ -86,6 +86,20 @@
     "statusInProgress": "Sedang Dijalankan",
     "statusCompleted": "Selesai",
     "statusClosed": "Ditutup",
+    "statusOnHold": "Ditangguhkan",
+    "statusDraft": "Draf",
+    "statusSent": "Dihantar",
+    "statusUnderReview": "Dalam Semakan",
+    "statusApproved": "Diluluskan",
+    "statusRejected": "Ditolak",
+    "statusConvertedToPo": "Ditukar kepada PO",
+    "statusPaid": "Dibayar",
+    "statusFailed": "Gagal",
+    "statusRefunded": "Dikembalikan",
+    "statusDelivered": "Dihantar",
+    "statusShipped": "Dihantar",
+    "statusCancelled": "Dibatalkan",
+    "confirmMessage": "Adakah anda mahu meneruskan?",
     "priorityLow": "Rendah",
     "priorityMedium": "Sederhana",
     "priorityHigh": "Tinggi",
@@ -208,12 +222,25 @@
       "appAI": "AI",
       "notifNewJob": "Kerja baru telah dicipta",
       "notifQuotationApproved": "Sebut harga telah diluluskan",
-      "notifLowStock": "Stok rendah"
+      "notifLowStock": "Stok rendah",
+      "notifTime5min": "5 minit lepas",
+      "notifTime1hour": "1 jam lepas",
+      "notifTime2hours": "2 jam lepas",
+      "toggleNav": "Togol navigasi utama",
+      "toggleSidebar": "Togol bar sisi",
+      "home": "Laman Utama",
+      "logo": "Logo",
+      "showNotifications": "Tunjukkan pemberitahuan",
+      "showApps": "Tunjukkan menu aplikasi",
+      "openUserMenu": "Buka menu pengguna",
+      "userAvatar": "Avatar pengguna",
+      "close": "Tutup"
     },
     "footer": {
       "about": "Tentang",
       "help": "Bantuan",
-      "privacy": "Privasi"
+      "privacy": "Privasi",
+      "version": "Versi"
     },
     "settings": {
       "title": "Tetapan Susun Atur",
@@ -690,5 +717,45 @@
   },
   "logTimeline": {
     "noLogsAvailable": "Tiada log"
+  },
+  "report": {
+    "common": {
+      "id": "ID",
+      "status": "Status",
+      "message": "Mesej",
+      "timestamp": "Cap Masa",
+      "refresh": "Muat Semula",
+      "noData": "Tiada data"
+    },
+    "schedule": {
+      "title": "Laporan Jadual",
+      "scheduleName": "Nama Jadual",
+      "deviceName": "Nama Peranti",
+      "action": "Tindakan"
+    },
+    "alarm": {
+      "title": "Laporan Amaran",
+      "alarmName": "Nama Amaran",
+      "deviceName": "Nama Peranti",
+      "severity": "Tahap Keterukan",
+      "triggeredAt": "Masa Dicetuskan",
+      "resolvedAt": "Masa Diselesaikan"
+    },
+    "logsControl": {
+      "title": "Laporan Log Kawalan",
+      "deviceName": "Nama Peranti",
+      "controlName": "Nama Kawalan",
+      "action": "Tindakan",
+      "value": "Nilai"
+    },
+    "device": {
+      "title": "Laporan Peranti",
+      "deviceName": "Nama Peranti",
+      "hardwareId": "ID Perkakasan",
+      "location": "Lokasi",
+      "lastSeen": "Terakhir Dilihat",
+      "sensorCount": "Bilangan Sensor",
+      "alarmCount": "Bilangan Amaran"
+    }
   }
 }

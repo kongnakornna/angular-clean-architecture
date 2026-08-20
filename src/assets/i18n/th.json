@@ -428,6 +428,20 @@
     "statusInProgress": "กำลังดำเนินการ",
     "statusCompleted": "เสร็จสิ้น",
     "statusClosed": "ปิดงาน",
+    "statusOnHold": "พักงาน",
+    "statusDraft": "ร่าง",
+    "statusSent": "ส่งแล้ว",
+    "statusUnderReview": "กำลังตรวจสอบ",
+    "statusApproved": "อนุมัติแล้ว",
+    "statusRejected": "ปฏิเสธ",
+    "statusConvertedToPo": "แปลงเป็น PO แล้ว",
+    "statusPaid": "ชำระแล้ว",
+    "statusFailed": "ล้มเหลว",
+    "statusRefunded": "คืนเงินแล้ว",
+    "statusDelivered": "ส่งมอบแล้ว",
+    "statusShipped": "จัดส่งแล้ว",
+    "statusCancelled": "ยกเลิก",
+    "confirmMessage": "คุณต้องการดำเนินการนี้หรือไม่?",
     "priorityLow": "ต่ำ",
     "priorityMedium": "ปานกลาง",
     "priorityHigh": "สูง",
@@ -553,14 +567,27 @@
       "appAI": "AI",
       "notifNewJob": "งานใหม่ถูกสร้าง",
       "notifQuotationApproved": "ใบเสนอราคาถูกอนุมัติ",
-      "notifLowStock": "สต็อกสินค้าต่ำ"
+      "notifLowStock": "สต็อกสินค้าต่ำ",
+      "notifTime5min": "5 นาทีที่แล้ว",
+      "notifTime1hour": "1 ชั่วโมงที่แล้ว",
+      "notifTime2hours": "2 ชั่วโมงที่แล้ว",
+      "toggleNav": "เปิด/ปิดเมนูนำทาง",
+      "toggleSidebar": "เปิด/ปิดแถบด้านข้าง",
+      "home": "หน้าแรก",
+      "logo": "โลโก้",
+      "showNotifications": "แสดงการแจ้งเตือน",
+      "showApps": "แสดงเมนูแอป",
+      "openUserMenu": "เปิดเมนูผู้ใช้",
+      "userAvatar": "อวาตาร์ผู้ใช้",
+      "close": "ปิด"
     },
     "footer": {
       "about": "เกี่ยวกับ",
       "help": "ช่วยเหลือ",
       "privacy": "ความเป็นส่วนตัว",
       "copyright": "คงนคร จันทะคุณ",
-      "allRightsReserved": "สงวนลิขสิทธิ์"
+      "allRightsReserved": "สงวนลิขสิทธิ์",
+      "version": "เวอร์ชัน"
     },
     "settings": {
       "title": "ตั้งค่าธีม",
@@ -1207,6 +1234,46 @@
     },
     "menuGroup": {
       "modules": "โมดูล"
+    }
+  },
+  "report": {
+    "common": {
+      "id": "รหัส",
+      "status": "สถานะ",
+      "message": "ข้อความ",
+      "timestamp": "เวลา",
+      "refresh": "รีเฟรช",
+      "noData": "ไม่มีข้อมูล"
+    },
+    "schedule": {
+      "title": "รายงานตารางเวลา",
+      "scheduleName": "ชื่อตารางเวลา",
+      "deviceName": "ชื่ออุปกรณ์",
+      "action": "การกระทำ"
+    },
+    "alarm": {
+      "title": "รายงานการแจ้งเตือน",
+      "alarmName": "ชื่อการแจ้งเตือน",
+      "deviceName": "ชื่ออุปกรณ์",
+      "severity": "ระดับความรุนแรง",
+      "triggeredAt": "เวลาที่เกิด",
+      "resolvedAt": "เวลาที่แก้ไข"
+    },
+    "logsControl": {
+      "title": "รายงานบันทึกการควบคุม",
+      "deviceName": "ชื่ออุปกรณ์",
+      "controlName": "ชื่อการควบคุม",
+      "action": "การกระทำ",
+      "value": "ค่า"
+    },
+    "device": {
+      "title": "รายงานอุปกรณ์",
+      "deviceName": "ชื่ออุปกรณ์",
+      "hardwareId": "รหัสฮาร์ดแวร์",
+      "location": "สถานที่",
+      "lastSeen": "เห็นล่าสุด",
+      "sensorCount": "จำนวนเซนเซอร์",
+      "alarmCount": "จำนวนการแจ้งเตือน"
     }
   }
 }

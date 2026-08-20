@@ -46,34 +46,34 @@ export class Helpers {
 
   static getPriorityLabel(priority: string): string {
     const labels: Record<string, string> = {
-      low: 'ต่ำ',
-      medium: 'ปานกลาง',
-      high: 'สูง',
-      urgent: 'เร่งด่วน',
+      low: 'common.priorityLow',
+      medium: 'common.priorityMedium',
+      high: 'common.priorityHigh',
+      urgent: 'common.priorityUrgent',
     };
     return labels[priority] || priority;
   }
 
   static getStatusLabel(status: string): string {
     const labels: Record<string, string> = {
-      pending: 'รอดำเนินการ',
-      assigned: 'มอบหมายแล้ว',
-      in_progress: 'กำลังดำเนินการ',
-      on_hold: 'พักงาน',
-      completed: 'เสร็จสิ้น',
-      closed: 'ปิดงาน',
-      draft: 'ร่าง',
-      sent: 'ส่งแล้ว',
-      under_review: 'กำลังตรวจสอบ',
-      approved: 'อนุมัติแล้ว',
-      rejected: 'ปฏิเสธ',
-      converted_to_po: 'แปลงเป็น PO แล้ว',
-      paid: 'ชำระแล้ว',
-      failed: 'ล้มเหลว',
-      refunded: 'คืนเงินแล้ว',
-      delivered: 'ส่งมอบแล้ว',
-      shipped: 'จัดส่งแล้ว',
-      cancelled: 'ยกเลิก',
+      pending: 'common.statusPending',
+      assigned: 'common.statusAssigned',
+      in_progress: 'common.statusInProgress',
+      on_hold: 'common.statusOnHold',
+      completed: 'common.statusCompleted',
+      closed: 'common.statusClosed',
+      draft: 'common.statusDraft',
+      sent: 'common.statusSent',
+      under_review: 'common.statusUnderReview',
+      approved: 'common.statusApproved',
+      rejected: 'common.statusRejected',
+      converted_to_po: 'common.statusConvertedToPo',
+      paid: 'common.statusPaid',
+      failed: 'common.statusFailed',
+      refunded: 'common.statusRefunded',
+      delivered: 'common.statusDelivered',
+      shipped: 'common.statusShipped',
+      cancelled: 'common.statusCancelled',
     };
     return labels[status] || status;
   }

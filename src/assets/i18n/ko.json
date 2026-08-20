@@ -86,6 +86,20 @@
     "statusInProgress": "진행 중",
     "statusCompleted": "완료",
     "statusClosed": "종료",
+    "statusOnHold": "보류",
+    "statusDraft": "초안",
+    "statusSent": "발송완료",
+    "statusUnderReview": "검토중",
+    "statusApproved": "승인됨",
+    "statusRejected": "거부됨",
+    "statusConvertedToPo": "PO로 변환됨",
+    "statusPaid": "결제완료",
+    "statusFailed": "실패",
+    "statusRefunded": "환불됨",
+    "statusDelivered": "배송완료",
+    "statusShipped": "발송됨",
+    "statusCancelled": "취소됨",
+    "confirmMessage": "계속하시겠습니까?",
     "priorityLow": "낮음",
     "priorityMedium": "중간",
     "priorityHigh": "높음",
@@ -208,12 +222,25 @@
       "appAI": "AI",
       "notifNewJob": "새 작업이 생성되었습니다",
       "notifQuotationApproved": "견적서가 승인되었습니다",
-      "notifLowStock": "재고 부족"
+      "notifLowStock": "재고 부족",
+      "notifTime5min": "5분 전",
+      "notifTime1hour": "1시간 전",
+      "notifTime2hours": "2시간 전",
+      "toggleNav": "기본 내비게이션 전환",
+      "toggleSidebar": "사이드바 전환",
+      "home": "홈",
+      "logo": "로고",
+      "showNotifications": "알림 표시",
+      "showApps": "앱 메뉴 표시",
+      "openUserMenu": "사용자 메뉴 열기",
+      "userAvatar": "사용자 아바타",
+      "close": "닫기"
     },
     "footer": {
       "about": "소개",
       "help": "도움말",
-      "privacy": "개인정보"
+      "privacy": "개인정보",
+      "version": "버전"
     },
     "settings": {
       "title": "레이아웃 설정",
@@ -690,5 +717,45 @@
   },
   "logTimeline": {
     "noLogsAvailable": "로그가 없습니다"
+  },
+  "report": {
+    "common": {
+      "id": "ID",
+      "status": "상태",
+      "message": "메시지",
+      "timestamp": "타임스탬프",
+      "refresh": "새로고침",
+      "noData": "데이터 없음"
+    },
+    "schedule": {
+      "title": "스케줄 리포트",
+      "scheduleName": "스케줄 이름",
+      "deviceName": "디바이스 이름",
+      "action": "작업"
+    },
+    "alarm": {
+      "title": "알람 리포트",
+      "alarmName": "알람 이름",
+      "deviceName": "디바이스 이름",
+      "severity": "심각도",
+      "triggeredAt": "발생 시간",
+      "resolvedAt": "해결 시간"
+    },
+    "logsControl": {
+      "title": "제어 로그 리포트",
+      "deviceName": "디바이스 이름",
+      "controlName": "제어 이름",
+      "action": "작업",
+      "value": "값"
+    },
+    "device": {
+      "title": "디바이스 리포트",
+      "deviceName": "디바이스 이름",
+      "hardwareId": "하드웨어 ID",
+      "location": "위치",
+      "lastSeen": "마지막 연결",
+      "sensorCount": "센서 수",
+      "alarmCount": "알람 수"
+    }
   }
 }

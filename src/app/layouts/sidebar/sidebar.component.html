@@ -5,7 +5,7 @@
        [ngClass]="background ? 'bg-' + background : ''"
        [attr.data-bs-theme]="dark ? 'dark' : null">
   <div class="container-fluid">
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#sidebar-menu" aria-controls="sidebar-menu" aria-expanded="false" aria-label="Toggle sidebar navigation">
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#sidebar-menu" aria-controls="sidebar-menu" aria-expanded="false" [attr.aria-label]="'layout.header.toggleSidebar' | translate">
       <span class="navbar-toggler-icon"></span>
     </button>
 

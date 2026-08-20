@@ -11,7 +11,7 @@
   <form class="offcanvas offcanvas-start offcanvas-narrow" tabindex="-1" id="offcanvas-settings" role="dialog" aria-modal="true" aria-labelledby="offcanvas-settings-title">
     <div class="offcanvas-header">
       <h2 class="offcanvas-title" id="offcanvas-settings-title">{{ 'layout.settings.title' | translate }}</h2>
-      <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+      <button type="button" class="btn-close" data-bs-dismiss="offcanvas" [attr.aria-label]="'layout.header.close' | translate"></button>
     </div>
     <div class="offcanvas-body d-flex flex-column">
       <div>

@@ -512,6 +512,20 @@
     "statusInProgress": "In Progress",
     "statusCompleted": "Completed",
     "statusClosed": "Closed",
+    "statusOnHold": "On Hold",
+    "statusDraft": "Draft",
+    "statusSent": "Sent",
+    "statusUnderReview": "Under Review",
+    "statusApproved": "Approved",
+    "statusRejected": "Rejected",
+    "statusConvertedToPo": "Converted to PO",
+    "statusPaid": "Paid",
+    "statusFailed": "Failed",
+    "statusRefunded": "Refunded",
+    "statusDelivered": "Delivered",
+    "statusShipped": "Shipped",
+    "statusCancelled": "Cancelled",
+    "confirmMessage": "Do you want to proceed?",
     "priorityLow": "Low",
     "priorityMedium": "Medium",
     "priorityHigh": "High",
@@ -636,14 +650,27 @@
       "appAI": "AI",
       "notifNewJob": "New job created",
       "notifQuotationApproved": "Quotation approved",
-      "notifLowStock": "Low stock"
+      "notifLowStock": "Low stock",
+      "notifTime5min": "5 minutes ago",
+      "notifTime1hour": "1 hour ago",
+      "notifTime2hours": "2 hours ago",
+      "toggleNav": "Toggle primary navigation",
+      "toggleSidebar": "Toggle sidebar navigation",
+      "home": "Home",
+      "logo": "Logo",
+      "showNotifications": "Show notifications",
+      "showApps": "Show app menu",
+      "openUserMenu": "Open user menu",
+      "userAvatar": "User avatar",
+      "close": "Close"
     },
     "footer": {
       "about": "About",
       "help": "Help",
       "privacy": "Privacy",
       "copyright": "Kongnakorn Jantakun",
-      "allRightsReserved": "All Rights Reserved"
+      "allRightsReserved": "All Rights Reserved",
+      "version": "Version"
     },
     "settings": {
       "title": "Theme Settings",
@@ -1288,6 +1315,46 @@
     },
     "menuGroup": {
       "modules": "Modules"
+    }
+  },
+  "report": {
+    "common": {
+      "id": "ID",
+      "status": "Status",
+      "message": "Message",
+      "timestamp": "Timestamp",
+      "refresh": "Refresh",
+      "noData": "No data available"
+    },
+    "schedule": {
+      "title": "Schedule Report",
+      "scheduleName": "Schedule Name",
+      "deviceName": "Device Name",
+      "action": "Action"
+    },
+    "alarm": {
+      "title": "Alarm Report",
+      "alarmName": "Alarm Name",
+      "deviceName": "Device Name",
+      "severity": "Severity",
+      "triggeredAt": "Triggered At",
+      "resolvedAt": "Resolved At"
+    },
+    "logsControl": {
+      "title": "Logs Control Report",
+      "deviceName": "Device Name",
+      "controlName": "Control Name",
+      "action": "Action",
+      "value": "Value"
+    },
+    "device": {
+      "title": "Device Report",
+      "deviceName": "Device Name",
+      "hardwareId": "Hardware ID",
+      "location": "Location",
+      "lastSeen": "Last Seen",
+      "sensorCount": "Sensor Count",
+      "alarmCount": "Alarm Count"
     }
   }
 }

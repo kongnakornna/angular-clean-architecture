@@ -85,18 +85,18 @@ export class HeaderComponent {
   }
 
   get username(): string {
-    return localStorage.getItem("username") || "User";
+    return localStorage.getItem("username") || "";
   }
 
   notifications = [
-    { id: 1, title: "layout.header.notifNewJob", time: "5 นาทีที่แล้ว", read: false },
+    { id: 1, title: "layout.header.notifNewJob", time: "layout.header.notifTime5min", read: false },
     {
       id: 2,
       title: "layout.header.notifQuotationApproved",
-      time: "1 ชั่วโมงที่แล้ว",
+      time: "layout.header.notifTime1hour",
       read: false,
     },
-    { id: 3, title: "layout.header.notifLowStock", time: "2 ชั่วโมงที่แล้ว", read: true },
+    { id: 3, title: "layout.header.notifLowStock", time: "layout.header.notifTime2hours", read: true },
   ];
 
   profileMenu: MenuItem[] = [

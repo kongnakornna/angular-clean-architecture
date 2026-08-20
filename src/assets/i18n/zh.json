@@ -86,6 +86,20 @@
     "statusInProgress": "进行中",
     "statusCompleted": "已完成",
     "statusClosed": "已关闭",
+    "statusOnHold": "暂停",
+    "statusDraft": "草稿",
+    "statusSent": "已发送",
+    "statusUnderReview": "审核中",
+    "statusApproved": "已批准",
+    "statusRejected": "已拒绝",
+    "statusConvertedToPo": "已转为采购单",
+    "statusPaid": "已付款",
+    "statusFailed": "失败",
+    "statusRefunded": "已退款",
+    "statusDelivered": "已交付",
+    "statusShipped": "已发货",
+    "statusCancelled": "已取消",
+    "confirmMessage": "您确定要执行此操作吗？",
     "priorityLow": "低",
     "priorityMedium": "中",
     "priorityHigh": "高",
@@ -208,12 +222,25 @@
       "appAI": "AI",
       "notifNewJob": "新工单已创建",
       "notifQuotationApproved": "报价单已批准",
-      "notifLowStock": "库存不足"
+      "notifLowStock": "库存不足",
+      "notifTime5min": "5分钟前",
+      "notifTime1hour": "1小时前",
+      "notifTime2hours": "2小时前",
+      "toggleNav": "切换主导航",
+      "toggleSidebar": "切换侧边栏",
+      "home": "首页",
+      "logo": "Logo",
+      "showNotifications": "显示通知",
+      "showApps": "显示应用菜单",
+      "openUserMenu": "打开用户菜单",
+      "userAvatar": "用户头像",
+      "close": "关闭"
     },
     "footer": {
       "about": "关于",
       "help": "帮助",
-      "privacy": "隐私"
+      "privacy": "隐私",
+      "version": "版本"
     },
     "settings": {
       "title": "布局设置",
@@ -690,5 +717,45 @@
   },
   "logTimeline": {
     "noLogsAvailable": "暂无日志"
+  },
+  "report": {
+    "common": {
+      "id": "ID",
+      "status": "状态",
+      "message": "消息",
+      "timestamp": "时间戳",
+      "refresh": "刷新",
+      "noData": "暂无数据"
+    },
+    "schedule": {
+      "title": "调度报告",
+      "scheduleName": "调度名称",
+      "deviceName": "设备名称",
+      "action": "操作"
+    },
+    "alarm": {
+      "title": "报警报告",
+      "alarmName": "报警名称",
+      "deviceName": "设备名称",
+      "severity": "严重程度",
+      "triggeredAt": "触发时间",
+      "resolvedAt": "解决时间"
+    },
+    "logsControl": {
+      "title": "控制日志报告",
+      "deviceName": "设备名称",
+      "controlName": "控制名称",
+      "action": "操作",
+      "value": "值"
+    },
+    "device": {
+      "title": "设备报告",
+      "deviceName": "设备名称",
+      "hardwareId": "硬件ID",
+      "location": "位置",
+      "lastSeen": "最后在线",
+      "sensorCount": "传感器数量",
+      "alarmCount": "报警数量"
+    }
   }
 }

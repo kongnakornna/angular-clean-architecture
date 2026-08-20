@@ -86,6 +86,20 @@
     "statusInProgress": "ກຳລັງດຳເນີນ",
     "statusCompleted": "ສຳເລັດ",
     "statusClosed": "ປິດ",
+    "statusOnHold": "ຢຸດຊົ່ວຄາວ",
+    "statusDraft": " טי draft",
+    "statusSent": "ສົ່ງແລ້ວ",
+    "statusUnderReview": "ກຳລັງກວດສອບ",
+    "statusApproved": "ອະນຸມັດແລ້ວ",
+    "statusRejected": "ປະຕິເສດແລ້ວ",
+    "statusConvertedToPo": "ແປງເປັນ PO ແລ້ວ",
+    "statusPaid": "ຈ່າຍແລ້ວ",
+    "statusFailed": "ລົ້ມເຫຼວ",
+    "statusRefunded": "ຄືນເງິນແລ້ວ",
+    "statusDelivered": "ສົ່ງແລ້ວ",
+    "statusShipped": "ຈັດສົ່ງແລ້ວ",
+    "statusCancelled": "ຍົກເລີກແລ້ວ",
+    "confirmMessage": "ທ່ານຕ້ອງການດຳເນີນການຕໍ່ບໍ່?",
     "priorityLow": "ຕ່ຳ",
     "priorityMedium": "ກາງ",
     "priorityHigh": "ສູງ",
@@ -208,12 +222,25 @@
       "appAI": "AI",
       "notifNewJob": "ງານໃໝ່ຖືກສ້າງແລ້ວ",
       "notifQuotationApproved": "ໃບສະເໜີລາຄາໄດ້ຮັບອະນຸມັດແລ້ວ",
-      "notifLowStock": "ສິນຄ້າໃນສະຕ໊ອກໜ້ອຍ"
+      "notifLowStock": "ສິນຄ້າໃນສະຕ໊ອກໜ້ອຍ",
+      "notifTime5min": "5 ນາທີກ່ອນ",
+      "notifTime1hour": "1 ຊົ່ວໂມງກ່ອນ",
+      "notifTime2hours": "2 ຊົ່ວໂມງກ່ອນ",
+      "toggleNav": "ສະຫຼັບການນຳທາງຫຼັກ",
+      "toggleSidebar": "ສະຫຼັບแถບດ້ານຂ້າງ",
+      "home": "ໜ້າຫຼັກ",
+      "logo": "Logo",
+      "showNotifications": "ສະແດງແຈ້ງການ",
+      "showApps": "ສະແດງເມນູແອັບ",
+      "openUserMenu": "ເປີດເມນູຜູ້ໃຊ້",
+      "userAvatar": "ອີວາຕ໌ຜູ້ໃຊ້",
+      "close": "ປິດ"
     },
     "footer": {
       "about": "ກ່ຽວກັບ",
       "help": "ຊ່ວຍເຫຼືອ",
-      "privacy": "ຄວາມເປັນສ່ວນຕົວ"
+      "privacy": "ຄວາມເປັນສ່ວນຕົວ",
+      "version": "ເວີຊັນ"
     },
     "settings": {
       "title": "ຕັ້ງຄ່າຜັງ",
@@ -690,5 +717,45 @@
   },
   "logTimeline": {
     "noLogsAvailable": "ບໍ່ມີບັນທຶກ"
+  },
+  "report": {
+    "common": {
+      "id": "ID",
+      "status": "ສະຖານະ",
+      "message": "ຂໍ້ຄວາມ",
+      "timestamp": "ເວລາ",
+      "refresh": "ຮິບເຟຣຊ໌",
+      "noData": "ບໍ່ມີຂໍ້ມູນ"
+    },
+    "schedule": {
+      "title": "ລາຍງານຕາຕະລາງ",
+      "scheduleName": "ຊື່ຕາຕະລາງ",
+      "deviceName": "ຊື່ອຸປະກອນ",
+      "action": "ການດຳເນີນງານ"
+    },
+    "alarm": {
+      "title": "ລາຍງານແຈ້ງເຕືອນ",
+      "alarmName": "ຊື່ແຈ້ງເຕືອນ",
+      "deviceName": "ຊື່ອຸປະກອນ",
+      "severity": "ລະດັບຄວາມຮ້ອຍແຮງ",
+      "triggeredAt": "ເວລາເກີດ",
+      "resolvedAt": "ເວລາແກ້ໄຂ"
+    },
+    "logsControl": {
+      "title": "ລາຍງານບັນທຶກການຄວບຄຸມ",
+      "deviceName": "ຊື່ອຸປະກອນ",
+      "controlName": "ຊື່ການຄວບຄຸມ",
+      "action": "ການດຳເນີນງານ",
+      "value": "ຄ່າ"
+    },
+    "device": {
+      "title": "ລາຍງານອຸປະກອນ",
+      "deviceName": "ຊື່ອຸປະກອນ",
+      "hardwareId": "Hardware ID",
+      "location": "ສະຖານທີ່",
+      "lastSeen": "ເຫັນລ່າສຸດ",
+      "sensorCount": "ຈຳນວນເຊັນເຊີ",
+      "alarmCount": "ຈຳນວນແຈ້ງເຕືອນ"
+    }
   }
 }

@@ -86,6 +86,20 @@
     "statusInProgress": "Đang thực hiện",
     "statusCompleted": "Hoàn thành",
     "statusClosed": "Đã đóng",
+    "statusOnHold": "Tạm giữ",
+    "statusDraft": "Nháp",
+    "statusSent": "Đã gửi",
+    "statusUnderReview": "Đang xem xét",
+    "statusApproved": "Đã duyệt",
+    "statusRejected": "Đã từ chối",
+    "statusConvertedToPo": "Đã chuyển thành PO",
+    "statusPaid": "Đã thanh toán",
+    "statusFailed": "Thất bại",
+    "statusRefunded": "Đã hoàn tiền",
+    "statusDelivered": "Đã giao",
+    "statusShipped": "Đã vận chuyển",
+    "statusCancelled": "Đã hủy",
+    "confirmMessage": "Bạn có muốn thực hiện không?",
     "priorityLow": "Thấp",
     "priorityMedium": "Trung bình",
     "priorityHigh": "Cao",
@@ -208,12 +222,25 @@
       "appAI": "AI",
       "notifNewJob": "Công việc mới đã tạo",
       "notifQuotationApproved": "Báo giá đã được duyệt",
-      "notifLowStock": "Tồn kho thấp"
+      "notifLowStock": "Tồn kho thấp",
+      "notifTime5min": "5 phút trước",
+      "notifTime1hour": "1 giờ trước",
+      "notifTime2hours": "2 giờ trước",
+      "toggleNav": "Chuyển đổi điều hướng chính",
+      "toggleSidebar": "Chuyển đổi thanh bên",
+      "home": "Trang chủ",
+      "logo": "Logo",
+      "showNotifications": "Hiển thị thông báo",
+      "showApps": " hiển thị menu ứng dụng",
+      "openUserMenu": "Mở menu người dùng",
+      "userAvatar": "Ảnh đại diện",
+      "close": "Đóng"
     },
     "footer": {
       "about": "Giới thiệu",
       "help": "Trợ giúp",
-      "privacy": "Quyền riêng tư"
+      "privacy": "Quyền riêng tư",
+      "version": "Phiên bản"
     },
     "settings": {
       "title": "Cài đặt bố cục",
@@ -690,5 +717,45 @@
   },
   "logTimeline": {
     "noLogsAvailable": "Không có nhật ký"
+  },
+  "report": {
+    "common": {
+      "id": "ID",
+      "status": "Trạng thái",
+      "message": "Tin nhắn",
+      "timestamp": "Thời gian",
+      "refresh": "Làm mới",
+      "noData": "Không có dữ liệu"
+    },
+    "schedule": {
+      "title": "Báo cáo lịch trình",
+      "scheduleName": "Tên lịch trình",
+      "deviceName": "Tên thiết bị",
+      "action": "Hành động"
+    },
+    "alarm": {
+      "title": "Báo cáo cảnh báo",
+      "alarmName": "Tên cảnh báo",
+      "deviceName": "Tên thiết bị",
+      "severity": "Mức độ nghiêm trọng",
+      "triggeredAt": "Thời gian kích hoạt",
+      "resolvedAt": "Thời gian giải quyết"
+    },
+    "logsControl": {
+      "title": "Báo cáo nhật ký điều khiển",
+      "deviceName": "Tên thiết bị",
+      "controlName": "Tên điều khiển",
+      "action": "Hành động",
+      "value": "Giá trị"
+    },
+    "device": {
+      "title": "Báo cáo thiết bị",
+      "deviceName": "Tên thiết bị",
+      "hardwareId": "ID phần cứng",
+      "location": "Vị trí",
+      "lastSeen": "Lần cuối trực tuyến",
+      "sensorCount": "Số lượng cảm biến",
+      "alarmCount": "Số lượng cảnh báo"
+    }
   }
 }

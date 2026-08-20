@@ -86,6 +86,20 @@
     "statusInProgress": "កំពុងដំណើរការ",
     "statusCompleted": "បានបញ្ចប់",
     "statusClosed": "បានបិទ",
+    "statusOnHold": "ផ្អាក",
+    "statusDraft": "ព្រាង",
+    "statusSent": "បានផ្ញើ",
+    "statusUnderReview": "កំពុងពិនិត្យ",
+    "statusApproved": "បានអនុម័ត",
+    "statusRejected": "បានបដិសេធ",
+    "statusConvertedToPo": "បានបំប្លែងជា PO",
+    "statusPaid": "បានបង់ប្រាក់",
+    "statusFailed": "បរាជ័យ",
+    "statusRefunded": "បានសងប្រាក់វិញ",
+    "statusDelivered": "បានដឹកជញ្ជូន",
+    "statusShipped": "បានដឹកជញ្ជូន",
+    "statusCancelled": "បានបោះបង់",
+    "confirmMessage": "តើអ្នកចង់បន្តទេ?",
     "priorityLow": "ទាប",
     "priorityMedium": "មធ្យម",
     "priorityHigh": "ខ្ពស់",
@@ -208,12 +222,25 @@
       "appAI": "AI",
       "notifNewJob": "ការងារថ្មីត្រូវបានបង្កើត",
       "notifQuotationApproved": "សំណើរតម្លៃត្រូវបានអនុម័ត",
-      "notifLowStock": "ស្តុកទាប"
+      "notifLowStock": "ស្តុកទាប",
+      "notifTime5min": "៥ នាទីមុន",
+      "notifTime1hour": "១ ម៉ោងមុន",
+      "notifTime2hours": "២ ម៉ោងមុន",
+      "toggleNav": "បិទ/បើកការរុករកหลัก",
+      "toggleSidebar": "បិទ/បើករបារចំហៀង",
+      "home": "ទំព័រដើម",
+      "logo": "Logo",
+      "showNotifications": "បង្ហាញសេចក្តីជូនដំណឹង",
+      "showApps": "បង្ហាញម៉ឺនុយកម្មវិធី",
+      "openUserMenu": "បើកម៉ឺនុយអ្នកប្រើប្រាស់",
+      "userAvatar": "រូបតំណាងអ្នកប្រើប្រាស់",
+      "close": "បិទ"
     },
     "footer": {
       "about": "អំពី",
       "help": "ជំនួយ",
-      "privacy": "ឯកជនភាព"
+      "privacy": "ឯកជនភាព",
+      "version": "កំណែ"
     },
     "settings": {
       "title": "ការកំណត់ប្លង់",
@@ -690,5 +717,45 @@
   },
   "logTimeline": {
     "noLogsAvailable": "គ្មានកំណត់ត្រា"
+  },
+  "report": {
+    "common": {
+      "id": "ID",
+      "status": "ស្ថានភាព",
+      "message": "សារ",
+      "timestamp": "ពេលវេលា",
+      "refresh": "ធ្វើឱ្យថ្មី",
+      "noData": "មិនមានទិន្នន័យ"
+    },
+    "schedule": {
+      "title": "របាយការណ៍កាលវិភាគ",
+      "scheduleName": "ឈ្មោះកាលវិភាគ",
+      "deviceName": "ឈ្មោះឧបករណ៍",
+      "action": "សកម្មភាព"
+    },
+    "alarm": {
+      "title": "របាយការណ៍ជូនដំណឹង",
+      "alarmName": "ឈ្មោះជូនដំណឹង",
+      "deviceName": "ឈ្មោះឧបករណ៍",
+      "severity": "កម្រិតធ្ងន់ធ្ងរ",
+      "triggeredAt": "ពេលវេលាបង្ក",
+      "resolvedAt": "ពេលវេលាដោះស្រាយ"
+    },
+    "logsControl": {
+      "title": "របាយការណ៍កំណត់ត្រាការគ្រប់គ្រង",
+      "deviceName": "ឈ្មោះឧបករណ៍",
+      "controlName": "ឈ្មោះការគ្រប់គ្រង",
+      "action": "សកម្មភាព",
+      "value": "តម្លៃ"
+    },
+    "device": {
+      "title": "របាយការណ៍ឧបករណ៍",
+      "deviceName": "ឈ្មោះឧបករណ៍",
+      "hardwareId": "Hardware ID",
+      "location": "ទីតាំង",
+      "lastSeen": "ឃើញចុងក្រោយ",
+      "sensorCount": "ចំនួនសែនស័រ",
+      "alarmCount": "ចំនួនជូនដំណឹង"
+    }
   }
 }
