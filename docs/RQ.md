@@ -23,4 +23,17 @@ C:\xampp\htdocs\webiot\application\modules\settings\views\schedule
 
 
 
+ภายใต้โครงสร้างนี้ 
+ผมต้องการ สร้าง modules report
+  โดยมี modules ย่อย
+   1. schedulereport: อ่านมาจาก => http://localhost:99/webiot/settings/schedule/logs
+   2. alarmreport: อ่านมาจาก => http://localhost:99/webiot/settings/alarm/logs
+   3. logscontrolreport: อ่านมาจาก =>  http://localhost:99/webiot/settings/alarm/logscontrol
+    4. devicereport:  อ่านมาจาก =>  http://localhost:99/webiot/dashboard/device
+
+update menu:  C:\github\angular-clean-architecture\src\app\layouts\header\header.component.ts
+              C:\github\angular-clean-architecture\src\app\layouts\header\header.icons.ts
+      
+  
+
 
