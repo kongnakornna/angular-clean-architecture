@@ -33,7 +33,7 @@
                       <span class="status-dot d-block" [class.status-dot-animated]="!n.read" [class.bg-red]="!n.read"></span>
                     </div>
                     <div class="col text-truncate">
-                      <a href="javascript:void(0)" class="text-body d-block">{{ n.title }}</a>
+                      <a href="javascript:void(0)" class="text-body d-block">{{ n.title | translate }}</a>
                       <div class="d-block text-secondary text-truncate mt-n1">{{ n.time }}</div>
                     </div>
                   </div>
@@ -42,10 +42,10 @@
               <div class="card-body">
                 <div class="row">
                   <div class="col">
-                    <a href="javascript:void(0)" class="btn btn-outline-secondary w-100" (click)="unreadCount = 0">Archive all</a>
+                    <a href="javascript:void(0)" class="btn btn-outline-secondary w-100" (click)="unreadCount = 0">{{ 'layout.header.archiveAll' | translate }}</a>
                   </div>
                   <div class="col">
-                    <a href="javascript:void(0)" class="btn btn-outline-secondary w-100" (click)="unreadCount = 0">Mark all as read</a>
+                    <a href="javascript:void(0)" class="btn btn-outline-secondary w-100" (click)="unreadCount = 0">{{ 'layout.header.markAllRead' | translate }}</a>
                   </div>
                 </div>
               </div>
@@ -63,7 +63,7 @@
           <div class="dropdown-menu dropdown-menu-arrow dropdown-menu-end dropdown-menu-card">
             <div class="card">
               <div class="card-header">
-                <div class="card-title">Apps</div>
+                <div class="card-title">{{ 'layout.header.apps' | translate }}</div>
               </div>
               <div class="card-body scroll-y p-2" style="max-height: 50vh">
                 <div class="row g-0">
@@ -81,14 +81,14 @@
         </div>
         <!--## mode ##--->
         <div class="nav-item">
-          <a href="javascript:void(0)" class="nav-link px-0 hide-theme-dark" title="Enable dark mode" (click)="toggleTheme()">
+          <a href="javascript:void(0)" class="nav-link px-0 hide-theme-dark" [title]="'layout.header.enableDarkMode' | translate" (click)="toggleTheme()">
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-moon">
                 <path stroke="none" d="M0 0h24v24H0z" fill="none" />
                 <path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454l0 .008" />
             </svg>
           </a>
           <!--## mode ##--->
-          <a href="javascript:void(0)" class="nav-link px-0 hide-theme-light" title="Enable light mode" (click)="toggleTheme()">
+          <a href="javascript:void(0)" class="nav-link px-0 hide-theme-light" [title]="'layout.header.enableLightMode' | translate" (click)="toggleTheme()">
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" class="icon icon-tabler icons-tabler-filled icon-tabler-sun">
                 <path stroke="none" d="M0 0h24v24H0z" fill="none" />
                 <path d="M12 19a1 1 0 0 1 .993 .883l.007 .117v1a1 1 0 0 1 -1.993 .117l-.007 -.117v-1a1 1 0 0 1 1 -1z" />
