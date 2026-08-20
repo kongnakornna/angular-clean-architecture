@@ -45,4 +45,9 @@ export const ROUTE_PERMISSIONS: Record<string, string> = {
   '/settings/api': 'settings.view',
   '/settings/tokens': 'settings.view',
   '/settings/tokens/create': 'settings.create',
+  '/reports': 'report.view',
+  '/reports/schedule': 'report.view',
+  '/reports/alarm': 'report.view',
+  '/reports/logs-control': 'report.view',
+  '/reports/device': 'report.view',
 };

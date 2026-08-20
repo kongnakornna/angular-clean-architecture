@@ -329,6 +329,13 @@ export const routes: Routes = [
         canActivate: [PermissionGuard],
         data: { permission: 'settings.view' },
       },
+      {
+        path: 'reports',
+        loadChildren: () =>
+          import('./features/report/report.routes').then((m) => m.REPORT_ROUTES),
+        canActivate: [PermissionGuard],
+        data: { permission: 'report.view' },
+      },
     ],
   },
 ];

@@ -13,7 +13,7 @@ import {
   UPDATE_ROLE_USE_CASE, DELETE_ROLE_USE_CASE, ASSIGN_ROLE_PERMISSIONS_USE_CASE,
   SCHEDULE_REPOSITORY, LOCATION_REPOSITORY, HARDWARE_REPOSITORY, SENSOR_REPOSITORY,
   NODERED_REPOSITORY, LINE_NOTIFICATION_REPOSITORY, SMS_NOTIFICATION_REPOSITORY,
-  HOST_REPOSITORY, API_SETTING_REPOSITORY, TOKEN_REPOSITORY,
+  HOST_REPOSITORY, API_SETTING_REPOSITORY, TOKEN_REPOSITORY, REPORT_REPOSITORY,
 } from './tokens';
 import { AuthRepositoryImpl } from '../../features/auth/data/repositories/auth.repository.impl';
 import { JobCardRepositoryImpl } from '../../features/job-card/data/repositories/job-card.repository.impl';
@@ -44,6 +44,7 @@ import { SmsNotificationRepositoryImpl } from '../../features/settings/data/repo
 import { HostRepositoryImpl } from '../../features/settings/data/repositories/host.repository.impl';
 import { ApiSettingRepositoryImpl } from '../../features/settings/data/repositories/api-setting.repository.impl';
 import { TokenRepositoryImpl } from '../../features/settings/data/repositories/token.repository.impl';
+import { ReportRepositoryImpl } from '../../features/report/data/repositories/report.repository.impl';
 import { OllamaApiDataSource } from '../../features/ai-chatbot/data/datasources/ollama-api.datasource';
 import { ContextProviderService } from '../../features/ai-chatbot/data/services/context-provider.service';
 import { ActionExecutorService } from '../../features/ai-chatbot/data/services/action-executor.service';
@@ -90,6 +91,7 @@ export const REPOSITORY_PROVIDERS: Provider[] = [
   { provide: HOST_REPOSITORY, useClass: HostRepositoryImpl },
   { provide: API_SETTING_REPOSITORY, useClass: ApiSettingRepositoryImpl },
   { provide: TOKEN_REPOSITORY, useClass: TokenRepositoryImpl },
+  { provide: REPORT_REPOSITORY, useClass: ReportRepositoryImpl },
   OllamaApiDataSource,
   ContextProviderService,
   ActionExecutorService,

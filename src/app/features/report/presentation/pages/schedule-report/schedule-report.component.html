@@ -1,0 +1,49 @@
+<div class="page-header d-print-none mb-3">
+  <div class="row g-2 align-items-center">
+    <div class="col">
+      <h2 class="page-title">{{ 'report.schedule.title' | translate }}</h2>
+    </div>
+    <div class="col-auto ms-auto d-print-none">
+      <div class="btn-list">
+        <button class="btn btn-primary" (click)="loadData()">{{ 'report.common.refresh' | translate }}</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="card">
+  <div *ngIf="loading" class="text-center py-5"><div class="spinner-border text-primary"></div></div>
+  <div *ngIf="!loading" class="table-responsive">
+    <table class="table table-vcenter card-table">
+      <thead>
+        <tr>
+          <th>{{ 'report.common.id' | translate }}</th>
+          <th>{{ 'report.schedule.scheduleName' | translate }}</th>
+          <th>{{ 'report.schedule.deviceName' | translate }}</th>
+          <th>{{ 'report.schedule.action' | translate }}</th>
+          <th>{{ 'report.common.status' | translate }}</th>
+          <th>{{ 'report.common.message' | translate }}</th>
+          <th>{{ 'report.common.timestamp' | translate }}</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of items">
+          <td>{{ item.id }}</td>
+          <td>{{ item.scheduleName }}</td>
+          <td>{{ item.deviceName }}</td>
+          <td>{{ item.action }}</td>
+          <td>
+            <span class="badge" [ngClass]="item.status === 'success' ? 'bg-green' : item.status === 'failed' ? 'bg-red' : 'bg-orange'">
+              {{ item.status }}
+            </span>
+          </td>
+          <td>{{ item.message }}</td>
+          <td>{{ item.timestamp }}</td>
+        </tr>
+        <tr *ngIf="items.length === 0">
+          <td colspan="7" class="text-center text-secondary py-4">{{ 'report.common.noData' | translate }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

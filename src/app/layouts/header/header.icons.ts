@@ -336,3 +336,14 @@ export const MONITORING_ICON = `<svg ${svgAttrs} class="icon icon-tabler icons-t
   <path d="M10 12a2 2 0 1 0 4 0a2 2 0 0 0 -4 0" />
   <path d="M21 12c-2.4 4 -5.4 6 -9 6c-3.6 0 -6.6 -2 -9 -6c2.4 -4 5.4 -6 9 -6c3.6 0 6.6 2 9 6" />
 </svg>`;
+
+export const REPORT_ICON = `<svg ${svgAttrs} class="icon icon-tabler icons-tabler-outline icon-tabler-report-analytics">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+  <path d="M5 3v18h4" />
+  <path d="M9 3v18" />
+  <path d="M9 9h6.5" />
+  <path d="M15 3v18" />
+  <path d="M19 3v18" />
+  <path d="M14 11l2 2" />
+  <path d="M11 8l2 2" />
+</svg>`;

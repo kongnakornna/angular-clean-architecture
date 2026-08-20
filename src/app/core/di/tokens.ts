@@ -29,6 +29,7 @@ import { ISmsNotificationRepository } from '../../features/settings/domain/repos
 import { IHostRepository } from '../../features/settings/domain/repositories/host.repository';
 import { IApiSettingRepository } from '../../features/settings/domain/repositories/api-setting.repository';
 import { ITokenRepository } from '../../features/settings/domain/repositories/token.repository';
+import { IReportRepository } from '../../features/report/domain/repositories/report.repository';
 import { ListRolesUseCase } from '../../features/auth/domain/use-cases/list-roles.use-case';
 import { GetRoleUseCase } from '../../features/auth/domain/use-cases/get-role.use-case';
 import { CreateRoleUseCase } from '../../features/auth/domain/use-cases/create-role.use-case';
@@ -74,3 +75,4 @@ export const SMS_NOTIFICATION_REPOSITORY = new InjectionToken<ISmsNotificationRe
 export const HOST_REPOSITORY = new InjectionToken<IHostRepository>('host.repository');
 export const API_SETTING_REPOSITORY = new InjectionToken<IApiSettingRepository>('api-setting.repository');
 export const TOKEN_REPOSITORY = new InjectionToken<ITokenRepository>('token.repository');
+export const REPORT_REPOSITORY = new InjectionToken<IReportRepository>('report.repository');

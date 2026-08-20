@@ -1,0 +1,53 @@
+<div class="page-header d-print-none mb-3">
+  <div class="row g-2 align-items-center">
+    <div class="col">
+      <h2 class="page-title">{{ 'report.device.title' | translate }}</h2>
+    </div>
+    <div class="col-auto ms-auto d-print-none">
+      <div class="btn-list">
+        <button class="btn btn-primary" (click)="loadData()">{{ 'report.common.refresh' | translate }}</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="card">
+  <div *ngIf="loading" class="text-center py-5"><div class="spinner-border text-primary"></div></div>
+  <div *ngIf="!loading" class="table-responsive">
+    <table class="table table-vcenter card-table">
+      <thead>
+        <tr>
+          <th>{{ 'report.common.id' | translate }}</th>
+          <th>{{ 'report.device.deviceName' | translate }}</th>
+          <th>{{ 'report.device.hardwareId' | translate }}</th>
+          <th>{{ 'report.common.status' | translate }}</th>
+          <th>{{ 'report.device.location' | translate }}</th>
+          <th>{{ 'report.device.lastSeen' | translate }}</th>
+          <th>{{ 'report.device.sensorCount' | translate }}</th>
+          <th>{{ 'report.device.alarmCount' | translate }}</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of items">
+          <td>{{ item.id }}</td>
+          <td>{{ item.deviceName }}</td>
+          <td>{{ item.hardwareId }}</td>
+          <td>
+            <span class="badge" [ngClass]="item.status === 'online' ? 'bg-green' : item.status === 'offline' ? 'bg-red' : 'bg-orange'">
+              {{ item.status }}
+            </span>
+          </td>
+          <td>{{ item.location }}</td>
+          <td>{{ item.lastSeen }}</td>
+          <td>{{ item.sensorCount }}</td>
+          <td>
+            <span class="badge" [ngClass]="item.alarmCount > 0 ? 'bg-red' : 'bg-green'">{{ item.alarmCount }}</span>
+          </td>
+        </tr>
+        <tr *ngIf="items.length === 0">
+          <td colspan="8" class="text-center text-secondary py-4">{{ 'report.common.noData' | translate }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

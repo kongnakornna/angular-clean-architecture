@@ -48,6 +48,7 @@ import {
   KEY_ICON,
   API_ICON,
   MONITORING_ICON,
+  REPORT_ICON,
 } from "./header.icons";
 
 interface MenuItem {
@@ -123,7 +124,7 @@ export class HeaderComponent {
     { label: "MQTT Dashboard", icon: CHART_BAR_ICON, route: "/mqtt/dashboard" },
     { label: "MQTT Flows", icon: RADIO_ICON, route: "/mqtt/flows" },
     { label: "Analytics", icon: CHART_AREA_ICON, route: "/analytics" },
-    { label: "Reports", icon: FILE_INVOICE_ICON, route: "/reports" },
+    { label: "Reports", icon: REPORT_ICON, route: "/reports" },
     { label: "Email", icon: MAIL_ICON, route: "/email/templates" },
     { label: "Languages", icon: LANGUAGE_ICON, route: "/i18n/languages" },
     { label: "Users", icon: USER_ICON, route: "/users" },
@@ -289,9 +290,19 @@ export class HeaderComponent {
     },
     {
       label: "nav.reports",
-      icon: CLIPBOARD_ICON,
+      icon: REPORT_ICON,
       route: "/reports",
       children: [
+        {
+          label: "nav.iotReports",
+          icon: CHART_BAR_ICON,
+          children: [
+            { label: "nav.scheduleReport", icon: CALENDAR_EVENT_ICON, route: "/reports/schedule" },
+            { label: "nav.alarmReport", icon: BELL_ICON, route: "/reports/alarm" },
+            { label: "nav.logsControlReport", icon: LIST_DETAILS_ICON, route: "/reports/logs-control" },
+            { label: "nav.deviceReport", icon: DEVICE_DESKTOP_ICON, route: "/reports/device" },
+          ],
+        },
         {
           label: "nav.analytics",
           icon: CHART_AREA_ICON,

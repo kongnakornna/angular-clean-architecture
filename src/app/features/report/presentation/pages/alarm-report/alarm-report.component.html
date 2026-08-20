@@ -1,0 +1,55 @@
+<div class="page-header d-print-none mb-3">
+  <div class="row g-2 align-items-center">
+    <div class="col">
+      <h2 class="page-title">{{ 'report.alarm.title' | translate }}</h2>
+    </div>
+    <div class="col-auto ms-auto d-print-none">
+      <div class="btn-list">
+        <button class="btn btn-primary" (click)="loadData()">{{ 'report.common.refresh' | translate }}</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="card">
+  <div *ngIf="loading" class="text-center py-5"><div class="spinner-border text-primary"></div></div>
+  <div *ngIf="!loading" class="table-responsive">
+    <table class="table table-vcenter card-table">
+      <thead>
+        <tr>
+          <th>{{ 'report.common.id' | translate }}</th>
+          <th>{{ 'report.alarm.alarmName' | translate }}</th>
+          <th>{{ 'report.alarm.deviceName' | translate }}</th>
+          <th>{{ 'report.alarm.severity' | translate }}</th>
+          <th>{{ 'report.common.status' | translate }}</th>
+          <th>{{ 'report.common.message' | translate }}</th>
+          <th>{{ 'report.alarm.triggeredAt' | translate }}</th>
+          <th>{{ 'report.alarm.resolvedAt' | translate }}</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of items">
+          <td>{{ item.id }}</td>
+          <td>{{ item.alarmName }}</td>
+          <td>{{ item.deviceName }}</td>
+          <td>
+            <span class="badge" [ngClass]="item.severity === 'critical' ? 'bg-red' : item.severity === 'warning' ? 'bg-orange' : 'bg-yellow'">
+              {{ item.severity }}
+            </span>
+          </td>
+          <td>
+            <span class="badge" [ngClass]="item.status === 'resolved' ? 'bg-green' : 'bg-red'">
+              {{ item.status }}
+            </span>
+          </td>
+          <td>{{ item.message }}</td>
+          <td>{{ item.triggeredAt }}</td>
+          <td>{{ item.resolvedAt }}</td>
+        </tr>
+        <tr *ngIf="items.length === 0">
+          <td colspan="8" class="text-center text-secondary py-4">{{ 'report.common.noData' | translate }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

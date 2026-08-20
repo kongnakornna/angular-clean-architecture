@@ -164,6 +164,12 @@ export const API_ENDPOINTS = {
     validateEn: '/alarm/validate/en',
     validateTh: '/alarm/validate/th',
   },
+  reports: {
+    scheduleLogs: '/webiot/settings/schedule/logs',
+    alarmLogs: '/webiot/settings/alarm/logs',
+    logsControl: '/webiot/settings/alarm/logscontrol',
+    deviceReport: '/webiot/dashboard/device',
+  },
   orders: {
     create: '/orders',
   },
