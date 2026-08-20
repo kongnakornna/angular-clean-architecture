@@ -1,7 +1,7 @@
 export const environment = {
   production: false,
   demo: false,
-  useProxy: false,
+  useProxy: true,
   apiTargetUrl: 'http://localhost:5000',
   apiEndpoints: [
     { url: 'http://localhost:5000', name: 'Primary', priority: 1 },

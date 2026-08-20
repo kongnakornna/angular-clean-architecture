@@ -9,7 +9,7 @@ export const environment = {
     { url: 'http://localhost:8000', name: 'Tertiary', priority: 3 },
   ],
   apiFallback: {
-    enabled: true,
+    enabled: false,
     maxRetries: 2,
     retryDelay: 1000,
     healthCheckInterval: 30000,

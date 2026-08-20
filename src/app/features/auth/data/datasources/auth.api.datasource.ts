@@ -113,6 +113,20 @@ export class AuthApiDataSource {
   // API Methods
   // ------------------------------------------------------------
   login(data: LoginRequestDto): Observable<LoginResponseDto> {
+    const adapter = this.fallbackService.getActiveAdapter();
+    if (adapter) {
+      return adapter.login({ username: data.username, password: data.password }).pipe(
+        map((raw) => ({
+          accessToken: raw.access_token,
+          refreshToken: raw.refresh_token,
+          expiresIn: raw.expires_in,
+          tokenType: raw.token_type,
+          user: null,
+        })),
+        catchError(this.handleError)
+      );
+    }
+
     return this.http
       .post<any>(`${this.baseUrl}${API_ENDPOINTS.auth.login}`, data, this.getOptions())
       .pipe(

@@ -1,8 +1,10 @@
 import { Injectable, Inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject, Observable, timer, of, Subscription } from 'rxjs';
-import { switchMap, catchError, map, tap } from 'rxjs/operators';
+import { catchError, map, tap } from 'rxjs/operators';
 import { APP_CONFIG, AppConfig, ApiEndpointConfig } from '../config/app.config';
+import { BackendAdapter } from '../adapters/backend-adapter.interface';
+import { BackendAdapterRegistry } from '../adapters/backend-adapter.registry';
 
 export interface EndpointHealth {
   endpoint: ApiEndpointConfig;
@@ -16,12 +18,12 @@ export interface EndpointHealth {
 export class ApiFallbackService {
   private endpoints: EndpointHealth[] = [];
   private activeEndpoint$ = new BehaviorSubject<ApiEndpointConfig | null>(null);
-  private healthCheckTimer$ = new BehaviorSubject<void>(undefined);
   private healthCheckSubscription$?: Subscription;
 
   constructor(
     @Inject(APP_CONFIG) private config: AppConfig,
-    private http: HttpClient
+    private http: HttpClient,
+    private adapterRegistry: BackendAdapterRegistry
   ) {
     this.initializeEndpoints();
     if (this.config.apiFallback.enabled) {
@@ -47,7 +49,6 @@ export class ApiFallbackService {
 
   private startHealthChecks(): void {
     const interval = Math.max(this.config.apiFallback.healthCheckInterval, 5000);
-
     this.healthCheckSubscription$ = timer(0, interval).subscribe(() => {
       this.checkAllEndpointsHealth();
     });
@@ -60,22 +61,31 @@ export class ApiFallbackService {
   }
 
   private checkEndpointHealth(health: EndpointHealth): Observable<boolean> {
+    const adapter = this.adapterRegistry.getAdapterForUrl(health.endpoint.url);
+    if (adapter) {
+      return adapter.healthCheck().pipe(
+        tap(isHealthy => this.updateHealthStatus(health, isHealthy))
+      );
+    }
+
     const healthUrl = `${health.endpoint.url}/api/health`;
     return this.http.get(healthUrl, { timeout: 5000 }).pipe(
       map(() => true),
       catchError(() => of(false)),
-      tap(isHealthy => {
-        health.isHealthy = isHealthy;
-        health.lastChecked = new Date();
-        if (!isHealthy) {
-          health.failureCount++;
-          health.lastFailure = new Date();
-        } else {
-          health.failureCount = 0;
-        }
-        this.updateActiveEndpoint();
-      })
+      tap(isHealthy => this.updateHealthStatus(health, isHealthy))
     );
+  }
+
+  private updateHealthStatus(health: EndpointHealth, isHealthy: boolean): void {
+    health.isHealthy = isHealthy;
+    health.lastChecked = new Date();
+    if (!isHealthy) {
+      health.failureCount++;
+      health.lastFailure = new Date();
+    } else {
+      health.failureCount = 0;
+    }
+    this.updateActiveEndpoint();
   }
 
   private updateActiveEndpoint(): void {
@@ -100,7 +110,20 @@ export class ApiFallbackService {
     return this.activeEndpoint$.asObservable();
   }
 
+  getActiveEndpointValue(): ApiEndpointConfig | null {
+    return this.activeEndpoint$.value;
+  }
+
+  getActiveAdapter(): BackendAdapter | undefined {
+    const endpoint = this.activeEndpoint$.value;
+    if (!endpoint) return undefined;
+    return this.adapterRegistry.getAdapterForUrl(endpoint.url);
+  }
+
   getActiveBaseUrl(): string {
+    if (this.config.useProxy) {
+      return '/api';
+    }
     const endpoint = this.activeEndpoint$.value;
     return endpoint ? `${endpoint.url}/api` : '/api';
   }
