@@ -1,14 +1,17 @@
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, forkJoin, of } from 'rxjs';
 import { map, catchError } from 'rxjs/operators';
-import { environment } from '../../../../../environments/environment';
+import { ApiFallbackService } from '../../../../core/services/api-fallback.service';
 
 @Injectable()
 export class ContextProviderService {
-  private baseUrl = environment.apiTargetUrl || '/api';
+  private http = inject(HttpClient);
+  private fallbackService = inject(ApiFallbackService);
 
-  constructor(private http: HttpClient) {}
+  private get baseUrl(): string {
+    return this.fallbackService.getActiveBaseUrl();
+  }
 
   getContext(contextTypes: string[]): Observable<string> {
     if (contextTypes.length === 0) return of('');

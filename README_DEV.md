@@ -2721,4 +2721,11 @@ docker-compose version
  ทำระบบ UI Dashboard config sensor to mqtt use angularjs เหมือน +node-red  มา 1 modules  จำลองข้อมูลมาก่อน
  
  ทำระบบ UI Dashboard config sensor to mqtt use angularjs เหมือน  Module  AI Catboot มา 1 modules  จำลองข้อมูลมาก่อน
+
+C:\github\angular-clean-architecture\src\environments
+C:\github\angular-clean-architecture\src\environments\environment.ts
+C:\github\angular-clean-architecture\src\environments\environment.prod.ts
+C:\github\angular-clean-architecture\proxy.conf.json
+
+
  

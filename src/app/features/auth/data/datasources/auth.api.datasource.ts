@@ -12,6 +12,7 @@ import { catchError, map } from 'rxjs/operators';
 
 import { APP_CONFIG, AppConfig } from '../../../../core/config/app.config';
 import { API_ENDPOINTS } from '../../../../core/config/api.config';
+import { ApiFallbackService } from '../../../../core/services/api-fallback.service';
 
 import { LoginRequestDto } from '../dtos/login-request.dto';
 import { LoginResponseDto } from '../dtos/login-response.dto';
@@ -30,6 +31,7 @@ import { PermissionListResponseDto } from '../dtos/permission.dto';
 export class AuthApiDataSource {
   private readonly http = inject(HttpClient);
   private readonly config = inject(APP_CONFIG);
+  private readonly fallbackService = inject(ApiFallbackService);
   private readonly httpBackend = inject(HttpBackend);
   private readonly httpWithoutInterceptor = new HttpClient(this.httpBackend);
 
@@ -37,7 +39,7 @@ export class AuthApiDataSource {
   private readonly DEFAULT_RETRY = 2;
 
   private get baseUrl(): string {
-    return this.config.apiBaseUrl;
+    return this.fallbackService.getActiveBaseUrl();
   }
 
   private buildParams(params?: Record<string, any>): HttpParams {

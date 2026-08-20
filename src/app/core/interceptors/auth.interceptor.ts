@@ -6,6 +6,7 @@ import { APP_CONSTANTS } from '../constants/app.constants';
 import { APP_CONFIG, AppConfig } from '../config/app.config';
 import { API_ENDPOINTS } from '../config/api.config';
 import { LoginResponseDto } from '../../features/auth/data/dtos/login-response.dto';
+import { ApiFallbackService } from '../services/api-fallback.service';
 
 @Injectable()
 export class AuthInterceptor implements HttpInterceptor {
@@ -14,7 +15,8 @@ export class AuthInterceptor implements HttpInterceptor {
 
   constructor(
     private http: HttpClient,
-    @Inject(APP_CONFIG) private config: AppConfig
+    @Inject(APP_CONFIG) private config: AppConfig,
+    private fallbackService: ApiFallbackService
   ) {}
 
   intercept(req: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
@@ -80,8 +82,9 @@ export class AuthInterceptor implements HttpInterceptor {
   }
 
   private refreshToken(refreshToken: string): Observable<string> {
+    const baseUrl = this.fallbackService.getActiveBaseUrl();
     return this.http.post<LoginResponseDto>(
-      `${this.config.apiBaseUrl}${API_ENDPOINTS.auth.refresh}`,
+      `${baseUrl}${API_ENDPOINTS.auth.refresh}`,
       { refreshToken }
     ).pipe(
       map((response) => {

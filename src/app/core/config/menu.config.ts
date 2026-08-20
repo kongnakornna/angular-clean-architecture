@@ -66,6 +66,7 @@ export const MENU_CONFIG: MenuItem[] = [
       { label: 'SMS', route: '/settings/sms', icon: 'phone', permission: 'settings.view' },
       { label: 'Host', route: '/settings/hosts', icon: 'server', permission: 'settings.view' },
       { label: 'API', route: '/settings/api', icon: 'api', permission: 'settings.view' },
+      { label: 'API Health', route: '/settings/api-health', icon: 'heart-rate-monitor', permission: 'settings.view' },
       { label: 'Token', route: '/settings/tokens', icon: 'key', permission: 'settings.view' },
     ],
   },

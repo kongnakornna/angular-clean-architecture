@@ -1,14 +1,17 @@
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, map, catchError, of } from 'rxjs';
 import { ToolResult } from '../../domain/entities/chat-message.entity';
-import { environment } from '../../../../../environments/environment';
+import { ApiFallbackService } from '../../../../core/services/api-fallback.service';
 
 @Injectable()
 export class ActionExecutorService {
-  private baseUrl = environment.apiTargetUrl || '/api';
+  private http = inject(HttpClient);
+  private fallbackService = inject(ApiFallbackService);
 
-  constructor(private http: HttpClient) {}
+  private get baseUrl(): string {
+    return this.fallbackService.getActiveBaseUrl();
+  }
 
   execute(action: string, params: Record<string, any>): Observable<ToolResult> {
     const handler = this.actionMap[action];

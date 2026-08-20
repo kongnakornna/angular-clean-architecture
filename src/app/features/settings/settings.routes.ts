@@ -206,6 +206,13 @@ export const SETTINGS_ROUTES: Routes = [
           ),
       },
       {
+        path: 'api-health',
+        loadComponent: () =>
+          import('./presentation/components/api-health/api-health.component').then(
+            (m) => m.ApiHealthComponent
+          ),
+      },
+      {
         path: 'token',
         loadComponent: () =>
           import('./presentation/pages/token-list/token-list.component').then(
