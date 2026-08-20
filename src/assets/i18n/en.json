@@ -95,6 +95,7 @@
     "schedule": {
       "title": "Schedule Management",
       "subtitle": "Configure device schedules",
+      "id": "ID",
       "name": "Schedule Name",
       "startTime": "Start Time",
       "event": "Event",

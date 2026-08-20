@@ -7,6 +7,8 @@ import { UpdateScheduleUseCase } from '../../../domain/use-cases/update-schedule
 import { Schedule } from '../../../domain/entities/schedule.entity';
 import { TranslatePipe } from '../../../../../shared/pipes/translate.pipe';
 
+declare var Swal: any;
+
 @Component({
   selector: 'app-schedule-edit',
   standalone: true,
@@ -61,6 +63,8 @@ export class ScheduleEditComponent implements OnInit {
   }
 
   onSubmit(): void {
+    if (!this.validate()) return;
+
     this.updateUseCase.execute(this.id, {
       name: this.name,
       startTime: this.startTime,
@@ -74,7 +78,47 @@ export class ScheduleEditComponent implements OnInit {
       saturday: this.saturday,
       status: this.status,
     }).subscribe({
-      next: () => this.router.navigate(['/settings/schedule']),
+      next: () => {
+        if (typeof Swal !== 'undefined') {
+          Swal.fire({
+            icon: 'success',
+            title: 'Update Successful',
+            text: 'Schedule has been updated',
+            timer: 1000,
+            timerProgressBar: true,
+            showConfirmButton: false,
+          }).then(() => this.router.navigate(['/settings/schedule']));
+        } else {
+          this.router.navigate(['/settings/schedule']);
+        }
+      },
+      error: (err) => {
+        if (typeof Swal !== 'undefined') {
+          Swal.fire({
+            icon: 'error',
+            title: 'Update Failed',
+            text: err?.error?.message || 'Unknown error',
+            timer: 1500,
+            showConfirmButton: false,
+          });
+        }
+      },
     });
+  }
+
+  private validate(): boolean {
+    const msgs: string[] = [];
+    if (!this.name.trim()) msgs.push('Please enter schedule name');
+    if (!this.startTime) msgs.push('Please enter start time');
+    const days = [this.sunday, this.monday, this.tuesday, this.wednesday, this.thursday, this.friday, this.saturday];
+    if (!days.some(d => d)) msgs.push('Please select at least 1 day');
+
+    if (msgs.length) {
+      if (typeof Swal !== 'undefined') {
+        Swal.fire({ icon: 'warning', title: 'Invalid Input', html: msgs.join('<br>'), timer: 1500, showConfirmButton: false });
+      }
+      return false;
+    }
+    return true;
   }
 }

@@ -4,3 +4,13 @@
 
 
 http://localhost:3010/iot/devices
+
+
+schedule ต้องการมีให้ครบ create update delete
+http://localhost:99/tablerhtml/settings.html
+C:\xampp\htdocs\webiot\application\modules\settings\views\schedule
+
+
+
+
+

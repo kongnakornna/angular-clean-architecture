@@ -75,4 +75,11 @@ export class ScheduleApiDataSource {
   getAllSchedules(): Observable<any> {
     return this.http.get(API_ENDPOINTS.settings.schedules.allSchedules);
   }
+
+  updateDayStatus(scheduleId: string, field: string, value: number): Observable<any> {
+    return this.http.post(API_ENDPOINTS.settings.schedules.updateDayStatus, {
+      schedule_id: scheduleId,
+      [field]: value,
+    });
+  }
 }
