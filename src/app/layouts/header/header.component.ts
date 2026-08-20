@@ -139,6 +139,18 @@ export class HeaderComponent {
   horizontalMenu: MenuItem[] = [
     { label: "nav.dashboard", icon: LAYOUT_DASHBOARD_ICON, route: "/dashboard" },
     {
+      label: "nav.monitoring",
+      icon: MONITORING_ICON,
+      route: "/monitoring",
+      children: [
+        { label: "nav.smarthome", icon: SMART_HOME_ICON, route: "/monitoring/smarthome" },
+        { label: "nav.smartcity", icon: SMART_CITY_ICON, route: "/monitoring/smartcity" },
+        { label: "nav.smartmonitor", icon: SMART_MONITOR_ICON, route: "/monitoring/smartmonitor" },
+        { label: "nav.industry", icon: INDUSTRY_ICON, route: "/monitoring/industry" },
+        { label: "nav.smartsolarfarm", icon: SMART_SOLAR_ICON, route: "/monitoring/smartsolarfarm" },
+      ],
+    },
+    {
       label: "nav.iot",
       icon: IOT_ICON,
       route: "/iot/devices",
@@ -279,18 +291,14 @@ export class HeaderComponent {
             { label: "nav.tokens", icon: KEY_ICON, route: "/settings/token" },
           ],
         },
-      ],
-    },
-    {
-      label: "nav.monitoring",
-      icon: MONITORING_ICON,
-      route: "/monitoring",
-      children: [
-        { label: "nav.smarthome", icon: SMART_HOME_ICON, route: "/monitoring/smarthome" },
-        { label: "nav.smartcity", icon: SMART_CITY_ICON, route: "/monitoring/smartcity" },
-        { label: "nav.smartmonitor", icon: SMART_MONITOR_ICON, route: "/monitoring/smartmonitor" },
-        { label: "nav.industry", icon: INDUSTRY_ICON, route: "/monitoring/industry" },
-        { label: "nav.smartsolarfarm", icon: SMART_SOLAR_ICON, route: "/monitoring/smartsolarfarm" },
+        {
+          label: "nav.appearance",
+          icon: PALETTE_ICON,
+          children: [
+            { label: "nav.theme", icon: PALETTE_ICON, route: "/settings/theme" },
+            { label: "nav.language", icon: LANGUAGE_ICON, route: "/settings/language" },
+          ],
+        },
       ],
     },
     {
@@ -314,14 +322,6 @@ export class HeaderComponent {
           children: [
             { label: "nav.overview", icon: CHART_AREA_ICON, route: "/analytics" },
             { label: "nav.dataAnalyst", icon: CHART_DOTS_2_ICON, route: "/analytics/analyst" },
-          ],
-        },
-        {
-          label: "nav.appearance",
-          icon: PALETTE_ICON,
-          children: [
-            { label: "nav.theme", icon: PALETTE_ICON, route: "/settings/theme" },
-            { label: "nav.language", icon: LANGUAGE_ICON, route: "/settings/language" },
           ],
         },
       ],
