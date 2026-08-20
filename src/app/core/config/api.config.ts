@@ -188,6 +188,12 @@ export const API_ENDPOINTS = {
       create: '/settings/schedules',
       update: (id: string) => `/settings/schedules/${id}`,
       delete: (id: string) => `/settings/schedules/${id}`,
+      devicePage: '/settings/scheduledevicepage',
+      deviceList: '/settings/listdevicepageallactiveschedule',
+      deviceCreate: '/settings/createscheduledevice',
+      deviceDelete: '/settings/deletescheduledevice',
+      logsPaginate: '/settings/scheduleprocesslogpaginate',
+      allSchedules: '/settings/scheduleall',
     },
     locations: {
       list: '/settings/locations',

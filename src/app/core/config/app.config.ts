@@ -1,21 +1,7 @@
 import { InjectionToken } from '@angular/core';
 
 import { environment } from '../../../environments/environment';
-
-export interface LoggerConfig {
-  enabled: boolean;
-  level: LogLevel;
-  format: LogFormat;
-  prefix: string;
-  showTimestamp: boolean;
-  showLevel: boolean;
-  showContext: boolean;
-  colorsEnabled: boolean;
-  maxMessageLength: number;
-}
-
-export type LogLevel = 'debug' | 'info' | 'warn' | 'error' | 'off';
-export type LogFormat = 'console' | 'pretty' | 'json';
+import { LoggerConfig, DEFAULT_LOGGER_CONFIG } from './logger.config';
 
 export interface AppConfig {
   appName: string;
@@ -33,19 +19,6 @@ export interface AppConfig {
 }
 
 export const APP_CONFIG = new InjectionToken<AppConfig>('app.config');
-export const LOGGER_CONFIG = new InjectionToken<LoggerConfig>('logger.config');
-
-export const DEFAULT_LOGGER_CONFIG: LoggerConfig = {
-  enabled: true,
-  level: 'debug',
-  format: 'pretty',
-  prefix: '[iCmon]',
-  showTimestamp: true,
-  showLevel: true,
-  showContext: true,
-  colorsEnabled: true,
-  maxMessageLength: 10000,
-};
 
 export const DEFAULT_APP_CONFIG: AppConfig = {
   appName: 'iCmon',

@@ -1,6 +1,6 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { NgFor, NgClass } from '@angular/common';
-import { RouterLink, ActivatedRoute } from '@angular/router';
+import { Router, RouterLink, ActivatedRoute } from '@angular/router';
 import { TablerIconComponent } from 'angular-tabler-icons';
 import { TranslatePipe } from '../../../../../shared/pipes/translate.pipe';
 import { GetRoleUseCase } from '../../../domain/use-cases/get-role.use-case';

@@ -1,12 +1,19 @@
 <div class="card mb-3">
   <div class="card-body">
     <div class="row g-3">
-      <div class="col-md-4">
+      <div class="col-md-3">
         <input type="text" class="form-control" [(ngModel)]="searchTerm" [placeholder]="'settings.schedule.searchPlaceholder' | translate">
       </div>
       <div class="col-md-2">
+        <select class="form-select" [(ngModel)]="eventFilter">
+          <option value="">{{ 'settings.schedule.all' | translate }} {{ 'settings.schedule.event' | translate }}</option>
+          <option value="on">{{ 'settings.schedule.eventOn' | translate }}</option>
+          <option value="off">{{ 'settings.schedule.eventOff' | translate }}</option>
+        </select>
+      </div>
+      <div class="col-md-3">
         <button class="btn btn-primary me-2" (click)="search()">{{ 'settings.schedule.search' | translate }}</button>
-        <button class="btn btn-outline-secondary" (click)="searchTerm = ''; search()">{{ 'settings.schedule.reset' | translate }}</button>
+        <button class="btn btn-outline-secondary" (click)="searchTerm = ''; eventFilter = ''; search()">{{ 'settings.schedule.reset' | translate }}</button>
       </div>
     </div>
   </div>
@@ -47,7 +54,9 @@
           <td><span class="badge" [ngClass]="item.status ? 'bg-green' : 'bg-secondary'">{{ item.status ? ('settings.schedule.active' | translate) : ('settings.schedule.inactive' | translate) }}</span></td>
           <td>
             <a [routerLink]="['/settings/schedule', item.id, 'edit']" class="btn btn-sm btn-primary me-1">{{ 'settings.schedule.edit' | translate }}</a>
-            <button class="btn btn-sm btn-danger" (click)="deleteItem(item.id)">{{ 'settings.schedule.delete' | translate }}</button>
+            <a [routerLink]="['/settings/schedule', item.id, 'data']" class="btn btn-sm btn-info me-1 text-white">{{ 'settings.schedule.detail' | translate }}</a>
+            <a [routerLink]="['/settings/schedule', item.id, 'device']" class="btn btn-sm btn-success me-1">{{ 'settings.schedule.device' | translate }}</a>
+            <button class="btn btn-sm btn-danger" (click)="deleteItem(item.id, item.name)">{{ 'settings.schedule.delete' | translate }}</button>
           </td>
         </tr>
         <tr *ngIf="(items$ | async)?.length === 0">

@@ -1,0 +1,84 @@
+<div class="page-header d-print-none mb-3">
+  <div class="row g-2 align-items-center">
+    <div class="col">
+      <h2 class="page-title">{{ 'settings.schedule.deviceData' | translate }}</h2>
+    </div>
+    <div class="col-auto ms-auto d-print-none">
+      <div class="btn-list">
+        <a routerLink="/settings/schedule" class="btn btn-primary d-none d-sm-inline-block">
+          {{ 'settings.schedule.backToList' | translate }}
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="card mb-3">
+  <div class="card-body border-bottom py-3">
+    <div class="row g-2">
+      <div class="col-md-2">
+        <label class="form-label">{{ 'settings.schedule.keyword' | translate }}</label>
+        <input type="text" class="form-control" [(ngModel)]="keyword" [placeholder]="'settings.schedule.searchPlaceholder' | translate">
+      </div>
+      <div class="col-md-2">
+        <label class="form-label">{{ 'settings.schedule.bucket' | translate }}</label>
+        <select class="form-select" [(ngModel)]="selectedBucket">
+          <option value="">{{ 'settings.schedule.allBuckets' | translate }}</option>
+          <option *ngFor="let b of buckets" [value]="b.bucket">{{ b.mqtt_name }}</option>
+        </select>
+      </div>
+      <div class="col-md-2">
+        <label class="form-label">{{ 'settings.schedule.type' | translate }}</label>
+        <select class="form-select" [(ngModel)]="selectedTypeId">
+          <option value="">{{ 'settings.schedule.allTypes' | translate }}</option>
+          <option *ngFor="let t of types" [value]="t.type_id">{{ t.type_name }}</option>
+        </select>
+      </div>
+      <div class="col-md-4 d-flex align-items-end gap-2">
+        <button class="btn btn-primary" (click)="search()">{{ 'settings.schedule.search' | translate }}</button>
+        <button class="btn btn-outline-secondary" (click)="reset()">{{ 'settings.schedule.reset' | translate }}</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="card">
+  <div *ngIf="loading" class="text-center py-5"><div class="spinner-border text-primary"></div></div>
+  <div *ngIf="!loading" class="table-responsive">
+    <table class="table table-vcenter card-table">
+      <thead>
+        <tr>
+          <th>{{ 'settings.schedule.deviceId' | translate }}</th>
+          <th>{{ 'settings.schedule.scheduleName' | translate }}</th>
+          <th>{{ 'settings.schedule.eventStart' | translate }}</th>
+          <th>{{ 'settings.schedule.deviceName' | translate }}</th>
+          <th>{{ 'settings.schedule.location' | translate }}</th>
+          <th>{{ 'settings.schedule.mqttName' | translate }}</th>
+          <th>{{ 'settings.schedule.typeName' | translate }}</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of items">
+          <td>{{ item.device_id }}</td>
+          <td>{{ item.schedule_name }}</td>
+          <td>{{ item.schedule_event_start }}</td>
+          <td>{{ item.device_name }}</td>
+          <td>{{ item.location_name }}</td>
+          <td>{{ item.mqtt_name }}</td>
+          <td>{{ item.type_name }}</td>
+        </tr>
+        <tr *ngIf="items.length === 0">
+          <td colspan="7" class="text-center text-secondary py-4">{{ 'settings.schedule.noData' | translate }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="card-footer bg-transparent d-flex justify-content-between align-items-center" *ngIf="total > 0">
+    <span class="text-secondary">{{ 'settings.schedule.showing' | translate }} {{ (page - 1) * pageSize + 1 }}-{{ page * pageSize > total ? total : page * pageSize }} {{ 'settings.schedule.of' | translate }} {{ total }}</span>
+    <div class="btn-list">
+      <button class="btn btn-sm btn-outline-secondary" (click)="prevPage()" [disabled]="page <= 1">{{ 'settings.schedule.prev' | translate }}</button>
+      <span class="mx-2">{{ page }}/{{ totalPages }}</span>
+      <button class="btn btn-sm btn-outline-secondary" (click)="nextPage()" [disabled]="page >= totalPages">{{ 'settings.schedule.next' | translate }}</button>
+    </div>
+  </div>
+</div>

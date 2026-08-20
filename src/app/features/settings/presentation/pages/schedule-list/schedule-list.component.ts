@@ -8,6 +8,8 @@ import { DeleteScheduleUseCase } from '../../../domain/use-cases/delete-schedule
 import { Schedule } from '../../../domain/entities/schedule.entity';
 import { TranslatePipe } from '../../../../../shared/pipes/translate.pipe';
 
+declare var Swal: any;
+
 @Component({
   selector: 'app-schedule-list',
   standalone: true,
@@ -21,6 +23,7 @@ export class ScheduleListComponent implements OnInit {
   private loadingSubject = new BehaviorSubject<boolean>(true);
   loading$ = this.loadingSubject.asObservable();
   searchTerm = '';
+  eventFilter = '';
 
   constructor(
     private listUseCase: ListSchedulesUseCase,
@@ -33,6 +36,7 @@ export class ScheduleListComponent implements OnInit {
     this.loadingSubject.next(true);
     const params: any = {};
     if (this.searchTerm) params.search = this.searchTerm;
+    if (this.eventFilter) params.event = this.eventFilter;
     this.listUseCase.execute(params).subscribe({
       next: (res) => { this.itemsSubject.next(res.data); this.loadingSubject.next(false); },
       error: () => this.loadingSubject.next(false),
@@ -41,10 +45,31 @@ export class ScheduleListComponent implements OnInit {
 
   search(): void { this.loadItems(); }
 
-  deleteItem(id: string): void {
-    if (!confirm('Are you sure?')) return;
-    this.deleteUseCase.execute(id).subscribe({
-      next: () => this.loadItems(),
+  deleteItem(id: string, name: string): void {
+    if (typeof Swal === 'undefined') {
+      if (confirm('Are you sure you want to delete this schedule?')) {
+        this.deleteUseCase.execute(id).subscribe({ next: () => this.loadItems() });
+      }
+      return;
+    }
+    Swal.fire({
+      title: 'Delete Schedule',
+      text: `Are you sure you want to delete "${name}"?`,
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#d33',
+      cancelButtonColor: '#3085d6',
+      confirmButtonText: 'Delete',
+      cancelButtonText: 'Cancel',
+    }).then((result: any) => {
+      if (result.isConfirmed) {
+        this.deleteUseCase.execute(id).subscribe({
+          next: () => {
+            Swal.fire({ icon: 'success', title: 'Deleted!', timer: 1000, showConfirmButton: false });
+            this.loadItems();
+          },
+        });
+      }
     });
   }
 }

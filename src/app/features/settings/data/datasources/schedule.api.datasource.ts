@@ -33,4 +33,46 @@ export class ScheduleApiDataSource {
   delete(id: string): Observable<void> {
     return this.http.delete<void>(API_ENDPOINTS.settings.schedules.delete(id));
   }
+
+  getDevicePage(params: any): Observable<any> {
+    let httpParams = new HttpParams();
+    Object.keys(params).forEach(key => {
+      if (params[key] !== null && params[key] !== undefined && params[key] !== '') {
+        httpParams = httpParams.set(key, params[key].toString());
+      }
+    });
+    return this.http.get(API_ENDPOINTS.settings.schedules.devicePage, { params: httpParams });
+  }
+
+  getDeviceList(params: any): Observable<any> {
+    let httpParams = new HttpParams();
+    Object.keys(params).forEach(key => {
+      if (params[key] !== null && params[key] !== undefined && params[key] !== '') {
+        httpParams = httpParams.set(key, params[key].toString());
+      }
+    });
+    return this.http.get(API_ENDPOINTS.settings.schedules.deviceList, { params: httpParams });
+  }
+
+  createScheduleDevice(scheduleId: string, deviceId: string): Observable<any> {
+    return this.http.get(`${API_ENDPOINTS.settings.schedules.deviceCreate}?schedule_id=${scheduleId}&device_id=${deviceId}`);
+  }
+
+  deleteScheduleDevice(scheduleId: string, deviceId: string): Observable<any> {
+    return this.http.get(`${API_ENDPOINTS.settings.schedules.deviceDelete}?schedule_id=${scheduleId}&device_id=${deviceId}`);
+  }
+
+  getLogsPaginate(params: any): Observable<any> {
+    let httpParams = new HttpParams();
+    Object.keys(params).forEach(key => {
+      if (params[key] !== null && params[key] !== undefined && params[key] !== '') {
+        httpParams = httpParams.set(key, params[key].toString());
+      }
+    });
+    return this.http.get(API_ENDPOINTS.settings.schedules.logsPaginate, { params: httpParams });
+  }
+
+  getAllSchedules(): Observable<any> {
+    return this.http.get(API_ENDPOINTS.settings.schedules.allSchedules);
+  }
 }

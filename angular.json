@@ -30,10 +30,10 @@
                         ],
                         "styles": [
                             "src/styles.scss",
-                            "src/assets/css/tabler-flags.css",
-                            "src/assets/css/tabler-socials.css",
-                            "src/assets/css/tabler-payments.css",
-                            "src/assets/css/tabler-marketing.css"
+                            "src/assets/tabler/dist/css/tabler-flags.css",
+                            "src/assets/tabler/dist/css/tabler-socials.css",
+                            "src/assets/tabler/dist/css/tabler-payments.css",
+                            "src/assets/tabler/dist/css/tabler-marketing.css"
                         ],
                         "scripts": [
                             "node_modules/@tabler/core/dist/js/tabler-theme.js",
@@ -115,10 +115,10 @@
                         ],
                         "styles": [
                             "src/styles.scss",
-                            "src/assets/css/tabler-flags.css",
-                            "src/assets/css/tabler-socials.css",
-                            "src/assets/css/tabler-payments.css",
-                            "src/assets/css/tabler-marketing.css"
+                            "src/assets/tabler/dist/css/tabler-flags.css",
+                            "src/assets/tabler/dist/css/tabler-socials.css",
+                            "src/assets/tabler/dist/css/tabler-payments.css",
+                            "src/assets/tabler/dist/css/tabler-marketing.css"
                         ],
                         "scripts": [
                             "node_modules/@tabler/core/dist/js/tabler-theme.js",

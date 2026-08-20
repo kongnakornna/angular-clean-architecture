@@ -31,6 +31,27 @@ export const SETTINGS_ROUTES: Routes = [
           ),
       },
       {
+        path: 'schedule/:id/data',
+        loadComponent: () =>
+          import('./presentation/pages/schedule-data/schedule-data.component').then(
+            (m) => m.ScheduleDataComponent
+          ),
+      },
+      {
+        path: 'schedule/:id/device',
+        loadComponent: () =>
+          import('./presentation/pages/schedule-device/schedule-device.component').then(
+            (m) => m.ScheduleDeviceComponent
+          ),
+      },
+      {
+        path: 'schedule/logs',
+        loadComponent: () =>
+          import('./presentation/pages/schedule-logs/schedule-logs.component').then(
+            (m) => m.ScheduleLogsComponent
+          ),
+      },
+      {
         path: 'alarm',
         loadComponent: () =>
           import('./presentation/pages/alarm-settings/alarm-settings.component').then(

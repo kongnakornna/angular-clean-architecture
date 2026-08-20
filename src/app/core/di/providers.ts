@@ -1,5 +1,6 @@
 import { Provider } from '@angular/core';
-import { APP_CONFIG, LOGGER_CONFIG, DEFAULT_APP_CONFIG } from '../config/app.config';
+import { APP_CONFIG, DEFAULT_APP_CONFIG } from '../config/app.config';
+import { LOGGER_CONFIG } from '../config/logger.config';
 import {
   AUTH_REPOSITORY, JOB_CARD_REPOSITORY, CUSTOMER_REPOSITORY,
   QUOTATION_REPOSITORY, PURCHASE_ORDER_REPOSITORY, INVENTORY_REPOSITORY,

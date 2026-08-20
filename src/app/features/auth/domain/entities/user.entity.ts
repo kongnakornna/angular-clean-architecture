@@ -52,3 +52,13 @@ export interface PublicKeyResponse {
 export interface VerifyEmailCredentials {
   code: string;
 }
+
+export interface UserUpdatePayload {
+  fullName?: string;
+  firstName?: string;
+  lastName?: string;
+  email?: string;
+  phoneNumber?: string;
+  mobileNumber?: string;
+  profileImageUrl?: string | null;
+}
