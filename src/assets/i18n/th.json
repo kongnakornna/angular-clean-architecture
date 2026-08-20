@@ -1164,7 +1164,7 @@
     "clearHistory": "ล้างประวัติ"
   },
   "monitoring": {
-    "title": "มอนิเตอริ่ง",
+    "title": "Monitoring",
     "modules": {
       "smarthome": "SmartHome",
       "smartcity": "SmartCity",
