@@ -45,7 +45,12 @@
     "themeSettings": "テーマ設定",
     "system": "システム",
     "new": "新規",
-    "viewAll": "すべて表示"
+    "viewAll": "すべて表示",
+    "iotReports": "IoTレポート",
+    "scheduleReport": "スケジュールレポート",
+    "alarmReport": "アラームレポート",
+    "logsControlReport": "ログ制御レポート",
+    "deviceReport": "デバイスレポート"
   },
   "common": {
     "save": "保存",

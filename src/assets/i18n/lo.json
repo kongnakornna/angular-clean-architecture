@@ -45,7 +45,12 @@
     "themeSettings": "ຕັ້ງຄ່າຊຸດສີ",
     "system": "ລະບົບ",
     "new": "ໃໝ່",
-    "viewAll": "ເບິ່ງທັງໝົດ"
+    "viewAll": "ເບິ່ງທັງໝົດ",
+    "iotReports": "ບົດລາຍງານ IoT",
+    "scheduleReport": "ບົດລາຍງານຕາຕະລາງ",
+    "alarmReport": "ບົດລາຍງານການແຈ້ງເຕືອນ",
+    "logsControlReport": "ບົດລາຍງານການຄວບຄຸມບັນທຶກ",
+    "deviceReport": "ບົດລາຍງານອຸປະກອນ"
   },
   "common": {
     "save": "ບັນທຶກ",

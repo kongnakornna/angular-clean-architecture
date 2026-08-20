@@ -45,7 +45,12 @@
     "themeSettings": "테마 설정",
     "system": "시스템",
     "new": "새로 만들기",
-    "viewAll": "모두 보기"
+    "viewAll": "모두 보기",
+    "iotReports": "IoT 보고서",
+    "scheduleReport": "스케줄 보고서",
+    "alarmReport": "알람 보고서",
+    "logsControlReport": "로그 제어 보고서",
+    "deviceReport": "장치 보고서"
   },
   "common": {
     "save": "저장",

@@ -45,7 +45,12 @@
     "themeSettings": "Cài đặt giao diện",
     "system": "Hệ thống",
     "new": "Mới",
-    "viewAll": "Xem tất cả"
+    "viewAll": "Xem tất cả",
+    "iotReports": "Báo cáo IoT",
+    "scheduleReport": "Báo cáo lịch trình",
+    "alarmReport": "Báo cáo cảnh báo",
+    "logsControlReport": "Báo cáo nhật ký",
+    "deviceReport": "Báo cáo thiết bị"
   },
   "common": {
     "save": "Lưu",

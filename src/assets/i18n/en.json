@@ -93,7 +93,12 @@
     "themeSettings": "Theme Settings",
     "system": "System",
     "new": "New",
-    "viewAll": "View All"
+    "viewAll": "View All",
+    "iotReports": "IoT Reports",
+    "scheduleReport": "Schedule Report",
+    "alarmReport": "Alarm Report",
+    "logsControlReport": "Logs Control Report",
+    "deviceReport": "Device Report"
   },
   "settings": {
     "title": "Settings",

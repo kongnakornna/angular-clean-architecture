@@ -347,3 +347,55 @@ export const REPORT_ICON = `<svg ${svgAttrs} class="icon icon-tabler icons-table
   <path d="M14 11l2 2" />
   <path d="M11 8l2 2" />
 </svg>`;
+
+export const SMART_HOME_ICON = `<svg ${svgAttrs} class="icon icon-tabler icons-tabler-outline icon-tabler-home">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+  <path d="M5 12l-2 9l12 -5l12 5l-2 -9" />
+  <path d="M5 12l7 -5l7 5" />
+  <path d="M12 7v-4" />
+  <path d="M9 12v5" />
+  <path d="M15 12v5" />
+  <path d="M9 16h6" />
+</svg>`;
+
+export const SMART_CITY_ICON = `<svg ${svgAttrs} class="icon icon-tabler icons-tabler-outline icon-tabler-building-city">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+  <path d="M22 21h-2a2 2 0 0 1 -2 -2v-3h-4v4h-2v-2h-2v2h-2v-4h-4v4h-2a2 2 0 0 1 -2 -2v-9a2 2 0 0 1 2 -2h2" />
+  <path d="M12 3l8 5v9h-2v-4h-4v4h-4v-4h-4v4h-2v-9l8 -5" />
+  <path d="M6 9h2" />
+  <path d="M10 9h2" />
+  <path d="M14 9h2" />
+  <path d="M6 12h2" />
+  <path d="M10 12h2" />
+  <path d="M14 12h2" />
+</svg>`;
+
+export const SMART_MONITOR_ICON = `<svg ${svgAttrs} class="icon icon-tabler icons-tabler-outline icon-tabler-device-desktop">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+  <path d="M3 4a1 1 0 0 1 1 -1h16a1 1 0 0 1 1 1v10a1 1 0 0 1 -1 1h-16a1 1 0 0 1 -1 -1z" />
+  <path d="M7 20h10" />
+  <path d="M9 16v4" />
+  <path d="M15 16v4" />
+</svg>`;
+
+export const INDUSTRY_ICON = `<svg ${svgAttrs} class="icon icon-tabler icons-tabler-outline icon-tabler-industry">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+  <path d="M3 21h18" />
+  <path d="M5 21v-4l-2 -2v-7a1 1 0 0 1 1 -1h1a1 1 0 0 0 1 -1v-2a1 1 0 0 1 1 -1h1a1 1 0 0 0 1 -1v-1a2 2 0 0 1 2 -2h1a2 2 0 0 1 2 2v1a1 1 0 0 0 1 1h1a1 1 0 0 1 1 1v7" />
+  <path d="M8 14v3" />
+  <path d="M12 14v3" />
+  <path d="M16 14v3" />
+</svg>`;
+
+export const SMART_SOLAR_ICON = `<svg ${svgAttrs} class="icon icon-tabler icons-tabler-outline icon-tabler-sun">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+  <path d="M12 12m-4 0a4 4 0 1 0 8 0a4 4 0 1 0 -8 0" />
+  <path d="M3 12h1" />
+  <path d="M12 3v1" />
+  <path d="M12 20v1" />
+  <path d="M20 12h1" />
+  <path d="M5.6 5.6l.7 .7" />
+  <path d="M18.4 5.6l-.7 .7" />
+  <path d="M5.6 18.4l.7 -.7" />
+  <path d="M18.4 18.4l-.7 -.7" />
+</svg>`;

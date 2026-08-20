@@ -45,7 +45,12 @@
     "themeSettings": "ការកំណត់ស្បែក",
     "system": "ប្រព័ន្ធ",
     "new": "ថ្មី",
-    "viewAll": "មើលទាំងអស់"
+    "viewAll": "មើលទាំងអស់",
+    "iotReports": "របាយការណ៍ IoT",
+    "scheduleReport": "របាយការណ៍កាលវិភាគ",
+    "alarmReport": "របាយការណ៍ការជូនដំណឹង",
+    "logsControlReport": "របាយការណ៍វាយកម្មវិធីការឃ្លាំមើល",
+    "deviceReport": "របាយការណ៍ឧបករណ៍"
   },
   "common": {
     "save": "រក្សាទុក",

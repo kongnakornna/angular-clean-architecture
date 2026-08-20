@@ -93,7 +93,12 @@
     "themeSettings": "ตั้งค่าธีม",
     "system": "ระบบ",
     "new": "ใหม่",
-    "viewAll": "ดูทั้งหมด"
+    "viewAll": "ดูทั้งหมด",
+    "iotReports": "รายงาน IoT",
+    "scheduleReport": "รายงานกำหนดการ",
+    "alarmReport": "รายงานแจ้งเตือน",
+    "logsControlReport": "รายงานบันทึกและควบคุม",
+    "deviceReport": "รายงานอุปกรณ์"
   },
   "settings": {
     "title": "ตั้งค่า",

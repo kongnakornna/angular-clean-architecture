@@ -45,7 +45,12 @@
     "themeSettings": "主题设置",
     "system": "系统",
     "new": "新建",
-    "viewAll": "查看全部"
+    "viewAll": "查看全部",
+    "iotReports": "IoT报告",
+    "scheduleReport": "调度报告",
+    "alarmReport": "报警报告",
+    "logsControlReport": "日志控制报告",
+    "deviceReport": "设备报告"
   },
   "common": {
     "save": "保存",

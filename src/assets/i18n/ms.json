@@ -45,7 +45,12 @@
     "themeSettings": "Tetapan Tema",
     "system": "Sistem",
     "new": "Baru",
-    "viewAll": "Lihat Semua"
+    "viewAll": "Lihat Semua",
+    "iotReports": "Laporan IoT",
+    "scheduleReport": "Laporan Jadual",
+    "alarmReport": "Laporan Amaran",
+    "logsControlReport": "Laporan Kawalan Log",
+    "deviceReport": "Laporan Peranti"
   },
   "common": {
     "save": "Simpan",
