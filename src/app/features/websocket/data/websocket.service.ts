@@ -20,7 +20,9 @@ export class WebSocketService implements OnDestroy {
   }
 
   connect(): void {
-    const wsBase = this.cfg.apiTargetUrl.replace('http', 'ws');
+    const wsBase = this.cfg.useProxy
+      ? `${location.protocol === 'https:' ? 'wss' : 'ws'}://${location.host}`
+      : this.cfg.apiTargetUrl.replace('http', 'ws');
     const url = `${wsBase}/ws?token=${this.token}`;
     this.shouldReconnect = true;
     this.ws = new WebSocket(url);
