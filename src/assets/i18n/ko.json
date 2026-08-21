@@ -549,7 +549,9 @@
     "contactAdmin": "관리자에게 문의",
     "testCredentials": "admin / P@ssw0rd로 시스템 테스트",
     "invalidCredentials": "사용자 이름 또는 비밀번호가 잘못되었습니다",
-    "validationError": "인증 오류"
+    "validationError": "인증 오류",
+    "usernameRequired": "사용자 이름을 입력하세요",
+    "passwordRequired": "비밀번호를 입력하세요"
   },
   "auth": {
     "forgotPassword": {

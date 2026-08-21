@@ -549,7 +549,9 @@
     "contactAdmin": "Liên hệ quản trị viên",
     "testCredentials": "Sử dụng admin / P@ssw0rd để kiểm tra hệ thống",
     "invalidCredentials": "Tên người dùng hoặc mật khẩu không hợp lệ",
-    "validationError": "Lỗi xác thực"
+    "validationError": "Lỗi xác thực",
+    "usernameRequired": "Vui lòng nhập tên người dùng",
+    "passwordRequired": "Vui lòng nhập mật khẩu"
   },
   "auth": {
     "forgotPassword": {

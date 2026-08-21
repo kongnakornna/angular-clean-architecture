@@ -549,7 +549,9 @@
     "contactAdmin": "管理者に連絡",
     "testCredentials": "管理者 / P@ssw0rd でシステムをテスト",
     "invalidCredentials": "ユーザー名またはパスワードが無効です",
-    "validationError": "検証エラー"
+    "validationError": "検証エラー",
+    "usernameRequired": "ユーザー名を入力してください",
+    "passwordRequired": "パスワードを入力してください"
   },
   "auth": {
     "forgotPassword": {

@@ -549,7 +549,9 @@
     "contactAdmin": "Hubungi Pentadbir",
     "testCredentials": "Gunakan admin / P@ssw0rd untuk menguji sistem",
     "invalidCredentials": "Nama pengguna atau kata laluan tidak sah",
-    "validationError": "Ralat Pengesahan"
+    "validationError": "Ralat Pengesahan",
+    "usernameRequired": "Nama pengguna diperlukan",
+    "passwordRequired": "Kata laluan diperlukan"
   },
   "auth": {
     "forgotPassword": {

@@ -171,7 +171,9 @@
     "contactAdmin": "ຕິດຕໍ່ຜູ້ດູແລລະບົບ",
     "testCredentials": "ໃຊ້ admin / P@ssw0rd ເພື່ອທົດສອບລະບົບ",
     "invalidCredentials": "Invalid username or password",
-    "validationError": "Validation Error"
+    "validationError": "Validation Error",
+    "usernameRequired": "Username is required",
+    "passwordRequired": "Password is required"
   },
   "auth": {
     "forgotPassword": {

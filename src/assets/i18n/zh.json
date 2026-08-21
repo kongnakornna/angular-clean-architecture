@@ -549,7 +549,9 @@
     "contactAdmin": "联系管理员",
     "testCredentials": "使用 admin / P@ssw0rd 测试系统",
     "invalidCredentials": "用户名或密码无效",
-    "validationError": "验证错误"
+    "validationError": "验证错误",
+    "usernameRequired": "请输入用户名",
+    "passwordRequired": "请输入密码"
   },
   "auth": {
     "forgotPassword": {

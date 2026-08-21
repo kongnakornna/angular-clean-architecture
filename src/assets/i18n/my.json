@@ -549,7 +549,9 @@
     "contactAdmin": "Admin ကို ဆက်သွယ်ရန်",
     "testCredentials": "admin / P@ssw0rd ဖြင့် စနစ် စမ်းသုံးရန်",
     "invalidCredentials": "User Name သို့မဟုတ် စကားဝှက် မှားနေပါသည်",
-    "validationError": "Validation အမှား"
+    "validationError": "Validation အမှား",
+    "usernameRequired": "User Name ထည့်ပါ",
+    "passwordRequired": "စကားဝှက် ထည့်ပါ"
   },
   "auth": {
     "forgotPassword": {

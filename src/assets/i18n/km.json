@@ -171,7 +171,9 @@
     "contactAdmin": "ទាក់ទងអ្នកគ្រប់គ្រង",
     "testCredentials": "ប្រើ admin / P@ssw0rd ដើម្បីសាកល្បងប្រព័ន្ធ",
     "invalidCredentials": "Invalid username or password",
-    "validationError": "Validation Error"
+    "validationError": "Validation Error",
+    "usernameRequired": "Username is required",
+    "passwordRequired": "Password is required"
   },
   "auth": {
     "forgotPassword": {
