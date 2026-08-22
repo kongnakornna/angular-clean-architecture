@@ -72,8 +72,11 @@ export class ErrorInterceptor implements HttpInterceptor {
           }
         }
 
-        // ถ้าเซิร์ฟเวอร์ส่ง message มาเอง ให้ใช้ข้อความนั้นทันที
-        const serverMessage = error.error?.message;
+        // ถ้าเซิร์ฟเวอร์ส่ง message/msg มาเอง ให้ใช้ข้อความนั้นทันที
+        const errBody = error.error as
+          | { message?: string; msg?: string; error?: { msg?: string } }
+          | null;
+        const serverMessage = errBody?.message || errBody?.error?.msg || errBody?.msg;
         if (serverMessage) {
           return throwError(() => ({
             status: error.status,

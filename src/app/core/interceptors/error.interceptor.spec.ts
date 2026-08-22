@@ -30,13 +30,44 @@ describe('ErrorInterceptor', () => {
     req.flush({ data: 'ok' });
   });
 
-  it('should handle 401 error', () => {
+  it('should handle 401 error with legacy message body', () => {
     httpClient.get('/api/test').subscribe({
       error: (err) => {
         expect(err.status).toBe(401);
+        expect(err.message).toBe('Unauthorized');
       },
     });
     const req = httpMock.expectOne('/api/test');
     req.flush({ message: 'Unauthorized' }, { status: 401, statusText: 'Unauthorized' });
+  });
+
+  it('should extract msg from backend envelope on HTTP 401', () => {
+    const envelope = {
+      data: null,
+      error: { status: 401, statusText: 'wrong_password', msg: 'invalid credentials' },
+      is_success: false,
+    };
+    httpClient.post('/api/auth/login', {}).subscribe({
+      error: (err) => {
+        expect(err.status).toBe(401);
+        expect(err.message).toBe('invalid credentials');
+      },
+    });
+    const req = httpMock.expectOne('/api/auth/login');
+    req.flush(envelope, { status: 401, statusText: 'Unauthorized' });
+  });
+
+  it('should extract flat msg from error body', () => {
+    httpClient.get('/api/test').subscribe({
+      error: (err) => {
+        expect(err.status).toBe(401);
+        expect(err.message).toBe('invalid credentials');
+      },
+    });
+    const req = httpMock.expectOne('/api/test');
+    req.flush(
+      { status: 401, statusText: 'wrong_password', msg: 'invalid credentials' },
+      { status: 401, statusText: 'Unauthorized' }
+    );
   });
 });

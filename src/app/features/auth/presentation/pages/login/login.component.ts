@@ -44,7 +44,7 @@ export class LoginComponent {
         error: (err) => {
           this.loading = false;
           if (err.status === 401) {
-            this.error = this.i18n.translate('login.invalidCredentials');
+            this.error = err.message || this.i18n.translate('login.invalidCredentials');
           } else if (err.status === 422) {
             Swal.fire({
               icon: 'error',

@@ -54,33 +54,36 @@ export class AuthApiDataSource {
     return httpParams;
   }
 
-  private handleError(error: HttpErrorResponse): Observable<never> {
-    const body = error.error as { error?: { msg?: string }; msg?: string; message?: string };
-    const serverMsg = body?.error?.msg || body?.msg || body?.message || null;
+  private handleError(error: HttpErrorResponse | { status?: number; message?: string }): Observable<never> {
+    const status = error?.status ?? 0;
     let errorMessage = 'เกิดข้อผิดพลาดในการเชื่อมต่อกับเซิร์ฟเวอร์';
 
-    if (error.error instanceof ErrorEvent) {
-      errorMessage = `Client Error: ${error.error.message}`;
-    } else {
-      if (serverMsg) {
-        errorMessage = serverMsg;
-      } else {
-        errorMessage = `Server Error (${error.status}): ${error.message}`;
-      }
+    if (error instanceof HttpErrorResponse) {
+      const body = error.error as { error?: { msg?: string }; msg?: string; message?: string };
+      const serverMsg = body?.error?.msg || body?.msg || body?.message;
 
-      if (error.status === 401) {
+      if (error.error instanceof ErrorEvent) {
+        errorMessage = `Client Error: ${error.error.message}`;
+      } else if (serverMsg) {
+        errorMessage = serverMsg;
+      } else if (status === 401) {
         errorMessage = 'ไม่ได้รับอนุญาต กรุณาเข้าสู่ระบบอีกครั้ง';
-      } else if (error.status === 403) {
+      } else if (status === 403) {
         errorMessage = 'คุณไม่มีสิทธิ์เข้าถึง';
-      } else if (error.status === 404) {
+      } else if (status === 404) {
         errorMessage = 'ไม่พบข้อมูลที่ร้องขอ';
-      } else if (error.status === 0) {
+      } else if (status === 0) {
         errorMessage = 'ไม่สามารถเชื่อมต่อกับเซิร์ฟเวอร์ได้ กรุณาตรวจสอบเครือข่าย';
+      } else {
+        errorMessage = `Server Error (${status}): ${error.message}`;
       }
+    } else {
+      // plain object {status, message} จาก ErrorInterceptor
+      errorMessage = error?.message || errorMessage;
     }
 
     const appError = new Error(errorMessage) as Error & { status?: number };
-    appError.status = error.status;
+    appError.status = status;
 
     // เก็บ log error ไว้เพื่อดีบัก (ถ้าต้องการเอาออกก็ลบได้)
     console.error('[AuthApiDataSource] HTTP Error:', errorMessage, error);

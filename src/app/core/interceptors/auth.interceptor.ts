@@ -21,9 +21,12 @@ export class AuthInterceptor implements HttpInterceptor {
 
   intercept(req: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
     const token = localStorage.getItem(APP_CONSTANTS.TOKEN_KEY);
-    const isRefreshRequest = req.url.includes(API_ENDPOINTS.auth.refresh);
+    const isAuthFlowRequest =
+      req.url.includes(API_ENDPOINTS.auth.refresh) ||
+      req.url.includes(API_ENDPOINTS.auth.login) ||
+      req.url.includes(API_ENDPOINTS.auth.signin);
 
-    if (token && !isRefreshRequest) {
+    if (token && !isAuthFlowRequest) {
       req = req.clone({
         setHeaders: { Authorization: `Bearer ${token}` },
       });
@@ -34,7 +37,7 @@ export class AuthInterceptor implements HttpInterceptor {
         // Check for 401 status on both HttpErrorResponse and plain objects
         // (ErrorInterceptor transforms errors to plain objects before this interceptor)
         const status = error?.status || error?.statusCode;
-        if (status === 401 && !isRefreshRequest) {
+        if (status === 401 && !isAuthFlowRequest) {
           return this.handle401Error(req, next);
         }
         return throwError(() => error);
