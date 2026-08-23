@@ -20,6 +20,7 @@ import { AppLayoutComponent } from './layouts/app-layout/app-layout.component';
 import { LayoutSettingsComponent } from './layouts/layout-settings/layout-settings.component';
 import { PageHeaderComponent } from './layouts/page-header/page-header.component';
 import { TranslatePipe } from './shared/pipes/translate.pipe';
+import { ChatbotComponent } from './features/ai-chatbot/presentation/components/chatbot/chatbot.component';
 import { LanguageSelectorComponent } from './shared/i18n/presentation/pages/language-selector/language-selector.component';
 import { TablerIconsModule, provideTablerIcons } from 'angular-tabler-icons';
 import {
@@ -32,6 +33,8 @@ import {
   IconReport, IconLicense, IconListCheck, IconCurrencyDollar, IconGridDots,
   IconApps, IconUserPlus, IconFileCheck, IconAlertTriangle, IconClipboardCheck,
   IconSend, IconMessageCircle, IconCheck, IconCircleCheck, IconClock, IconLayout,
+  IconSearch, IconChevronLeft, IconChevronRight, IconPencil, IconTrash, IconChartPie,
+  IconAdjustmentsAlt, IconArrowAutofitWidth, IconArrowsMinimize, IconAspectRatio, IconArrowsMaximize,
 } from 'angular-tabler-icons/icons';
 
 import { REPOSITORY_PROVIDERS } from './core/di/providers';
@@ -47,7 +50,6 @@ import { APP_CONFIG, DEFAULT_APP_CONFIG } from './core/config/app.config';
     SidebarComponent,
     FooterComponent,
     AppLayoutComponent,
-    LayoutSettingsComponent,
     PageHeaderComponent,
   ],
   imports: [
@@ -63,11 +65,13 @@ import { APP_CONFIG, DEFAULT_APP_CONFIG } from './core/config/app.config';
     TablerIconsModule,
     LanguageSelectorComponent,
     TranslatePipe,
+    LayoutSettingsComponent,
+    ChatbotComponent,
   ],
   providers: [
     ...REPOSITORY_PROVIDERS,
     ...(environment.demo ? [{ provide: AUTH_REPOSITORY, useClass: DemoAuthRepositoryImpl }] : []),
-    { provide: APP_CONFIG, useValue: { ...DEFAULT_APP_CONFIG, apiBaseUrl: environment.apiUrl, production: environment.production } },
+    { provide: APP_CONFIG, useValue: { ...DEFAULT_APP_CONFIG, useProxy: environment.useProxy, production: environment.production } },
     provideTablerIcons({
       IconLayoutDashboard, IconClipboard, IconList, IconLayoutKanban, IconPlus,
       IconUsers, IconFileText, IconShoppingCart, IconPackage, IconCreditCard,
@@ -78,6 +82,8 @@ import { APP_CONFIG, DEFAULT_APP_CONFIG } from './core/config/app.config';
       IconReport, IconLicense, IconListCheck, IconCurrencyDollar, IconGridDots,
       IconApps, IconUserPlus, IconFileCheck, IconAlertTriangle, IconClipboardCheck,
       IconSend, IconMessageCircle, IconCheck, IconCircleCheck, IconClock, IconLayout,
+      IconSearch, IconChevronLeft, IconChevronRight, IconPencil, IconTrash, IconChartPie,
+      IconAdjustmentsAlt, IconArrowAutofitWidth, IconArrowsMinimize, IconAspectRatio, IconArrowsMaximize,
     }),
     provideTranslateService({ fallbackLang: 'en', lang: 'en' }),
     provideTranslateHttpLoader({ prefix: 'assets/i18n/', suffix: '.json' }),

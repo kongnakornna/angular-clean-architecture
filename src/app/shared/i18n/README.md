@@ -5,19 +5,19 @@
 ## โครงสร้างโฟลเดอร์
 
 ```
-i18n/
-├── domain/
-│   ├── entities/
-│   │   └── translation.entity.ts        # Translation interface, SupportedLanguage type
-│   └── repositories/
-│       └── translation.repository.ts    # ITranslationRepository interface
-├── data/
-│   ├── datasources/
-│   │   └── translation-local.datasource.ts  # TranslationLocalDataSource
-│   └── repositories/
-│       └── translation.repository.impl.ts   # TranslationRepositoryImpl
-├── presentation/                        # (พร้อมใช้งานในอนาคต)
-└── README.md
+  i18n/
+    ├── domain/
+    │   ├── entities/
+    │   │   └── translation.entity.ts        # Translation interface, SupportedLanguage type
+    │   └── repositories/
+    │       └── translation.repository.ts    # ITranslationRepository interface
+    ├── data/
+    │   ├── datasources/
+    │   │   └── translation-local.datasource.ts  # TranslationLocalDataSource
+    │   └── repositories/
+    │       └── translation.repository.impl.ts   # TranslationRepositoryImpl
+    ├── presentation/                        # (พร้อมใช้งานในอนาคต)
+    └── README.md
 ```
 
 ## Domain Layer

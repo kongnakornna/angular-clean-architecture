@@ -12,5 +12,8 @@ module.exports = {
 
     ],
     corePlugins: {
+        // Tailwind's `.collapse`/`.visible`/`.invisible` visibility utilities collide
+        // with Bootstrap's `.collapse` component class, hiding collapse content.
+        visibility: false
     }
 }

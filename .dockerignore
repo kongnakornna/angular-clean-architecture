@@ -1,0 +1,14 @@
+node_modules
+dist
+tmp
+.git
+.vscode
+.angular
+*.md
+*.jpg
+*.png
+.env
+.env.*
+docker-compose.yml
+netlify.toml
+netlify

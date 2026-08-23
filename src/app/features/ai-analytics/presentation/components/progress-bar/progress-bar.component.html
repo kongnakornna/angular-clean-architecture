@@ -1,0 +1,17 @@
+<div class="progress progress-lg">
+  <div
+    class="progress-bar"
+    [class.bg-green]="progress >= 80"
+    [class.bg-yellow]="progress >= 50 && progress < 80"
+    [class.bg-red]="progress < 50"
+    role="progressbar"
+    [style.width.%]="progress"
+    [attr.aria-valuenow]="progress"
+    aria-valuemin="0"
+    aria-valuemax="100">
+  </div>
+</div>
+<div class="d-flex justify-content-between text-muted mt-1">
+  <span *ngIf="status">{{ status }}</span>
+  <span>{{ progress | number:'1.0-0' }}%</span>
+</div>

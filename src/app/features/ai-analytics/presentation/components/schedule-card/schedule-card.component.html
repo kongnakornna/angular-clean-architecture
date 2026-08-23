@@ -1,0 +1,57 @@
+<div class="card">
+  <div class="card-header">
+    <h3 class="card-title">{{ job?.name }}</h3>
+    <div class="card-actions">
+      <span
+        class="badge"
+        [class.bg-green-lt]="job?.enabled"
+        [class.bg-secondary-lt]="!job?.enabled">
+        {{ (job?.enabled ? 'scheduleCard.active' : 'scheduleCard.paused') | translate }}
+      </span>
+    </div>
+  </div>
+  <div class="card-body">
+    <div class="row g-2 text-muted">
+      <div class="col-auto">
+        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-sm">
+          <path d="M12 12m-9 0a9 9 0 1 0 18 0a9 9 0 1 0 -18 0" /><path d="M12 12l0 -2" /><path d="M12 12l2 0" />
+        </svg>
+        <small class="ms-1">{{ job?.schedule }}</small>
+      </div>
+      <div class="col-auto">
+        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-sm">
+          <path d="M10.325 4.317c.426 -1.756 2.924 -1.756 3.35 0a1.724 1.724 0 0 0 2.573 1.066c1.543 -.94 3.31 .826 2.37 2.37a1.724 1.724 0 0 0 1.065 2.572c1.756 .426 1.756 2.924 0 3.35a1.724 1.724 0 0 0 -1.066 2.573c.94 1.543 -.826 3.31 -2.37 2.37a1.724 1.724 0 0 0 -2.572 1.065c-.426 1.756 -2.924 1.756 -3.35 0a1.724 1.724 0 0 0 -2.573 -1.066c-1.543 .94 -3.31 -.826 -2.37 -2.37a1.724 1.724 0 0 0 -1.065 -2.572c-1.756 -.426 -1.756 -2.924 0 -3.35a1.724 1.724 0 0 0 1.066 -2.573c-.94 -1.543 .826 -3.31 2.37 -2.37c1 .608 2.296 .07 2.572 -1.065z" /><path d="M9 12a3 3 0 1 0 6 0a3 3 0 0 0 -6 0" />
+        </svg>
+        <small class="ms-1">{{ job?.type }}</small>
+      </div>
+      <div class="col-12" *ngIf="job?.description">
+        <small>{{ job?.description }}</small>
+      </div>
+    </div>
+  </div>
+  <div class="card-footer">
+    <div class="btn-list">
+      <button class="btn btn-sm btn-outline-primary" (click)="edit.emit()">
+        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-sm">
+          <path d="M17 3a2.85 2.83 0 1 1 4 4l-14.5 14.5l-4 1l1 -14.5z" />
+        </svg>
+        {{ 'scheduleCard.edit' | translate }}
+      </button>
+      <button class="btn btn-sm btn-outline-yellow" (click)="togglePause.emit()">
+        <svg *ngIf="job?.enabled" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-sm">
+          <path d="M6 4l10 8l-10 8z" />
+        </svg>
+        <svg *ngIf="!job?.enabled" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-sm">
+          <path d="M6 5l0 14" /><path d="M18 5l0 14" />
+        </svg>
+        {{ (job?.enabled ? 'scheduleCard.pause' : 'scheduleCard.resume') | translate }}
+      </button>
+      <button class="btn btn-sm btn-outline-danger" (click)="delete.emit()">
+        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-sm">
+          <path d="M4 7l16 0" /><path d="M10 11l0 6" /><path d="M14 11l0 6" /><path d="M5 7l1 12a2 2 0 0 0 2 2h8a2 2 0 0 0 2 -2l1 -12" /><path d="M9 7l0 -3a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1l0 3" />
+        </svg>
+        {{ 'scheduleCard.delete' | translate }}
+      </button>
+    </div>
+  </div>
+</div>

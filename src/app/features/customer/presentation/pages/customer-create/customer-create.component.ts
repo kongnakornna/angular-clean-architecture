@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { NgIf } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { RouterLink } from '@angular/router';
+
 import { TranslatePipe } from '../../../../../shared/pipes/translate.pipe';
 
 @Component({
@@ -20,6 +21,7 @@ import { TranslatePipe } from '../../../../../shared/pipes/translate.pipe';
     </div>
   </div>
 </div>
+<br>
 <div class="card">
   <div class="card-body">
     <form>

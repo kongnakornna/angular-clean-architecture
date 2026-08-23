@@ -1,0 +1,103 @@
+<div *ngIf="loading$ | async" class="text-center py-5">
+  <div class="spinner-border text-primary" role="status">
+    <span class="visually-hidden">{{ 'common.loading' | translate }}</span>
+  </div>
+</div>
+<div *ngIf="(commandCenterState$ | async) as state">
+  <div class="page-header d-print-none">
+    <div class="row g-2 align-items-center">
+      <div class="col">
+        <div class="page-pretitle">{{ 'aiAnalytics.commandCenter' | translate }}</div>
+        <h1 class="page-title">{{ 'aiAnalytics.commandCenterTitle' | translate }}</h1>
+      </div>
+    </div>
+  </div>
+  <br>
+
+  <div class="row row-deck row-cards">
+    <div class="col-sm-6 col-lg-3">
+      <div class="card">
+        <div class="card-body">
+          <div class="subheader">{{ 'commandCenter.completed' | translate }}</div>
+          <div class="h1 mb-0">{{ state.summary.completed | number }}</div>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-6 col-lg-3">
+      <div class="card">
+        <div class="card-body">
+          <div class="subheader">{{ 'commandCenter.pending' | translate }}</div>
+          <div class="h1 mb-0">{{ state.summary.pending | number }}</div>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-6 col-lg-3">
+      <div class="card">
+        <div class="card-body">
+          <div class="subheader">{{ 'commandCenter.failed' | translate }}</div>
+          <div class="h1 mb-0">{{ state.summary.failed | number }}</div>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-6 col-lg-3">
+      <div class="card">
+        <div class="card-body">
+          <div class="subheader">{{ 'commandCenter.successRate' | translate }}</div>
+          <div class="d-flex align-items-baseline">
+            <div class="h1 mb-0 me-2">{{ state.summary.successRate }}%</div>
+          </div>
+          <div class="progress progress-sm mt-2">
+            <div class="progress-bar bg-success" [style.width.%]="state.summary.successRate" role="progressbar" [attr.aria-valuenow]="state.summary.successRate" aria-valuemin="0" aria-valuemax="100"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-12">
+      <div class="card">
+        <div class="card-header">
+          <h3 class="card-title">{{ 'commandCenter.quickActions' | translate }}</h3>
+        </div>
+        <div class="card-body">
+          <div class="btn-list">
+            <button *ngFor="let action of state.quickActions" class="btn btn-outline-primary">
+              {{ action.label | translate }}
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-12">
+      <div class="card">
+        <div class="card-header">
+          <h3 class="card-title">{{ 'commandCenter.activeTasks' | translate }}</h3>
+        </div>
+        <div class="card-body">
+          <div class="divide-y" *ngIf="state.tasks?.length; else noTasks">
+            <div *ngFor="let task of state.tasks" class="py-3">
+              <div class="row align-items-center">
+                <div class="col-auto">
+                  <span class="badge" [ngClass]="statusBadge(task.status)">{{ task.status }}</span>
+                </div>
+                <div class="col">
+                  <div class="fw-bold">{{ task.name }}</div>
+                  <div class="text-secondary small">{{ task.type }} &middot; {{ task.duration || '—' }}</div>
+                </div>
+                <div class="col-auto">
+                  <span class="text-secondary small">{{ task.progress }}%</span>
+                </div>
+                <div class="col-3">
+                  <app-progress-bar [progress]="task.progress" [status]="task.status"></app-progress-bar>
+                </div>
+              </div>
+            </div>
+          </div>
+          <ng-template #noTasks>
+            <div class="text-secondary text-center py-4">{{ 'commandCenter.noTasks' | translate }}</div>
+          </ng-template>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

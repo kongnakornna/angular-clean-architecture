@@ -1,10 +1,21 @@
 export interface DashboardStatsResponseDto {
-  totalJobs: number;
-  activeJobs: number;
-  totalCustomers: number;
-  totalRevenue: number;
-  monthlyRevenue: number;
-  conversionRate: number;
-  pendingApprovals: number;
-  lowStockItems: number;
+  totalDevices: number;
+  onlineDevices: number;
+  activeAlerts: number;
+  todayCommands: number;
+}
+
+export interface RevenueDataResponseDto {
+  period: string;
+  amount: number;
+}
+
+export interface JobStatusSummaryResponseDto {
+  status: string;
+  count: number;
+}
+
+export interface TopPartDataResponseDto {
+  partName: string;
+  count: number;
 }

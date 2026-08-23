@@ -11,11 +11,14 @@ export class LoginUseCase {
   constructor(@Inject(AUTH_REPOSITORY) private authRepo: IAuthRepository) {}
 
   execute(credentials: LoginCredentials): Observable<AuthResponse> {
+    console.info(credentials);
     return this.authRepo.login(credentials).pipe(
       tap((response) => {
         localStorage.setItem(APP_CONSTANTS.TOKEN_KEY, response.accessToken);
         localStorage.setItem(APP_CONSTANTS.REFRESH_TOKEN_KEY, response.refreshToken);
+        localStorage.setItem(APP_CONSTANTS.EXPIRES_IN_KEY, response.expiresIn.toString());
         localStorage.setItem(APP_CONSTANTS.USER_KEY, JSON.stringify(response.user));
+        localStorage.setItem('username', JSON.parse(JSON.stringify(credentials.username)));
       })
     );
   }

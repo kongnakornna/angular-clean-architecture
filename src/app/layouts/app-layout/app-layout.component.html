@@ -1,24 +1,20 @@
 <a href="#content" class="visually-hidden skip-link">{{ 'layout.skipLink' | translate }}</a>
 
-<app-sidebar
-  [isCollapsed]="isSidebarCollapsed"
-  [end]="isSidebarEnd"
-  [dark]="isSidebarDark"
-  [background]="sidebarBackground">
-</app-sidebar>
+<div class="page">
+  <app-header></app-header>
+  <div class="page-wrapper">
+    <ng-content select="[page-header]"></ng-content>
 
-<app-header (toggleSidebar)="toggleSidebar()"></app-header>
+    <main class="page-body" id="content">
+      <div class="container-xl">
+        <router-outlet></router-outlet>
+      </div>
+    </main>
 
-<div class="page-wrapper">
-  <ng-content select="[page-header]"></ng-content>
-
-  <main class="page-body" id="content">
-    <div class="container-xl">
-      <router-outlet></router-outlet>
-    </div>
-  </main>
-
-  <app-footer></app-footer>
+    <app-footer></app-footer>
+  </div>
 </div>
 
-<app-layout-settings></app-layout-settings>
+<app-layout-settings *ngIf="isSettingsPage()"></app-layout-settings>
+
+<app-ai-chatbot *ngIf="!isMonitoringPage()"></app-ai-chatbot>

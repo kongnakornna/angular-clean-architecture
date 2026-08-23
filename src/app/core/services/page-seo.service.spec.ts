@@ -26,8 +26,8 @@ describe('PageSeoService', () => {
 
   it('should set default SEO data when no data provided', () => {
     service.setSEO();
-    expect(title.setTitle).toHaveBeenCalledWith('iCmon | iCmon System');
-    expect(meta.updateTag).toHaveBeenCalledWith({ name: 'author', content: 'iCmon' });
+    expect(title.setTitle).toHaveBeenCalledWith('iCmonIoT | iCmon System');
+    expect(meta.updateTag).toHaveBeenCalledWith({ name: 'author', content: 'iCmonIoT' });
     expect(meta.updateTag).toHaveBeenCalledWith({ name: 'description', content: 'iCmon Management System' });
     expect(meta.updateTag).toHaveBeenCalledWith({ name: 'keywords', content: 'iCmon, management, erp' });
   });

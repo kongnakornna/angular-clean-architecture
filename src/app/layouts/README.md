@@ -33,16 +33,22 @@ Component หลักที่รวมทุกส่วนเป็น App Sh
 
 **Template Structure:**
 ```html
-<div class="app-wrapper">
-  <app-sidebar [isCollapsed]="..."></app-sidebar>
+<a href="#content" class="visually-hidden skip-link">...</a>
+
+<div class="page">
+  <app-header></app-header>
   <div class="page-wrapper">
-    <app-header (toggleSidebar)="toggleSidebar()"></app-header>
-    <div class="page-body">
-      <router-outlet></router-outlet>
-    </div>
+    <ng-content select="[page-header]"></ng-content>
+    <main class="page-body" id="content">
+      <div class="container-xl">
+        <router-outlet></router-outlet>
+      </div>
+    </main>
     <app-footer></app-footer>
   </div>
 </div>
+
+<app-layout-settings></app-layout-settings>
 ```
 
 **CSS Highlights:**
@@ -105,3 +111,11 @@ Layout components ถูกใช้งานร่วมกับ Angular Route
 ## สีและธีม
 
 Components ใช้ CSS variables จาก Tabler (`var(--tblr-*)`) เพื่อรองรับการเปลี่ยนธีม
+
+## docker Cli
+
+docker compose up 
+docker compose up --build
+docker compose down -v
+
+

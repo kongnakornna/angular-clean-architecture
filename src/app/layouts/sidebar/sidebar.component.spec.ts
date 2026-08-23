@@ -5,10 +5,19 @@ import { TranslateService } from '@ngx-translate/core';
 import { of } from 'rxjs';
 import { SidebarComponent } from './sidebar.component';
 import { TranslatePipe } from '../../shared/pipes/translate.pipe';
+import { PermissionService } from '../../core/services/permission.service';
+import { MENU_CONFIG } from '../../core/config/menu.config';
 
 describe('SidebarComponent', () => {
   let component: SidebarComponent;
   let fixture: ComponentFixture<SidebarComponent>;
+
+  const mockPermissionService = {
+    loadPermissions: () => of([]),
+    hasPermission: () => of(true),
+    filterByPermission: (items: any[], keyFn: (item: any) => string) => of(items),
+    refreshPermissions: () => of([]),
+  };
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
@@ -16,6 +25,7 @@ describe('SidebarComponent', () => {
       declarations: [SidebarComponent],
       providers: [
         { provide: TranslateService, useValue: { currentLang: 'en', getCurrentLang: () => 'en', getBrowserLang: () => 'en', instant: (k: string) => k, use: () => of({}), onLangChange: of({}) } },
+        { provide: PermissionService, useValue: mockPermissionService },
       ],
       schemas: [NO_ERRORS_SCHEMA],
     }).compileComponents();

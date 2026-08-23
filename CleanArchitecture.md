@@ -1,3 +1,10 @@
+ <script>localStorage.setItem('app_language', 'dark');</script>
+
+localStorage.getItem(app_language)
+ <script>localStorage.getItem(app_language);</script>
+
+localStorage.getItem(app_language)
+ 
 # Angular Clean Architecture with Serverless Functions
 
 Note: I am using this project to experiment with different architectural concepts. This is my attempt at implementing Robert C. Martin (Uncle Bob) Clean Architecture guidelines in an Angular project that uses serverless functions to communicate with a MongoDB cluster.

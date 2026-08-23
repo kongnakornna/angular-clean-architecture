@@ -1,28 +1,44 @@
-import { Injectable } from '@angular/core';
-import { HttpInterceptor, HttpRequest, HttpHandler, HttpEvent, HttpErrorResponse } from '@angular/common/http';
+import { Inject, Injectable } from '@angular/core';
+import { HttpInterceptor, HttpRequest, HttpHandler, HttpEvent, HttpErrorResponse, HttpClient } from '@angular/common/http';
 import { Observable, throwError, BehaviorSubject } from 'rxjs';
-import { catchError, filter, take, switchMap } from 'rxjs/operators';
+import { catchError, filter, map, take, switchMap } from 'rxjs/operators';
 import { APP_CONSTANTS } from '../constants/app.constants';
+import { APP_CONFIG, AppConfig } from '../config/app.config';
+import { API_ENDPOINTS } from '../config/api.config';
+import { LoginResponseDto } from '../../features/auth/data/dtos/login-response.dto';
+import { ApiFallbackService } from '../services/api-fallback.service';
 
 @Injectable()
 export class AuthInterceptor implements HttpInterceptor {
   private isRefreshing = false;
   private refreshTokenSubject: BehaviorSubject<string | null> = new BehaviorSubject<string | null>(null);
 
+  constructor(
+    private http: HttpClient,
+    @Inject(APP_CONFIG) private config: AppConfig,
+    private fallbackService: ApiFallbackService
+  ) {}
+
   intercept(req: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
     const token = localStorage.getItem(APP_CONSTANTS.TOKEN_KEY);
-    let authReq = req;
+    const isAuthFlowRequest =
+      req.url.includes(API_ENDPOINTS.auth.refresh) ||
+      req.url.includes(API_ENDPOINTS.auth.login) ||
+      req.url.includes(API_ENDPOINTS.auth.signin);
 
-    if (token) {
-      authReq = req.clone({
+    if (token && !isAuthFlowRequest) {
+      req = req.clone({
         setHeaders: { Authorization: `Bearer ${token}` },
       });
     }
 
-    return next.handle(authReq).pipe(
+    return next.handle(req).pipe(
       catchError((error) => {
-        if (error instanceof HttpErrorResponse && error.status === 401) {
-          return this.handle401Error(authReq, next);
+        // Check for 401 status on both HttpErrorResponse and plain objects
+        // (ErrorInterceptor transforms errors to plain objects before this interceptor)
+        const status = error?.status || error?.statusCode;
+        if (status === 401 && !isAuthFlowRequest) {
+          return this.handle401Error(req, next);
         }
         return throwError(() => error);
       })
@@ -69,11 +85,18 @@ export class AuthInterceptor implements HttpInterceptor {
   }
 
   private refreshToken(refreshToken: string): Observable<string> {
-    // TODO: implement actual refresh token call
-    return new Observable((observer) => {
-      observer.next('new-token');
-      observer.complete();
-    });
+    const baseUrl = this.fallbackService.getActiveBaseUrl();
+    return this.http.post<LoginResponseDto>(
+      `${baseUrl}${API_ENDPOINTS.auth.refresh}`,
+      { refreshToken }
+    ).pipe(
+      map((response) => {
+        if (response.refreshToken) {
+          localStorage.setItem(APP_CONSTANTS.REFRESH_TOKEN_KEY, response.refreshToken);
+        }
+        return response.accessToken;
+      })
+    );
   }
 
   private logout(): void {

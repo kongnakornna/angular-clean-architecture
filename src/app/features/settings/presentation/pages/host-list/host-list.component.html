@@ -1,0 +1,44 @@
+<div class="card mb-3">
+  <div class="card-body">
+    <div class="row g-3">
+      <div class="col-md-4">
+        <input type="text" class="form-control" [(ngModel)]="searchTerm" [placeholder]="'settings.hosts.searchPlaceholder' | translate">
+      </div>
+      <div class="col-md-2">
+        <button class="btn btn-primary me-2" (click)="search()">{{ 'settings.hosts.search' | translate }}</button>
+        <button class="btn btn-outline-secondary" (click)="searchTerm = ''; search()">{{ 'settings.hosts.reset' | translate }}</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="card">
+  <div *ngIf="loading$ | async" class="text-center py-5"><div class="spinner-border text-primary"></div></div>
+  <div *ngIf="!(loading$ | async)" class="table-responsive">
+    <table class="table table-vcenter card-table">
+      <thead>
+        <tr>
+          <th>{{ 'settings.hosts.name' | translate }}</th>
+          <th>{{ 'settings.hosts.ipAddress' | translate }}</th>
+          <th>{{ 'settings.hosts.port' | translate }}</th>
+          <th>{{ 'settings.hosts.type' | translate }}</th>
+          <th>{{ 'settings.hosts.status' | translate }}</th>
+          <th class="w-1"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of (items$ | async)">
+          <td>{{ item.name }}</td>
+          <td><code>{{ item.ipAddress }}</code></td>
+          <td>{{ item.port }}</td>
+          <td>{{ item.type }}</td>
+          <td><span class="badge" [ngClass]="item.status ? 'bg-green' : 'bg-secondary'">{{ item.status ? ('settings.hosts.active' | translate) : ('settings.hosts.inactive' | translate) }}</span></td>
+          <td><a [routerLink]="['/settings/host', item.id, 'edit']" class="btn btn-sm btn-primary">{{ 'settings.hosts.edit' | translate }}</a></td>
+        </tr>
+        <tr *ngIf="(items$ | async)?.length === 0">
+          <td colspan="6" class="text-center text-secondary py-4">{{ 'settings.hosts.noData' | translate }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

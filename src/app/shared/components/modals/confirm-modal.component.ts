@@ -8,10 +8,10 @@ import { Component, Input, Output, EventEmitter } from '@angular/core';
 })
 export class ConfirmModalComponent {
   @Input() visible = false;
-  @Input() title = 'ยืนยัน';
-  @Input() message = 'คุณต้องการดำเนินการนี้หรือไม่?';
-  @Input() confirmText = 'ยืนยัน';
-  @Input() cancelText = 'ยกเลิก';
+  @Input() title = 'common.confirm';
+  @Input() message = 'common.confirmMessage';
+  @Input() confirmText = 'common.confirm';
+  @Input() cancelText = 'common.cancel';
   @Output() onConfirm = new EventEmitter<void>();
   @Output() onCancel = new EventEmitter<void>();
 }

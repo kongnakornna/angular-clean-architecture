@@ -1,0 +1,141 @@
+<div class="page-header d-print-none mb-3">
+  <div class="row align-items-center">
+    <div class="col-auto">
+      <h2 class="page-title">{{ 'settings.schedule.title' | translate }}</h2>
+    </div>
+    <div class="col-auto ms-auto">
+      <a routerLink="/settings/schedule/create" class="btn btn-primary">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M12 5l0 14" /><path d="M5 12l14 0" /></svg>
+        {{ 'settings.schedule.create' | translate }}
+      </a>
+    </div>
+  </div>
+</div>
+
+<div class="card mb-3">
+  <div class="card-body">
+    <div class="row g-3">
+      <div class="col-md-3">
+        <label class="form-label">{{ 'settings.schedule.event' | translate }}</label>
+        <select class="form-select" [(ngModel)]="eventFilter">
+          <option value="">{{ 'settings.schedule.all' | translate }} {{ 'settings.schedule.event' | translate }}</option>
+          <option value="on">{{ 'settings.schedule.eventOn' | translate }}</option>
+          <option value="off">{{ 'settings.schedule.eventOff' | translate }}</option>
+        </select>
+      </div>
+      <div class="col-md-4">
+        <label class="form-label">{{ 'settings.schedule.keyword' | translate }}</label>
+        <input type="text" class="form-control" [(ngModel)]="searchTerm" [placeholder]="'settings.schedule.searchPlaceholder' | translate">
+      </div>
+      <div class="col-md-2 d-flex align-items-end">
+        <button class="btn btn-primary w-100" (click)="search()">{{ 'settings.schedule.search' | translate }}</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="card">
+  <div *ngIf="loading$ | async" class="text-center py-5"><div class="spinner-border text-primary"></div></div>
+  <div *ngIf="!(loading$ | async)" class="table-responsive">
+    <table class="table table-vcenter card-table">
+      <thead>
+        <tr>
+          <th>{{ 'settings.schedule.id' | translate }}</th>
+          <th>{{ 'settings.schedule.name' | translate }}</th>
+          <th>{{ 'settings.schedule.startTime' | translate }}</th>
+          <th>{{ 'settings.schedule.event' | translate }}</th>
+          <th class="text-center">{{ 'settings.schedule.sunday' | translate }}</th>
+          <th class="text-center">{{ 'settings.schedule.monday' | translate }}</th>
+          <th class="text-center">{{ 'settings.schedule.tuesday' | translate }}</th>
+          <th class="text-center">{{ 'settings.schedule.wednesday' | translate }}</th>
+          <th class="text-center">{{ 'settings.schedule.thursday' | translate }}</th>
+          <th class="text-center">{{ 'settings.schedule.friday' | translate }}</th>
+          <th class="text-center">{{ 'settings.schedule.saturday' | translate }}</th>
+          <th class="text-center">
+            {{ 'settings.schedule.status' | translate }}
+            <div class="d-flex gap-1 justify-content-center mt-1">
+              <button class="btn btn-sm btn-outline-success" (click)="toggleAllStatus('status', true)" title="Check All">
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="16" height="16" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M3.5 5.5l1.5 1.5l2.5 -2.5" /><path d="M3.5 11.5l1.5 1.5l2.5 -2.5" /><path d="M3.5 17.5l1.5 1.5l2.5 -2.5" /><path d="M11 6l9 0" /><path d="M11 12l9 0" /><path d="M11 18l9 0" /></svg>
+              </button>
+              <button class="btn btn-sm btn-outline-danger" (click)="toggleAllStatus('status', false)" title="Uncheck All">
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="16" height="16" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M9 6l11 0" /><path d="M9 12l11 0" /><path d="M9 18l11 0" /><path d="M5 6l0 .01" /><path d="M5 12l0 .01" /><path d="M5 18l0 .01" /></svg>
+              </button>
+            </div>
+          </th>
+          <th class="w-1"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of (items$ | async)">
+          <td>{{ item.id }}</td>
+          <td>{{ item.name }}</td>
+          <td>{{ item.startTime }}</td>
+          <td>
+            <span class="badge" [ngClass]="item.event === 'on' ? 'bg-green' : 'bg-red'">
+              {{ item.event === 'on' ? ('settings.schedule.eventOn' | translate) : ('settings.schedule.eventOff' | translate) }}
+            </span>
+          </td>
+          <td class="text-center">
+            <div class="form-check form-switch d-flex justify-content-center m-0 p-0" style="height:1.5rem">
+              <input class="form-check-input" type="checkbox" role="switch" [checked]="item.sunday"
+                (change)="toggleDayStatus(item.id, 'sunday', item.sunday)">
+            </div>
+          </td>
+          <td class="text-center">
+            <div class="form-check form-switch d-flex justify-content-center m-0 p-0" style="height:1.5rem">
+              <input class="form-check-input" type="checkbox" role="switch" [checked]="item.monday"
+                (change)="toggleDayStatus(item.id, 'monday', item.monday)">
+            </div>
+          </td>
+          <td class="text-center">
+            <div class="form-check form-switch d-flex justify-content-center m-0 p-0" style="height:1.5rem">
+              <input class="form-check-input" type="checkbox" role="switch" [checked]="item.tuesday"
+                (change)="toggleDayStatus(item.id, 'tuesday', item.tuesday)">
+            </div>
+          </td>
+          <td class="text-center">
+            <div class="form-check form-switch d-flex justify-content-center m-0 p-0" style="height:1.5rem">
+              <input class="form-check-input" type="checkbox" role="switch" [checked]="item.wednesday"
+                (change)="toggleDayStatus(item.id, 'wednesday', item.wednesday)">
+            </div>
+          </td>
+          <td class="text-center">
+            <div class="form-check form-switch d-flex justify-content-center m-0 p-0" style="height:1.5rem">
+              <input class="form-check-input" type="checkbox" role="switch" [checked]="item.thursday"
+                (change)="toggleDayStatus(item.id, 'thursday', item.thursday)">
+            </div>
+          </td>
+          <td class="text-center">
+            <div class="form-check form-switch d-flex justify-content-center m-0 p-0" style="height:1.5rem">
+              <input class="form-check-input" type="checkbox" role="switch" [checked]="item.friday"
+                (change)="toggleDayStatus(item.id, 'friday', item.friday)">
+            </div>
+          </td>
+          <td class="text-center">
+            <div class="form-check form-switch d-flex justify-content-center m-0 p-0" style="height:1.5rem">
+              <input class="form-check-input" type="checkbox" role="switch" [checked]="item.saturday"
+                (change)="toggleDayStatus(item.id, 'saturday', item.saturday)">
+            </div>
+          </td>
+          <td class="text-center">
+            <div class="form-check form-switch d-flex justify-content-center m-0 p-0" style="height:1.5rem">
+              <input class="form-check-input" type="checkbox" role="switch" [checked]="item.status"
+                (change)="toggleDayStatus(item.id, 'status', item.status)">
+            </div>
+          </td>
+          <td>
+            <div class="btn-list flex-nowrap">
+              <a [routerLink]="['/settings/schedule', item.id, 'edit']" class="btn btn-sm btn-warning me-1">{{ 'settings.schedule.edit' | translate }}</a>
+              <a [routerLink]="['/settings/schedule', item.id, 'data']" class="btn btn-sm btn-success me-1">{{ 'settings.schedule.detail' | translate }}</a>
+              <a [routerLink]="['/settings/schedule', item.id, 'device']" class="btn btn-sm btn-success me-1">{{ 'settings.schedule.device' | translate }}</a>
+              <button class="btn btn-sm btn-danger" (click)="deleteItem(item.id, item.name)">{{ 'settings.schedule.delete' | translate }}</button>
+            </div>
+          </td>
+        </tr>
+        <tr *ngIf="(items$ | async)?.length === 0">
+          <td colspan="13" class="text-center text-secondary py-4">{{ 'settings.schedule.noData' | translate }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

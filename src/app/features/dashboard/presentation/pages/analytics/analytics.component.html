@@ -1,39 +1,97 @@
-<div class="row g-3">
-  <div class="col-md-3" *ngFor="let stat of stats">
-    <div class="card">
-      <div class="card-body">
-        <div class="subheader">{{ stat.label }}</div>
-        <div class="h1 mb-0">{{ stat.value }}</div>
-        <div class="d-flex align-items-baseline">
-          <span class="text-green me-1">{{ stat.change }}</span>
-          <span class="text-secondary">{{ 'analytics.comparedToLastMonth' | translate }}</span>
-        </div>
-      </div>
-    </div>
+<div *ngIf="loading$ | async" class="text-center py-5">
+  <div class="spinner-border text-primary" role="status">
+    <span class="visually-hidden">{{ 'dashboard.loading' | translate }}</span>
   </div>
 </div>
 
-<div class="row g-3 mt-3">
-  <div class="col-md-8">
-    <div class="card">
-      <div class="card-header">
-        <h3 class="card-title">{{ 'analytics.monthlySales' | translate }}</h3>
+<div *ngIf="(stats$ | async) as s">
+  <div class="row g-3">
+    <div class="col-md-3">
+      <div class="card">
+        <div class="card-body">
+          <div class="subheader">{{ 'dashboard.totalDevices' | translate }}</div>
+          <div class="h1 mb-0">{{ s.totalDevices | number }}</div>
+        </div>
       </div>
-      <div class="card-body">
-        <div id="chart-monthly-sales" style="height: 250px; background: var(--tblr-bg-surface-secondary); border-radius: 4px; display: flex; align-items: center; justify-content: center">
-          <span class="text-secondary">{{ 'analytics.monthlySalesChart' | translate }}</span>
+    </div>
+    <div class="col-md-3">
+      <div class="card">
+        <div class="card-body">
+          <div class="subheader">{{ 'dashboard.onlineDevices' | translate }}</div>
+          <div class="h1 mb-0">{{ s.onlineDevices | number }}</div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-3">
+      <div class="card">
+        <div class="card-body">
+          <div class="subheader">{{ 'dashboard.todayCommands' | translate }}</div>
+          <div class="h1 mb-0">{{ s.todayCommands | number }}</div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-3">
+      <div class="card">
+        <div class="card-body">
+          <div class="subheader">{{ 'dashboard.activeAlerts' | translate }}</div>
+          <div class="h1 mb-0">{{ s.activeAlerts | number }}</div>
         </div>
       </div>
     </div>
   </div>
-  <div class="col-md-4">
-    <div class="card">
-      <div class="card-header">
-        <h3 class="card-title">{{ 'analytics.workDistribution' | translate }}</h3>
+
+  <div class="row g-3 mt-3">
+    <div class="col-md-8">
+      <div class="card">
+        <div class="card-header">
+          <h3 class="card-title">{{ 'dashboard.revenueMonthly' | translate }}</h3>
+        </div>
+        <div class="card-body">
+          <div *ngIf="(revenue$ | async)?.length; else noRevenueData"
+               class="d-flex align-items-end" style="height: 250px; gap: 8px;">
+            <div *ngFor="let d of (revenue$ | async)" class="flex-fill text-center">
+              <div class="bg-primary rounded-top" [style.height.%]="revenueBarHeight(d.amount, revenue$ | async)" style="min-height: 10px;"></div>
+              <small class="text-secondary mt-1 d-block">{{ d.period }}</small>
+            </div>
+          </div>
+          <ng-template #noRevenueData>
+            <div class="d-flex align-items-center justify-content-center" style="height: 250px;">
+              <span class="text-secondary">{{ 'dashboard.noData' | translate }}</span>
+            </div>
+          </ng-template>
+        </div>
       </div>
-      <div class="card-body">
-        <div id="chart-distribution" style="height: 250px; background: var(--tblr-bg-surface-secondary); border-radius: 4px; display: flex; align-items: center; justify-content: center">
-          <span class="text-secondary">{{ 'analytics.pieChart' | translate }}</span>
+    </div>
+    <div class="col-md-4">
+      <div class="card">
+        <div class="card-header">
+          <h3 class="card-title">{{ 'analytics.summary' | translate }}</h3>
+        </div>
+        <div class="list-group list-group-flush">
+          <div class="list-group-item">
+            <div class="d-flex justify-content-between">
+              <span>{{ 'dashboard.totalDevices' | translate }}</span>
+              <strong>{{ s.totalDevices | number }}</strong>
+            </div>
+          </div>
+          <div class="list-group-item">
+            <div class="d-flex justify-content-between">
+              <span>{{ 'dashboard.onlineDevices' | translate }}</span>
+              <strong>{{ s.onlineDevices | number }}</strong>
+            </div>
+          </div>
+          <div class="list-group-item">
+            <div class="d-flex justify-content-between">
+              <span>{{ 'dashboard.todayCommands' | translate }}</span>
+              <strong>{{ s.todayCommands | number }}</strong>
+            </div>
+          </div>
+          <div class="list-group-item">
+            <div class="d-flex justify-content-between">
+              <span>{{ 'dashboard.activeAlerts' | translate }}</span>
+              <strong>{{ s.activeAlerts | number }}</strong>
+            </div>
+          </div>
         </div>
       </div>
     </div>

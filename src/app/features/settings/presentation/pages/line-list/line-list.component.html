@@ -1,0 +1,42 @@
+<div class="card mb-3">
+  <div class="card-body">
+    <div class="row g-3">
+      <div class="col-md-4">
+        <input type="text" class="form-control" [(ngModel)]="searchTerm" [placeholder]="'settings.line.searchPlaceholder' | translate">
+      </div>
+      <div class="col-md-2">
+        <button class="btn btn-primary me-2" (click)="search()">{{ 'settings.line.search' | translate }}</button>
+        <button class="btn btn-outline-secondary" (click)="searchTerm = ''; search()">{{ 'settings.line.reset' | translate }}</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="card">
+  <div *ngIf="loading$ | async" class="text-center py-5"><div class="spinner-border text-primary"></div></div>
+  <div *ngIf="!(loading$ | async)" class="table-responsive">
+    <table class="table table-vcenter card-table">
+      <thead>
+        <tr>
+          <th>{{ 'settings.line.name' | translate }}</th>
+          <th>{{ 'settings.line.channelAccessToken' | translate }}</th>
+          <th>{{ 'settings.line.userId' | translate }}</th>
+          <th>{{ 'settings.line.status' | translate }}</th>
+          <th class="w-1"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of (items$ | async)">
+          <td>{{ item.name }}</td>
+          <td><code>{{ item.channelAccessToken }}</code></td>
+          <td>{{ item.userId }}</td>
+          <td><span class="badge" [ngClass]="item.status ? 'bg-green' : 'bg-secondary'">{{ item.status ? ('settings.line.active' | translate) : ('settings.line.inactive' | translate) }}</span></td>
+          <td><a [routerLink]="['/settings/line', item.id, 'edit']" class="btn btn-sm btn-primary">{{ 'settings.line.edit' | translate }}</a></td>
+        </tr>
+        <tr *ngIf="(items$ | async)?.length === 0">
+          <td colspan="5" class="text-center text-secondary py-4">{{ 'settings.line.noData' | translate }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

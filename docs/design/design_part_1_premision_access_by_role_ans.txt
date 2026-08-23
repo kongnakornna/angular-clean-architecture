@@ -1,0 +1,14 @@
+
+premision access by role
+
+1.role config
+2.role access to menu
+3.role access to modules
+4.role access to funtion  and action exsample  insert update delete viewdata access 
+
+C:\github\angular-clean-architecture\docs\design\design_part_1_premision_access_by_role.md
+
+
+Approach A:
+
+Approach A:

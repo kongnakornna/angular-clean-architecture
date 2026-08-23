@@ -1,0 +1,39 @@
+services:
+  dev:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: development
+    container_name: icmonweb-dev
+    env_file:
+      - .env
+    ports:
+      - "3010:4200"
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    volumes:
+      - ./src:/app/src
+    develop:
+      watch:
+        - action: sync
+          path: ./src
+          target: /app/src
+        - action: rebuild
+          path: ./package.json
+        - action: rebuild
+          path: ./angular.json
+        - action: rebuild
+          path: ./tailwind.config.js
+        - action: rebuild
+          path: ./tsconfig.json
+
+  production:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: production
+    container_name: icmonweb
+    ports:
+      - "3010:80"
+    extra_hosts:
+      - "host.docker.internal:host-gateway"

@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scrutinize Report: Auth Login API</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: #f5f5f5; color: #333; line-height: 1.6; }
+        .container { max-width: 1000px; margin: 0 auto; padding: 20px; }
+        .header { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 30px; border-radius: 10px; margin-bottom: 30px; }
+        .header h1 { font-size: 24px; margin-bottom: 10px; }
+        .header p { opacity: 0.9; }
+        .section { background: white; border-radius: 10px; padding: 25px; margin-bottom: 20px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
+        .section h2 { color: #333; font-size: 20px; margin-bottom: 15px; border-bottom: 2px solid #667eea; padding-bottom: 10px; }
+        .section h3 { color: #555; font-size: 16px; margin: 15px 0 10px 0; }
+        .finding { border-left: 4px solid #ddd; padding: 15px; margin: 15px 0; background: #fafafa; border-radius: 0 8px 8px 0; }
+        .finding.blocker { border-left-color: #e74c3c; background: #fdf2f2; }
+        .finding.major { border-left-color: #f39c12; background: #fef9e7; }
+        .finding.nit { border-left-color: #95a5a6; background: #f8f9fa; }
+        .finding-title { font-weight: bold; font-size: 16px; margin-bottom: 8px; }
+        .finding-blocker { color: #e74c3c; }
+        .finding-major { color: #f39c12; }
+        .finding-nit { color: #95a5a6; }
+        .finding-detail { margin: 8px 0; }
+        .finding-detail strong { color: #555; }
+        .evidence { background: #ecf0f1; padding: 10px; border-radius: 5px; font-family: monospace; font-size: 13px; margin: 8px 0; white-space: pre-wrap; word-break: break-all; }
+        .fix { background: #d5f5e3; padding: 10px; border-radius: 5px; margin: 8px 0; }
+        .verdict { text-align: center; padding: 20px; }
+        .verdict-badge { display: inline-block; padding: 12px 30px; border-radius: 25px; font-size: 18px; font-weight: bold; text-transform: uppercase; }
+        .verdict-rework { background: #f39c12; color: white; }
+        .verdict-ship { background: #27ae60; color: white; }
+        .verdict-fix-then-ship { background: #f1c40f; color: #333; }
+        .verdict-reject { background: #e74c3c; color: white; }
+        .reason { margin-top: 15px; font-size: 14px; color: #666; }
+        code { background: #ecf0f1; padding: 2px 6px; border-radius: 3px; font-family: monospace; font-size: 13px; }
+        .checklist { margin: 10px 0; }
+        .checklist li { margin: 5px 0; padding-left: 5px; }
+        .checklist li::marker { color: #667eea; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Scrutinize Report: Auth Login API</h1>
+            <p>วันที่: 12 กรกฎาคม 2569 | ตรวจสอบ: http://localhost:5000/api/auth/login</p>
+        </div>
+
+        <div class="section">
+            <h2>1. เจตนา (Intent)</h2>
+            <p><strong>เป้าหมาย:</strong> เรียก API <code>http://localhost:5000/api/auth/login</code> เพื่อเข้าสู่ระบบ และตรวจสอบว่า API อื่นๆ สามารถเรียกใช้งานได้หรือไม่</p>
+            <p style="margin-top: 10px;"><strong>มีวิธีง่ายกว่าไหม?</strong> ไม่ — ปัญหาไม่ใช่เรื่องวิธีทำ แต่เป็นเรื่อง <strong>configuration mismatch</strong> ระหว่าง frontend กับ backend</p>
+        </div>
+
+        <div class="section">
+            <h2>2. Code Path ที่ตรวจสอบ</h2>
+            <div class="evidence">LoginComponent
+    ↓
+LoginUseCase.execute()
+    ↓
+AuthRepositoryImpl.login()
+    ↓
+AuthApiDataSource.login()
+    ↓
+POST ${apiBaseUrl}/auth/login
+    ↓
+= http://localhost:5000/api/auth/login</div>
+        </div>
+
+        <div class="section">
+            <h2>3. Findings</h2>
+
+            <div class="finding blocker">
+                <div class="finding-title finding-blocker">BLOCKER #1: Backend ไม่ได้รันอยู่</div>
+                <div class="finding-detail">
+                    <strong>สิ่งที่เจอ:</strong> Backend server ที่ port 5000 ไม่ได้รันอยู่ ทำให้ทุก API call fail ทั้งหมด
+                </div>
+                <div class="finding-detail">
+                    <strong>ทำไมถึงสำคัญ:</strong> ถ้า server ไม่รัน ไม่ว่าจะแก้โค้ดอย่างไรก็เรียก API ไม่ได้
+                </div>
+                <div class="finding-detail">
+                    <strong>หลักฐาน:</strong> ไม่สามารถ verify จากโค้ดได้ ต้องตรวจสอบ server จริง
+                </div>
+                <div class="fix">
+                    <strong>แนวทางแก้ไข:</strong> 
+                    <ul class="checklist">
+                        <li>รัน backend server ที่ port 5000</li>
+                        <li>ทดสอบด้วย <code>curl http://localhost:5000/ping</code> หรือ <code>http://localhost:5000/health</code></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="finding blocker">
+                <div class="finding-title finding-blocker">BLOCKER #2: Path Mismatch ระหว่าง Frontend/Backend</div>
+                <div class="finding-detail">
+                    <strong>สิ่งที่เจอ:</strong> Frontend เรียก <code>/api/auth/login</code> แต่ backend อาจตั้ง path ไว้เป็น <code>/auth/login</code> (ไม่มี <code>/api</code> prefix)
+                </div>
+                <div class="finding-detail">
+                    <strong>ทำไมถึงสำคัญ:</strong> Path ไม่ตรงกัน → 404 Not Found ทุกครั้ง
+                </div>
+                <div class="finding-detail">
+                    <strong>หลักฐาน:</strong>
+                    <div class="evidence">app.config.ts:49 → apiBaseUrl = 'http://localhost:5000/api'
+api.config.ts:3 → login: '/auth/login'
+Result → http://localhost:5000/api/auth/login
+
+ถ้า backend route = '/auth/login' → ไม่ตรงกัน!</div>
+                </div>
+                <div class="fix">
+                    <strong>แนวทางแก้ไข:</strong> 
+                    <ul class="checklist">
+                        <li>ตรวจสอบ backend ว่า route จริงคืออะไร</li>
+                        <li>ถ้า backend ใช้ <code>/auth/login</code> ให้แก้ <code>api.config.ts</code> เป็น <code>login: '/login'</code></li>
+                        <li>หรือแก้ <code>app.config.ts:49</code> เป็น <code>apiBaseUrl: environment.useProxy ? '/api' : environment.apiTargetUrl</code> (ลบ <code>/api</code> ออก)</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="finding major">
+                <div class="finding-title finding-major">MAJOR #1: Token Storage ซ้ำซ้อน</div>
+                <div class="finding-detail">
+                    <strong>สิ่งที่เจอ:</strong> ทั้ง <code>AuthRepositoryImpl.login()</code> และ <code>LoginUseCase.execute()</code> ต่างเก็บ token ลง localStorage ทำให้เก็บซ้ำกัน 2 ครั้ง
+                </div>
+                <div class="finding-detail">
+                    <strong>ทำไมถึงสำคัญ:</strong> Dead code ที่ทำให้สับสน และอาจสร้างปัญหาถ้ามี logic ที่ต้องพึ่งพา "การ set ครั้งแรก"
+                </div>
+                <div class="finding-detail">
+                    <strong>หลักฐาน:</strong>
+                    <div class="evidence">auth.repository.impl.ts:18-19:
+localStorage.setItem(TOKEN_KEY, dto.accessToken);
+localStorage.setItem(REFRESH_TOKEN_KEY, dto.refreshToken);
+
+login.use-case.ts:16-20:
+localStorage.setItem(TOKEN_KEY, response.accessToken);
+localStorage.setItem(REFRESH_TOKEN_KEY, response.refreshToken);
+localStorage.setItem(EXPIRES_IN_KEY, ...);
+localStorage.setItem(TOKEN_TYPE_KEY, ...);
+localStorage.setItem(USER_KEY, ...);</div>
+                </div>
+                <div class="fix">
+                    <strong>แนวทางแก้ไข:</strong> เลือกที่เดียว — แนะนำให้เก็บใน <code>LoginUseCase</code> เพราะมี logic เพิ่มเติม (expiresIn, tokenType, user) และลบออกจาก <code>AuthRepositoryImpl</code>
+                </div>
+            </div>
+
+            <div class="finding major">
+                <div class="finding-title finding-major">MAJOR #2: User Permissions ว่างเปล่าเสมอ</div>
+                <div class="finding-detail">
+                    <strong>สิ่งที่เจอ:</strong> <code>AuthRepositoryImpl.mapToUser()</code> hardcode <code>permissions: []</code> เสมอ ไม่เคยดึง permissions จริงมาใส่
+                </div>
+                <div class="finding-detail">
+                    <strong>ทำไมถึงสำคัญ:</strong> <code>PermissionGuard</code> ที่เช็ค <code>job_card.view</code> จะไม่ทำงานถูกต้อง เพราะ permissions ว่างเสมอ → user ทุกคนจะ access ไม่ได้
+                </div>
+                <div class="finding-detail">
+                    <strong>หลักฐาน:</strong>
+                    <div class="evidence">auth.repository.impl.ts:175:
+permissions: [], // ไม่เคยดึง permissions จริงมาใส่</div>
+                </div>
+                <div class="fix">
+                    <strong>แนวทางแก้ไข:</strong> เรียก <code>getPermissions()</code> หลัง login สำเร็จ แล้วใส่ permissions ลงใน User entity
+                </div>
+            </div>
+
+            <div class="finding nit">
+                <div class="finding-title finding-nit">NIT #1: Root Level Variants ไม่ได้ใช้งาน</div>
+                <div class="finding-detail">
+                    <strong>สิ่งที่เจอ:</strong> <code>api.config.ts:16-17</code> กำหนด <code>loginRoot: '/login'</code> และ <code>signinRoot: '/signin'</code> แต่ไม่มีโค้ดไหนเรียกใช้
+                </div>
+                <div class="finding-detail">
+                    <strong>ทำไมถึงสำคัญ:</strong> Dead code ที่อาจทำให้สับสน
+                </div>
+                <div class="fix">
+                    <strong>แนวทางแก้ไข:</strong> ลบออก หรือใช้งานให้ถูกต้อง
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>4. Verdict</h2>
+            <div class="verdict">
+                <div class="verdict-badge verdict-rework">REWORK</div>
+                <div class="reason">
+                    <strong>เหตุผลใหญ่สุด:</strong> ปัญหาเชิง configuration ทำให้ไม่สามารถเรียก API ได้เลย ต้องแก้ให้ path ตรงกันก่อน แล้วค่อยแก้เรื่อง permissions ที่ไม่ทำงาน
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>5. แผนการแก้ไข (Recommended Order)</h2>
+            <ol>
+                <li><strong>ตรวจสอบ backend server</strong> — รันอยู่ที่ port 5000 หรือไม่</li>
+                <li><strong>ตรวจสอบ backend route</strong> — <code>/auth/login</code> หรือ <code>/api/auth/login</code></li>
+                <li><strong>แก้ path ให้ตรง</strong> — แก้ <code>api.config.ts</code> หรือ <code>app.config.ts</code></li>
+                <li><strong>ลบ token storage ซ้ำ</strong> — เลือกที่เดียว</li>
+                <li><strong>เพิ่ม permissions fetch</strong> — หลัง login สำเร็จ</li>
+                <li><strong>ลบ root level variants</strong> — cleanup dead code</li>
+            </ol>
+        </div>
+    </div>
+</body>
+</html>

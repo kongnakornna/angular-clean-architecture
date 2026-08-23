@@ -1,4 +1,7 @@
-import { Component, HostBinding } from '@angular/core';
+import { Component, HostBinding, inject } from '@angular/core';
+import { Router, NavigationEnd } from '@angular/router';
+import { map, filter } from 'rxjs/operators';
+import { toSignal } from '@angular/core/rxjs-interop';
 
 @Component({
   selector: 'app-layout',
@@ -9,13 +12,21 @@ import { Component, HostBinding } from '@angular/core';
 export class AppLayoutComponent {
   @HostBinding('class.page') pageClass = true;
 
-  isSidebarCollapsed = false;
-  isSidebarEnd = false;
-  isSidebarDark = false;
-  sidebarBackground = '';
+  private router = inject(Router);
 
-  toggleSidebar(): void {
-    this.isSidebarCollapsed = !this.isSidebarCollapsed;
-    document.body.classList.toggle('sidebar-collapsed', this.isSidebarCollapsed);
-  }
+  isSettingsPage = toSignal(
+    this.router.events.pipe(
+      filter((e): e is NavigationEnd => e instanceof NavigationEnd),
+      map((e) => e.urlAfterRedirects.startsWith('/settings')),
+    ),
+    { initialValue: this.router.url.startsWith('/settings') },
+  );
+
+  isMonitoringPage = toSignal(
+    this.router.events.pipe(
+      filter((e): e is NavigationEnd => e instanceof NavigationEnd),
+      map((e) => e.urlAfterRedirects.startsWith('/monitoring')),
+    ),
+    { initialValue: this.router.url.startsWith('/monitoring') },
+  );
 }

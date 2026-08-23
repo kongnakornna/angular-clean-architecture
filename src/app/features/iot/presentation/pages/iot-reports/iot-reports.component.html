@@ -1,0 +1,100 @@
+<div class="page-header d-print-none">
+  <div class="row g-2 align-items-center">
+    <div class="col">
+      <div class="page-pretitle">{{ 'iot.subtitle' | translate }}</div>
+      <h1 class="page-title">{{ 'iot.reports' | translate }}</h1>
+    </div>
+  </div>
+</div>
+
+<div *ngIf="message$ | async as msg" class="alert" [class.alert-success]="msg.type === 'success'" [class.alert-danger]="msg.type === 'error'">
+  {{ msg.text }}
+</div>
+
+<div class="row g-3">
+  <div class="col-md-4">
+    <div class="card">
+      <div class="card-header">
+        <h3 class="card-title">{{ 'iot.generateReport' | translate }}</h3>
+      </div>
+      <div class="card-body">
+        <div class="mb-3">
+          <label class="form-label">{{ 'iot.reportType' | translate }}</label>
+          <select class="form-select" [(ngModel)]="selectedType">
+            <option *ngFor="let t of reportTypes" [value]="t.value">{{ t.label }}</option>
+          </select>
+        </div>
+        <div class="mb-3">
+          <label class="form-label">{{ 'iot.deviceId' | translate }}</label>
+          <input class="form-control" [(ngModel)]="selectedDeviceId" placeholder="Optional device ID">
+        </div>
+        <div class="row g-2 mb-3">
+          <div class="col">
+            <label class="form-label">{{ 'iot.startDate' | translate }}</label>
+            <input class="form-control" type="date" [(ngModel)]="startDate">
+          </div>
+          <div class="col">
+            <label class="form-label">{{ 'iot.endDate' | translate }}</label>
+            <input class="form-control" type="date" [(ngModel)]="endDate">
+          </div>
+        </div>
+        <div class="d-flex gap-2">
+          <button class="btn btn-primary" (click)="generate()" [disabled]="generating$ | async">
+            <span *ngIf="generating$ | async" class="spinner-border spinner-border-sm me-1"></span>
+            {{ 'iot.generate' | translate }}
+          </button>
+          <button class="btn btn-outline-secondary" (click)="exportData()" [disabled]="generating$ | async">
+            {{ 'iot.export' | translate }}
+          </button>
+        </div>
+        <hr>
+        <button class="btn btn-outline-danger btn-sm" (click)="cleanup()" [disabled]="generating$ | async">
+          {{ 'iot.cleanup' | translate }}
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-md-8">
+    <div class="card">
+      <div class="card-header">
+        <h3 class="card-title">{{ 'iot.reportHistory' | translate }}</h3>
+      </div>
+      <div *ngIf="loading$ | async" class="text-center py-5">
+        <div class="spinner-border text-primary" role="status">
+          <span class="visually-hidden">{{ 'iot.loading' | translate }}</span>
+        </div>
+      </div>
+      <div *ngIf="!(loading$ | async)" class="table-responsive">
+        <table class="table table-vcenter card-table">
+          <thead>
+            <tr>
+              <th>{{ 'iot.name' | translate }}</th>
+              <th>{{ 'iot.type' | translate }}</th>
+              <th>{{ 'iot.date' | translate }}</th>
+              <th>{{ 'iot.status' | translate }}</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let r of (reports$ | async)">
+              <td>{{ r.name }}</td>
+              <td>{{ r.type }}</td>
+              <td>{{ r.createdAt }}</td>
+              <td>
+                <span class="badge"
+                      [class.bg-green]="r.status === 'ready'"
+                      [class.bg-yellow]="r.status === 'generating'"
+                      [class.bg-red]="r.status === 'failed'">
+                  {{ r.status }}
+                </span>
+              </td>
+            </tr>
+            <tr *ngIf="(reports$ | async)?.length === 0">
+              <td colspan="4" class="text-center text-secondary py-4">{{ 'iot.noReports' | translate }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

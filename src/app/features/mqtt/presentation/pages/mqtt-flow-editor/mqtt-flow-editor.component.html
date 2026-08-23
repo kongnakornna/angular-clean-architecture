@@ -1,0 +1,311 @@
+<div class="flow-editor-layout">
+  <!-- Flow List Sidebar -->
+  <div class="flow-sidebar" [class.collapsed]="!showFlowList">
+    <div class="sidebar-header">
+      <h5 class="sidebar-title" *ngIf="showFlowList">Flows</h5>
+      <button class="btn btn-sm btn-icon" (click)="showFlowList = !showFlowList">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg>
+      </button>
+    </div>
+
+    <div *ngIf="showFlowList">
+      <div class="flow-list">
+        <div *ngFor="let flow of flows$ | async"
+             class="flow-item"
+             [class.active]="(selectedFlow$ | async)?.id === flow.id"
+             (click)="selectFlow(flow)">
+          <div class="flow-item-icon" [class.deployed]="flow.enabled">
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l3 7h7l-5.5 4 2 7L12 16l-6.5 4 2-7L2 9h7z"/></svg>
+          </div>
+          <div class="flow-item-info">
+            <div class="flow-item-name">{{ flow.name }}</div>
+            <div class="flow-item-meta">{{ flow.nodes.length }} nodes</div>
+          </div>
+          <div class="flow-item-status">
+            <span class="badge" [class.bg-green]="flow.enabled" [class.bg-secondary]="!flow.enabled">
+              {{ flow.enabled ? 'ON' : 'OFF' }}
+            </span>
+          </div>
+        </div>
+      </div>
+
+      <div class="new-flow-form">
+        <input class="form-control form-control-sm mb-1" placeholder="Flow name"
+               [(ngModel)]="newFlowName">
+        <input class="form-control form-control-sm mb-1" placeholder="Description"
+               [(ngModel)]="newFlowDesc">
+        <button class="btn btn-sm btn-primary w-100" (click)="createFlow()">+ New Flow</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Main Canvas Area -->
+  <div class="flow-canvas-area" *ngIf="(selectedFlow$ | async) as flow">
+    <!-- Toolbar -->
+    <div class="canvas-toolbar">
+      <div class="toolbar-left">
+        <span class="flow-name-display">{{ flow.name }}</span>
+        <span class="badge ms-2" [class.bg-green]="flow.enabled" [class.bg-secondary]="!flow.enabled">
+          {{ flow.enabled ? 'Deployed' : 'Stopped' }}
+        </span>
+        <span *ngIf="isSimulating" class="badge bg-blue ms-1">
+          <span class="spinner-grow spinner-grow-sm me-1" style="width:8px;height:8px"></span>Simulating
+        </span>
+      </div>
+      <div class="toolbar-right">
+        <!-- Zoom controls -->
+        <div class="btn-group btn-group-sm me-2">
+          <button class="btn btn-outline-secondary" (click)="zoomBy(-0.1)" title="Zoom Out">
+            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
+          </button>
+          <button class="btn btn-outline-secondary" (click)="zoomFit()" title="Reset Zoom">
+            {{ (canvasTransform.scale * 100) | number:'1.0-0' }}%
+          </button>
+          <button class="btn btn-outline-secondary" (click)="zoomBy(0.1)" title="Zoom In">
+            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
+          </button>
+        </div>
+
+        <button class="btn btn-sm btn-success" (click)="deployFlowAction(flow)" [disabled]="flow.enabled">
+          <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+          Deploy
+        </button>
+        <button class="btn btn-sm btn-danger" (click)="stopFlowAction(flow)" [disabled]="!flow.enabled">
+          <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/></svg>
+          Stop
+        </button>
+        <button class="btn btn-sm btn-primary" (click)="saveCurrentFlow()" [disabled]="saving$ | async">
+          {{ (saving$ | async) ? 'Saving...' : 'Save' }}
+        </button>
+
+        <!-- Export/Import -->
+        <div class="btn-group btn-group-sm">
+          <button class="btn btn-outline-secondary" (click)="exportFlow()" title="Export JSON">
+            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+          </button>
+          <button class="btn btn-outline-secondary" (click)="triggerImport()" title="Import JSON">
+            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+          </button>
+        </div>
+
+        <button class="btn btn-sm btn-outline-danger" (click)="deleteFlowConfirm(flow.id)">
+          <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18"/><path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6"/><path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"/></svg>
+        </button>
+      </div>
+    </div>
+    <input type="file" #fileInput accept=".json" (change)="importFlow($event)" style="display:none">
+
+    <div class="canvas-body">
+      <!-- Node Palette -->
+      <div class="node-palette">
+        <div class="palette-title">Nodes</div>
+        <div *ngFor="let type of nodeTypes"
+             class="palette-node"
+             [style.border-left-color]="nodeTemplates[type].color"
+             (mousedown)="addNodeToCanvas(type, $event)">
+          <div class="palette-node-icon" [style.background]="nodeTemplates[type].color">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" *ngIf="type === 'sensor'"><path d="M14 4v10.54a4 4 0 1 1-4 0V4a2 2 0 0 1 4 0Z"/></svg>
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" *ngIf="type === 'transform'"><path d="M21 2l-2 2m-7.61 7.61a5.5 5.5 0 1 1-7.778 7.778 5.5 5.5 0 0 1 7.777-7.777zm0 0L15.5 7.5m0 0l3 3L22 7l-3-3m-3.5 3.5L19 4"/></svg>
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" *ngIf="type === 'filter'"><polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"/></svg>
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" *ngIf="type === 'mqtt-output'"><path d="M2 12a5 5 0 0 0 5 5 8 8 0 0 1 5 2 8 8 0 0 1 5-2 5 5 0 0 0 5-5V7h-5a8 8 0 0 0-5 2 8 8 0 0 0-5-2H2Z"/></svg>
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" *ngIf="type === 'junction'"><circle cx="12" cy="12" r="3"/><path d="M6 12h6m-3-3v6"/></svg>
+          </div>
+          <span class="palette-node-label">{{ nodeTemplates[type].label }}</span>
+        </div>
+      </div>
+
+      <!-- SVG Canvas -->
+      <div class="canvas-container" #canvasContainer
+           (mousedown)="onCanvasMouseDown($event)"
+           (mousemove)="onCanvasMouseMove($event)"
+           (mouseup)="onCanvasMouseUp()"
+           (wheel)="onCanvasWheel($event)">
+        <svg class="flow-svg canvas-bg"
+             [attr.viewBox]="canvasTransform.x + ' ' + canvasTransform.y + ' ' + (1200 / canvasTransform.scale) + ' ' + (800 / canvasTransform.scale)"
+             xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <pattern id="grid" width="20" height="20" patternUnits="userSpaceOnUse"
+                     [attr.patternTransform]="'translate(' + canvasTransform.x + ',' + canvasTransform.y + ') scale(' + canvasTransform.scale + ')'">
+              <circle cx="10" cy="10" r="0.5" fill="#ddd"/>
+            </pattern>
+            <filter id="glow">
+              <feGaussianBlur stdDeviation="2" result="blur"/>
+              <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+            </filter>
+          </defs>
+          <rect width="100%" height="100%" fill="url(#grid)"/>
+
+          <!-- Connections -->
+          <g class="connections-layer">
+            <g *ngFor="let conn of flow.connections; trackBy: trackByConnId">
+              <path [attr.d]="getConnectionPath(conn)" class="connection-line"
+                    (contextmenu)="$event.preventDefault(); removeConnection(conn.id)"/>
+            </g>
+          </g>
+
+          <!-- Animated particles -->
+          <g *ngIf="isSimulating">
+            <ng-container *ngFor="let p of particles; trackBy: trackByParticleId">
+              <circle *ngIf="getParticlePosition(p) as pos"
+                      [attr.cx]="pos.x" [attr.cy]="pos.y" r="4"
+                      class="data-particle" filter="url(#glow)"/>
+            </ng-container>
+          </g>
+
+          <!-- Temp connection -->
+          <path *ngIf="connectState" [attr.d]="getTempConnectionPath()" class="connection-line temp"/>
+
+          <!-- Nodes -->
+          <g *ngFor="let node of flow.nodes; trackBy: trackByNodeId"
+             class="flow-node"
+             [attr.transform]="'translate(' + node.x + ',' + node.y + ')'"
+             (mousedown)="onNodeMouseDown(node, $event)"
+             (contextmenu)="onNodeContextMenu(node, $event)"
+             [class.selected]="(selectedNode$ | async)?.id === node.id">
+            <rect x="0" y="0" width="180" height="60" rx="8" ry="8"
+                  class="node-body" [attr.stroke]="nodeTemplates[node.type].color"
+                  [class.selected-body]="(selectedNode$ | async)?.id === node.id"/>
+            <rect x="0" y="0" width="180" height="22" rx="8" ry="8"
+                  [attr.fill]="nodeTemplates[node.type].color" opacity="0.15"/>
+            <rect x="0" y="14" width="180" height="8" [attr.fill]="nodeTemplates[node.type].color" opacity="0.15"/>
+            <text x="10" y="14" class="node-type-label" [attr.fill]="nodeTemplates[node.type].color">
+              {{ nodeTemplates[node.type].label }}
+            </text>
+            <text x="10" y="42" class="node-name-label">{{ node.label }}</text>
+
+            <!-- Ports -->
+            <g *ngFor="let port of node.ports">
+              <circle *ngIf="port.direction === 'input'"
+                      [attr.cx]="0" [attr.cy]="30" r="6"
+                      class="port input-port" [ngClass]="getPortHighlightClass(node, port.id)"
+                      (mousedown)="$event.stopPropagation()"
+                      (mouseup)="onPortMouseUp(node, port.id, $event)"/>
+              <circle *ngIf="port.direction === 'output'"
+                      [attr.cx]="180" [attr.cy]="30" r="6"
+                      class="port output-port"
+                      (mousedown)="onPortMouseDown(node, port.id, $event)"/>
+            </g>
+          </g>
+        </svg>
+      </div>
+
+      <!-- Config Panel -->
+      <div class="config-panel" [class.open]="showConfig">
+        <ng-container *ngIf="(selectedNode$ | async) as node">
+          <div class="config-header">
+            <h6 class="config-title">Configure Node</h6>
+            <button class="btn btn-sm btn-icon" (click)="showConfig = false; selectedNode$.next(null)">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6 6 18M6 6l12 12"/></svg>
+            </button>
+          </div>
+          <div class="config-body">
+            <div class="config-field">
+              <label class="form-label">Label</label>
+              <input class="form-control form-control-sm" [ngModel]="node.label" (ngModelChange)="updateNodeLabel($event)">
+            </div>
+            <div class="config-field">
+              <label class="form-label">Type</label>
+              <input class="form-control form-control-sm" [value]="node.type" disabled>
+            </div>
+            <div class="config-section-title">Parameters</div>
+
+            <ng-container *ngIf="node.type === 'sensor'">
+              <div class="config-field">
+                <label class="form-label">Sensor</label>
+                <select class="form-select form-select-sm" [ngModel]="node.config['sensorId']" (ngModelChange)="updateNodeConfig('sensorId', $event)">
+                  <option value="">-- Select Sensor --</option>
+                  <option *ngFor="let s of sensors$ | async" [value]="s.id">{{ s.name }} ({{ s.unit }})</option>
+                </select>
+              </div>
+              <div class="config-field">
+                <label class="form-label">Sample Interval (ms)</label>
+                <input type="number" class="form-control form-control-sm" [ngModel]="node.config['sampleInterval']" (ngModelChange)="updateNodeConfig('sampleInterval', $event)">
+              </div>
+            </ng-container>
+
+            <ng-container *ngIf="node.type === 'transform'">
+              <div class="config-field">
+                <label class="form-label">Expression</label>
+                <textarea class="form-control form-control-sm" rows="3" [ngModel]="node.config['expression']" (ngModelChange)="updateNodeConfig('expression', $event)" placeholder="e.g. Math.round(value * 10) / 10"></textarea>
+                <div class="form-text">Use 'value' as the input variable</div>
+              </div>
+            </ng-container>
+
+            <ng-container *ngIf="node.type === 'filter'">
+              <div class="config-field">
+                <label class="form-label">Min Threshold</label>
+                <input type="number" class="form-control form-control-sm" [ngModel]="node.config['minThreshold']" (ngModelChange)="updateNodeConfig('minThreshold', $event)">
+              </div>
+              <div class="config-field">
+                <label class="form-label">Max Threshold</label>
+                <input type="number" class="form-control form-control-sm" [ngModel]="node.config['maxThreshold']" (ngModelChange)="updateNodeConfig('maxThreshold', $event)">
+              </div>
+            </ng-container>
+
+            <ng-container *ngIf="node.type === 'mqtt-output'">
+              <div class="config-field">
+                <label class="form-label">MQTT Topic</label>
+                <input class="form-control form-control-sm" [ngModel]="node.config['topic']" (ngModelChange)="updateNodeConfig('topic', $event)" placeholder="factory/dashboard/data">
+              </div>
+              <div class="config-field">
+                <label class="form-label">QoS Level</label>
+                <select class="form-select form-select-sm" [ngModel]="node.config['qos']" (ngModelChange)="updateNodeConfig('qos', $event)">
+                  <option [value]="0">0 - At most once</option>
+                  <option [value]="1">1 - At least once</option>
+                  <option [value]="2">2 - Exactly once</option>
+                </select>
+              </div>
+            </ng-container>
+
+            <ng-container *ngIf="node.type === 'junction'">
+              <div class="form-text">Junction splits input to multiple outputs. No configuration needed.</div>
+            </ng-container>
+
+            <hr>
+            <button class="btn btn-sm btn-outline-primary w-100 mb-2" (click)="duplicateNode(node)">
+              Duplicate Node
+            </button>
+            <button class="btn btn-sm btn-outline-danger w-100" (click)="removeNode(node.id)">
+              Delete Node
+            </button>
+          </div>
+        </ng-container>
+      </div>
+    </div>
+  </div>
+
+  <!-- Context Menu -->
+  <div class="context-menu" *ngIf="contextMenu"
+       [style.left.px]="contextMenu.x" [style.top.px]="contextMenu.y"
+       (click)="$event.stopPropagation()">
+    <div class="context-menu-item" (click)="duplicateNode(contextMenu.node)">
+      <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+      Duplicate
+    </div>
+    <div class="context-menu-item" (click)="selectNode(contextMenu.node); contextMenu = null">
+      <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
+      Configure
+    </div>
+    <div class="context-menu-divider"></div>
+    <div class="context-menu-item danger" (click)="removeNode(contextMenu.node.id)">
+      <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18"/><path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6"/><path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"/></svg>
+      Delete
+    </div>
+  </div>
+
+  <!-- Empty state -->
+  <div class="empty-state" *ngIf="!(selectedFlow$ | async) && !(loading$ | async)">
+    <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" class="text-secondary mb-3">
+      <path d="M12 2l3 7h7l-5.5 4 2 7L12 16l-6.5 4 2-7L2 9h7z"/>
+    </svg>
+    <h5>No Flow Selected</h5>
+    <p class="text-secondary">Create a new flow or select one from the sidebar.</p>
+  </div>
+
+  <!-- Loading -->
+  <div class="loading-overlay" *ngIf="loading$ | async">
+    <div class="spinner-border text-primary" role="status">
+      <span class="visually-hidden">Loading...</span>
+    </div>
+  </div>
+</div>

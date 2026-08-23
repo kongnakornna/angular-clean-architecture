@@ -1,0 +1,48 @@
+<div class="card mb-3">
+  <div class="card-body">
+    <div class="row g-3">
+      <div class="col-md-4">
+        <input type="text" class="form-control" [(ngModel)]="searchTerm" [placeholder]="'settings.tokens.searchPlaceholder' | translate">
+      </div>
+      <div class="col-md-2">
+        <button class="btn btn-primary me-2" (click)="search()">{{ 'settings.tokens.search' | translate }}</button>
+        <button class="btn btn-outline-secondary" (click)="searchTerm = ''; search()">{{ 'settings.tokens.reset' | translate }}</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="card">
+  <div *ngIf="loading$ | async" class="text-center py-5"><div class="spinner-border text-primary"></div></div>
+  <div *ngIf="!(loading$ | async)" class="table-responsive">
+    <table class="table table-vcenter card-table">
+      <thead>
+        <tr>
+          <th>{{ 'settings.tokens.name' | translate }}</th>
+          <th>{{ 'settings.tokens.token' | translate }}</th>
+          <th>{{ 'settings.tokens.permissions' | translate }}</th>
+          <th>{{ 'settings.tokens.expiresAt' | translate }}</th>
+          <th>{{ 'settings.tokens.isActive' | translate }}</th>
+          <th class="w-1"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of (items$ | async)">
+          <td>{{ item.name }}</td>
+          <td><code>{{ item.token }}</code></td>
+          <td>
+            <span *ngFor="let perm of item.permissions" class="badge bg-blue me-1">{{ perm }}</span>
+          </td>
+          <td>{{ item.expiresAt | date:'short' }}</td>
+          <td><span class="badge" [ngClass]="item.isActive ? 'bg-green' : 'bg-secondary'">{{ item.isActive ? ('settings.tokens.active' | translate) : ('settings.tokens.inactive' | translate) }}</span></td>
+          <td>
+            <button *ngIf="item.isActive" class="btn btn-sm btn-danger" (click)="revokeToken(item.id)">{{ 'settings.tokens.revoke' | translate }}</button>
+          </td>
+        </tr>
+        <tr *ngIf="(items$ | async)?.length === 0">
+          <td colspan="6" class="text-center text-secondary py-4">{{ 'settings.tokens.noData' | translate }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

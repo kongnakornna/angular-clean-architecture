@@ -22,7 +22,8 @@ export class TranslatePipe implements PipeTransform, OnDestroy {
     });
   }
 
-  transform(key: string): string {
+  transform(key: string | undefined): string {
+    if (!key) return '';
     if (key !== this.lastKey) {
       this.lastKey = key;
       this.value = this.translate.instant(key);

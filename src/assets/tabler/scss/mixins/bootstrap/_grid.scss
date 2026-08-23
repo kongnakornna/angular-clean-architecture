@@ -1,6 +1,8 @@
 @use "sass:math";
 @use "sass:map";
 @use "sass:meta";
+@use '../../variables' as *;
+@use 'breakpoints' as *;
 
 // Grid system
 //
@@ -29,7 +31,7 @@
 @mixin make-col($size: false, $columns: $grid-columns) {
   @if $size {
     flex: 0 0 auto;
-    width: math.percentage(divide($size, $columns));
+    width: math.percentage(math.div($size, $columns));
   } @else {
     flex: 1 1 0;
     max-width: 100%;
@@ -42,14 +44,14 @@
 }
 
 @mixin make-col-offset($size, $columns: $grid-columns) {
-  $num: divide($size, $columns);
-  margin-left: if(sass($num == 0): 0; else: math.percentage($num));
+  $num: math.div($size, $columns);
+  margin-left: if($num == 0, 0, math.percentage($num));
 }
 
 @mixin row-cols($count) {
   > * {
     flex: 0 0 auto;
-    width: math.percentage(divide(1, $count));
+    width: math.percentage(math.div(1, $count));
   }
 }
 

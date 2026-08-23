@@ -1,0 +1,27 @@
+<div class="card">
+  <div class="card-body">
+    <form (ngSubmit)="onSubmit()">
+      <div class="mb-3">
+        <label class="form-label">{{ 'settings.hardware.hardwareTitle' | translate }}</label>
+        <input type="text" class="form-control" name="title" [(ngModel)]="title" required>
+      </div>
+      <div class="mb-3">
+        <label class="form-label">{{ 'settings.hardware.typeName' | translate }}</label>
+        <input type="text" class="form-control" name="typeName" [(ngModel)]="typeName">
+      </div>
+      <div class="mb-3">
+        <label class="form-label">{{ 'settings.hardware.description' | translate }}</label>
+        <textarea class="form-control" name="description" [(ngModel)]="description" rows="3"></textarea>
+      </div>
+      <div class="mb-3">
+        <label class="form-label">{{ 'settings.hardware.price' | translate }}</label>
+        <input type="number" class="form-control" name="price" [(ngModel)]="price" step="0.01">
+      </div>
+      <div class="card-footer bg-transparent mt-auto">
+        <div class="btn-list justify-content-end">
+          <button type="submit" class="btn btn-primary">{{ 'settings.hardware.save' | translate }}</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

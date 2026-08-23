@@ -2,6 +2,7 @@
 @use "sass:map";
 @use "sass:meta";
 @use "sass:string";
+@use '../../variables' as *;
 
 // Utility generator
 // Used to generate utilities & print utilities

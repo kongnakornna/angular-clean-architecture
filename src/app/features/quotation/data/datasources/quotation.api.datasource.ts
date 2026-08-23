@@ -1,11 +1,17 @@
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { API_ENDPOINTS } from '../../../../core/config/api.config';
+import { ApiFallbackService } from '../../../../core/services/api-fallback.service';
 
 @Injectable({ providedIn: 'root' })
 export class QuotationApiDataSource {
-  constructor(private http: HttpClient) {}
+  private http = inject(HttpClient);
+  private fallbackService = inject(ApiFallbackService);
+
+  private endpoint(path: string): string {
+    return `${this.fallbackService.getActiveBaseUrl()}${path}`;
+  }
 
   list(params?: any): Observable<{ data: any[]; total: number }> {
     let p = new HttpParams();
@@ -15,12 +21,12 @@ export class QuotationApiDataSource {
       if (params.page) p = p.set('page', params.page);
       if (params.pageSize) p = p.set('pageSize', params.pageSize);
     }
-    return this.http.get<{ data: any[]; total: number }>(API_ENDPOINTS.quotations.list, { params: p });
+    return this.http.get<{ data: any[]; total: number }>(this.endpoint(API_ENDPOINTS.quotations.list), { params: p });
   }
 
-  getById(id: string): Observable<any> { return this.http.get(API_ENDPOINTS.quotations.detail(id)); }
-  create(data: any): Observable<any> { return this.http.post(API_ENDPOINTS.quotations.create, data); }
-  update(id: string, data: any): Observable<any> { return this.http.put(API_ENDPOINTS.quotations.update(id), data); }
-  approve(id: string): Observable<any> { return this.http.post(API_ENDPOINTS.quotations.approve(id), {}); }
-  reject(id: string, reason?: string): Observable<any> { return this.http.post(API_ENDPOINTS.quotations.reject(id), { reason }); }
+  getById(id: string): Observable<any> { return this.http.get(this.endpoint(API_ENDPOINTS.quotations.detail(id))); }
+  create(data: any): Observable<any> { return this.http.post(this.endpoint(API_ENDPOINTS.quotations.create), data); }
+  update(id: string, data: any): Observable<any> { return this.http.put(this.endpoint(API_ENDPOINTS.quotations.update(id)), data); }
+  approve(id: string): Observable<any> { return this.http.post(this.endpoint(API_ENDPOINTS.quotations.approve(id)), {}); }
+  reject(id: string, reason?: string): Observable<any> { return this.http.post(this.endpoint(API_ENDPOINTS.quotations.reject(id)), { reason }); }
 }

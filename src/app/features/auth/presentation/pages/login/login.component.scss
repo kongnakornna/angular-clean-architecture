@@ -1,8 +1,23 @@
-.language-switcher {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 8px;
-  height: 100%;
-  text-align: center;
+body.dark .prose h1,
+body.dark .prose h2,
+body.dark .prose h3,
+body.dark .prose h4,
+body.dark .prose blockquote>p,
+body.dark .prose p>strong,
+body.dark .prose p>a,
+body.dark .prose {
+    color: white;
+}
+
+body.dark li>strong {
+    color: white;
+    font-weight: bold;
+}
+
+@media (min-width: 992px) {
+  :host ::ng-deep .card.card-md {
+    width: 40%;
+    max-width: 40%;
+    margin-inline: auto;
+  }
 }

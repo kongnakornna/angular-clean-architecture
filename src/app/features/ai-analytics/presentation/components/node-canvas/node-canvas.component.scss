@@ -1,0 +1,27 @@
+:host {
+  display: block;
+}
+
+.node-group {
+  cursor: pointer;
+}
+
+.node-rect {
+  fill: var(--tblr-bg-surface);
+  stroke: var(--tblr-border);
+  stroke-width: 2;
+  transition: fill 0.15s ease, stroke 0.15s ease;
+}
+
+.node-rect:hover,
+.node-active {
+  fill: rgba(32, 107, 196, 0.08);
+  stroke: var(--tblr-primary);
+}
+
+.node-label {
+  fill: var(--tblr-dark);
+  font-size: 12px;
+  font-weight: 500;
+  pointer-events: none;
+}

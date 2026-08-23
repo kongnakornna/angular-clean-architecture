@@ -1,0 +1,49 @@
+<div class="card mb-3">
+  <div class="card-body">
+    <div class="row g-3">
+      <div class="col-md-4">
+        <input type="text" class="form-control" [(ngModel)]="searchTerm" [placeholder]="'settings.sensors.searchPlaceholder' | translate">
+      </div>
+      <div class="col-md-2">
+        <button class="btn btn-primary me-2" (click)="search()">{{ 'settings.sensors.search' | translate }}</button>
+        <button class="btn btn-outline-secondary" (click)="searchTerm = ''; search()">{{ 'settings.sensors.reset' | translate }}</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="card">
+  <div *ngIf="loading$ | async" class="text-center py-5"><div class="spinner-border text-primary"></div></div>
+  <div *ngIf="!(loading$ | async)" class="table-responsive">
+    <table class="table table-vcenter card-table">
+      <thead>
+        <tr>
+          <th>{{ 'settings.sensors.name' | translate }}</th>
+          <th>{{ 'settings.sensors.type' | translate }}</th>
+          <th>{{ 'settings.sensors.unit' | translate }}</th>
+          <th>{{ 'settings.sensors.minThreshold' | translate }}</th>
+          <th>{{ 'settings.sensors.maxThreshold' | translate }}</th>
+          <th>{{ 'settings.sensors.status' | translate }}</th>
+          <th class="w-1"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of (items$ | async)">
+          <td>{{ item.name }}</td>
+          <td>{{ item.type }}</td>
+          <td>{{ item.unit }}</td>
+          <td>{{ item.minThreshold }}</td>
+          <td>{{ item.maxThreshold }}</td>
+          <td><span class="badge" [ngClass]="item.status ? 'bg-green' : 'bg-secondary'">{{ item.status ? ('settings.sensors.active' | translate) : ('settings.sensors.inactive' | translate) }}</span></td>
+          <td>
+            <a [routerLink]="['/settings/sensor', item.id, 'edit']" class="btn btn-sm btn-primary me-1">{{ 'settings.sensors.edit' | translate }}</a>
+            <button class="btn btn-sm btn-danger" (click)="deleteItem(item.id)">{{ 'settings.sensors.delete' | translate }}</button>
+          </td>
+        </tr>
+        <tr *ngIf="(items$ | async)?.length === 0">
+          <td colspan="7" class="text-center text-secondary py-4">{{ 'settings.sensors.noData' | translate }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

@@ -1,0 +1,19 @@
+<div class="card">
+  <div class="table-responsive">
+    <table class="table table-vcenter card-table">
+      <thead>
+        <tr>
+          <th *ngFor="let col of columns">{{ col.label }}</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let row of data">
+          <td *ngFor="let col of columns">{{ row[col.key] }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div *ngIf="data.length === 0" class="card-body text-center text-muted py-4">
+    {{ 'dataTable.noDataAvailable' | translate }}
+  </div>
+</div>

@@ -1,0 +1,42 @@
+<div class="card">
+  <div class="card-body">
+    <form (ngSubmit)="onSubmit()">
+      <div class="mb-3">
+        <label class="form-label">{{ 'settings.sensors.name' | translate }}</label>
+        <input type="text" class="form-control" name="name" [(ngModel)]="name" required>
+      </div>
+      <div class="row g-3 mb-3">
+        <div class="col-md-6">
+          <label class="form-label">{{ 'settings.sensors.type' | translate }}</label>
+          <input type="text" class="form-control" name="type" [(ngModel)]="type">
+        </div>
+        <div class="col-md-6">
+          <label class="form-label">{{ 'settings.sensors.unit' | translate }}</label>
+          <input type="text" class="form-control" name="unit" [(ngModel)]="unit">
+        </div>
+      </div>
+      <div class="row g-3 mb-3">
+        <div class="col-md-6">
+          <label class="form-label">{{ 'settings.sensors.minThreshold' | translate }}</label>
+          <input type="number" class="form-control" name="minThreshold" [(ngModel)]="minThreshold">
+        </div>
+        <div class="col-md-6">
+          <label class="form-label">{{ 'settings.sensors.maxThreshold' | translate }}</label>
+          <input type="number" class="form-control" name="maxThreshold" [(ngModel)]="maxThreshold">
+        </div>
+      </div>
+      <div class="mb-3">
+        <label class="form-label">{{ 'settings.sensors.status' | translate }}</label>
+        <div class="form-check form-switch">
+          <input class="form-check-input" type="checkbox" name="status" [(ngModel)]="status" id="status">
+          <label class="form-check-label" for="status">{{ status ? ('settings.sensors.active' | translate) : ('settings.sensors.inactive' | translate) }}</label>
+        </div>
+      </div>
+      <div class="card-footer bg-transparent mt-auto">
+        <div class="btn-list justify-content-end">
+          <button type="submit" class="btn btn-primary">{{ 'settings.sensors.update' | translate }}</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

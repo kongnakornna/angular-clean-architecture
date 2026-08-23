@@ -22,14 +22,14 @@ export class PageSeoService {
 
     public setSEO(data?: SeoData): void {
         const defaultImage = `${window.location.origin}/assets/img/blog-thumbnail.jpg`;
-        const author = `${data?.author ?? 'iCmon'}`;
+        const author = `${data?.author ?? 'Kongnakorn Jantakun'}`;
         const imagePath = `${data?.pageImageUrl ?? defaultImage}`;
-        const pageTitle = `${data?.pageTitle ?? 'iCmon System'}`;
-        const description = `${data?.pageDescription ?? 'iCmon Management System'}`;
-        const keywords = `${data?.pageKeywords ?? 'iCmon, management, erp'}`;
+        const pageTitle = `${data?.pageTitle ?? 'IoT System'}`;
+        const description = `${data?.pageDescription ?? 'IoT Management System'}`;
+        const keywords = `${data?.pageKeywords ?? 'iCmon, iot management, erp'}`;
         const pageUrl = `${data?.pageUrl ?? window.location.origin}`;
 
-        this.title.setTitle(`${author} | ${pageTitle}`);
+        this.title.setTitle(`${pageTitle}`);
         this.meta.updateTag({ name: 'author', content: author })
         this.meta.updateTag({ name: 'description', content: description })
         this.meta.updateTag({ name: 'keywords', content: keywords })

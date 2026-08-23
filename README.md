@@ -173,3 +173,14 @@ npm install --legacy-peer-deps
 npm audit fix
 
 C:\github\angular-clean-architecture\src\assets\tabler\includes\layout
+
+
+
+
+
+
+
+
+
+
+

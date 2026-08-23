@@ -1,45 +1,17 @@
-/* ============================================
-   Tabler — UI Framework (SCSS)
-   ============================================ */
-@import 'assets/tabler/scss/tabler';
-@import 'assets/tabler/scss/custom/utilities';
+@use '@tabler/core/scss/tabler';
+@use '@tabler/core/scss/tabler-themes';
+@use 'assets/tabler/scss/custom/utilities';
 
-/* ============================================
-   Tailwind CSS — Utility classes
-   ============================================ */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-/* ============================================
-   Base Reset
-   ============================================ */
-body {
-  margin: 0;
-  padding: 0;
+.layout-boxed-2 {
+  --tblr-theme-boxed-width: 1600px;
 }
 
-body.dark .prose h1,
-body.dark .prose h2,
-body.dark .prose h3,
-body.dark .prose h4,
-body.dark .prose blockquote > p,
-body.dark .prose p > strong,
-body.dark .prose p > a,
-body.dark .prose {
-  color: white;
-}
-
-body.dark li > strong {
-  color: white;
-  font-weight: bold;
-}
-
-.language-switcher {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 8px;
-  height: 100%;
-  text-align: center;
+@media (min-width: 1400px) {
+    .container-xxl, .container-xl, .container-lg, .container-md, .container-sm, .container {
+        max-width: 100%;
+    }
 }

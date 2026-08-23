@@ -1,0 +1,77 @@
+<div *ngIf="loading$ | async" class="text-center py-5">
+  <div class="spinner-border text-primary" role="status">
+    <span class="visually-hidden">{{ 'common.loading' | translate }}</span>
+  </div>
+</div>
+<div *ngIf="(dashboardState$ | async) as state">
+  <div class="page-header d-print-none">
+    <div class="row g-2 align-items-center">
+      <div class="col">
+        <div class="page-pretitle">{{ 'aiAnalytics.dashboard' | translate }}</div>
+        <h1 class="page-title">{{ 'aiAnalytics.dashboardTitle' | translate }}</h1>
+      </div>
+    </div>
+  </div>
+  <br>
+
+  <div class="row row-deck row-cards">
+    <div class="col-sm-6 col-lg-3" *ngFor="let kpi of state.kpis">
+      <app-kpi-card
+        [label]="kpi.label"
+        [value]="kpi.value"
+        [delta]="kpi.delta"
+        [deltaDirection]="kpi.deltaDirection">
+      </app-kpi-card>
+    </div>
+
+    <div class="col-lg-6">
+      <div class="card">
+        <div class="card-header">
+          <h3 class="card-title">{{ 'dashboard.systemHealth' | translate }}</h3>
+        </div>
+        <div class="card-body">
+          <div class="divide-y" *ngIf="state.systemHealth?.length; else noHealth">
+            <div *ngFor="let item of state.systemHealth" class="py-3">
+              <div class="d-flex justify-content-between align-items-center mb-1">
+                <span class="fw-bold">{{ item.name }}</span>
+                <span class="text-secondary small" *ngIf="item.online !== undefined">{{ item.online }} / {{ item.total }}</span>
+                <span class="text-secondary small" *ngIf="item.value !== undefined">{{ item.value }} {{ item.unit }}</span>
+              </div>
+              <div class="progress progress-sm" *ngIf="item.online !== undefined">
+                <div class="progress-bar bg-success" [style.width.%]="healthPercent(item)" role="progressbar"></div>
+              </div>
+              <div class="progress progress-sm" *ngIf="item.used !== undefined && item.total">
+                <div class="progress-bar bg-primary" [style.width.%]="(item.used / item.total) * 100" role="progressbar"></div>
+              </div>
+            </div>
+          </div>
+          <ng-template #noHealth>
+            <div class="text-secondary text-center py-4">{{ 'dashboard.noData' | translate }}</div>
+          </ng-template>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-lg-6">
+      <div class="card">
+        <div class="card-header">
+          <h3 class="card-title">{{ 'dashboard.alerts' | translate }}</h3>
+        </div>
+        <div class="card-body">
+          <div class="divide-y" *ngIf="state.alerts?.length; else noAlerts">
+            <div *ngFor="let alert of state.alerts" class="py-3 d-flex align-items-start">
+              <app-alert-badge [severity]="alert.severity"></app-alert-badge>
+              <div class="ms-3">
+                <div>{{ alert.message }}</div>
+                <div class="text-secondary small">{{ alert.timestamp }}</div>
+              </div>
+            </div>
+          </div>
+          <ng-template #noAlerts>
+            <div class="text-secondary text-center py-4">{{ 'dashboard.noAlerts' | translate }}</div>
+          </ng-template>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

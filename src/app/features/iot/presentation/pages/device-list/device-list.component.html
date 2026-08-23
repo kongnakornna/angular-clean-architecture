@@ -1,16 +1,175 @@
 <div class="page-header d-print-none">
-  <div class="row align-items-center">
+  <div class="row g-2 align-items-center">
     <div class="col">
-      <h2 class="page-title">{{ 'iot.title' | translate }}</h2>
-      <div class="text-secondary mt-1">{{ 'iot.subtitle' | translate }}</div>
+      <div class="page-pretitle">{{ 'iot.subtitle' | translate }}</div>
+      <h1 class="page-title">{{ 'iot.title' | translate }}</h1>
     </div>
     <div class="col-auto ms-auto d-print-none">
-      <a routerLink="/iot/devices/create" class="btn btn-primary">{{ 'iot.create' | translate }}</a>
+      <a routerLink="/iot/devices/create" class="btn btn-primary">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false" class="icon icon-md">
+          <path d="M12 5l0 14" />
+          <path d="M5 12l14 0" />
+        </svg>
+        {{ 'iot.create' | translate }}
+      </a>
     </div>
   </div>
 </div>
+<br>
+
+<div class="row row-deck row-cards mb-3">
+  <div class="col-sm-6 col-lg-3">
+    <div class="card">
+      <div class="card-body">
+        <div class="subheader">{{ 'iot.totalDevices' | translate }}</div>
+        <div class="h1 mb-0">{{ total$ | async }}</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-sm-6 col-lg-3">
+    <div class="card">
+      <div class="card-body">
+        <div class="subheader">{{ 'iot.onlineDevices' | translate }}</div>
+        <div class="h1 mb-0">{{ onlineCount$ | async }}</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-sm-6 col-lg-3">
+    <div class="card">
+      <div class="card-body">
+        <div class="subheader">{{ 'iot.offlineDevices' | translate }}</div>
+        <div class="h1 mb-0">{{ offlineCount$ | async }}</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-sm-6 col-lg-3">
+    <div class="card">
+      <div class="card-body">
+        <div class="subheader">{{ 'iot.sensorAlerts' | translate }}</div>
+        <div class="h1 mb-0">{{ alarmCount$ | async }}</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="card mb-3">
+  <div class="card-body">
+    <div class="row g-3">
+      <div class="col-md-3">
+        <label class="form-label">{{ 'iot.search' | translate }}</label>
+        <input type="text" class="form-control" [(ngModel)]="searchTerm" [placeholder]="'iot.searchPlaceholder' | translate">
+      </div>
+      <div class="col-md-2">
+        <label class="form-label">{{ 'iot.hardwareId' | translate }}</label>
+        <input type="text" class="form-control" [(ngModel)]="hardwareIdFilter" [placeholder]="'iot.hardwareIdPlaceholder' | translate">
+      </div>
+      <div class="col-md-2">
+        <label class="form-label">{{ 'iot.typeId' | translate }}</label>
+        <input type="text" class="form-control" [(ngModel)]="typeIdFilter" [placeholder]="'iot.typeIdPlaceholder' | translate">
+      </div>
+      <div class="col-md-3 d-flex align-items-end">
+        <button class="btn btn-primary me-2" (click)="search()">{{ 'iot.searchBtn' | translate }}</button>
+        <button class="btn btn-outline-secondary" (click)="resetFilters()">{{ 'iot.reset' | translate }}</button>
+      </div>
+    </div>
+  </div>
+</div>
+
 <div class="card">
-  <div class="card-body text-center py-5">
-    <div class="text-secondary">{{ 'common.underDevelopment' | translate }}</div>
+  <div *ngIf="loading$ | async" class="text-center py-5">
+    <div class="spinner-border text-primary" role="status">
+      <span class="visually-hidden">{{ 'iot.loading' | translate }}</span>
+    </div>
+  </div>
+
+  <div *ngIf="!(loading$ | async)">
+    <div class="card-header">
+      <h3 class="card-title">{{ 'iot.deviceList' | translate }}</h3>
+    </div>
+    <div class="card-table table-responsive">
+      <table class="table table-vcenter card-table">
+        <thead>
+          <tr>
+            <th>{{ 'iot.deviceName' | translate }}</th>
+            <th>{{ 'iot.type' | translate }}</th>
+            <th>{{ 'iot.status' | translate }}</th>
+            <th>{{ 'iot.value' | translate }}</th>
+            <th>{{ 'iot.unit' | translate }}</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let device of (devices$ | async)">
+            <td>{{ device.deviceName }}</td>
+            <td>{{ device.typeName }}</td>
+            <td>
+              <span class="badge" [ngClass]="statusBadge(device)">{{ statusText(device) | translate }}</span>
+            </td>
+            <td>{{ device.valueData }}</td>
+            <td class="text-secondary">{{ device.unit }}</td>
+          </tr>
+          <tr *ngIf="(devices$ | async)?.length === 0">
+            <td colspan="5" class="text-center text-secondary py-4">{{ 'iot.noSensorData' | translate }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="card-footer d-flex align-items-center">
+      <p class="m-0 text-secondary">{{ 'iot.showing' | translate }} {{ total$ | async }} {{ 'iot.items' | translate }}</p>
+      <ul class="pagination m-0 ms-auto">
+        <li class="page-item" [class.disabled]="currentPage === 1">
+          <a class="page-link" (click)="prevPage()">&#8249;</a>
+        </li>
+        <ng-container *ngFor="let p of pageNumbers()">
+          <li class="page-item disabled" *ngIf="p === '...'">
+            <span class="page-link">...</span>
+          </li>
+          <li class="page-item" *ngIf="p !== '...'" [class.active]="currentPage === p">
+            <a class="page-link" (click)="goToPage($any(p))">{{ p }}</a>
+          </li>
+        </ng-container>
+        <li class="page-item" [class.disabled]="currentPage === totalPages()">
+          <a class="page-link" (click)="nextPage()">&#8250;</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<div class="col-lg-12 mt-3">
+  <div class="card">
+    <div class="card-header">
+      <h3 class="card-title">{{ 'iot.sensorAlerts' | translate }}</h3>
+    </div>
+    <div class="card-table table-responsive">
+      <table class="table table-vcenter card-table">
+        <thead>
+          <tr>
+            <th>{{ 'iot.deviceName' | translate }}</th>
+            <th>{{ 'iot.type' | translate }}</th>
+            <th>{{ 'iot.activeAlerts' | translate }}</th>
+            <th>{{ 'iot.status' | translate }}</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let alarm of (alarms$ | async)">
+            <td>{{ alarm.deviceName }}</td>
+            <td>{{ alarm.typeName }}</td>
+            <td>{{ alarm.alarmTitle }}</td>
+            <td>
+              <span class="badge" [ngClass]="alarm.status === 1 ? 'bg-red' : 'bg-green'">
+                {{ alarm.status === 1 ? ('iot.activeAlerts' | translate) : ('iot.onlineStatus' | translate) }}
+              </span>
+            </td>
+          </tr>
+          <tr *ngIf="(alarms$ | async)?.length === 0">
+            <td colspan="4" class="text-center text-secondary py-4">{{ 'iot.noSensorData' | translate }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
   </div>
 </div>

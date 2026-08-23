@@ -1,0 +1,43 @@
+<div class="card">
+  <div class="card-body p-0">
+    <svg [attr.viewBox]="'0 0 800 400'" class="w-100" style="min-height: 300px; background: var(--tblr-bg-surface);">
+      <defs>
+        <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto">
+          <polygon points="0 0, 10 3.5, 0 7" fill="var(--tblr-muted)" />
+        </marker>
+      </defs>
+
+      <g *ngFor="let edge of edges">
+        <ng-container *ngIf="getEdgePath(edge) as path">
+          <line
+            [attr.x1]="path.x1"
+            [attr.y1]="path.y1"
+            [attr.x2]="path.x2"
+            [attr.y2]="path.y2"
+            stroke="var(--tblr-muted)"
+            stroke-width="2"
+            stroke-dasharray="5,5"
+            marker-end="url(#arrowhead)" />
+        </ng-container>
+      </g>
+
+      <g *ngFor="let node of nodes" (click)="onNodeClick(node)" class="node-group">
+        <rect
+          [attr.x]="node.x"
+          [attr.y]="node.y"
+          width="120"
+          height="40"
+          rx="6"
+          class="node-rect"
+          [class.node-active]="node.active" />
+        <text
+          [attr.x]="node.x + 60"
+          [attr.y]="node.y + 24"
+          text-anchor="middle"
+          class="node-label">
+          {{ node.label }}
+        </text>
+      </g>
+    </svg>
+  </div>
+</div>

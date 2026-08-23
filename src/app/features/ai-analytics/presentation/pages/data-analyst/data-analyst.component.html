@@ -1,0 +1,79 @@
+<div *ngIf="loading$ | async" class="text-center py-5">
+  <div class="spinner-border text-primary" role="status">
+    <span class="visually-hidden">{{ 'common.loading' | translate }}</span>
+  </div>
+</div>
+<div *ngIf="(insights$ | async) as state">
+  <div class="page-header d-print-none">
+    <div class="row g-2 align-items-center">
+      <div class="col">
+        <div class="page-pretitle">{{ 'aiAnalytics.dataAnalyst' | translate }}</div>
+        <h1 class="page-title">{{ 'aiAnalytics.dataAnalystTitle' | translate }}</h1>
+      </div>
+    </div>
+  </div>
+  <br>
+
+  <div class="row row-deck row-cards">
+    <div class="col-sm-6 col-lg-3">
+      <app-kpi-card
+        label="{{ 'dataAnalyst.revenue' | translate }}"
+        [value]="state.kpi.revenue"
+        [delta]="state.kpi.revenueDelta"
+        [deltaDirection]="state.kpi.revenueDelta >= 0 ? 'up' : 'down'">
+      </app-kpi-card>
+    </div>
+    <div class="col-sm-6 col-lg-3">
+      <app-kpi-card
+        label="{{ 'dataAnalyst.users' | translate }}"
+        [value]="state.kpi.users"
+        [delta]="state.kpi.usersDelta"
+        [deltaDirection]="state.kpi.usersDelta >= 0 ? 'up' : 'down'">
+      </app-kpi-card>
+    </div>
+    <div class="col-sm-6 col-lg-3">
+      <app-kpi-card
+        label="{{ 'dataAnalyst.orders' | translate }}"
+        [value]="state.kpi.orders"
+        [delta]="state.kpi.ordersDelta"
+        [deltaDirection]="state.kpi.ordersDelta >= 0 ? 'up' : 'down'">
+      </app-kpi-card>
+    </div>
+    <div class="col-sm-6 col-lg-3">
+      <app-kpi-card
+        label="{{ 'dataAnalyst.avgRating' | translate }}"
+        [value]="state.kpi.avgRating"
+        [delta]="state.kpi.ratingDelta"
+        [deltaDirection]="state.kpi.ratingDelta >= 0 ? 'up' : 'down'">
+      </app-kpi-card>
+    </div>
+
+    <div class="col-lg-8">
+      <div class="card">
+        <div class="card-header">
+          <h3 class="card-title">{{ 'dataAnalyst.chartTitle' | translate }}</h3>
+        </div>
+        <div class="card-body">
+          <div style="height: 300px;">
+            <app-chart-widget
+              type="line"
+              [labels]="state.chart.labels"
+              [datasets]="state.chart.datasets">
+            </app-chart-widget>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-lg-4">
+      <div class="card">
+        <div class="card-header">
+          <h3 class="card-title">{{ 'dataAnalyst.aiInsights' | translate }}</h3>
+        </div>
+        <div class="card-body">
+          <app-ai-insight-panel [insights]="state.insights"></app-ai-insight-panel>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

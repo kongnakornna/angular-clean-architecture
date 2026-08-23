@@ -4,6 +4,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { of } from 'rxjs';
 import { UserCreateComponent } from './user-create.component';
 import { provideTablerIcons } from 'angular-tabler-icons';
+import { AUTH_REPOSITORY } from '../../../../../core/di/tokens';
 
 describe('UserCreateComponent', () => {
   let component: UserCreateComponent;
@@ -15,6 +16,12 @@ describe('UserCreateComponent', () => {
       providers: [
         provideTablerIcons({}),
         { provide: TranslateService, useValue: { currentLang: 'en', getCurrentLang: () => 'en', getBrowserLang: () => 'en', instant: (k: string) => k, use: () => of({}), onLangChange: of({}) } },
+        {
+          provide: AUTH_REPOSITORY,
+          useValue: {
+            createUser: (data: any) => of({ id: '1', ...data }),
+          },
+        },
       ],
     }).compileComponents();
 
